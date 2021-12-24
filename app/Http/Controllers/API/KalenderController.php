@@ -20,15 +20,15 @@ class KalenderController extends Controller
     public function index(Request $request)
     {
         $mata_kuliah =  Assignment::all();
-        $kalender =  new KalenderCollection($mata_kuliah);
-        return ResponseFormatter::success($kalender);
+        return  new KalenderCollection($mata_kuliah);
+        // return ResponseFormatter::success($kalender);
     }
 
     public function findbyid($id)
     {
         $meet = Assignment::find($id);
-        $kalender = new KalenderResource($meet);
-        return ResponseFormatter::success($kalender);
+         return new KalenderResource($meet);
+        // return ResponseFormatter::success($kalender);
     }
 
     // records.sort((a, b) => {

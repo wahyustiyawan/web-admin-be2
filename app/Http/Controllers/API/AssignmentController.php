@@ -24,10 +24,10 @@ class AssignmentController extends Controller
         }else{
             $mata_kuliah =  Assignment::all();
         }
-        // $assignment = new AssignmentCollection($mata_kuliah);
+        return new AssignmentCollection($mata_kuliah);
         // return ResponseFormatter::success($assignment, "Daftar assignment!");
-        //$assignment = Assignment::all();
-        return new AssignmentCollection($mata_kuliah->paginate(1));
+        // return $assignment = Assignment::all();
+        // return new AssignmentCollection($mata_kuliah->paginate(1));
        
     }
 
@@ -87,13 +87,13 @@ class AssignmentController extends Controller
             $assignment->save();
             // $assignment->get_dokumen()->save($document);
 
-            // return response()->json([
-            //     "error" => false,
-            //     "success" => true,
-            //     "message" => "File successfully uploaded",
-            //     "file" => $file_name
-            // ]);
-            return ResponseFormatter::success(["file" => $file_name], "Assignment berhasil diupload!");
+            return response()->json([
+                "error" => false,
+                "success" => true,
+                "message" => "File successfully uploaded",
+                "file" => $file_name
+            ]);
+            // return ResponseFormatter::success(["file" => $file_name], "Assignment berhasil diupload!");
 
         // }
         return Assignment::create($request->all());
@@ -104,12 +104,12 @@ class AssignmentController extends Controller
         // $user       =   Auth::user();
         // $enrolls       =  Enrolls::where('user_id', $user->id)->get();
         $assignment = Assignment::find($id);
-        // return response()->json([
-        //     "error" => false,
-        //     "message" => "success",
-        //     "data" => $assignment
-        // ], 200);
-        return ResponseFormatter::success($assignment, "Daftar assignment!");
+        return response()->json([
+            "error" => false,
+            "message" => "success",
+            "data" => $assignment
+        ], 200);
+        // return ResponseFormatter::success($assignment, "Daftar assignment!");
        
     }
 }

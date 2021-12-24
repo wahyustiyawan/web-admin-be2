@@ -13,12 +13,12 @@ class JobChannelController extends Controller
     public function index()
     {
         $jobChannel = JobChannel::all();
-        // return response()->json([
-        //     "error" => false,
-        //     "message" => "success",
-        //     "data" => $jobChannel
-        // ], 200);
-        return ResponseFormatter::success($jobChannel);
+        return response()->json([
+            "error" => false,
+            "message" => "success",
+            "data" => $jobChannel
+        ], 200);
+        // return ResponseFormatter::success($jobChannel);
     }
 
     public function store(Request $request)
@@ -56,13 +56,13 @@ class JobChannelController extends Controller
             $jobChannel->foto = $file_name;
             $jobChannel->save();
 
-            // return response()->json([
-            //     "error" => false,
-            //     "success" => true,
-            //     "message" => "Images successfully uploaded",
-            //     "file" => $txt
-            // ]);
-            return ResponseFormatter::success(["file" => $txt], "Job channel berhasil ditambahkan");
+            return response()->json([
+                "error" => false,
+                "success" => true,
+                "message" => "Images successfully uploaded",
+                "file" => $txt
+            ]);
+            // return ResponseFormatter::success(["file" => $txt], "Job channel berhasil ditambahkan");
 
         }
         return JobChannel::create($request->all());
@@ -77,8 +77,8 @@ class JobChannelController extends Controller
     public function show($id)
     {
         //
-        $jobChannel = JobChannel::find($id);
-        return ResponseFormatter::success($jobChannel);
+        return JobChannel::find($id);
+        // return ResponseFormatter::success($jobChannel);
     }
 
     /**
@@ -93,7 +93,8 @@ class JobChannelController extends Controller
         //
         $jobChannel = JobChannel::find($id);
         $jobChannel ->update($request->all());
-        return ResponseFormatter::success($jobChannel, "Job channel berhasil diedit");
+        return $jobChannel;
+        // return ResponseFormatter::success($jobChannel, "Job channel berhasil diedit");
     }
 
     /**

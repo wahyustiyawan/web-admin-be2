@@ -18,8 +18,8 @@ class KategoriController extends Controller
     public function index()
     {
         //
-        $kategori = Kategori::all();
-        return ResponseFormatter::success($kategori);
+        return Kategori::all();
+        // return ResponseFormatter::success($kategori);
     }
 
     /**
@@ -47,8 +47,8 @@ class KategoriController extends Controller
     public function show($id)
     {
         //
-        $kategori = Kategori::find($id);
-        return ResponseFormatter::success($kategori);
+        return Kategori::find($id);
+        // return ResponseFormatter::success($kategori);
     }
 
     /**
@@ -63,7 +63,8 @@ class KategoriController extends Controller
         //
         $kategori = Kategori::find($id);
         $kategori ->update($request->all());
-        return ResponseFormatter::success($kategori, "Skill level berhasil diedit!");
+        return $kategori;
+        // return ResponseFormatter::success($kategori, "Skill level berhasil diedit!");
     }
 
     /**
@@ -75,8 +76,8 @@ class KategoriController extends Controller
     public function destroy($id)
     {
         //
-        Kategori::destroy($id);
-        return ResponseFormatter::success(null, "Skill level berhasil dihapus!");
+        return Kategori::destroy($id);
+        // return ResponseFormatter::success(null, "Skill level berhasil dihapus!");
     }
 
     /**
@@ -87,21 +88,21 @@ class KategoriController extends Controller
      */
     public function search($name)
     {
-        $kategori = Kategori::where(strtolower('nama'), 'like', '%'.$name.'%')->get();
-        return ResponseFormatter::success($kategori, "Hasil pencarian skill level");
+        return Kategori::where(strtolower('nama'), 'like', '%'.$name.'%')->get();
+        // return ResponseFormatter::success($kategori, "Hasil pencarian skill level");
     }
 
     public function kelas_dokumen($id)
     {
-        $kategori = Kategori::find($id)->get_dokumen;
-        return ResponseFormatter::success($kategori, "Hasil pencarian dokumen");
+        return Kategori::find($id)->get_dokumen;
+        // return ResponseFormatter::success($kategori, "Hasil pencarian dokumen");
     }
 
 
     public function kelas_video($id)
     {
-        $kategori = Kategori::find($id)->get_video;
-        return ResponseFormatter::success($kategori, "Hasil pencarian video");
+        return Kategori::find($id)->get_video;
+        // return ResponseFormatter::success($kategori, "Hasil pencarian video");
     }
 
 }

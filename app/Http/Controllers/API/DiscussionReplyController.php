@@ -21,12 +21,12 @@ class DiscussionReplyController extends Controller
     {
         $reply = DiscussionReply::where('discussion_id', $id)->get();
         // dd(Auth::user()->id);
-        // return response()->json([
-        //     "error" => false,
-        //     "status" => "success",
-        //     "data" => $reply
-        // ], 200);
-        return ResponseFormatter::success($reply);
+        return response()->json([
+            "error" => false,
+            "status" => "success",
+            "data" => $reply
+        ], 200);
+        // return ResponseFormatter::success($reply);
     }
 
     public function store(Request $request)
@@ -40,11 +40,11 @@ class DiscussionReplyController extends Controller
 
         $input->save();
 
-        // return response()->json([
-        //     "error" => false,
-        //     "message" => "success"
-        // ], 200);
-        return ResponseFormatter::success(null, "Komentar berhasil ditambahkan!");
+        return response()->json([
+            "error" => false,
+            "message" => "success"
+        ], 200);
+        // return ResponseFormatter::success(null, "Komentar berhasil ditambahkan!");
     }
 
     public function update(Request $request, $id)
@@ -54,20 +54,20 @@ class DiscussionReplyController extends Controller
 
         $DiscussionReply->save();
 
-        // return response()->json([
-        //     "error" => false,
-        //     "message" => "success"
-        // ]);
-        return ResponseFormatter::success(null, "Komentar berhasil diedit!");
+        return response()->json([
+            "error" => false,
+            "message" => "success"
+        ]);
+        // return ResponseFormatter::success(null, "Komentar berhasil diedit!");
     }
 
     public function destroy($id)
     {
         DiscussionReply::where('id', $id)->delete();
-        // return response()->json([
-        //     "error" => false,
-        //     "message" => "success"
-        // ], 200);
-        return ResponseFormatter::success(null, "Komentar berhasil dihapus!");
+        return response()->json([
+            "error" => false,
+            "message" => "success"
+        ], 200);
+        // return ResponseFormatter::success(null, "Komentar berhasil dihapus!");
     }
 }

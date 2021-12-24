@@ -21,12 +21,12 @@ class IklanController extends Controller
     {
         //return IklanResource::collection(Iklan::all());
         $iklan = Iklan::all();
-        // return response()->json([
-        //     "error" => false,
-        //     "message" => "Success",
-        //     "data" => $iklan
-        // ], 200);
-        return ResponseFormatter::success($iklan);
+        return response()->json([
+            "error" => false,
+            "message" => "Success",
+            "data" => $iklan
+        ], 200);
+        // return ResponseFormatter::success($iklan);
     }
 
     /**
@@ -58,13 +58,13 @@ class IklanController extends Controller
             $iklan->gambar = $file_name;
             $iklan->save();
 
-            // return response()->json([
-            //     "error" => false,
-            //     "success" => true,
-            //     "message" => "Images successfully uploaded",
-            //     "file" => $txt
-            // ]);
-            return ResponseFormatter::success(["file" => $txt], "Iklan berhasil ditambahkan!");
+            return response()->json([
+                "error" => false,
+                "success" => true,
+                "message" => "Images successfully uploaded",
+                "file" => $txt
+            ]);
+            // return ResponseFormatter::success(["file" => $txt], "Iklan berhasil ditambahkan!");
 
         }
         return Iklan::create($request->all());
@@ -79,8 +79,8 @@ class IklanController extends Controller
     public function show($id)
     {
         //
-        $iklan = Iklan::find($id);
-        return ResponseFormatter::success($iklan);
+        return Iklan::find($id);
+        // return ResponseFormatter::success($iklan);
     }
 
     /**
@@ -95,7 +95,8 @@ class IklanController extends Controller
         //
         $iklan = Iklan::find($id);
         $iklan ->update($request->all());
-        return ResponseFormatter::success($iklan, "Iklan berhasil diedit!");
+        return $iklan;
+        // return ResponseFormatter::success($iklan, "Iklan berhasil diedit!");
     }
 
     /**
@@ -107,8 +108,8 @@ class IklanController extends Controller
     public function destroy($id)
     {
         //
-        Iklan::destroy($id);
-        return ResponseFormatter::success(null, "Iklan berhasil dihapus!");
+        return Iklan::destroy($id);
+        // return ResponseFormatter::success(null, "Iklan berhasil dihapus!");
     }
 
     public function download($id)

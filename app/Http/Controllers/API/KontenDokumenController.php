@@ -25,8 +25,8 @@ class KontenDokumenController extends Controller
         }else{
             $mata_kuliah =  KontenDokumen::all();
         }
-        $dokumen = new KontenDokumenCollection($mata_kuliah);
-        return ResponseFormatter::success($dokumen);
+        return new KontenDokumenCollection($mata_kuliah);
+        // return ResponseFormatter::success($dokumen);
     }
 
     /**
@@ -70,7 +70,7 @@ class KontenDokumenController extends Controller
     
             $kelas->get_dokumen()->save($document);
 
-            return ResponseFormatter::success(["file"=>$txt], "Konten dokumen berhasil ditambahkan!");
+            // return ResponseFormatter::success(["file"=>$txt], "Konten dokumen berhasil ditambahkan!");
 
         }
         return KontenDokumen::create($request->all());
@@ -85,8 +85,8 @@ class KontenDokumenController extends Controller
     public function show($id)
     {
         //
-        $dokumen = KontenDokumen::find($id);
-        return ResponseFormatter::success($dokumen);
+        return KontenDokumen::find($id);
+        // return ResponseFormatter::success($dokumen);
     }
 
     /**
@@ -101,7 +101,8 @@ class KontenDokumenController extends Controller
         //
         $dokumen = KontenDokumen::find($id);
         $dokumen ->update($request->all());
-        return ResponseFormatter::success($dokumen);
+        return $dokumen;
+        // return ResponseFormatter::success($dokumen);
     }
 
     /**
@@ -113,8 +114,9 @@ class KontenDokumenController extends Controller
     public function destroy($id)
     {
         //
-        KontenDokumen::destroy($id);
-        return ResponseFormatter::success(null, "Konten dokumen berhasil dihapus!");
+        return KontenDokumen::destroy($id);
+
+        // return ResponseFormatter::success(null, "Konten dokumen berhasil dihapus!");
     }
 
     /**
@@ -125,8 +127,8 @@ class KontenDokumenController extends Controller
      */
     public function search($name)
     {
-        $dokumen = KontenDokumen::where(strtolower('judul'), 'like', '%'.$name.'%')->get();
-        return ResponseFormatter::success($dokumen, "Hasil pencarian konten dokumen");
+        return KontenDokumen::where(strtolower('judul'), 'like', '%'.$name.'%')->get();
+        // return ResponseFormatter::success($dokumen, "Hasil pencarian konten dokumen");
     }
 
     public function download($id)
@@ -147,7 +149,7 @@ class KontenDokumenController extends Controller
     
     public function jumlah_dokumen($id)
     {        
-        $jumlah_dokumen = KontenDokumen::where('kelas_id',$id)->count();
-        return ResponseFormatter::success($jumlah_dokumen);
+        return KontenDokumen::where('kelas_id',$id)->count();
+        // return ResponseFormatter::success($jumlah_dokumen);
     }
 }

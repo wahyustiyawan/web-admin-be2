@@ -37,8 +37,8 @@ class KelasController extends Controller
             'deskripsi' => 'required',
             //'kategori' => 'required',
         ]);
-        Kelas::create($request->all());
-        return ResponseFormatter::success(null, "Program studi berhasil ditambahkan!");
+        return Kelas::create($request->all());
+        // return ResponseFormatter::success(null, "Program studi berhasil ditambahkan!");
     }
 
     /**
@@ -50,8 +50,8 @@ class KelasController extends Controller
     public function show($id)
     {
         //
-        $kelas = Kelas::find($id);
-        return ResponseFormatter::success($kelas);
+        return Kelas::find($id);
+        // return ResponseFormatter::success($kelas);
     }
 
     /**
@@ -66,7 +66,8 @@ class KelasController extends Controller
         //
         $kelas = Kelas::find($id);
         $kelas ->update($request->all());
-        return ResponseFormatter::success(null, "Program studi berhasil diedit!");
+        return $kelas;
+        // return ResponseFormatter::success(null, "Program studi berhasil diedit!");
     }
 
     /**
@@ -78,8 +79,8 @@ class KelasController extends Controller
     public function destroy($id)
     {
         //
-        Kelas::destroy($id);
-        return ResponseFormatter::success("Program studi berhasil dihapus!");
+        return Kelas::destroy($id);
+        // return ResponseFormatter::success("Program studi berhasil dihapus!");
     }
 
     /**
@@ -90,21 +91,21 @@ class KelasController extends Controller
      */
     public function search($name)
     {
-        $kelas = Kelas::where(strtolower('nama'), 'like', '%'.$name.'%')->get();
-        return ResponseFormatter::success($kelas, "Hasil pencarian program studi");
+        return Kelas::where(strtolower('nama'), 'like', '%'.$name.'%')->get();
+        // return ResponseFormatter::success($kelas, "Hasil pencarian program studi");
     }
 
     public function kelas_dokumen($id)
     {
-        $kelas = Kelas::find($id)->get_dokumen;
-        return ResponseFormatter::success($kelas, "Hasil pencarian dokumen");
+        return Kelas::find($id)->get_dokumen;
+        // return ResponseFormatter::success($kelas, "Hasil pencarian dokumen");
     }
 
 
     public function kelas_video($id)
     {
-        $kelas = Kelas::find($id)->get_video;
-        return ResponseFormatter::success($kelas, "Hasil pencarian video");
+        return Kelas::find($id)->get_video;
+        // return ResponseFormatter::success($kelas, "Hasil pencarian video");
     }
 
 }

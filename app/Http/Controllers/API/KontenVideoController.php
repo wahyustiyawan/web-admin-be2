@@ -25,9 +25,9 @@ class KontenVideoController extends Controller
         }else{
             $mata_kuliah =  KontenVideo::all();
         }
-        $video = new KontenVideoCollection($mata_kuliah);
-        return ResponseFormatter::success($video);
-        //return new ItemResource($video);
+        return new KontenVideoCollection($mata_kuliah);
+        // return ResponseFormatter::success($video);
+        // return new ItemResource($video);
 
     }
 
@@ -58,8 +58,8 @@ class KontenVideoController extends Controller
     public function show($id)
     {
         //
-        $video = KontenVideo::find($id);
-        return ResponseFormatter::success($video);
+        return KontenVideo::find($id);
+        // return ResponseFormatter::success($video);
     }
 
     /**
@@ -74,7 +74,8 @@ class KontenVideoController extends Controller
         //
         $video = KontenVideo::find($id);
         $video ->update($request->all());
-        return ResponseFormatter::success($video, "Konten video berhasil diedit!");
+        return $video;
+        // return ResponseFormatter::success($video, "Konten video berhasil diedit!");
     }
 
     /**
@@ -86,8 +87,8 @@ class KontenVideoController extends Controller
     public function destroy($id)
     {
         //
-        KontenVideo::destroy($id);
-        return ResponseFormatter::success(null, "Konten video berhasil dihapus");
+        return KontenVideo::destroy($id);
+        // return ResponseFormatter::success(null, "Konten video berhasil dihapus");
 
     }
 
@@ -99,8 +100,8 @@ class KontenVideoController extends Controller
      */
     public function search($name)
     {
-        $video = KontenVideo::where(strtolower('judul'), 'like', '%'.$name.'%')->get();
-        return ResponseFormatter::success($video, "Hasil pencarian konten video");
+        return KontenVideo::where(strtolower('judul'), 'like', '%'.$name.'%')->get();
+        // return ResponseFormatter::success($video, "Hasil pencarian konten video");
     }
 
     public function store(Request $request, $id)
@@ -120,14 +121,18 @@ class KontenVideoController extends Controller
         $video->link = $request->link;
         $video->bab = $request->bab;
         $kelas->get_video()->save($video);
-
-        return ResponseFormatter::success(null, "Konten video berhasil ditambahkan");
+        return response()->json([
+            "error" => false,
+            "success" => true,
+            "message" => "File successfully uploaded"
+        ]);
+        // return ResponseFormatter::success(null, "Konten video berhasil ditambahkan");
     }
 
     public function jumlah_video($id){
 
-        $video = KontenVideo::where('kelas_id',$id)->count();
-        return ResponseFormatter::success($video);
+        return KontenVideo::where('kelas_id',$id)->count();
+        // return ResponseFormatter::success($video);
     }
 }
 

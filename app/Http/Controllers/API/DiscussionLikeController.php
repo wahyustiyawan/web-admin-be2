@@ -13,11 +13,11 @@ class DiscussionLikeController extends Controller
     public function index($id)
     { 
         $like = DiscussionLike::where('discussion_id', $id)->get();
-        // return response()->json([
-        //     "status" => "success",
-        //     "data" => $like
-        // ],200);
-        return ResponseFormatter::success($like);
+        return response()->json([
+            "status" => "success",
+            "data" => $like
+        ],200);
+        // return ResponseFormatter::success($like);
     }
 
     public function store(Request $request)
@@ -30,11 +30,11 @@ class DiscussionLikeController extends Controller
 
         $input->save();
         
-        // return response()->json([
-        //     "error" => false,
-        //     "message" => "success"
-        // ],200);
-        return ResponseFormatter::success(null, "Like berhasil ditambahkan!");
+        return response()->json([
+            "error" => false,
+            "message" => "success"
+        ],200);
+        // return ResponseFormatter::success(null, "Like berhasil ditambahkan!");
     }
 
     public function update(Request $request, $id) 
@@ -50,11 +50,11 @@ class DiscussionLikeController extends Controller
 
         $input->update();
         
-        // return response()->json([
-        //     "error" => false,
-        //     "message" => "success"
-        // ],200);
-        return ResponseFormatter::success(null, "Like berhasil diedit!");
+        return response()->json([
+            "error" => false,
+            "message" => "success"
+        ],200);
+        // return ResponseFormatter::success(null, "Like berhasil diedit!");
     }
 
     public function destroy($id) 

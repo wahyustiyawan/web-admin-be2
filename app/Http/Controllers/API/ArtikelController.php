@@ -19,12 +19,12 @@ class ArtikelController extends Controller
     {
         //
         $artikel = Artikel::all();
-        // return response()->json([
-        //     "error" => false,
-        //     "message" => "Success",
-        //     "data" => $artikel
-        // ], 200);
-        return ResponseFormatter::success($artikel, "Daftar artikel!");
+        return response()->json([
+            "error" => false,
+            "message" => "Success",
+            "data" => $artikel
+        ], 200);
+        // return ResponseFormatter::success($artikel, "Daftar artikel!");
     }
 
     /**
@@ -60,13 +60,13 @@ class ArtikelController extends Controller
             $artikel->deskripsi = $request->deskripsi;
 
 
-            // return response()->json([
-            //     "error" => false,
-            //     "success" => true,
-            //     "message" => "File successfully uploaded",
-            //     "file" => $txt
-            // ]);
-            return ResponseFormatter::success(["file" => $txt], "Artikel berhasil ditambahkan!");
+            return response()->json([
+                "error" => false,
+                "success" => true,
+                "message" => "File successfully uploaded",
+                "file" => $txt
+            ]);
+            // return ResponseFormatter::success(["file" => $txt], "Artikel berhasil ditambahkan!");
 
         }
         return Artikel::create($request->all());
@@ -81,8 +81,8 @@ class ArtikelController extends Controller
     public function show($id)
     {
         //
-        $artikel = Artikel::find($id);
-        return ResponseFormatter::success($artikel, "Detail artikel!");
+        return Artikel::find($id);
+        // return ResponseFormatter::success($artikel, "Detail artikel!");
     }
 
     /**
@@ -97,7 +97,8 @@ class ArtikelController extends Controller
         //
         $artikel = Artikel::find($id);
         $artikel ->update($request->all());
-        return ResponseFormatter::success($artikel, "Artikel berhasil diperbarui!");
+        return $artikel;
+        // return ResponseFormatter::success($artikel, "Artikel berhasil diperbarui!");
     }
 
     /**
@@ -109,8 +110,8 @@ class ArtikelController extends Controller
     public function destroy($id)
     {
         //
-        Artikel::destroy($id);
-        return ResponseFormatter::success(null, "Artikel berhasil dihapus!");
+        return Artikel::destroy($id);
+        // return ResponseFormatter::success(null, "Artikel berhasil dihapus!");
     }
 
     /**
@@ -121,18 +122,18 @@ class ArtikelController extends Controller
      */
     public function search($judul)
     {
-        $artikel = Artikel::where(strtolower('judul'), 'like', '%'.$judul.'%')->get();
-        return ResponseFormatter::success($artikel, "Hasil pencarian artikel");
+        return Artikel::where(strtolower('judul'), 'like', '%'.$judul.'%')->get();
+        // return ResponseFormatter::success($artikel, "Hasil pencarian artikel");
     }
     public function latest_article()
     {
         $new_article = Artikel::latest()->take(4)->get();
-        // return response()->json([
-        //     "error" => false,
-        //     "message" => "success",
-        //     "data" => $new_article
-        // ], 200);
+        return response()->json([
+            "error" => false,
+            "message" => "success",
+            "data" => $new_article
+        ], 200);
 
-        return ResponseFormatter::success($new_article, "Artikel terbaru!");
+        // return ResponseFormatter::success($new_article, "Artikel terbaru!");
     }
 }

@@ -59,13 +59,13 @@ class ExamController extends Controller
     
             $exam->save();
 
-            // return response()->json([
-            //     "error" => false,
-            //     "success" => true,
-            //     "message" => "File successfully uploaded",
-            //     "file" => $file_name
-            // ]);
-            return ResponseFormatter::success(["file" => $file_name], "File berhasil ditambahkan!");
+            return response()->json([
+                "error" => false,
+                "success" => true,
+                "message" => "File successfully uploaded",
+                "file" => $file_name
+            ]);
+            // return ResponseFormatter::success(["file" => $file_name], "File berhasil ditambahkan!");
 
         // }
         return Exam::create($request->all());
@@ -74,12 +74,12 @@ class ExamController extends Controller
     public function show($id)
     {
         $exam = Exam::find($id);
-        // return response()->json([
-        //     "error" => false,
-        //     "message" => "success",
-        //     "data" => $exam
-        // ], 200);
-        return ResponseFormatter::success($exam);
+        return response()->json([
+            "error" => false,
+            "message" => "success",
+            "data" => $exam
+        ], 200);
+        // return ResponseFormatter::success($exam);
        
     }
 }

@@ -89,11 +89,11 @@ class DiscussionForumController extends Controller
         }
 
         // dd($arr1);
-        // return response()->json([
-        //     "status" => "success",
-        //     "data" => $arr1,
-        // ], 200);
-        return ResponseFormatter::success($arr1, "Selamat Datang di Discussion Forum!");
+        return response()->json([
+            "status" => "success",
+            "data" => $arr1,
+        ], 200);
+        // return ResponseFormatter::success($arr1, "Selamat Datang di Discussion Forum!");
         // return new DiscussionForumCollection($arr1);
     }
 
@@ -135,11 +135,11 @@ class DiscussionForumController extends Controller
         $input->mata_kuliah_id = $request->mata_kuliah_id;
 
         $input->save();
-        return ResponseFormatter::success(null, "Discussion Forum berhasil ditambahkan!");
-        // return response()->json([
-        //     "error" => false,
-        //     "message" => "success"
-        // ]);
+        // return ResponseFormatter::success(null, "Discussion Forum berhasil ditambahkan!");
+        return response()->json([
+            "error" => false,
+            "message" => "success"
+        ]);
     }
 
     /**
@@ -188,11 +188,11 @@ class DiscussionForumController extends Controller
 
         $DiscussionForum->save();
 
-        // return response()->json([
-        //     "error" => false,
-        //     "message" => "success"
-        // ]);
-        return ResponseFormatter::success(null, "Discussion forum berhasil diedit!");
+        return response()->json([
+            "error" => false,
+            "message" => "success"
+        ]);
+        // return ResponseFormatter::success(null, "Discussion forum berhasil diedit!");
     }
 
     /**
@@ -204,10 +204,10 @@ class DiscussionForumController extends Controller
     public function destroy($id)
     {
         DiscussionForum::where('id', $id)->delete();
-        // return response()->json([
-        //     "error" => false,
-        //     "message" => "success"
-        // ]);
-        return ResponseFormatter::success(null, "Discussion forum berhasil dihapus!");
+        return response()->json([
+            "error" => false,
+            "message" => "success"
+        ]);
+        // return ResponseFormatter::success(null, "Discussion forum berhasil dihapus!");
     }
 }
