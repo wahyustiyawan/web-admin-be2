@@ -20,7 +20,7 @@ class KelasController extends Controller
         //
         //return Kelas::all();
         $kelas =  Kelas::all();
-        return new KelasCollection($kelas->paginate(5));
+        return new KelasCollection($kelas->paginate(10));
         // return ResponseFormatter::success($kelas1);
     }
 
