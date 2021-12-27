@@ -23,6 +23,7 @@ class CreateUserExamTable extends Migration
             $table->text('feedback_1')->nullable(); //Kedalaman Analisa
             $table->text('feedback_2')->nullable(); //Flow Argumentasi dan Banyaknya Rujukan
             $table->text('feedback_3')->nullable(); //Kosmetika dan Alur Tampilan
+            $table->enum('tipe', ['uts', 'uas'])->default('uts');
             $table->foreignId("user_id")->constrained("users")->onDelete("cascade")->onUpdate("cascade");
             $table->foreignId("mata_kuliah_id")->constrained("mata_kuliah")->onDelete("cascade")->onUpdate("cascade");
             $table->foreignId("exam_id")->constrained("exam")->onDelete("cascade")->onUpdate("cascade");

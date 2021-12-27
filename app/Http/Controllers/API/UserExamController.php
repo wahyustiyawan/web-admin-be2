@@ -34,20 +34,12 @@ class UserExamController extends Controller
         UserExam::create([
             'exam' => $request->exam,
             'grade' => '0',
-            'user_id' => $request->user_id,
+            'user_id' => $user->id,
             'mata_kuliah_id' => $request->mata_kuliah_id,
             'exam_id' => $request->exam_id,
             'iscomplete' => '0',
         ]);
 
-        Nilai::create([
-            'user_id' => $request->user_id,
-            'mata_kuliah_id' => $request->mata_kuliah_id,
-            'tipe' => 'uas',
-            'iscomplete' => 0,
-            'nilai' => '0'
-        ]);
-  
         return response()->json([
             "error" => false,
             "message" => "success"
