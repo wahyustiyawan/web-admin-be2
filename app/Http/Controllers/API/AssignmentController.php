@@ -24,7 +24,7 @@ class AssignmentController extends Controller
         }else{
             $mata_kuliah =  Assignment::all();
         }
-        return new AssignmentCollection($mata_kuliah);
+        return new AssignmentCollection($mata_kuliah->paginate(10));
         // return ResponseFormatter::success($assignment, "Daftar assignment!");
         // return $assignment = Assignment::all();
         // return new AssignmentCollection($mata_kuliah->paginate(1));
