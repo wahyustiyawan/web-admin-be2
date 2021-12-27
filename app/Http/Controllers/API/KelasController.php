@@ -15,11 +15,18 @@ class KelasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        //return Kelas::all();
-        $kelas =  Kelas::all();
+        $que = $request->search;
+        if($que){
+            //$que = 'kelas';
+            $kelas =  Kelas::where(strtolower('nama'), 'like', '%'.$que.'%')
+            ->orWhere(strtolower('deskripsi'),'LIKE','%'.$que.'%')->get();
+        }else{
+            $kelas =  Kelas::all();
+        }
+        // return new MataKuliahCollection($mata_kuliah);
+        // //return Kelas::all();
         return new KelasCollection($kelas->paginate(10));
         // return ResponseFormatter::success($kelas1);
     }
