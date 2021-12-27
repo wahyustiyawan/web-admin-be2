@@ -15,7 +15,7 @@ class CreateUserExamTable extends Migration
     {
         Schema::create('user_exam', function (Blueprint $table) {
             $table->id();
-            $table->string('exam')->nullable();
+            $table->json('exam')->nullable();
             $table->integer('grade')->nullable();
             $table->integer('grade_1')->nullable();
             $table->integer('grade_2')->nullable();

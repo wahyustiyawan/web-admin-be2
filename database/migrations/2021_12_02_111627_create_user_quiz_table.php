@@ -16,12 +16,11 @@ class CreateUserQuizTable extends Migration
         Schema::create('user_quiz', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id")->constrained("users")->onDelete("cascade")->onUpdate("cascade");
-            //quiz_id -> buat baca soalnya
+            $table->json("quiz");
             // $table->double('nilai');
             $table->foreignId("mata_kuliah_id")->constrained("mata_kuliah")->onDelete("cascade")->onUpdate("cascade");
             $table->foreignId("quiz_id")->constrained("quiz")->onDelete("cascade")->onUpdate("cascade");
-            $table->string("soal");
-            $table->string("jawaban");
+       
             $table->timestamps();
         });
     }
