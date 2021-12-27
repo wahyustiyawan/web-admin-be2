@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\JobChannelController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AssignmentController;
+use App\Http\Controllers\UserAssignmentController;
 use App\Http\Controllers\UserExamController;
 // use App\Http\Controllers\AssignmentFileController;
 // use App\Http\Controllers\AssignmentPilganController;

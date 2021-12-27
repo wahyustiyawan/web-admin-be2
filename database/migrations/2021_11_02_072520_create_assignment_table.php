@@ -20,7 +20,7 @@ class CreateAssignmentTable extends Migration
             $table->string('file')->nullable();
             $table->enum('jenis', ['Latihan Soal', 'Investigasi Pendalaman', 'Experiment', 'Tugas']);
             // $table->enum('tipe', ['Text', 'File', 'Pilgan'])->default('Text');
-            $table->string('deadline');
+            $table->date('deadline');
             $table->foreignId("pertemuan_id")->constrained("pertemuan")->onDelete("cascade")->onUpdate("cascade");
             $table->foreignId("user_id")->constrained("users")->onDelete("cascade")->onUpdate("cascade");
             $table->foreignId("mata_kuliah_id")->constrained("mata_kuliah")->onDelete("cascade")->onUpdate("cascade");
