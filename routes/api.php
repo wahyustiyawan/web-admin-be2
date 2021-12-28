@@ -114,12 +114,6 @@ Route::get('/jobChannel/{id}', [JobChannelController::class, 'show']);
 Route::get('/jobChannel/{id}/download', [JobChannelController::class, 'download']);
 Route::get('/jobChannel/{id}/view', [JobChannelController::class, 'view']);
 
-//Route Nilai
-Route::post('/nilai', [NilaiController::class, 'store']);
-Route::post('/postExam', [NilaiController::class, 'postExam']);
-Route::get('/gradeAssignment', [NilaiController::class, 'gradeAssignment']);
-// Route::get('/gradeQuiz', [NilaiController::class, 'gradeQuiz']);
-Route::get('/gradeExam', [NilaiController::class, 'gradeExam']);
 
 //Route Profil
 Route::get('/profil', [ProfilController::class, 'index']);
@@ -254,6 +248,14 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::put('/video/{id}', [KontenVideoController::class, 'update']);
     Route::delete('/video/{id}', [KontenVideoController::class, 'destroy']);
+
+    
+    //Route Nilai
+    Route::post('/nilai', [NilaiController::class, 'store']);
+    Route::post('/postExam', [NilaiController::class, 'postExam']);
+    Route::get('/gradeAssignment/{id}', [NilaiController::class, 'gradeAssignment']);
+    // Route::get('/gradeQuiz', [NilaiController::class, 'gradeQuiz']);
+    Route::get('/gradeExam/{id}', [NilaiController::class, 'gradeExam']);
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
