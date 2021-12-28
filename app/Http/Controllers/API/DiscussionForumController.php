@@ -210,4 +210,17 @@ class DiscussionForumController extends Controller
         ]);
         // return ResponseFormatter::success(null, "Discussion forum berhasil dihapus!");
     }
+
+    public function leaderboard(Request $request)
+    {
+        $user   =   Auth::user();
+  
+        $data = NULL;        
+        // return ResponseFormatter::success(null, "Discussion Forum berhasil ditambahkan!");
+        return response()->json([
+            "error" => false,
+            "message" => "success",
+            "data" => $data                                
+        ]);
+    }
 }

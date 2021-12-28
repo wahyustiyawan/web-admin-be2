@@ -162,6 +162,9 @@ Route::get('/userExam', [UserExamController::class, 'index']);
 Route::post('/userExam', [UserExamController::class, 'store']);
 Route::get('/userExam/{id}', [UserExamController::class, 'show']);
 
+//Leaderboard
+Route::get('/leaderboard', [DiscussionForumController::class, 'leaderboard']);
+
 //DiscussionForum
 Route::get('/discussionForum', [DiscussionForumController::class, 'index']);
 Route::post('/discussionForum', [DiscussionForumController::class, 'store']);
