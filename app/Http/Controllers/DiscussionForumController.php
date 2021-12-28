@@ -133,7 +133,13 @@ class DiscussionForumController extends Controller
     public function hapusKomen($id)
     {
         DiscussionReply::where('id', $id)->delete();
-        //notify()->success('Iklan berhasil dihapus');
+
+        $leaderboard = Leaderboard::find(Auth::user()->id);
+        Leaderboard::where('id', Auth::user()->id)->update(
+            [
+                'nilai' => $leaderboard->nilai - 1,
+            ]
+        );
         return redirect()->route('discussion-forum')->with('delete', 'Komentar Berhasil Dihapus');
     }
 
@@ -163,7 +169,32 @@ class DiscussionForumController extends Controller
             'isi' => $request->isi,
             'user_id' => Auth::user()->id,
         ]);
-        
+
+        // $getuser_id = DiscussionForum::find($request->discussion_id);
+        $leaderboard = Leaderboard::find(Auth::user()->id);
+
+        $kata = str_word_count($request->isi);
+        // dd($kata);
+        if ($kata > 9) {
+            if ($leaderboard != NULL) {
+                Leaderboard::where('id', Auth::user()->id)->update(
+                    [
+                        'user_id' => Auth::user()->id,
+                        'tipe' => 'Like',
+                        'nilai' => $leaderboard->nilai + 1,
+                    ]
+                );
+            } else {
+                Leaderboard::updateOrInsert(
+                    [
+                        'id' => Auth::user()->id,
+                        'user_id' => Auth::user()->id,
+                        'tipe' => 'Like',
+                        'nilai' => 1,
+                    ]
+                );
+            }
+        };
 
         return back()
             ->with('success', 'Diskusi Berhasil Ditambahkan');
@@ -180,6 +211,30 @@ class DiscussionForumController extends Controller
             'user_id' => Auth::user()->id,
         ]);
 
+        $leaderboard = Leaderboard::find(Auth::user()->id);
+
+        $kata = str_word_count($request->isi);
+        if ($kata > 9) {
+            if ($leaderboard != NULL) {
+                Leaderboard::where('id', Auth::user()->id)->update(
+                    [
+                        'user_id' => Auth::user()->id,
+                        'tipe' => 'Like',
+                        'nilai' => $leaderboard->nilai + 1,
+                    ]
+                );
+            } else {
+                Leaderboard::updateOrInsert(
+                    [
+                        'id' => Auth::user()->id,
+                        'user_id' => Auth::user()->id,
+                        'tipe' => 'Like',
+                        'nilai' => 1,
+                    ]
+                );
+            }
+        };
+
         return back()
             ->with('success', 'Diskusi Berhasil Ditambahkan');
     }
@@ -192,17 +247,17 @@ class DiscussionForumController extends Controller
         $like = DiscussionLike::where('user_id', Auth::user()->id)->where('discussion_id', $request->discussion_id)->first();
         $getuser_id = DiscussionForum::find($request->discussion_id);
         $leaderboard = Leaderboard::find($getuser_id->user_id);
-            // dd($leaderboard);
+        // dd($leaderboard);
 
         if ($like != NULL) {
             DiscussionLike::where('user_id', Auth::user()->id)->where('discussion_id', $request->discussion_id)->delete();
-       
+
             if (Auth::user()->role == 'dosen') {
                 Leaderboard::where('id', $getuser_id->user_id)->update(
                     [
                         'user_id' => $getuser_id->user_id,
                         'tipe' => 'Like',
-                        'nilai' => $leaderboard->nilai-5,
+                        'nilai' => $leaderboard->nilai - 5,
                     ]
                 );
             } else {
@@ -210,21 +265,20 @@ class DiscussionForumController extends Controller
                     [
                         'user_id' => $getuser_id->user_id,
                         'tipe' => 'Like',
-                        'nilai' => $leaderboard->nilai-1,
+                        'nilai' => $leaderboard->nilai - 1,
                     ]
                 );
             };
 
             return back()
                 ->with('success', 'Unlike');
-
         } else {
             DiscussionLike::create([
                 'discussion_id' => $request->discussion_id,
                 'isLike' => True,
                 'user_id' => Auth::user()->id,
             ]);
-           
+
             if (Auth::user()->role == 'dosen') {
                 //  dd($getuser_id);
                 if ($leaderboard != NULL) {
@@ -232,7 +286,7 @@ class DiscussionForumController extends Controller
                         [
                             'user_id' => $getuser_id->user_id,
                             'tipe' => 'Like',
-                            'nilai' => $leaderboard->nilai+5,
+                            'nilai' => $leaderboard->nilai + 5,
                         ]
                     );
                 } else {
@@ -251,7 +305,7 @@ class DiscussionForumController extends Controller
                         [
                             'user_id' => $getuser_id->user_id,
                             'tipe' => 'Like',
-                            'nilai' => $leaderboard->nilai+1,
+                            'nilai' => $leaderboard->nilai + 1,
                         ]
                     );
                 } else {
@@ -275,7 +329,7 @@ class DiscussionForumController extends Controller
         $like = DiscussionLike2::where('user_id', Auth::user()->id)->where('discussion_reply_id', $request->reply_id)->first();
         $getuser_id = DiscussionReply::find($request->reply_id);
         $leaderboard = Leaderboard::find($getuser_id->user_id);
-      
+
         if ($like != NULL) {
             DiscussionLike2::where('user_id', Auth::user()->id)->where('discussion_reply_id', $request->reply_id)->delete();
             if (Auth::user()->role == 'dosen') {
@@ -283,7 +337,7 @@ class DiscussionForumController extends Controller
                     [
                         'user_id' => $getuser_id->user_id,
                         'tipe' => 'Like',
-                        'nilai' => $leaderboard->nilai-5,
+                        'nilai' => $leaderboard->nilai - 5,
                     ]
                 );
             } else {
@@ -291,7 +345,7 @@ class DiscussionForumController extends Controller
                     [
                         'user_id' => $getuser_id->user_id,
                         'tipe' => 'Like',
-                        'nilai' => $leaderboard->nilai-1,
+                        'nilai' => $leaderboard->nilai - 1,
                     ]
                 );
             };
@@ -311,7 +365,7 @@ class DiscussionForumController extends Controller
                         [
                             'user_id' => $getuser_id->user_id,
                             'tipe' => 'Like',
-                            'nilai' => $leaderboard->nilai+5,
+                            'nilai' => $leaderboard->nilai + 5,
                         ]
                     );
                 } else {
@@ -330,7 +384,7 @@ class DiscussionForumController extends Controller
                         [
                             'user_id' => $getuser_id->user_id,
                             'tipe' => 'Like',
-                            'nilai' => $leaderboard->nilai+1,
+                            'nilai' => $leaderboard->nilai + 1,
                         ]
                     );
                 } else {
@@ -357,13 +411,13 @@ class DiscussionForumController extends Controller
 
         if ($like != NULL) {
             DiscussionLike3::where('user_id', Auth::user()->id)->where('discussion_reply_id', $request->reply_id)->delete();
-            
+
             if (Auth::user()->role == 'dosen') {
                 Leaderboard::where('id', $getuser_id->user_id)->update(
                     [
                         'user_id' => $getuser_id->user_id,
                         'tipe' => 'Like',
-                        'nilai' => $leaderboard->nilai-5,
+                        'nilai' => $leaderboard->nilai - 5,
                     ]
                 );
             } else {
@@ -371,7 +425,7 @@ class DiscussionForumController extends Controller
                     [
                         'user_id' => $getuser_id->user_id,
                         'tipe' => 'Like',
-                        'nilai' => $leaderboard->nilai-1,
+                        'nilai' => $leaderboard->nilai - 1,
                     ]
                 );
             };
@@ -391,7 +445,7 @@ class DiscussionForumController extends Controller
                         [
                             'user_id' => $getuser_id->user_id,
                             'tipe' => 'Like',
-                            'nilai' => $leaderboard->nilai+5,
+                            'nilai' => $leaderboard->nilai + 5,
                         ]
                     );
                 } else {
@@ -410,7 +464,7 @@ class DiscussionForumController extends Controller
                         [
                             'user_id' => $getuser_id->user_id,
                             'tipe' => 'Like',
-                            'nilai' => $leaderboard->nilai+1,
+                            'nilai' => $leaderboard->nilai + 1,
                         ]
                     );
                 } else {
