@@ -10,6 +10,7 @@ use App\Models\DiscussionLike;
 use App\Models\DiscussionLike2;
 use App\Models\DiscussionLike3;
 use App\Models\AksesKelas;
+use App\Models\Leaderboard;
 use App\Models\MataKuliah;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
@@ -162,7 +163,8 @@ class DiscussionForumController extends Controller
             'isi' => $request->isi,
             'user_id' => Auth::user()->id,
         ]);
-        //notify()->success('Kelas berhasil ditambahkan!');
+
+
         return back()
             ->with('success', 'Diskusi Berhasil Ditambahkan');
     }
@@ -186,6 +188,23 @@ class DiscussionForumController extends Controller
                 'isLike' => True,
                 'user_id' => Auth::user()->id,
             ]);
+
+            $getuser_id = DiscussionForum::find($request->discussion_id);
+            // dd($getuser_id);
+
+            if(Auth::user()->role == 'dosen'){
+                Leaderboard::updateOrCreate(
+                    [
+                        'user_id' => $getuser_id->user_id,
+                        'tipe' => 'Like',
+                        'nilai' => +5,
+                    ]
+                );
+            }
+            else{
+
+            };
+
             return back()
             ->with('success', 'Like');
         }
