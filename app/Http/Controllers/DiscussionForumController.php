@@ -163,7 +163,22 @@ class DiscussionForumController extends Controller
             'isi' => $request->isi,
             'user_id' => Auth::user()->id,
         ]);
+        
 
+        return back()
+            ->with('success', 'Diskusi Berhasil Ditambahkan');
+    }
+    public function tambahreplyKomen(Request $request)
+    {
+        $request->validate([
+            // 'discussion_id' => 'required',
+            // 'isi' => 'required',
+        ]);
+        DiscussionReply2::create([
+            'discussion_reply_id' => $request->reply_id,
+            'isi' => $request->isi,
+            'user_id' => Auth::user()->id,
+        ]);
 
         return back()
             ->with('success', 'Diskusi Berhasil Ditambahkan');
@@ -181,9 +196,7 @@ class DiscussionForumController extends Controller
 
         if ($like != NULL) {
             DiscussionLike::where('user_id', Auth::user()->id)->where('discussion_id', $request->discussion_id)->delete();
-
-         
-
+       
             if (Auth::user()->role == 'dosen') {
                 Leaderboard::where('id', $getuser_id->user_id)->update(
                     [
@@ -260,10 +273,28 @@ class DiscussionForumController extends Controller
     public function tambahlikeKomen(Request $request)
     {
         $like = DiscussionLike2::where('user_id', Auth::user()->id)->where('discussion_reply_id', $request->reply_id)->first();
-        // dd($like);
-
+        $getuser_id = DiscussionReply::find($request->reply_id);
+        $leaderboard = Leaderboard::find($getuser_id->user_id);
+      
         if ($like != NULL) {
             DiscussionLike2::where('user_id', Auth::user()->id)->where('discussion_reply_id', $request->reply_id)->delete();
+            if (Auth::user()->role == 'dosen') {
+                Leaderboard::where('id', $getuser_id->user_id)->update(
+                    [
+                        'user_id' => $getuser_id->user_id,
+                        'tipe' => 'Like',
+                        'nilai' => $leaderboard->nilai-5,
+                    ]
+                );
+            } else {
+                Leaderboard::where('id', $getuser_id->user_id)->update(
+                    [
+                        'user_id' => $getuser_id->user_id,
+                        'tipe' => 'Like',
+                        'nilai' => $leaderboard->nilai-1,
+                    ]
+                );
+            };
             return back()
                 ->with('success', 'Unlike');
         } else {
@@ -272,6 +303,48 @@ class DiscussionForumController extends Controller
                 'isLike' => True,
                 'user_id' => Auth::user()->id,
             ]);
+
+            if (Auth::user()->role == 'dosen') {
+                //  dd($getuser_id);
+                if ($leaderboard != NULL) {
+                    Leaderboard::where('id', $getuser_id->user_id)->update(
+                        [
+                            'user_id' => $getuser_id->user_id,
+                            'tipe' => 'Like',
+                            'nilai' => $leaderboard->nilai+5,
+                        ]
+                    );
+                } else {
+                    Leaderboard::updateOrInsert(
+                        [
+                            'id' => $getuser_id->user_id,
+                            'user_id' => $getuser_id->user_id,
+                            'tipe' => 'Like',
+                            'nilai' => 5,
+                        ]
+                    );
+                }
+            } else {
+                if ($leaderboard != NULL) {
+                    Leaderboard::where('id', $getuser_id->user_id)->update(
+                        [
+                            'user_id' => $getuser_id->user_id,
+                            'tipe' => 'Like',
+                            'nilai' => $leaderboard->nilai+1,
+                        ]
+                    );
+                } else {
+                    Leaderboard::updateOrInsert(
+                        [
+                            'id' => $getuser_id->user_id,
+                            'user_id' => $getuser_id->user_id,
+                            'tipe' => 'Like',
+                            'nilai' => 1,
+                        ]
+                    );
+                }
+            };
+
             return back()
                 ->with('success', 'Like');
         }
@@ -279,10 +352,30 @@ class DiscussionForumController extends Controller
     public function tambahlikeKomen2(Request $request)
     {
         $like = DiscussionLike3::where('user_id', Auth::user()->id)->where('discussion_reply_id', $request->reply_id)->first();
-        // dd($like);
+        $getuser_id = DiscussionReply::find($request->reply_id);
+        $leaderboard = Leaderboard::find($getuser_id->user_id);
 
         if ($like != NULL) {
             DiscussionLike3::where('user_id', Auth::user()->id)->where('discussion_reply_id', $request->reply_id)->delete();
+            
+            if (Auth::user()->role == 'dosen') {
+                Leaderboard::where('id', $getuser_id->user_id)->update(
+                    [
+                        'user_id' => $getuser_id->user_id,
+                        'tipe' => 'Like',
+                        'nilai' => $leaderboard->nilai-5,
+                    ]
+                );
+            } else {
+                Leaderboard::where('id', $getuser_id->user_id)->update(
+                    [
+                        'user_id' => $getuser_id->user_id,
+                        'tipe' => 'Like',
+                        'nilai' => $leaderboard->nilai-1,
+                    ]
+                );
+            };
+
             return back()
                 ->with('success', 'Unlike');
         } else {
@@ -291,23 +384,48 @@ class DiscussionForumController extends Controller
                 'isLike' => True,
                 'user_id' => Auth::user()->id,
             ]);
+            if (Auth::user()->role == 'dosen') {
+                //  dd($getuser_id);
+                if ($leaderboard != NULL) {
+                    Leaderboard::where('id', $getuser_id->user_id)->update(
+                        [
+                            'user_id' => $getuser_id->user_id,
+                            'tipe' => 'Like',
+                            'nilai' => $leaderboard->nilai+5,
+                        ]
+                    );
+                } else {
+                    Leaderboard::updateOrInsert(
+                        [
+                            'id' => $getuser_id->user_id,
+                            'user_id' => $getuser_id->user_id,
+                            'tipe' => 'Like',
+                            'nilai' => 5,
+                        ]
+                    );
+                }
+            } else {
+                if ($leaderboard != NULL) {
+                    Leaderboard::where('id', $getuser_id->user_id)->update(
+                        [
+                            'user_id' => $getuser_id->user_id,
+                            'tipe' => 'Like',
+                            'nilai' => $leaderboard->nilai+1,
+                        ]
+                    );
+                } else {
+                    Leaderboard::updateOrInsert(
+                        [
+                            'id' => $getuser_id->user_id,
+                            'user_id' => $getuser_id->user_id,
+                            'tipe' => 'Like',
+                            'nilai' => 1,
+                        ]
+                    );
+                }
+            };
             return back()
                 ->with('success', 'Like');
         }
-    }
-    public function tambahreplyKomen(Request $request)
-    {
-        $request->validate([
-            // 'discussion_id' => 'required',
-            // 'isi' => 'required',
-        ]);
-        DiscussionReply2::create([
-            'discussion_reply_id' => $request->reply_id,
-            'isi' => $request->isi,
-            'user_id' => Auth::user()->id,
-        ]);
-        //notify()->success('Kelas berhasil ditambahkan!');
-        return back()
-            ->with('success', 'Diskusi Berhasil Ditambahkan');
     }
 }
