@@ -10,6 +10,7 @@ class Leaderboard extends Model
     use HasFactory;
     protected $table = 'leaderboard';
     protected $fillable = [
+        'id',
         'user_id',
         'tipe',
         'nilai',
@@ -19,7 +20,7 @@ class Leaderboard extends Model
         'nilai' => 'integer',
     ];
 
-    protected $primaryKey = 'id';
+    // protected $primaryKey = 'id';
 
     public function user()
     {

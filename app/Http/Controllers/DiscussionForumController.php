@@ -149,9 +149,9 @@ class DiscussionForumController extends Controller
         $totalLike2 = DiscussionLike2::has('discussion_reply')->get();
         $totalLike3 = DiscussionLike3::has('discussion_reply')->get();
         $mata_kuliah = MataKuliah::get();
-        return view('dosen.discussionForum.index', compact('post', 'reply', 'totalKomen', 'like', 'totalLike','totalLike2','totalLike3','reply2','totalKomen2', 'mata_kuliah'));
+        return view('dosen.discussionForum.index', compact('post', 'reply', 'totalKomen', 'like', 'totalLike', 'totalLike2', 'totalLike3', 'reply2', 'totalKomen2', 'mata_kuliah'));
     }
-    
+
     public function tambahKomen(Request $request)
     {
         $request->validate([
@@ -174,79 +174,125 @@ class DiscussionForumController extends Controller
         //     'discussion_id' => 'required',
         //     'isi' => 'required',
         // ]);
-        $like = DiscussionLike::where('user_id',Auth::user()->id)->where('discussion_id',$request->discussion_id)->first();
-        // dd($like);
+        $like = DiscussionLike::where('user_id', Auth::user()->id)->where('discussion_id', $request->discussion_id)->first();
+        $getuser_id = DiscussionForum::find($request->discussion_id);
+        $leaderboard = Leaderboard::find($getuser_id->user_id);
+            // dd($leaderboard);
 
         if ($like != NULL) {
-            DiscussionLike::where('user_id', Auth::user()->id)->where('discussion_id',$request->discussion_id)->delete();
+            DiscussionLike::where('user_id', Auth::user()->id)->where('discussion_id', $request->discussion_id)->delete();
+
+         
+
+            if (Auth::user()->role == 'dosen') {
+                Leaderboard::where('id', $getuser_id->user_id)->update(
+                    [
+                        'user_id' => $getuser_id->user_id,
+                        'tipe' => 'Like',
+                        'nilai' => $leaderboard->nilai-5,
+                    ]
+                );
+            } else {
+                Leaderboard::where('id', $getuser_id->user_id)->update(
+                    [
+                        'user_id' => $getuser_id->user_id,
+                        'tipe' => 'Like',
+                        'nilai' => $leaderboard->nilai-1,
+                    ]
+                );
+            };
+
             return back()
-            ->with('success', 'Unlike');
-        }
-        else{   
+                ->with('success', 'Unlike');
+
+        } else {
             DiscussionLike::create([
                 'discussion_id' => $request->discussion_id,
                 'isLike' => True,
                 'user_id' => Auth::user()->id,
             ]);
-
-            $getuser_id = DiscussionForum::find($request->discussion_id);
-            // dd($getuser_id);
-
-            if(Auth::user()->role == 'dosen'){
-                Leaderboard::updateOrCreate(
-                    [
-                        'user_id' => $getuser_id->user_id,
-                        'tipe' => 'Like',
-                        'nilai' => +5,
-                    ]
-                );
-            }
-            else{
-
+           
+            if (Auth::user()->role == 'dosen') {
+                //  dd($getuser_id);
+                if ($leaderboard != NULL) {
+                    Leaderboard::where('id', $getuser_id->user_id)->update(
+                        [
+                            'user_id' => $getuser_id->user_id,
+                            'tipe' => 'Like',
+                            'nilai' => $leaderboard->nilai+5,
+                        ]
+                    );
+                } else {
+                    Leaderboard::updateOrInsert(
+                        [
+                            'id' => $getuser_id->user_id,
+                            'user_id' => $getuser_id->user_id,
+                            'tipe' => 'Like',
+                            'nilai' => 5,
+                        ]
+                    );
+                }
+            } else {
+                if ($leaderboard != NULL) {
+                    Leaderboard::where('id', $getuser_id->user_id)->update(
+                        [
+                            'user_id' => $getuser_id->user_id,
+                            'tipe' => 'Like',
+                            'nilai' => $leaderboard->nilai+1,
+                        ]
+                    );
+                } else {
+                    Leaderboard::updateOrInsert(
+                        [
+                            'id' => $getuser_id->user_id,
+                            'user_id' => $getuser_id->user_id,
+                            'tipe' => 'Like',
+                            'nilai' => 1,
+                        ]
+                    );
+                }
             };
 
             return back()
-            ->with('success', 'Like');
+                ->with('success', 'Like');
         }
     }
     public function tambahlikeKomen(Request $request)
     {
-        $like = DiscussionLike2::where('user_id',Auth::user()->id)->where('discussion_reply_id',$request->reply_id)->first();
+        $like = DiscussionLike2::where('user_id', Auth::user()->id)->where('discussion_reply_id', $request->reply_id)->first();
         // dd($like);
 
         if ($like != NULL) {
-            DiscussionLike2::where('user_id', Auth::user()->id)->where('discussion_reply_id',$request->reply_id)->delete();
+            DiscussionLike2::where('user_id', Auth::user()->id)->where('discussion_reply_id', $request->reply_id)->delete();
             return back()
-            ->with('success', 'Unlike');
-        }
-        else{   
+                ->with('success', 'Unlike');
+        } else {
             DiscussionLike2::create([
                 'discussion_reply_id' => $request->reply_id,
                 'isLike' => True,
                 'user_id' => Auth::user()->id,
             ]);
             return back()
-            ->with('success', 'Like');
+                ->with('success', 'Like');
         }
     }
     public function tambahlikeKomen2(Request $request)
     {
-        $like = DiscussionLike3::where('user_id',Auth::user()->id)->where('discussion_reply_id',$request->reply_id)->first();
+        $like = DiscussionLike3::where('user_id', Auth::user()->id)->where('discussion_reply_id', $request->reply_id)->first();
         // dd($like);
 
         if ($like != NULL) {
-            DiscussionLike3::where('user_id', Auth::user()->id)->where('discussion_reply_id',$request->reply_id)->delete();
+            DiscussionLike3::where('user_id', Auth::user()->id)->where('discussion_reply_id', $request->reply_id)->delete();
             return back()
-            ->with('success', 'Unlike');
-        }
-        else{   
+                ->with('success', 'Unlike');
+        } else {
             DiscussionLike3::create([
                 'discussion_reply_id' => $request->reply_id,
                 'isLike' => True,
                 'user_id' => Auth::user()->id,
             ]);
             return back()
-            ->with('success', 'Like');
+                ->with('success', 'Like');
         }
     }
     public function tambahreplyKomen(Request $request)
