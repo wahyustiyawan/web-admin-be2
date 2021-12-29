@@ -148,7 +148,7 @@ Route::get('/exam/{id}', [ExamController::class, 'show']);
 
 //User Assignment
 Route::get('/userAssignment', [UserAssignmentController::class, 'index']);
-Route::post('/userAssignment', [UserAssignmentController::class, 'store']);
+
 Route::get('/userAssignment/show/{id}', [UserAssignmentController::class, 'show']);
 
 
@@ -227,7 +227,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/discussionLike3', [DiscussionLike3Controller::class, 'store']);
     Route::put('/discussionLike3/update/{id}', [DiscussionLike3Controller::class, 'update']);
 
-
+    Route::post('/userAssignment', [UserAssignmentController::class, 'store']);
+    
     Route::put('/enroll/video/{id}', [UserVideoController::class, 'update']);
     Route::put('/enroll/dokumen/{id}', [UserDokumenController::class, 'update']);
     Route::get('/enroll', [EnrollKelasController::class, 'index']);

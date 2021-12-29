@@ -59,11 +59,11 @@ class UserAssignmentController extends Controller
 
         UserAssignment::create([
             'assignment' => $request->assignment,
-            'grade' => '0',
+            'grade' => 0,
             'user_id' => $user->id,
             'mata_kuliah_id' => $request->mata_kuliah_id,
             'assignment_id' => $request->assignment_id,
-            'iscomplete' => '0',
+            'iscomplete' => 0,
         ]);
 
         Nilai::create([
@@ -71,7 +71,7 @@ class UserAssignmentController extends Controller
             'mata_kuliah_id' => $request->mata_kuliah_id,
             'tipe' => 'assignment',
             'iscomplete' => 0,
-            'nilai' => '0'
+            'nilai' => 0
         ]);
   
         return response()->json([
