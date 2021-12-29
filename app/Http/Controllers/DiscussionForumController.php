@@ -406,7 +406,8 @@ class DiscussionForumController extends Controller
     public function tambahlikeKomen2(Request $request)
     {
         $like = DiscussionLike3::where('user_id', Auth::user()->id)->where('discussion_reply_id', $request->reply_id)->first();
-        $getuser_id = DiscussionReply::find($request->reply_id);
+        $getuser_id = DiscussionReply2::find($request->reply_id);
+        // dd($getuser_id);
         $leaderboard = Leaderboard::find($getuser_id->user_id);
 
         if ($like != NULL) {

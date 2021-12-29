@@ -36,6 +36,7 @@ use App\Http\Controllers\API\DiscussionReply2Controller;
 use App\Http\Controllers\API\DiscussionLikeController;
 use App\Http\Controllers\API\DiscussionLike2Controller;
 use App\Http\Controllers\API\ExamController;
+use App\Http\Controllers\API\LeaderboardController;
 use App\Http\Controllers\API\UserExamController;
 use App\Models\DiscussionForum;
 use Illuminate\Http\Request;
@@ -157,7 +158,7 @@ Route::post('/userExam', [UserExamController::class, 'store']);
 Route::get('/userExam/{id}', [UserExamController::class, 'show']);
 
 //Leaderboard
-Route::get('/leaderboard', [DiscussionForumController::class, 'leaderboard']);
+Route::get('/leaderboard', [LeaderboardController::class, 'index']);
 
 //DiscussionForum
 Route::get('/discussionForum', [DiscussionForumController::class, 'index']);
