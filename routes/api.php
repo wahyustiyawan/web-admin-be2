@@ -226,9 +226,9 @@ Route::group(['middleware' => ['auth:api']], function () {
     //DiscussionLike3
     Route::post('/discussionLike3', [DiscussionLike3Controller::class, 'store']);
     Route::put('/discussionLike3/update/{id}', [DiscussionLike3Controller::class, 'update']);
-
     Route::post('/userAssignment', [UserAssignmentController::class, 'store']);
-    
+
+
     Route::put('/enroll/video/{id}', [UserVideoController::class, 'update']);
     Route::put('/enroll/dokumen/{id}', [UserDokumenController::class, 'update']);
     Route::get('/enroll', [EnrollKelasController::class, 'index']);
