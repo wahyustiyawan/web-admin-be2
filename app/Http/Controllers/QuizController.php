@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Kalender;
 use App\Models\AksesKelas;
 use App\Models\Nilai;
+use App\Models\NilaiQuiz;
 
 class QuizController extends Controller
 {
@@ -35,7 +36,6 @@ class QuizController extends Controller
 
         $taskInput      =       array(
             //'tipe'    =>      $request->tipe,
-            'tipe'    =>      'post-test',
             'judul'    =>      $request->judul,
             'deskripsi'     =>      $request->deskripsi,
             'mata_kuliah_id'    =>      $request->mata_kuliah_id,
@@ -73,8 +73,7 @@ class QuizController extends Controller
     public function show($id)
     {
         $quiz = Quiz::find($id);
-        $preTest = Nilai::where('tipe', 'pre-test')->get();
-        $postTest = Nilai::where('tipe', 'post-test')->get();
-        return view('admin.assignment.show-quiz', compact('quiz', 'preTest', 'postTest'));
+        $nilai = NilaiQuiz::get();
+        return view('admin.assignment.show-quiz', compact('quiz', 'nilai'));
     }
 }

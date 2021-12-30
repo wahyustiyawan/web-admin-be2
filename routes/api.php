@@ -257,12 +257,13 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     
     //Route Nilai
-    Route::post('/nilai', [NilaiController::class, 'store']);
-    Route::post('/postExam', [NilaiController::class, 'postExam']);
+    Route::post('/nilaiQuiz', [NilaiController::class, 'nilaiQuiz']);
+    Route::get('/gradeQuiz/{id}', [NilaiController::class, 'gradeQuiz']);
     Route::get('/gradeAssignment/{id}', [NilaiController::class, 'gradeAssignment']);
-    // Route::get('/gradeQuiz', [NilaiController::class, 'gradeQuiz']);
-    Route::get('/gradeExam/{id}', [NilaiController::class, 'gradeExam']);
+    Route::get('/gradeUts/{id}', [NilaiController::class, 'gradeUts']);
+    Route::get('/gradeUas/{id}', [NilaiController::class, 'gradeUas']);
 });
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
