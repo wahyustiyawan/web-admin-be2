@@ -50,29 +50,22 @@ class UserAssignmentController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        // $input = new UserExam();
-        // $input->grade = $request->grade;
-        // $input->feedback_1 = $request->feedback1_;
-        // $input->user_id = $user->id;
 
-        // $input->save();
+        $input = new UserAssignment();
+        $input->assignment = $request->assignment;
+        $input->grade = 0;
+        $input->user_id = $user->id;
+        $input->mata_kuliah_id = $request->mata_kuliah_id;
+        $input->assignment_id = $request->assignment_id;
+        $input->iscomplete = 0;
+        $input->save();
 
-        UserAssignment::create([
-            'assignment' => $request->assignment,
-            'grade' => '0',
-            'user_id' => $user->id,
-            'mata_kuliah_id' => $request->mata_kuliah_id,
-            'assignment_id' => $request->assignment_id,
-            'iscomplete' => '0',
-        ]);
-
-        Nilai::create([
-            'user_id' => $user->id,
-            'mata_kuliah_id' => $request->mata_kuliah_id,
-            'tipe' => 'assignment',
-            'iscomplete' => 0,
-            'nilai' => '0'
-        ]);
+        $input2 = new Nilai();
+        $input2->user_id = $user->id;
+        $input2->mata_kuliah_id = $request->mata_kuliah_id;
+        $input2->tipe = 'assignment';
+        $input2->nilai = 0;
+        $input2->save();
   
         return response()->json([
             "error" => false,

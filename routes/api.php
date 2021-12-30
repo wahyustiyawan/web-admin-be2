@@ -116,11 +116,7 @@ Route::get('/jobChannel/{id}/download', [JobChannelController::class, 'download'
 Route::get('/jobChannel/{id}/view', [JobChannelController::class, 'view']);
 
 
-//Route Profil
-Route::get('/profil', [ProfilController::class, 'index']);
-Route::post('/profil', [ProfilController::class, 'store']);
-Route::get('/profil/{id}', [ProfilController::class, 'show']);
-Route::get('/profil/{id}/view', [PofilController::class, 'view']);
+
 
 //Route Quiz
 Route::get('/quiz', [QuizController::class, 'index']);
@@ -148,7 +144,7 @@ Route::get('/exam/{id}', [ExamController::class, 'show']);
 
 //User Assignment
 Route::get('/userAssignment', [UserAssignmentController::class, 'index']);
-Route::post('/userAssignment', [UserAssignmentController::class, 'store']);
+
 Route::get('/userAssignment/show/{id}', [UserAssignmentController::class, 'show']);
 
 
@@ -226,8 +222,14 @@ Route::group(['middleware' => ['auth:api']], function () {
     //DiscussionLike3
     Route::post('/discussionLike3', [DiscussionLike3Controller::class, 'store']);
     Route::put('/discussionLike3/update/{id}', [DiscussionLike3Controller::class, 'update']);
+    Route::post('/userAssignment', [UserAssignmentController::class, 'store']);
 
-
+    //Route Profil
+    Route::get('/profil', [ProfilController::class, 'index']);
+    Route::post('/profil', [ProfilController::class, 'store']);
+    Route::get('/profil/{id}', [ProfilController::class, 'show']);
+    Route::get('/profil/{id}/view', [PofilController::class, 'view']);
+    
     Route::put('/enroll/video/{id}', [UserVideoController::class, 'update']);
     Route::put('/enroll/dokumen/{id}', [UserDokumenController::class, 'update']);
     Route::get('/enroll', [EnrollKelasController::class, 'index']);

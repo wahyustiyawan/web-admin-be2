@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Models\Profil;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;;
 
@@ -17,7 +18,7 @@ class ProfilController extends Controller
     public function index()
     {
         //
-        $profil = Profil::all();
+        $profil = User::all();
         return response()->json([
             "error" => false,
             "message" => "Success",
@@ -35,7 +36,7 @@ class ProfilController extends Controller
     {
         $validator = Validator::make($request->all(),
               [
-                'nama' => 'required',
+                'name' => 'required',
                 'no_hp' => 'required',
                 'gambar' => 'required|mimes:jpg,png|max:2048',
              ]);
@@ -52,8 +53,8 @@ class ProfilController extends Controller
             $request->gambar->storeAs('public/images', $file_name);
 
             //store your file into database
-            $profil = new Profil();
-            $profil->nama = $request->nama;
+            $profil = new User();
+            $profil->name = $request->name;
             $profil->no_hp = $request->no_hp;
             $profil->gambar = $txt;
 
@@ -63,11 +64,12 @@ class ProfilController extends Controller
                 "error" => false,
                 "success" => true,
                 "message" => "File successfully uploaded",
-                "file" => $txt
+                "file" => $file_name
             ]);
 
+        } else {
+
         }
-        return Profil::create($request->all());
     }
 
     /**
