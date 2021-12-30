@@ -18,11 +18,10 @@ class KelasController extends Controller
     public function index(Request $request)
     {
         $que = $request->search;
-        if($que){
-            //$que = 'kelas';
-            $kelas =  Kelas::where(strtolower('nama'), 'like', '%'.$que.'%')
-            ->orWhere(strtolower('deskripsi'),'LIKE','%'.$que.'%')->get();
-        }else{
+        if ($que) {
+            $kelas =  Kelas::where(strtolower('nama'), 'like', '%' . $que . '%')
+                ->orWhere(strtolower('deskripsi'), 'LIKE', '%' . $que . '%')->get();
+        } else {
             $kelas =  Kelas::all();
         }
         // return new MataKuliahCollection($mata_kuliah);
@@ -72,7 +71,7 @@ class KelasController extends Controller
     {
         //
         $kelas = Kelas::find($id);
-        $kelas ->update($request->all());
+        $kelas->update($request->all());
         return $kelas;
         // return ResponseFormatter::success(null, "Program studi berhasil diedit!");
     }
@@ -98,7 +97,7 @@ class KelasController extends Controller
      */
     public function search($name)
     {
-        return Kelas::where(strtolower('nama'), 'like', '%'.$name.'%')->get();
+        return Kelas::where(strtolower('nama'), 'like', '%' . $name . '%')->get();
         // return ResponseFormatter::success($kelas, "Hasil pencarian program studi");
     }
 
@@ -114,5 +113,4 @@ class KelasController extends Controller
         return Kelas::find($id)->get_video;
         // return ResponseFormatter::success($kelas, "Hasil pencarian video");
     }
-
 }
