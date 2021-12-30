@@ -59,17 +59,29 @@ class NilaiController extends Controller
         ], 200);
     }
 
-    public function gradeExam($id)
+    // public function gradeExam($id)
+    // {
+    //     $user = Auth::user();
+    //     $count = UserExam::where('user_id', $user->id)->where('mata_kuliah_id',$id)->count();
+    //     $grade = UserExam::where('user_id', $user->id)->where('mata_kuliah_id',$id)->sum('grade');
+    //     $total = $grade / $count;
+
+    //     return response()->json([
+    //         "error" => false,
+    //         "message" => "success",
+    //         "data" => $total
+    //     ], 200);
+    // }
+
+    public function gradeUts($id)
     {
         $user = Auth::user();
-        $count = UserExam::where('user_id', $user->id)->where('mata_kuliah_id',$id)->count();
-        $grade = UserExam::where('user_id', $user->id)->where('mata_kuliah_id',$id)->sum('grade');
-        $total = $grade / $count;
-
+        $uts = UserAssignment::where('user_id', 5)->where('tipe', 'uts')->where('mata_kuliah_id',$id)->get();
+        dd($uts);
         return response()->json([
             "error" => false,
             "message" => "success",
-            "data" => $total
+            "data" => $uts
         ], 200);
     }
 }
