@@ -14,12 +14,13 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
+        $host = $request->getSchemeAndHttpHost();
         return [
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
             'no_hp' => $this->no_hp,
-            'gambar' => $this->gambar,
+            'gambar' => $host.'/'.$this->gambar,
             'role' => $this->role,
           ];     
     }
