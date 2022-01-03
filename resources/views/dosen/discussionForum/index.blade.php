@@ -321,7 +321,7 @@
             <div class="row align-items-center mb-3">
               <div class="col-9">
                 <h5 class="mb-1 text-gradient text-primary">
-                  <a href="javascript:;">Digital MArketing</a>
+                  <a href="javascript:;">Leaderboard</a>
                 </h5>
               </div>
               <div class="col-3 text-end">
@@ -342,45 +342,25 @@
               </div>
             </div>
             <p>A group of people who collectively are responsible for all of the work necessary to produce working, validated assets.</p>
-            <ul class="list-unstyled mx-auto">
-              <li class="d-flex">
-                <p class="mb-0">Industry:</p>
-                <span class="badge badge-secondary ms-auto">Marketing Team</span>
-              </li>
-              <li>
-                <hr class="horizontal dark">
-              </li>
-              <li class="d-flex">
-                <p class="mb-0">Rating:</p>
-                <div class="rating ms-auto">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star-half-alt"></i>
-                </div>
-              </li>
-              <li>
-                <hr class="horizontal dark">
-              </li>
-              <li class="d-flex">
-                <p class="mb-0">Members:</p>
-                <div class="avatar-group ms-auto">
-                  <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexa Tompson">
-                    <img alt="Image placeholder" src="../../../assets/img/team-1.jpg">
-                  </a>
-                  <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
-                    <img alt="Image placeholder" src="../../../assets/img/team-2.jpg">
-                  </a>
-                  <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexander Smith">
-                    <img alt="Image placeholder" src="../../../assets/img/team-3.jpg">
-                  </a>
-                  <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Martin Doe">
-                    <img alt="Image placeholder" src="../../../assets/img/team-4.jpg">
-                  </a>
-                </div>
-              </li>
-            </ul>
+            <div class="card-body p-3">
+              <ul class="list-group">
+                @foreach ($leaderboard as $item)
+                <li class="list-group-item border-0 d-flex align-items-center px-0 mb-2">
+                  <div class="w-100">
+                    <div class="d-flex align-items-center mb-2">
+                      <span class="me-2 text-sm font-weight-bold text-capitalize ms-2">{{ $item->user->name }}</span>
+                      <span class="ms-auto text-sm font-weight-bold">{{ $item->nilai }}</span>
+                    </div>
+                    <div>
+                      <div class="progress progress-md">
+                        <div class="progress-bar bg-gradient-dark w-{{ $item->nilai }}" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="{{ $item->nilai }}"></div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                @endforeach
+              </ul>
+            </div>
           </div>
         </div>
         <div class="card mt-4 mb-3">

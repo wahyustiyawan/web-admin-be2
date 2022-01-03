@@ -39,7 +39,8 @@ class ProfilController extends Controller
         if (isset($request->gambar)) {
             $extention = $request->gambar->extension();
             $file_name = time() . '.' . $extention;
-            $request->gambar->move(public_path('assets/foto/profil'), $file_name);
+            $txt = 'storage/images/'. $file_name;
+            $request->gambar->storeAs('public/images', $file_name);
         } else {
             $file_name = null;
         }
@@ -47,7 +48,7 @@ class ProfilController extends Controller
         User::create([
             'name' => $request->nama,
             'no_hp' => $request->no_hp,
-            'gambar' => $file_name,
+            'gambar' => $txt,
         ]);
         //notify()->success('Profil berhasil ditambahkan!');
         return redirect()->route('profil.index')

@@ -24,7 +24,7 @@ class UserQuizController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        UserQuiz::create([
+        $jawaban = UserQuiz::create([
             'user_id' => $user->id,
             'mata_kuliah_id' => $request->mata_kuliah_id,
             'quiz_id' => $request->quiz_id,
@@ -34,7 +34,8 @@ class UserQuizController extends Controller
 
         return response()->json([
             "error" => false,
-            "message" => "success"
+            "message" => "success",
+            "data" => $jawaban
         ]);
     }
 }

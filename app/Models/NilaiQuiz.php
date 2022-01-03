@@ -5,26 +5,39 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Nilai extends Model
+class NilaiQuiz extends Model
 {
     use HasFactory;
-    protected $table = 'nilai';
+    protected $table = 'nilai_quiz';
     protected $fillable = [
+        'grade',
         'user_id',
-        'tipe',
         'mata_kuliah_id',
-        'nilai',
-    ];
-    protected $casts = [
-        'user_id' => 'integer',
-        'mata_kuliah_id' => 'integer',
-        'nilai' => 'integer',
+        'quiz_id',
+        'iscomplete'
     ];
 
     protected $primaryKey = 'id';
 
+    
+    protected $casts = [
+        'user_id' => 'integer',
+        'mata_kuliah_id' => 'integer',
+        'quiz_id' => 'integer',
+    ];
+
+    public function matakuliah()
+    {
+        return $this->belongsTo(MataKuliah::class, 'mata_kuliah_id', 'id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function usequizr()
+    {
+        return $this->belongsTo(Quiz::class, 'quiz_id', 'id');
     }
 }

@@ -15,7 +15,6 @@ class CreateQuizTable extends Migration
     {
         Schema::create('quiz', function (Blueprint $table) {
             $table->id();
-            $table->enum('tipe', ['pre-test','post-test']);
             $table->string('judul');
             $table->text('deskripsi');
             $table->foreignId("mata_kuliah_id")->constrained("mata_kuliah")->onDelete("cascade")->onUpdate("cascade");

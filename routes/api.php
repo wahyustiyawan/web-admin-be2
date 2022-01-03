@@ -116,11 +116,7 @@ Route::get('/jobChannel/{id}/download', [JobChannelController::class, 'download'
 Route::get('/jobChannel/{id}/view', [JobChannelController::class, 'view']);
 
 
-//Route Profil
-Route::get('/profil', [ProfilController::class, 'index']);
-Route::post('/profil', [ProfilController::class, 'store']);
-Route::get('/profil/{id}', [ProfilController::class, 'show']);
-Route::get('/profil/{id}/view', [PofilController::class, 'view']);
+
 
 //Route Quiz
 Route::get('/quiz', [QuizController::class, 'index']);
@@ -129,7 +125,6 @@ Route::get('/quiz/{id}', [QuizController::class, 'show']);
 
 //User Quiz
 Route::get('/user-quiz', [UserQuizController::class, 'index']);
-Route::post('/user-quiz', [UserQuizController::class, 'store']);
 //User ExamPG
 Route::post('/user-exampg', [UserExamPGController::class, 'store']);
 
@@ -228,7 +223,12 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::put('/discussionLike3/update/{id}', [DiscussionLike3Controller::class, 'update']);
     Route::post('/userAssignment', [UserAssignmentController::class, 'store']);
 
-
+    //Route Profil
+    Route::get('/profil', [ProfilController::class, 'index']);
+    Route::post('/profil', [ProfilController::class, 'store']);
+    Route::get('/profil/{id}', [ProfilController::class, 'show']);
+    Route::get('/profil/{id}/view', [PofilController::class, 'view']);
+    
     Route::put('/enroll/video/{id}', [UserVideoController::class, 'update']);
     Route::put('/enroll/dokumen/{id}', [UserDokumenController::class, 'update']);
     Route::get('/enroll', [EnrollKelasController::class, 'index']);
@@ -256,12 +256,16 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     
     //Route Nilai
-    Route::post('/nilai', [NilaiController::class, 'store']);
-    Route::post('/postExam', [NilaiController::class, 'postExam']);
+    Route::post('/nilaiQuiz', [NilaiController::class, 'nilaiQuiz']);
+    Route::get('/gradeQuiz/{id}', [NilaiController::class, 'gradeQuiz']);
     Route::get('/gradeAssignment/{id}', [NilaiController::class, 'gradeAssignment']);
-    // Route::get('/gradeQuiz', [NilaiController::class, 'gradeQuiz']);
-    Route::get('/gradeExam/{id}', [NilaiController::class, 'gradeExam']);
+    Route::get('/gradeUts/{id}', [NilaiController::class, 'gradeUts']);
+    Route::get('/gradeUas/{id}', [NilaiController::class, 'gradeUas']);
+
+    //Route Quiz
+    Route::post('/user-quiz', [UserQuizController::class, 'store']);
 });
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
