@@ -18,10 +18,11 @@ class UserExam extends Model
         'feedback_1',
         'feedback_2',
         'feedback_3',
+        'tipe',
         'user_id',
         'mata_kuliah_id',
         'iscomplete',
-        'exam_id'
+        'exam_id',
     ];
 
     protected $casts = [

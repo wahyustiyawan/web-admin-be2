@@ -155,7 +155,8 @@ class DiscussionForumController extends Controller
         $totalLike2 = DiscussionLike2::has('discussion_reply')->get();
         $totalLike3 = DiscussionLike3::has('discussion_reply')->get();
         $mata_kuliah = MataKuliah::get();
-        return view('dosen.discussionForum.index', compact('post', 'reply', 'totalKomen', 'like', 'totalLike', 'totalLike2', 'totalLike3', 'reply2', 'totalKomen2', 'mata_kuliah'));
+        $leaderboard = Leaderboard::all();
+        return view('dosen.discussionForum.index', compact('leaderboard', 'post', 'reply', 'totalKomen', 'like', 'totalLike', 'totalLike2', 'totalLike3', 'reply2', 'totalKomen2', 'mata_kuliah'));
     }
 
     public function tambahKomen(Request $request)

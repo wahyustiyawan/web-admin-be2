@@ -3,7 +3,7 @@
       <div class="row">
         <div class="col-lg-6 col-12 mx-auto">
           <div class="card card-body mt-4">
-            <h6 class="mb-0">Tambah Kuis (Pre test & Post test)</h6>
+            <h6 class="mb-0">Tambah Kuis</h6>
             <hr class="horizontal dark my-3">
             <div class="card-body">
               <form role="form text-left" action="{{route('ImportPilgan')}}" method="POST" enctype="multipart/form-data">
