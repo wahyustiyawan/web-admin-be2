@@ -255,7 +255,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     //User Assignment
     Route::post('/userAssignment', [UserAssignmentController::class, 'store']); 
-    
+
     //Route Nilai
     Route::post('/nilaiQuiz', [NilaiController::class, 'nilaiQuiz']);
     Route::get('/gradeQuiz/{id}', [NilaiController::class, 'gradeQuiz']);

@@ -50,21 +50,43 @@ class UserAssignmentController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
+        // if (isset($request->assignment)) {
+        //     $extention = $request->file->extension();
+        //     $file_name = time() . '.' . $extention;
+        //     $txt = "storage/assignments/". $file_name;
+        //     $request->assignment->storeAs('public/assignments', $file_name);
+        // } else {
+        //     $txt = null;
+        // }
 
-        $input = new UserAssignment();
-        $input->assignment = $request->assignment;
-        $input->grade = 0;
-        $input->user_id = $user->id;
-        $input->mata_kuliah_id = $request->mata_kuliah_id;
-        $input->assignment_id = $request->assignment_id;
-        $input->iscomplete = 0;
-        $input->save();
-  
-        return response()->json([
-            "error" => false,
-            "message" => "success",
-            "data" => $input
-        ]);
+        if ($files = $request->file('assignment')) {
+
+            //store file into document folder
+            $extention = $request->assignment->extension();
+            $file_name = time().'.'.$extention;
+            $txt = 'storage/assignments/'. $file_name;
+            $request->assignment->storeAs('public/assignments', $file_name);
+
+            //store your file into database
+            
+            $input = new UserAssignment();
+            $input->assignment = $file_name;
+            $input->grade = 0;
+            $input->user_id = $user->id;
+            $input->mata_kuliah_id = $request->mata_kuliah_id;
+            $input->assignment_id = $request->assignment_id;
+            $input->iscomplete = 0;
+            $input->save();
+
+            return response()->json([
+                "error" => false,
+                "success" => true,
+                "message" => "Assignment successfully uploaded",
+                "file" => $txt
+            ]);
+            // return ResponseFormatter::success(["file" => $txt], "Iklan berhasil ditambahkan!");
+
+        }
     }
 
     /**
