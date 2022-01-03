@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Models\Akses;
+use App\Models\Enrolls;
 
 class AksesKelasMahasiswaController extends Controller
 {
@@ -22,7 +23,8 @@ class AksesKelasMahasiswaController extends Controller
         $AksesKelas = AksesKelas::all();
         $User = User::all();
         $Userselect = User::has('akseskelas')->get();
-        return view('admin.akseskelas.mahasiswa.index', compact('AksesKelas','kelas','User','Userselect'));
+        $enrolls = Enrolls::all();
+        return view('admin.akseskelas.mahasiswa.index', compact('AksesKelas','kelas','User','Userselect', 'enrolls'));
     }
 
     public function create()
