@@ -59,13 +59,6 @@ class UserAssignmentController extends Controller
         $input->assignment_id = $request->assignment_id;
         $input->iscomplete = 0;
         $input->save();
-
-        $input2 = new Nilai();
-        $input2->user_id = $user->id;
-        $input2->mata_kuliah_id = $request->mata_kuliah_id;
-        $input2->tipe = 'assignment';
-        $input2->nilai = 0;
-        $input2->save();
   
         return response()->json([
             "error" => false,
