@@ -62,7 +62,8 @@ class UserAssignmentController extends Controller
   
         return response()->json([
             "error" => false,
-            "message" => "success"
+            "message" => "success",
+            "data" => $input
         ]);
     }
 
