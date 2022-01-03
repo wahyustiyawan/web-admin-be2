@@ -254,7 +254,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::delete('/video/{id}', [KontenVideoController::class, 'destroy']);
 
     //User Assignment
-    Route::post('/userAssignment', [UserAssignmentController::class, 'store']); 
+    Route::post('/userAssignment', [UserAssignmentController::class, 'store']);     
 
     //Route Nilai
     Route::post('/nilaiQuiz', [NilaiController::class, 'nilaiQuiz']);

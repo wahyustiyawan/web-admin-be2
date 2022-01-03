@@ -82,7 +82,8 @@ class UserAssignmentController extends Controller
                 "error" => false,
                 "success" => true,
                 "message" => "Assignment successfully uploaded",
-                "file" => $txt
+                "file" => $txt,
+                "data" => $input
             ]);
             // return ResponseFormatter::success(["file" => $txt], "Iklan berhasil ditambahkan!");
 
