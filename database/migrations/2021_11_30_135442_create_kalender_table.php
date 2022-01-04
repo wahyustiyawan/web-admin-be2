@@ -17,7 +17,7 @@ class CreateKalenderTable extends Migration
             $table->id();
             $table->string('judul');
             $table->date('deadline');
-            $table->enum('tipe',['ujian', 'assigment','kuis']);
+            $table->enum('tipe',['ujian', 'assignment','kuis']);
             $table->string('color');
             $table->foreignId("user_id")->constrained("users")->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
