@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Assignment;
 use App\Models\MataKuliah;
-use App\Models\Nilai;
+// use App\Models\Nilai;
 use App\Models\UserAssignment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -60,12 +60,12 @@ class UserAssignmentController extends Controller
         $input->iscomplete = 0;
         $input->save();
 
-        $input2 = new Nilai();
-        $input2->user_id = $user->id;
-        $input2->mata_kuliah_id = $request->mata_kuliah_id;
-        $input2->tipe = 'assignment';
-        $input2->nilai = 0;
-        $input2->save();
+        // $input2 = new Nilai();
+        // $input2->user_id = $user->id;
+        // $input2->mata_kuliah_id = $request->mata_kuliah_id;
+        // $input2->tipe = 'assignment';
+        // $input2->nilai = 0;
+        // $input2->save();
   
         return response()->json([
             "error" => false,
