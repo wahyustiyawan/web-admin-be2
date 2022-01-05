@@ -96,7 +96,8 @@
                       </div>
                       <div class="text-end">
                         <button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal"><i class="ni ni-bold-left"></i>&nbsp;&nbsp;Batal</button>
-                        <button type="submit" class="btn bg-gradient-dark"><i class="fas fa-plus"></i>&nbsp;&nbsp;Import</button>
+                        return redirect()->route('mataKuliah.show',$request->matakuliahid);
+<button type="submit" class="btn bg-gradient-dark"><i class="fas fa-plus"></i>&nbsp;&nbsp;Import</button>
                       </div>
                     </form>
                   </div>
