@@ -45,8 +45,16 @@
               </div>
               <div class="mb-3">
                 <label for="exampleFormControlSelect1">Pengalaman</label>
-                <input type="text" class="form-control" name="pengalaman" value="{{$jobChannel->pengalaman}}" required>
+                <input type="text" class="form-control" name="pengalaman" value="{{$jobChannel->requirement}}" required>
               </div>        
+              <div class="mb-3">
+                <label for="exampleFormControlSelect1">Job Desk</label>
+                <input type="text" class="form-control" name="job_desk" value="{{$jobChannel->job_desk}}" required>
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlSelect1">Alamat</label>
+                <input type="text" class="form-control" name="alamat" value="{{$jobChannel->alamat}}" required>
+              </div>
               <div class="mb-3">
                 <label for="exampleFormControlSelect1">Foto</label> <br>
                 <img src="{{ asset( 'storage/job-channel/'. $jobChannel->foto) }}" alt="" width="100%"> <br>

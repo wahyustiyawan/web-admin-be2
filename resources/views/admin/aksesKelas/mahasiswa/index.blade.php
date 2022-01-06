@@ -19,7 +19,7 @@
             <tr>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
-              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kelas</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mata Kuliah</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
             </tr>
           </thead>
@@ -27,18 +27,22 @@
           {{-- {{ dd($Userselect)}} --}}
 
           <tbody>
-            @foreach ($Userselect->where('role','mahasiswa') as $item)
+            {{-- @foreach ($Userselect->where('role','mahasiswa') as $item) --}}
+            @foreach ($enrolls as $item)
             <tr>
               <td class="align-middle text-center">
                 <span class="text-secondary text-xs font-weight-bold">{{ $loop->iteration }}</span>
               </td>
               <td class="align-middle text-center">
-                <p class="text-xs font-weight-bold mb-0">{{ $item->name }}</p>
+                <p class="text-xs font-weight-bold mb-0">{{ $item->user->name }}</p>
               </td>
               <td class="align-middle text-center">
-                {{-- {{dd($item->AksesKelas)}} --}}
-                <span class="text-secondary text-xs font-weight-bold">{{implode(', ',$item->AksesKelas->pluck('nama')->toArray())}}</span>
+                <p class="text-xs font-weight-bold mb-0">{{ $item->mata_kuliah->judul }}</p>
               </td>
+              {{-- <td class="align-middle text-center"> --}}
+                {{-- {{dd($item->AksesKelas)}} --}}
+                {{-- <span class="text-secondary text-xs font-weight-bold">{{implode(', ',$item->AksesKelas->pluck('nama')->toArray())}}</span> --}}
+              {{-- </td> --}}
               {{-- <td class="align-middle text-center">
                 <p class="text-xs font-weight-bold mb-0">{{ $item->kategori }}</p>
               </td> --}}
