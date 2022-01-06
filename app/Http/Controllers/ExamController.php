@@ -68,6 +68,7 @@ class ExamController extends Controller
             'tipe' => 'ujian',
             'color' => 'bg-gradient-primary',
         ]);
+        
     }
 
         public function show($id)

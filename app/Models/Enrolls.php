@@ -43,7 +43,7 @@ class Enrolls extends Model
     	return $this->belongsTo(Kelas::class);
     }
 
-    public function matkul()
+    public function mata_kuliah()
     {
         return $this->belongsTo(MataKuliah::class, 'mata_kuliah_id', 'id');
     }
