@@ -17,7 +17,8 @@
 
           <thead>
             <tr>
-              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Profil</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mata Kuliah</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
@@ -32,6 +33,9 @@
             <tr>
               <td class="align-middle text-center">
                 <span class="text-secondary text-xs font-weight-bold">{{ $loop->iteration }}</span>
+              </td>
+              <td class="align-middle text-center">
+                <p class="text-xs font-weight-bold mb-0">{{ $item->user->gambar }}</p>
               </td>
               <td class="align-middle text-center">
                 <p class="text-xs font-weight-bold mb-0">{{ $item->user->name }}</p>
