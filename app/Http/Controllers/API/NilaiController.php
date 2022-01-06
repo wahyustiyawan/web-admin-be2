@@ -20,6 +20,7 @@ class NilaiController extends Controller
         $count = UserAssignment::where('user_id', $user->id)->where('mata_kuliah_id',$id)->count();
         $grade = UserAssignment::where('user_id', $user->id)->where('mata_kuliah_id',$id)->sum('grade');
         $total = $grade / $count;
+        // dd($count);
 
         return response()->json([
             "error" => false,
