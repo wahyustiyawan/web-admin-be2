@@ -26,7 +26,7 @@ class QuestionResource extends JsonResource
             "no" => $this->no,
             "pertanyaan" => $this->soal,
             "opsi" => $opsi,
-            "jawaban" => $this->jawaban,
+            "jawaban" => (int)$this->jawaban,
             "quiz_id" => $this->quiz_id,
             //'video' => $this->get_video,
         ];

@@ -30,8 +30,10 @@ class JobChannelController extends Controller
                 'gaji' => 'required',
                 'bidang' => 'required',
                 'tipe' => 'required',
-                'pengalaman' => 'required',
                 'foto' => 'required',
+                'requirement' => 'required',
+                'job_desk' => 'required',
+                'alamat' => 'required',                
              ]);
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], 401);
@@ -52,7 +54,9 @@ class JobChannelController extends Controller
             $jobChannel->gaji = $request->gaji;
             $jobChannel->bidang = $request->bidang;
             $jobChannel->tipe = $request->tipe;
-            $jobChannel->pengalaman = $request->pengalaman;
+            $jobChannel->requirement = $request->requirement;
+            $jobChannel->job_desk = $request->job_desk;
+            $jobChannel->alamat = $request->alamat;
             $jobChannel->foto = $file_name;
             $jobChannel->save();
 
