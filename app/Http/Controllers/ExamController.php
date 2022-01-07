@@ -68,7 +68,9 @@ class ExamController extends Controller
             'tipe' => 'ujian',
             'color' => 'bg-gradient-primary',
         ]);
-        
+
+        return redirect()->route('mataKuliah.show',$request->mata_kuliah_id)
+                ->with('success', 'Ujian Berhasil Ditambah');
     }
 
         public function show($id)

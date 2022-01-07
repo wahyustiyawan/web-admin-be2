@@ -20,6 +20,7 @@ class NilaiController extends Controller
         $count = UserAssignment::where('user_id', $user->id)->where('mata_kuliah_id',$id)->count();
         $grade = UserAssignment::where('user_id', $user->id)->where('mata_kuliah_id',$id)->sum('grade');
         $total = $grade / $count;
+        // dd($count);
 
         return response()->json([
             "error" => false,
@@ -75,7 +76,7 @@ class NilaiController extends Controller
     public function gradeUas($id)
     {
         $user = Auth::user();
-        $uas = UserExam::where('user_id', )->where('tipe', 'uas')->where('mata_kuliah_id',$id)->get();
+        $uas = UserExam::where('user_id', $user->id)->where('tipe', 'uas')->where('mata_kuliah_id',$id)->get();
         return response()->json([
             "error" => false,
             "message" => "success",

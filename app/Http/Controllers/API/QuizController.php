@@ -26,8 +26,6 @@ class QuizController extends Controller
         return new QuizCollection($quiz);
     }
 
-   
-
     public function Pertemuan()
     {
         //

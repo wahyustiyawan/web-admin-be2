@@ -10,7 +10,8 @@
                   <h3 class="mt-lg-0 mt-4">Mata Kuliah</h3>
                   <br>
                   <h5>Judul Ujian</h5>
-                  <span class="badge badge-success">{{$ujian->judul}}</span>
+                  <span class="badge badge-warning">{{$ujian->judul}}</span>
+                <span class="badge badge-success">{{ $ujian->deadline }}</span>
                   <br>
                   <label class="mt-4">Deskripsi</label>
                   <ul>
@@ -19,8 +20,8 @@
                   <div class="row mt-4">
                     <div class="col-lg-5 mt-lg-0 mt-2">
                         <div class="mb-3">
-                          <label for="exampleFormControlSelect1">File Ujian</label>
-                          <input type="file" class="form-control" name="file" required value="">
+                          <label for="exampleFormControlSelect1">Perbaikan</label> <br>
+                          <button type="submit" class="btn bg-gradient-primary">Buka Perbaikan</button>
                         </div>
                     </div>
                   </div>
@@ -63,10 +64,6 @@
                     </td>
                     <td class="">
                       <a href="{{route('showUserExam',$item->id)}}" class="btn btn-link text-dark"><i class="fas fa-file-pdf text-lg me-1"></i>Cek Exam</a>
-                    </td>
-                    <td>
-                      <a href="">
-                        <p class="text-sm font-weight-bold mb-0">{{ $item->exam }}</p></a>
                     </td>
                     <td class="align-middle text-center text-sm">
                       <p class="text-sm font-weight-bold mb-0">{{ $item->grade }}</p>

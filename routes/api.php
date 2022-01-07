@@ -221,7 +221,6 @@ Route::group(['middleware' => ['auth:api']], function () {
     //DiscussionLike3
     Route::post('/discussionLike3', [DiscussionLike3Controller::class, 'store']);
     Route::put('/discussionLike3/update/{id}', [DiscussionLike3Controller::class, 'update']);
-    Route::post('/userAssignment', [UserAssignmentController::class, 'store']);
 
     //Route Profil
     Route::get('/profil', [ProfilController::class, 'index']);
@@ -254,7 +253,9 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::put('/video/{id}', [KontenVideoController::class, 'update']);
     Route::delete('/video/{id}', [KontenVideoController::class, 'destroy']);
 
-    
+    //User Assignment
+    Route::post('/userAssignment', [UserAssignmentController::class, 'store']);     
+
     //Route Nilai
     Route::post('/nilaiQuiz', [NilaiController::class, 'nilaiQuiz']);
     Route::get('/gradeQuiz/{id}', [NilaiController::class, 'gradeQuiz']);

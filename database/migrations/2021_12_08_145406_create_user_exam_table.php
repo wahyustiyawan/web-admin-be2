@@ -28,6 +28,7 @@ class CreateUserExamTable extends Migration
             $table->foreignId("mata_kuliah_id")->constrained("mata_kuliah")->onDelete("cascade")->onUpdate("cascade");
             $table->foreignId("exam_id")->constrained("exam")->onDelete("cascade")->onUpdate("cascade");
             $table->boolean('iscomplete')->default(false);
+            $table->boolean('isremed')->default(false);
             $table->timestamps();
         });
     }

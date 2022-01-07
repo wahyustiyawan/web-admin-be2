@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKalenderTable extends Migration
+class CreateTranskipTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateKalenderTable extends Migration
      */
     public function up()
     {
-        Schema::create('kalender', function (Blueprint $table) {
+        Schema::create('transkip', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
-            $table->date('deadline');
-            $table->enum('tipe',['ujian', 'assignment','kuis']);
-            $table->string('color');
+            $table->integer('grade')->nullable();
+            $table->integer('semester')->nullable();
+            $table->string('ta');
             $table->foreignId("user_id")->constrained("users")->onDelete("cascade")->onUpdate("cascade");
+            $table->foreignId("mata_kuliah_id")->constrained("mata_kuliah")->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateKalenderTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kalender');
+        Schema::dropIfExists('transkip');
     }
 }

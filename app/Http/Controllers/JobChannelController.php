@@ -34,7 +34,9 @@ class JobChannelController extends Controller
             'bidang' => 'required',
             'tipe' => 'required',
             'jenis' => 'required',
-            'pengalaman' => 'required',
+            'requirement' => 'required',
+            'job_desk' => 'required',
+            'alamat' => 'required',
             'foto' => 'required',
         ]);
         $upload = $request->foto;
@@ -53,7 +55,9 @@ class JobChannelController extends Controller
             'bidang' => $request->bidang,
             'tipe' => $request->tipe,
             'jenis' => $request->jenis,
-            'pengalaman' => $request->pengalaman,
+            'requirement' => $request->requirement,
+            'job_desk' => $request->job_desk,
+            'alamat' => $request->alamat,
             'foto' => $txt,
 
         ]);
@@ -87,7 +91,9 @@ class JobChannelController extends Controller
         $jobChannel->bidang = $request->bidang;
         $jobChannel->jenis = $request->jenis;
         $jobChannel->tipe = $request->tipe;
-        $jobChannel->pengalaman = $request->pengalaman;
+        $jobChannel->requirement = $request->requirement;
+        $jobChannel->job_desk = $request->job_desk;
+        $jobChannel->alamat = $request->alamat;
 
         if (isset($request->foto)){
             $extention = $request->foto->extension();
