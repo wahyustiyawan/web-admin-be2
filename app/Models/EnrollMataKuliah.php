@@ -15,14 +15,14 @@ class EnrollMataKuliah extends Model
         'user_id',
         'mata_kuliah_id',
         'enroll_studi_id',
-        'iscomplete',
+        'isComplete',
         // 'kategori,'
     ];
 
     protected $primaryKey = 'id';
 
     protected $casts = [
-        'iscomplete' => 'boolean',
+        'isComplete' => 'boolean',
         'user_id' => 'integer',
         'mata_kuliah_id' => 'integer',
         'enroll_studi_id' => 'integer',

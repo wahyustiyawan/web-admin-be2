@@ -68,7 +68,7 @@ class EnrollStudiController extends Controller
         $taskInput      =       array(
             'user_id'     =>      $user->id,
             'kelas_id'   =>  $kelas->id,
-            'iscomplete'     =>   false,
+            'isComplete'     =>   false,
         );
         try{
             $enrolls   =  EnrollStudi::create($taskInput);
@@ -85,7 +85,7 @@ class EnrollStudiController extends Controller
             $Input      =       array(
                 'user_id'     =>      $user->id,
                 'mata_kuliah_id'   =>  $Mkuliah->id,
-                'iscomplete'     =>   false,
+                'isComplete'     =>   false,
             );
             $enroll_Mkuliah = new EnrollMataKuliah($Input);    
             //UserDokumen::create($Input);

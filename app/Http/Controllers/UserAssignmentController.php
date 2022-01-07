@@ -43,7 +43,7 @@ class UserAssignmentController extends Controller
         $userAssignment->grade_1 = $request->grade_1;
         $userAssignment->grade_2 = $request->grade_2;
         $userAssignment->grade_3 = $request->grade_3;
-        $userAssignment->iscomplete = true;
+        $userAssignment->isComplete = true;
         $userAssignment->save();
         // dd($assignment);
         return redirect()->back()

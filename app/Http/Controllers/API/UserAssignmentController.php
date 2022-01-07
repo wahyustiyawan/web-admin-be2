@@ -112,7 +112,7 @@ class UserAssignmentController extends Controller
     //             'assignment' =>   'required',
     //             'grade'      =>   'required',
     //             'feedback'   =>   'required',
-    //             'iscomplete' =>   'required',
+    //             'isComplete' =>   'required',
     //             'assignment_id' => 'required',
     //             'mata_kuliah_id'  => 'required'
     //         ]
@@ -121,7 +121,7 @@ class UserAssignmentController extends Controller
     //         'assignment' =>      $request->assignment,
     //         'grade'      =>      $request->grade,  
     //         'feedback'   =>      $request->feedback,
-    //         'iscomplete' =>      $request->iscomplete,
+    //         'isComplete' =>      $request->isComplete,
     //         'assignment_id' =>   $request->assignment_id,
     //         'mata_kuliah_id'  =>      $request->mata_kuliah_id
     //     );

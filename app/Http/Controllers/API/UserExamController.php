@@ -37,7 +37,7 @@ class UserExamController extends Controller
             'user_id' => $user->id,
             'mata_kuliah_id' => $request->mata_kuliah_id,
             'exam_id' => $request->exam_id,
-            'iscomplete' => '0',
+            'isComplete' => '0',
         ]);
 
         return response()->json([

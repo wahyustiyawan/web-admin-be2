@@ -12,14 +12,14 @@ class EnrollStudi extends Model
     protected $fillable = [
         'user_id',
         'kelas_id',
-        'iscomplete',
+        'isComplete',
         // 'kategori,'
     ];
 
     protected $primaryKey = 'id';
 
     protected $casts = [
-        'iscomplete' => 'boolean',
+        'isComplete' => 'boolean',
         'user_id' => 'integer',
         'kelas_id' => 'integer',
     ];

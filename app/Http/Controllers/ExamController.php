@@ -99,7 +99,7 @@ class ExamController extends Controller
             $userExam->grade_1 = $request->grade_1;
             $userExam->grade_2 = $request->grade_2;
             $userExam->grade_3 = $request->grade_3;
-            $userExam->iscomplete = true;
+            $userExam->isComplete = true;
             $userExam->save();
             // dd($assignment);
             return redirect()->back()

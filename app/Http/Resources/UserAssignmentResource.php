@@ -21,7 +21,7 @@ class UserAssignmentResource extends JsonResource
             // 'user_id' => $this->user_id,
             // 'pertemuan_id' => $this->pertemuan_id,
             // 'mata_kuliah_id' => $this->mata_kuliah_id,
-            'iscomplete' => $this->iscomplete
+            'isComplete' => $this->isComplete
         ];
     }
 }

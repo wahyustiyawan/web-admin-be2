@@ -11,7 +11,7 @@ class UserVideo extends Model
     protected $table = 'uservideo';
     protected $fillable = [
         'progress',
-        'iscomplete',
+        'isComplete',
         'user_id',
         'enrolls_id',
         'konten_video_id',
@@ -21,7 +21,7 @@ class UserVideo extends Model
     protected $casts = [
         'user_id' => 'integer',
         'progress' => 'integer',
-        'iscomplete' => 'boolean',
+        'isComplete' => 'boolean',
         'konten_video_id' => 'integer',
         'enrolls_id' => 'integer',
     ];

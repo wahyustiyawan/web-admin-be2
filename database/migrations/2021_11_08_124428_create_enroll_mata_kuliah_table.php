@@ -19,7 +19,8 @@ class CreateEnrollMataKuliahTable extends Migration
             $table->unique(["mata_kuliah_id","user_id"]);
             $table->foreignId("mata_kuliah_id")->constrained("mata_kuliah")->onDelete("cascade")->onUpdate("cascade");
             $table->foreignId("enroll_studi_id")->constrained("enroll_studi")->onDelete("cascade")->onUpdate("cascade");
-            $table->boolean('iscomplete')->default(false);
+            $table->boolean('isComplete')->default(false);
+            $table->boolean('isStart')->default(false);
             $table->timestamps();
         });
     }

@@ -25,14 +25,14 @@ class EnrollMataKuliahResource extends JsonResource
         $listdokumen = $udokumen;
         $countvideo = $listvideo->count();
         $countdokumen = $listdokumen->count();
-        $uvideo = $listvideo->where("iscomplete", true)->count();
-        $udokumen = $listdokumen->where("iscomplete", true)->count();
+        $uvideo = $listvideo->where("isComplete", true)->count();
+        $udokumen = $listdokumen->where("isComplete", true)->count();
         return [
             'id' => $this->id,
             //'kelas_id' => $this->kelas_id,
             'count' =>  $countvideo + $countdokumen,
             'count_complete' =>  $uvideo + $udokumen,
-            'iscomplete' => $this->iscomplete,
+            'isComplete' => $this->isComplete,
             //'kelas' => $kelas->nama,
             'mata_kuliah'=> new MataKuliahResource($mata_kuliah),
             //'video' => $this->get_video,

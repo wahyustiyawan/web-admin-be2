@@ -20,7 +20,7 @@ class UserAssignment extends Model
         'feedback_3',
         'user_id',
         'mata_kuliah_id',
-        'iscomplete',
+        'isComplete',
         'assignment_id'
     ];
 

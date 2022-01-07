@@ -19,7 +19,7 @@ class CreateNilaiQuizTable extends Migration
             $table->foreignId("user_id")->constrained("users")->onDelete("cascade")->onUpdate("cascade");
             $table->foreignId("mata_kuliah_id")->constrained("mata_kuliah")->onDelete("cascade")->onUpdate("cascade");
             $table->foreignId("quiz_id")->constrained("quiz")->onDelete("cascade")->onUpdate("cascade");
-            $table->boolean('iscomplete')->default(false);
+            $table->boolean('isComplete')->default(false);
             $table->timestamps();
         });
     }
