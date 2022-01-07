@@ -81,7 +81,7 @@ class EnrollMataKuliahController extends Controller
         $taskInput      =       array(
             'user_id'     =>      $user->id,
             'mata_kuliah_id'   =>  $kelas->id,
-            'iscomplete'     =>   false,
+            'isComplete'     =>   false,
         );
         try{
             $enrolls   =  EnrollMataKuliah::create($taskInput);

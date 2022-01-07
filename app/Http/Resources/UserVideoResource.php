@@ -21,7 +21,7 @@ class UserVideoResource extends JsonResource
         return [
             'id' => $this->id,
             'progress' => $this->progress,
-            'iscomplete' => $this->iscomplete,
+            'isComplete' => $this->isComplete,
             'konten_video' => new KontenVideoResource($video),
             //'konten_video' => $this->get_video,
             //'video' => $this->get_video,

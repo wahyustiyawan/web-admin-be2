@@ -22,7 +22,7 @@ class UserDokumenResource extends JsonResource
         return [
             'id' => $this->id,
             'progress' => $this->progress,
-            'iscomplete' => $this->iscomplete,
+            'isComplete' => $this->isComplete,
             'konten_dokumen' => new KontenDokumenResource($dokumen)
             //'konten_video' => $this->get_video,
             //'video' => $this->get_video,

@@ -19,7 +19,7 @@ class EnrollStudiResource extends JsonResource
         return [
             'id' => $this->id,
             //'kelas' => $this->kelas_id,
-            'iscomplete' => $this->iscomplete,
+            'isComplete' => $this->isComplete,
             'kelas' => new KelasResource($kelas),
         ];
     }

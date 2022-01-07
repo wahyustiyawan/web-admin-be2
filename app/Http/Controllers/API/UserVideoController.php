@@ -68,12 +68,12 @@ class UserVideoController extends Controller
             [
                 'id' =>         'required',
                 'progress' =>         'required',
-                'iscomplete' =>         'required',
+                'isComplete' =>         'required',
             ]
         );
         $inputData      =       array(
             'progress'        =>      $request->progress,
-            'iscomplete'      =>      $request->iscomplete,  
+            'isComplete'      =>      $request->isComplete,  
         );
 
         $video      =   UserVideo::where('id', $request->id)->where('user_id', $user->id)->update($inputData);

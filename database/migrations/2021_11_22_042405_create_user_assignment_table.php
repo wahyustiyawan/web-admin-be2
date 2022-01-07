@@ -26,7 +26,7 @@ class CreateUserAssignmentTable extends Migration
             $table->foreignId("user_id")->constrained("users")->onDelete("cascade")->onUpdate("cascade");
             $table->foreignId("mata_kuliah_id")->constrained("mata_kuliah")->onDelete("cascade")->onUpdate("cascade");
             $table->foreignId("assignment_id")->constrained("assignment")->onDelete("cascade")->onUpdate("cascade");
-            $table->boolean('iscomplete')->default(false);
+            $table->boolean('isComplete')->default(false);
             $table->timestamps();
         });
     }

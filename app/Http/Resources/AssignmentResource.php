@@ -25,7 +25,7 @@ class AssignmentResource extends JsonResource
             //'kelas_id' => $this->kelas_id,
             // 'count' =>  $countvideo + $countdokumen,
             // 'count_complete' =>  $uvideo + $udokumen,
-            // 'iscomplete' => $this->iscomplete,
+            // 'isComplete' => $this->isComplete,
             // 'nama_kelas'=> $kelas->nama,
             //'video' => $this->get_video,
         ];

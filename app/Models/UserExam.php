@@ -21,7 +21,7 @@ class UserExam extends Model
         'tipe',
         'user_id',
         'mata_kuliah_id',
-        'iscomplete',
+        'isComplete',
         'exam_id',
     ];
 
@@ -33,7 +33,7 @@ class UserExam extends Model
         'grade_1' => 'double',
         'grade_2' => 'double',
         'grade_3' => 'double',
-        'iscomplete' => 'boolean',
+        'isComplete' => 'boolean',
     ];
 
     public function matakuliah()

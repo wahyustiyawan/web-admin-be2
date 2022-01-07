@@ -11,7 +11,7 @@ class UserPertemuan extends Model
     protected $table = 'user_pertemuan';
     protected $fillable = [
         'progress',
-        'iscomplete',
+        'isComplete',
         'user_id',
         'enrolls_id',
         'pertemuan_id',
@@ -22,7 +22,7 @@ class UserPertemuan extends Model
     protected $casts = [
         'user_id' => 'integer',
         'progress' => 'integer',
-        'iscomplete' => 'boolean',
+        'isComplete' => 'boolean',
         'pertemuan_id' => 'integer',
         'enrolls_id' => 'integer',
     ];

@@ -14,7 +14,7 @@ class NilaiQuiz extends Model
         'user_id',
         'mata_kuliah_id',
         'quiz_id',
-        'iscomplete'
+        'isComplete'
     ];
 
     protected $primaryKey = 'id';

@@ -51,7 +51,7 @@ class NilaiController extends Controller
             'grade' => $request->grade,
             'mata_kuliah_id' => $request->mata_kuliah_id,
             'quiz_id' => $request->quiz_id,
-            'iscomplete' => 1
+            'isComplete' => 1
         ]);
 
         return response()->json([

@@ -18,7 +18,7 @@ class CreateEnrollStudiTable extends Migration
             $table->foreignId("user_id")->constrained("users")->onDelete("cascade")->onUpdate("cascade");
             $table->unique(["kelas_id","user_id"]);
             $table->foreignId("kelas_id")->constrained("kelas")->onDelete("cascade")->onUpdate("cascade");
-            $table->boolean('iscomplete')->default(false);
+            $table->boolean('isComplete')->default(false);
             $table->timestamps();
         });
     }

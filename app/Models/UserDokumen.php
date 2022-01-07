@@ -11,7 +11,7 @@ class UserDokumen extends Model
     protected $table = 'userdokumen';
     protected $fillable = [
         'progress',
-        'iscomplete',
+        'isComplete',
         'user_id',
         'enrolls_id',
         'konten_dokumen_id',
@@ -23,7 +23,7 @@ class UserDokumen extends Model
     protected $casts = [
         'user_id' => 'integer',
         'progress' => 'integer',
-        'iscomplete' => 'boolean',
+        'isComplete' => 'boolean',
         'enrolls_id' => 'integer',
         'konten_dokumen_id' => 'integer',
     ];
