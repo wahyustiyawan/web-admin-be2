@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEnrollKelasTable extends Migration
+class CreateEnrollStudiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateEnrollKelasTable extends Migration
      */
     public function up()
     {
-        Schema::create('enroll_kelas', function (Blueprint $table) {
+        Schema::create('enroll_studi', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id")->constrained("users")->onDelete("cascade")->onUpdate("cascade");
             $table->unique(["kelas_id","user_id"]);
@@ -30,6 +30,6 @@ class CreateEnrollKelasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('enroll_kelas');
+        Schema::dropIfExists('enroll_studi');
     }
 }

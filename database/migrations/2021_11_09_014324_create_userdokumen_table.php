@@ -18,7 +18,7 @@ class CreateUserdokumenTable extends Migration
             $table->integer('progress');
             $table->foreignId("user_id")->constrained("users")->onDelete("cascade")->onUpdate("cascade");
             $table->foreignId("konten_dokumen_id")->constrained("konten_dokumen")->onDelete("cascade")->onUpdate("cascade");
-            $table->foreignId("enrolls_id")->constrained("enrolls")->onDelete("cascade")->onUpdate("cascade");
+            $table->foreignId("enroll_mata_kuliah_id")->constrained("enroll_mata_kuliah")->onDelete("cascade")->onUpdate("cascade");
             $table->boolean('iscomplete')->default(false);
             $table->timestamps();
         });

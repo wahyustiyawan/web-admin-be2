@@ -167,13 +167,6 @@ class AssignmentController extends Controller
                 'mata_kuliah_id' => $request->mata_kuliah_id,
                 'user_id' => Auth::user()->id,
             ]);
-            Kalender::create([
-                'judul' => $request->judul,
-                'deadline' => $request->deadline,
-                'user_id' => Auth::user()->id,
-                'tipe' => 'assignment',
-                'color' => 'bg-gradient-primary',
-            ]);
             
         return redirect()->back()
         ->with('success', 'assignment File Berhasil Ditambah');

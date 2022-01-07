@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Enrolls;
+use App\Models\EnrollMataKuliah;
 use App\Models\UserDokumen;
 use App\Models\UserVideo;
 use Illuminate\Http\Request;
@@ -12,14 +12,14 @@ use Illuminate\Database\QueryException;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserVideoResource;
 use App\Http\Resources\UserDokumenResource;
-use App\Http\Resources\EnrollsResource;
-use App\Http\Resources\EnrollsCollection;
+use App\Http\Resources\EnrollMataKuliahResource;
+use App\Http\Resources\EnrollMataKuliahCollection;
 use App\Http\Resources\UserDokumenCollection;
 use App\Http\Resources\UserVideoCollection;
-use App\Models\EnrollKelas;
+use App\Models\EnrollStudi;
 use App\Models\MataKuliah;
 
-class EnrollsController extends Controller
+class EnrollMataKuliahController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,19 +30,19 @@ class EnrollsController extends Controller
     {
         //
         $user       =   Auth::user();
-        $enrolls       =  Enrolls::where('user_id', $user->id)->get();
+        $enrolls       =  EnrollMataKuliah::where('user_id', $user->id)->get();
         $matchThese = [
             ['user_id', '=', $user->id],
             ['kelas_id', '=', $request->kelas],
         ];
         try{
-            $enroll_kelas       =  EnrollKelas::where($matchThese)->get()->first();
+            $enroll_kelas       =  EnrollStudi::where($matchThese)->get()->first();
             if($request->kelas){
-                $mata_kuliah = $enrolls->where('enroll_kelas_id', $enroll_kelas->id);
+                $mata_kuliah = $enrolls->where('enroll_studi_id', $enroll_kelas->id);
             }else{
                 $mata_kuliah =  $enrolls;
             }
-            return new EnrollsCollection($mata_kuliah);
+            return new EnrollMataKuliahCollection($mata_kuliah);
         }catch(\Exception $e){
             $success['error']  =   true;
             $success['message'] =   $e->getMessage();
@@ -84,7 +84,7 @@ class EnrollsController extends Controller
             'iscomplete'     =>   false,
         );
         try{
-            $enrolls   =  Enrolls::create($taskInput);
+            $enrolls   =  EnrollMataKuliah::create($taskInput);
         }
         catch (QueryException $e){
             $success['error']  =   true;
@@ -124,7 +124,7 @@ class EnrollsController extends Controller
         if(!is_null($enrolls)) {
             $success['error']  =   false;
             $success['status']  =   "success";
-            $success['data']    =   new EnrollsResource($enrolls);
+            $success['data']    =   new EnrollMataKuliahResource($enrolls);
         }
         else {
             $success['error']  =   true;
@@ -139,12 +139,12 @@ class EnrollsController extends Controller
 
     public function findbyid($id){
         $user       =   Auth::user();
-        $enrolls       =  Enrolls::find($id);
+        $enrolls       =  EnrollMataKuliah::find($id);
         $my_array1      =       array(
             'user_video' => UserVideoResource::collection($enrolls->video),
             'user_dokumen' => UserDokumenResource::collection($enrolls->dokumen),
         );
-        $my_array2 = new EnrollsResource($enrolls);
+        $my_array2 = new EnrollMataKuliahResource($enrolls);
         //$res = array_merge($my_array1, $my_array2);
         return $my_array2;
     }
@@ -153,11 +153,11 @@ class EnrollsController extends Controller
     public function unenrolls($id) {
 
         $user       =       Auth::user();
-        $enrolls       =    Enrolls::findOrFail($id);
+        $enrolls       =    EnrollMataKuliah::findOrFail($id);
     
         if(!is_null($enrolls)) {
             if($user->id == $enrolls->user_id) {
-                $response   =   Enrolls::where('id', $id)->delete();
+                $response   =   EnrollMataKuliah::where('id', $id)->delete();
                 $kelas = MataKuliah::find($enrolls->mata_kuliah_id);
             }
             else {

@@ -17,7 +17,7 @@ class CreateUserpertemuanTable extends Migration
             $table->id();
             $table->integer('progress');
             $table->foreignId("user_id")->constrained("users")->onDelete("cascade")->onUpdate("cascade");
-            $table->foreignId("enrolls_id")->constrained("enrolls")->onDelete("cascade")->onUpdate("cascade");
+            $table->foreignId("enroll_mata_kuliah_id")->constrained("enroll_mata_kuliah")->onDelete("cascade")->onUpdate("cascade");
             $table->foreignId("pertemuan_id")->constrained("pertemuan")->onDelete("cascade")->onUpdate("cascade");
             $table->boolean('iscomplete')->default(false);
             $table->timestamps();

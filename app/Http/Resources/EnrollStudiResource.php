@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use App\Models\Kelas;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class EnrollKelasResource extends JsonResource
+class EnrollStudiResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
