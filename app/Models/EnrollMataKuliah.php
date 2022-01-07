@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use app\Models\UserVideo;
 use app\Models\UserDokumen;
 
-class Enrolls extends Model
+class EnrollMataKuliah extends Model
 {
     use HasFactory;
-    protected $table = 'enrolls';
+    protected $table = 'enroll_mata_kuliah';
     protected $fillable = [
         'user_id',
         'mata_kuliah_id',
-        'enroll_kelas_id',
+        'enroll_studi_id',
         'iscomplete',
         // 'kategori,'
     ];
@@ -25,7 +25,7 @@ class Enrolls extends Model
         'iscomplete' => 'boolean',
         'user_id' => 'integer',
         'mata_kuliah_id' => 'integer',
-        'enroll_kelas_id' => 'integer',
+        'enroll_studi_id' => 'integer',
     ];
 
     public function get_dokumen()
@@ -53,8 +53,8 @@ class Enrolls extends Model
         return $this->belongsTo(user::class, 'user_id', 'id');
     }
 
-    public function enroll_kelas()
+    public function enroll_studi()
     {
-        return $this->belongsTo(EnrollKelas::class, 'enroll_kelas_id', 'id');
+        return $this->belongsTo(EnrollStudi::class, 'enroll_studi_id', 'id');
     }
 }

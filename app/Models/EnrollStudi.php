@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class EnrollKelas extends Model
+class EnrollStudi extends Model
 {
     use HasFactory;
-    protected $table = 'enroll_kelas';
+    protected $table = 'enroll_studi';
     protected $fillable = [
         'user_id',
         'kelas_id',
@@ -26,7 +26,7 @@ class EnrollKelas extends Model
 
     public function enroll_mata_kuliah()
     {
-        return $this->hasMany(Enrolls::class);
+        return $this->hasMany(EnrollMataKuliah::class);
     }
 
 

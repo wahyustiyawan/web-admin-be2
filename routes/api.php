@@ -3,8 +3,8 @@
 use App\Models\Kelas;
 
 use App\Http\Controllers\API\KelasController;
-use App\Http\Controllers\API\EnrollsController;
-use App\Http\Controllers\API\EnrollKelasController;
+use App\Http\Controllers\API\EnrollMataKuliahController;
+use App\Http\Controllers\API\EnrollStudiController;
 use App\Http\Controllers\API\KontenDokumenController;
 use App\Http\Controllers\API\KontenVideoController;
 use App\Http\Controllers\API\KategoriController;
@@ -230,14 +230,14 @@ Route::group(['middleware' => ['auth:api']], function () {
     
     Route::put('/enroll/video/{id}', [UserVideoController::class, 'update']);
     Route::put('/enroll/dokumen/{id}', [UserDokumenController::class, 'update']);
-    Route::get('/enroll', [EnrollKelasController::class, 'index']);
-    Route::get('/enroll/mata-kuliah', [EnrollsController::class, 'index']);
-    Route::get('enroll/video', [EnrollsController::class, 'enrolled_video']);
-    Route::get('enroll/dokumen', [EnrollsController::class, 'enrolled_dokumen']);
-    Route::get('/enroll/{id}', [EnrollsController::class, 'findbyid']);
-    Route::post('/enroll', [EnrollKelasController::class, 'store']);
-    Route::delete('/unenroll/{id}', [EnrollKelasController::class, 'unenrolls']);
-    Route::delete('/unenroll', [EnrollKelasController::class, 'unenrollsbykelasid']);
+    Route::get('/enroll', [EnrollStudiController::class, 'index']);
+    Route::get('/enroll/mata-kuliah', [EnrollMataKuliahController::class, 'index']);
+    Route::get('enroll/video', [EnrollMataKuliahController::class, 'enrolled_video']);
+    Route::get('enroll/dokumen', [EnrollMataKuliahController::class, 'enrolled_dokumen']);
+    Route::get('/enroll/{id}', [EnrollMataKuliahController::class, 'findbyid']);
+    Route::post('/enroll', [EnrollStudiController::class, 'store']);
+    Route::delete('/unenroll/{id}', [EnrollStudiController::class, 'unenrolls']);
+    Route::delete('/unenroll', [EnrollStudiController::class, 'unenrollsbykelasid']);
     Route::get('/pertemuan', [PertemuanController::class, 'index']);
     Route::get('/pertemuan/{id}', [PertemuanController::class, 'findbyid']);
     Route::get('/user-details', [PassportAuthController::class, 'userDetail']);

@@ -13,16 +13,18 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\QueryException;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\EnrollMataKuliahResource;
 use App\Http\Resources\UserVideoResource;
 use App\Http\Resources\UserDokumenResource;
 use App\Http\Resources\EnrollsResource;
 use App\Http\Resources\EnrollsCollection;
-use App\Http\Resources\EnrollKelasResource;
-use App\Http\Resources\EnrollKelasCollection;
-use App\Models\EnrollKelas;
+use App\Http\Resources\EnrollStudiResource;
+use App\Http\Resources\EnrollStudiCollection;
+use App\Models\EnrollMataKuliah;
+use App\Models\EnrollStudi;
 use App\Models\MataKuliah;
 
-class EnrollKelasController extends Controller
+class EnrollStudiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -33,8 +35,8 @@ class EnrollKelasController extends Controller
     {
         //
         $user       =   Auth::user();
-        $enrolls       =  EnrollKelas::where('user_id', $user->id)->get();
-        return new EnrollKelasCollection($enrolls);
+        $enrolls       =  EnrollStudi::where('user_id', $user->id)->get();
+        return new EnrollStudiCollection($enrolls);
     }
 
     /**
@@ -69,7 +71,7 @@ class EnrollKelasController extends Controller
             'iscomplete'     =>   false,
         );
         try{
-            $enrolls   =  EnrollKelas::create($taskInput);
+            $enrolls   =  EnrollStudi::create($taskInput);
         }catch (QueryException $e){
             $success['error']  =   true;
             $success['message'] =   $e->getMessage();
@@ -85,7 +87,7 @@ class EnrollKelasController extends Controller
                 'mata_kuliah_id'   =>  $Mkuliah->id,
                 'iscomplete'     =>   false,
             );
-            $enroll_Mkuliah = new Enrolls($Input);    
+            $enroll_Mkuliah = new EnrollMataKuliah($Input);    
             //UserDokumen::create($Input);
             $enrolls->enroll_mata_kuliah()->save($enroll_Mkuliah);
 
@@ -161,12 +163,12 @@ class EnrollKelasController extends Controller
 
     public function findbyid($id){
         $user       =   Auth::user();
-        $enrolls       =  Enrolls::find($id);
+        $enrolls       =  EnrollMataKuliah::find($id);
         $my_array1      =       array(
             'user_video' => UserVideoResource::collection($enrolls->video),
             'user_dokumen' => UserDokumenResource::collection($enrolls->dokumen),
         );
-        $my_array2 = new EnrollsResource($enrolls);
+        $my_array2 = new EnrollMataKuliahResource($enrolls);
         //$res = array_merge($my_array1, $my_array2);
         return $my_array2;
     }
@@ -178,11 +180,11 @@ class EnrollKelasController extends Controller
                 ['user_id', '=', $user->id],
                 ['kelas_id', '=', $request->kelas],
             ];
-            $enroll_kelas = EnrollKelas::where($matchThese)->get()->first();
+            $enroll_kelas = EnrollStudi::where($matchThese)->get()->first();
 
             if(!is_null($enroll_kelas)) {
                 if($user->id == $enroll_kelas->user_id) {
-                    $response   =   EnrollKelas::where('id', $enroll_kelas->id)->delete();
+                    $response   =   EnrollStudi::where('id', $enroll_kelas->id)->delete();
                     $kelas = Kelas::find($enroll_kelas->kelas->id);
                 }
                 else {
@@ -206,11 +208,11 @@ class EnrollKelasController extends Controller
     public function unenrolls($id) {
         
         $user       =       Auth::user();
-        $enrolls       =    EnrollKelas::findOrFail($id);
+        $enrolls       =    EnrollStudi::findOrFail($id);
     
         if(!is_null($enrolls)) {
             if($user->id == $enrolls->user_id) {
-                $response   =   EnrollKelas::where('id', $id)->delete();
+                $response   =   EnrollStudi::where('id', $id)->delete();
                 $kelas = Kelas::find($enrolls->kelas_id);
             }
             else {

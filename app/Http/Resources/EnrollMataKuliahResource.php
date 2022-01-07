@@ -7,7 +7,7 @@ use App\Models\MataKuliah;
 use App\Models\UserDokumen;
 use App\Models\UserVideo;
 
-class EnrollsResource extends JsonResource
+class EnrollMataKuliahResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,8 +18,8 @@ class EnrollsResource extends JsonResource
     public function toArray($request)
     {
         $mata_kuliah = MataKuliah::find($this->mata_kuliah_id);
-        $uvideo = UserVideo::where('enrolls_id', $this->id);
-        $udokumen = UserDokumen::where('enrolls_id', $this->id);
+        $uvideo = UserVideo::where('enroll_mata_kuliah_id', $this->id);
+        $udokumen = UserDokumen::where('enroll_mata_kuliah_id', $this->id);
         //$kelas = Kelas::find($mata_kuliah->kelas_id);
         $listvideo = $uvideo;
         $listdokumen = $udokumen;
