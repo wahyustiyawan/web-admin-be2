@@ -21,7 +21,12 @@
                     <div class="col-lg-5 mt-lg-0 mt-2">
                         <div class="mb-3">
                           <label for="exampleFormControlSelect1">Perbaikan</label> <br>
-                          <button type="submit" class="btn bg-gradient-primary">Buka Perbaikan</button>
+                          <form action="{{ route('isremed') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" value="1" name="isremed">
+                            <button type="submit" class="btn bg-gradient-primary">Buka Perbaikan</button>
+                          </form>
                         </div>
                     </div>
                   </div>
@@ -72,9 +77,19 @@
                       <div class="d-flex px-3 py-1 justify-content-center align-items-center">
                         <button class="btn btn-link text-dark px-3 mb-0 btn-update" data-link="{{ route('storeExam', $item->id) }}" data-grade="{{ $item->grade ?? 0 }}" data-grade_1="{{ $item->grade_1 ?? 0 }}" data-grade_2="{{ $item->grade_2 ?? 0 }}" data-grade_3="{{ $item->grade_3 ?? 0 }}" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp"><i class="fas fa-user-edit text-secondary"></i></button>
                         {{-- <a class="btn btn-link text-dark px-3 mb-0" href="#"><i class="fas fa-user-edit text-secondary"></i></a> --}}
-                        <button type="button" class="btn btn-sm btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Refund rate is lower with 97% than other products">
-                          <i class="fas fa-info" aria-hidden="true"></i>
-                        </button>
+                        @if ($item->grade < 55)
+                          <button type="button" class="btn btn-sm btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Nilai di bawah rata-rata, silahkan buka akses remedial">
+                            <i class="fas fa-info" aria-hidden="true"></i>
+                          </button>
+                        @elseif ($item->grade >= 55 )
+                          <button type="button" class="btn btn-sm btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Nilai di atas rata-rata, nilai aman">
+                            <i class="fas fa-info" aria-hidden="true"></i>
+                          </button>
+                        @else
+                          <button type="button" class="btn btn-sm btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Nilai belum diisi">
+                            <i class="fas fa-info" aria-hidden="true"></i>
+                          </button>
+                        @endif
                       </div>
                     </td>
                   </tr>

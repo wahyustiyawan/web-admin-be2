@@ -59,7 +59,7 @@ class EnrollMataKuliahController extends Controller
         return response()->json([
             "error" => false,
             "success" => true,
-            "mahasiswa" => $enrolls
+            "data" => $enrolls
         ]);
     }
 

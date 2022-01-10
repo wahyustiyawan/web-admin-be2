@@ -12,6 +12,7 @@ use App\Models\Pertemuan;
 use App\Models\Quiz;
 use App\Models\Exam;
 use App\Models\AksesKelas;
+use App\Models\EnrollMataKuliah;
 use App\Models\Enrolls;
 use App\Models\ExamPilgan;
 use Illuminate\Support\Facades\View;
@@ -77,7 +78,7 @@ class MataKuliahController extends Controller
         $pertemuanselect = Pertemuan::where('mata_kuliah_id', $id)->get();
         $ujian = Exam::where('mata_kuliah_id', $id)->get();
         $ujianpilgan = ExamPilgan::where('mata_kuliah_id', $id)->get();
-        $enrolls = Enrolls::where('mata_kuliah_id', $id)->get();
+        $enrolls = EnrollMataKuliah::where('mata_kuliah_id', $id)->get();
         return view('admin.mata_kuliah.show', compact('enrolls','kategori','mataKuliahselect','kontenDokumen','kontenVideo', 'assignment','pertemuan','mataKuliah', 'quiz', 'pertemuanselect', 'ujian', 'ujianpilgan'));
     }
 

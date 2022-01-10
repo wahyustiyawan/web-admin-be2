@@ -182,6 +182,8 @@ Route::get('/reply/destroy/{id}', [DiscussionForumController::class, 'hapusKomen
 Route::put('/komen/{id}', [DiscussionForumController::class, 'komenUpdate'])->name('komenUpdate');
 Route::put('/ganti-warna-kalender', [DashboardController::class, 'gantiWarnaKalender'])->name('gantiWarnaKalender');
 
+Route::put('/isremed', [ExamController::class, 'isremed'])->name('isremed');
+
 //Role Admin
 Route::middleware(['auth', 'role:admin'])->group(function () {
     // Route::get('/admin', function () {

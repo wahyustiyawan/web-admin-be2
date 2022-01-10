@@ -72,11 +72,12 @@ class ExamController extends Controller
         return redirect()->route('mataKuliah.show',$request->mata_kuliah_id)
                 ->with('success', 'Ujian Berhasil Ditambah');
     }
-
+ 
         public function show($id)
         {
             $ujian = Exam::where('id', $id)->first();
             $user = UserExam::all();
+
             // $user = UserExam::where('exam_id', $id);
             return view('admin.ujian.show', compact('ujian', 'user'));
         }
@@ -87,6 +88,15 @@ class ExamController extends Controller
             //notify()->success('Kelas berhasil dihapus!');
             return redirect()->back()
                 ->with('delete', 'Ujian Berhasil Dihapus');
+        }
+
+        public function isremed(Request $request, $id)
+        {
+            $userExam = UserExam::findOrFail($id);
+            $userExam->isComplete = $request->isremed;
+            $userExam->save();
+            return redirect()->back()
+            ->with('success', 'Berhasil memberi Nilai');
         }
 
         public function storeExam(Request $request, $id)
