@@ -32,8 +32,8 @@ class NilaiController extends Controller
     public function gradeQuiz($id)
     {
         $user = Auth::user();
-        $count = NilaiQuiz::where('user_id', $user->id)->where('mata_kuliah_id',$id)->count();
-        $grade = NilaiQuiz::where('user_id', $user->id)->where('mata_kuliah_id',$id)->sum('grade');
+        $count = NilaiQuiz::where('user_id', 5)->where('mata_kuliah_id',$id)->count();
+        $grade = NilaiQuiz::where('user_id', 5)->where('mata_kuliah_id',$id)->sum('grade');
         $total = $grade / $count;
 
         return response()->json([

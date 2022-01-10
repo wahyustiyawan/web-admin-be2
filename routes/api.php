@@ -117,7 +117,6 @@ Route::get('/jobChannel/{id}/view', [JobChannelController::class, 'view']);
 
 
 
-
 //Route Quiz
 Route::get('/quiz', [QuizController::class, 'index']);
 Route::get('/Pertemuan', [QuizController::class, 'Pertemuan']);
@@ -257,14 +256,16 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/userAssignment', [UserAssignmentController::class, 'store']);     
 
     //Route Nilai
-    Route::post('/nilaiQuiz', [NilaiController::class, 'nilaiQuiz']);
-    Route::get('/gradeQuiz/{id}', [NilaiController::class, 'gradeQuiz']);
+    // Route::post('/nilaiQuiz', [NilaiController::class, 'nilaiQuiz']);
     Route::get('/gradeAssignment/{id}', [NilaiController::class, 'gradeAssignment']);
     Route::get('/gradeUts/{id}', [NilaiController::class, 'gradeUts']);
     Route::get('/gradeUas/{id}', [NilaiController::class, 'gradeUas']);
-
+    Route::get('/gradeQuiz/{id}', [NilaiController::class, 'gradeQuiz']);
+    
     //Route Quiz
     Route::post('/user-quiz', [UserQuizController::class, 'store']);
+    Route::post('/nilai-quiz', [UserQuizController::class, 'nilaiQuiz']);
+
 });
 
 
