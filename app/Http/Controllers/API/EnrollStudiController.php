@@ -39,6 +39,17 @@ class EnrollStudiController extends Controller
         return new EnrollStudiCollection($enrolls);
     }
 
+    public function enroll($id)
+    {
+        $enrolls = EnrollStudi::where('kelas_id', $id)->count();
+        // $enrolls = EnrollStudi::all();
+        return response()->json([
+            "error" => false,
+            "success" => true,
+            "mahasiswa" => $enrolls
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

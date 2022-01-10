@@ -195,6 +195,12 @@ Route::get('view2/{filename}', [ViewController::class, 'index2']);
 Route::get('/mata-kuliah', [MataKuliahController::class, 'index']);
 Route::get('/mata-kuliah/{id}', [MataKuliahController::class, 'findbyid']);
 Route::get('/kalender', [KalenderController::class, 'index']);
+
+// Route Jumlah Mahasiswa
+Route::get('/jumlah-enroll/{id}', [EnrollStudiController::class, 'enroll']);
+Route::get('/jumlah-enroll-matkul/{id}', [EnrollMataKuliahController::class, 'enroll']);
+
+
 // Protected routes
 Route::group(['middleware' => ['auth:api']], function () {
     //DiscussionForum

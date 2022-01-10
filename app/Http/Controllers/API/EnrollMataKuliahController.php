@@ -52,6 +52,17 @@ class EnrollMataKuliahController extends Controller
         }
     }
 
+    public function enroll($id)
+    {
+        $enrolls = EnrollMataKuliah::where('mata_kuliah_id', $id)->count();
+        // $enrolls = EnrollStudi::all();
+        return response()->json([
+            "error" => false,
+            "success" => true,
+            "mahasiswa" => $enrolls
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
