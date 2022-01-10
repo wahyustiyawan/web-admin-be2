@@ -21,10 +21,9 @@
                     <div class="col-lg-5 mt-lg-0 mt-2">
                         <div class="mb-3">
                           <label for="exampleFormControlSelect1">Perbaikan</label> <br>
-                          <form action="{{ route('isremed') }}" method="POST" enctype="multipart/form-data">
+                          <form action="{{ route('isremed', $ujian->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
-                            <input type="hidden" value="1" name="isremed">
                             <button type="submit" class="btn bg-gradient-primary">Buka Perbaikan</button>
                           </form>
                         </div>

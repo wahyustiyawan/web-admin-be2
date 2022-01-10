@@ -92,11 +92,13 @@ class ExamController extends Controller
 
         public function isremed(Request $request, $id)
         {
-            $userExam = UserExam::findOrFail($id);
-            $userExam->isComplete = $request->isremed;
-            $userExam->save();
+            // $userExam = UserExam::where('exam_id', $id);
+            // $userExam->isComplete = true;
+            // $userExam->save();
+            UserExam::where('exam_id', $id)->where('grade', '<', 55)->update(['isremed'=>true]);
+
             return redirect()->back()
-            ->with('success', 'Berhasil memberi Nilai');
+            ->with('success', 'Berhasil memberi akses remedial');
         }
 
         public function storeExam(Request $request, $id)
