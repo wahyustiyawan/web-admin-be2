@@ -77,9 +77,10 @@ class ExamController extends Controller
         {
             $ujian = Exam::where('id', $id)->first();
             $user = UserExam::all();
+            $remed = UserExam::where('exam_id', $id)->where('tipe', 'remed')->get();
 
             // $user = UserExam::where('exam_id', $id);
-            return view('admin.ujian.show', compact('ujian', 'user'));
+            return view('admin.ujian.show', compact('ujian', 'user', 'remed'));
         }
 
         public function destroy($id)
@@ -92,9 +93,6 @@ class ExamController extends Controller
 
         public function isremed(Request $request, $id)
         {
-            // $userExam = UserExam::where('exam_id', $id);
-            // $userExam->isComplete = true;
-            // $userExam->save();
             UserExam::where('exam_id', $id)->where('grade', '<', 55)->update(['isremed'=>true]);
 
             return redirect()->back()
