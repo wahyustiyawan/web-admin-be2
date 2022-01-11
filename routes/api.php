@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AdministrationController;
 use App\Models\Kelas;
 
 use App\Http\Controllers\API\KelasController;
@@ -200,6 +201,8 @@ Route::get('/kalender', [KalenderController::class, 'index']);
 Route::get('/jumlah-enroll/{id}', [EnrollStudiController::class, 'enroll']);
 Route::get('/jumlah-enroll-matkul/{id}', [EnrollMataKuliahController::class, 'enroll']);
 
+//Route Administrasai
+Route::post('/administrasi', [AdministrationController::class, 'store']);    
 
 // Protected routes
 Route::group(['middleware' => ['auth:api']], function () {
@@ -259,7 +262,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::delete('/video/{id}', [KontenVideoController::class, 'destroy']);
 
     //User Assignment
-    Route::post('/userAssignment', [UserAssignmentController::class, 'store']);     
+    Route::post('/userAssignment', [UserAssignmentController::class, 'store']); 
+     
 
     //Route Nilai
     // Route::post('/nilaiQuiz', [NilaiController::class, 'nilaiQuiz']);
