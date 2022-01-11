@@ -37,6 +37,8 @@ class CreateAdministrationTable extends Migration
             $table->string('kerja_ibu')->nullable();
             $table->string('pekerjaan')->nullable();
             $table->string('penghasilan')->nullable();
+            $table->string('penghasilan_ayah')->nullable();
+            $table->string('penghasilan_ibu')->nullable();
             $table->string('pakta_integritas')->nullable();
             $table->string('scan_ktp')->nullable();
             $table->string('scan_kk')->nullable();
@@ -44,6 +46,8 @@ class CreateAdministrationTable extends Migration
             $table->string('pas_foto')->nullable();
             $table->string('transkip')->nullable();
             $table->string('surat_rekomendasi')->nullable();
+            $table->enum('program', ['D1', ['S1'], ['Kursus']])->nullable();
+            $table->boolean('isVerified')->nullable();
             $table->timestamps();
         });
     }

@@ -34,6 +34,8 @@ class UserExam extends Model
         'grade_2' => 'double',
         'grade_3' => 'double',
         'isComplete' => 'boolean',
+        'isremed' => 'boolean',
+        'akhir' => 'boolean',
     ];
 
     public function matakuliah()

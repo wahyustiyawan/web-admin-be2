@@ -34,6 +34,8 @@ class AdministrationController extends Controller
             'kerja_ibu'=> $request->kerja_ibu,
             'pekerjaan'=> $request->pekerjaan,
             'penghasilan'=> $request->penghasilan,
+            'penghasilan_ayah'=> $request->penghasilan_ayah,
+            'penghasilan_ibu'=> $request->penghasilan_ibu,
             'pakta_integritas'=> $request->pakta_integritas,
             'scan_ktp'=> $request->scan_ktp,
             'scan_kk'=> $request->scan_kk,
@@ -41,6 +43,7 @@ class AdministrationController extends Controller
             'pas_foto'=> $request->pas_foto,
             'transkip'=> $request->transkip,
             'surat_rekomendasi'=> $request->surat_rekomendasi,
+            'program'=> $request->program,
         ]);
 
         return response()->json([
