@@ -32,13 +32,16 @@ class Administration extends Model
         'kerja_ibu',
         'pekerjaan',
         'penghasilan',
+        'penghasilan_ayah',
+        'penghasilan_ibu',
         'pakta_integritas',
         'scan_ktp',
         'scan_kk',
         'scan_ijazah',
         'pas_foto',
         'transkip',
-        'surat_rekomendasi'
+        'surat_rekomendasi',
+        'program',
     ];
 
     protected $primaryKey = 'id';
