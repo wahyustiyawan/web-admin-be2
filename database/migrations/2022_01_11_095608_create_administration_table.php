@@ -44,6 +44,7 @@ class CreateAdministrationTable extends Migration
             $table->string('pas_foto')->nullable();
             $table->string('transkip')->nullable();
             $table->string('surat_rekomendasi')->nullable();
+            $table->boolean('isVerified')->nullable();
             $table->timestamps();
         });
     }
