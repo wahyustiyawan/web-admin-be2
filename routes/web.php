@@ -151,6 +151,8 @@ Route::resource('assignmentFile', AssignmentFileController::class);
 //Route::resource('assignmentPilgan', AssignmentPilganController::class);
 Route::resource('assignmentText', AssignmentTextController::class);
 
+Route::get('/data-mahasiswa/{id}', [MataKuliahController::class, 'mahasiswa'])->name('dataMahasiswa');
+
 Route::middleware(['auth', 'role:dosen'])->group(function () {
 
     Route::get('/mata_kuliah', function () {
