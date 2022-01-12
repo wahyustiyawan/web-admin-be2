@@ -26,14 +26,14 @@ class AdministrasiController extends Controller
             'isVerified' => true
             ]);
 
-        return redirect()->route('adminsitrasi.index')
+        return redirect()->route('administrasi.index')
         ->with('success', 'Data telah diverifikasi');
     }
 
     public function destroy($id)
     {
         Administration::where('id', $id)->delete();
-        return redirect()->route('adminsitrasi.index')
+        return redirect()->route('administrasi.index')
         ->with('delete', 'Data berhasil dihapus!');
     }
 }

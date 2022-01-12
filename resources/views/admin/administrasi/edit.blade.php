@@ -6,7 +6,7 @@
             <h6 class="mb-0">Verifiikasi Data</h6>
             <hr class="horizontal dark my-3">
             <div class="card-body">
-              <form class="row g-3" role="form text-left" action="{{route('administrasi.update',$administrasi->id)}}" method="POST" enctype="multipart/form-data">
+              <form class="row g-3" role="form text-left" action="{{route('administrasi.update',$admin->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 					<h5 class="mb-0">Data Diri</h5>
@@ -274,13 +274,13 @@
 							<div class="col-lg-8">
 								<div class="d-flex">
 									<div class="form-check radio-bg-light me-4">
-										<input class="form-check-input" type="radio" name="kelamin" value="laki-laki" {{$admin->kelamin == 'laki-laki' ? 'checked' : '' }} readonly>
+										<input class="form-check-input selected" type="radio" name="kelamin" value="laki-laki" {{$admin->kelamin == 'laki-laki' ? 'checked' : '' }} readonly>
 										<label class="form-check-label" for="flexRadioDefault1">
 											Laki-laki
 										</label>
 									</div>
 									<div class="form-check radio-bg-light">
-										<input class="form-check-input" type="radio" name="kelamin" value="perempuan" {{$admin->kelamin == 'perempuan' ? 'checked' : ''}} readonly>
+										<input class="form-check-input selected" type="radio" name="kelamin" value="perempuan" {{$admin->kelamin == 'perempuan' ? 'checked' : ''}} readonly>
 										<label class="form-check-label" for="flexRadioDefault2">
 											Perempuan
 										</label>
