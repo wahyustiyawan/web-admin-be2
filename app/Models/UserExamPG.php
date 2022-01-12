@@ -19,7 +19,6 @@ class UserExamPG extends Model
 
     
     protected $primaryKey = 'id';
-
     
     protected $casts = [
         'user_id' => 'integer',
@@ -27,4 +26,23 @@ class UserExamPG extends Model
         'exam_id' => 'integer',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function akses()
+    {
+        return $this->belongsTo(AksesKelas::class, 'akses_kelas_id', 'id');
+    }
+
+    public function mata_kuliah()
+    {
+        return $this->belongsTo(MataKuliah::class, 'mata_kuliah_id', 'id');
+    }
+
+    public function administration()
+    {
+        return $this->belongsTo(Administration::class, 'administration_id', 'id');
+    }
 }
