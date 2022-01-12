@@ -700,13 +700,17 @@
                 <thead>
                   <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Mahasiswa</th>
-                    {{-- <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Exam</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Grade</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th> --}}
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nilai Akhir</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Assignment</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Quiz</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">UTS</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">UAS</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($enrolls as $item)
+                  @foreach ($nilai as $item)
                   <tr>
                     <td>
                       <div class="d-flex px-3 py-1">
@@ -722,10 +726,25 @@
                     {{-- <td>
                       <a href="">
                         <p class="text-sm font-weight-bold mb-0">{{ $item->exam }}</p></a>
+                    </td> --}}
+
+                    <td class="align-middle text-center text-sm">
+                      <span class="badge badge-success">{{ $item->grade }}</span>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <p class="text-sm font-weight-bold mb-0">{{ $item->grade }}</p>
-                    </td> --}}
+                      <p class="text-sm font-weight-bold mb-0">{{ $item->nilai }}</p>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <p class="text-sm font-weight-bold mb-0">{{ $item->assignment }}</p>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <p class="text-sm font-weight-bold mb-0">{{ $item->quiz }}</p>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <p class="text-sm font-weight-bold mb-0">{{ $item->uts }}</p>
+                    </td><td class="align-middle text-center text-sm">
+                      <p class="text-sm font-weight-bold mb-0">{{ $item->uas }}</p>
+                    </td>
                     <td class="align-middle text-end">
                       <div class="d-flex px-3 py-1 justify-content-center align-items-center">
                         <button class="btn btn-link text-dark px-3 mb-0 btn-update" data-link="{{ route('storeExam', $item->id) }}" data-grade="{{ $item->grade ?? 0 }}" data-grade_1="{{ $item->grade_1 ?? 0 }}" data-grade_2="{{ $item->grade_2 ?? 0 }}" data-grade_3="{{ $item->grade_3 ?? 0 }}" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp"><i class="fas fa-user-edit text-secondary"></i></button>
@@ -746,7 +765,70 @@
       </div>
     </div>
 
-    
+    <!-- Grading Modal -->
+    <div class="modal fade" id="exampleModalSignUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalSignTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <div class="card card-plain">
+              <div class="card-header pb-0 text-left">
+                  <h3 class="font-weight-bolder text-primary text-gradient">Grading!</h3>
+                  <p class="mb-0">Enter grade and feedback</p>
+              </div>
+              <div class="card-body pb-3">
+                <form role="form text-left" id="grading" method="POST" enctype="multipart/form-data">
+                  @csrf
+                  @method('PUT')
+                  <label>Nilai</label>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <input type="text" name="grade" id="grade" class="form-control" placeholder="Grade" aria-label="Name" aria-describedby="name-addon" readonly>
+                      </div>
+                    </div>
+                  </div>
+                  <label>Assignment</label>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <input type="text" name="grade" id="grade" class="form-control" placeholder="Nilai Assignmnet" aria-label="Name" aria-describedby="name-addon">
+                      </div>
+                    </div>
+                  </div>
+                  <label>Quiz</label>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <input type="text" name="grade" id="grade" class="form-control" placeholder="Nilai Quiz" aria-label="Name" aria-describedby="name-addon">
+                      </div>
+                    </div>
+                  </div>
+                  <label>UTS</label>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <input type="text" name="grade" id="grade" class="form-control" placeholder="Nilai Ujian Tengah Semester" aria-label="Name" aria-describedby="name-addon">
+                      </div>
+                    </div>
+                  </div>
+                  <label>UAS</label>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <input type="text" name="grade" id="grade" class="form-control" placeholder="Nilai Ujian Akhir Semester" aria-label="Name" aria-describedby="name-addon">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Send</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
   {{-- @push('scripts')
   <script>

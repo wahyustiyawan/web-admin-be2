@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             PertemuanSeeder::class,
             HakAksesDosenSeeder::class,
             KontenVideoSeeder::class,
+            NilaiSeeder::class,
             KontenDokumenSeeder::class
         ]);
     }

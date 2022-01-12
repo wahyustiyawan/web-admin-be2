@@ -15,15 +15,14 @@ class CreateNilaiTable extends Migration
     {
         Schema::create('nilai', function (Blueprint $table) {
             $table->id();
-            $table->string('nilai');
-            $table->double('uas');
+            $table->string('grade');
+            $table->double('nilai');
             $table->double('uts');
-            $table->double('assignment');
+            $table->double('uas');
             $table->double('quiz');
+            $table->double('assignment');
             $table->foreignId("user_id")->constrained("users")->onDelete("cascade")->onUpdate("cascade");
-            $table->foreignId("akses_kelas_id")->constrained("akses_kelas")->onDelete("cascade")->onUpdate("cascade");
             $table->foreignId("mata_kuliah_id")->constrained("mata_kuliah")->onDelete("cascade")->onUpdate("cascade");
-            $table->foreignId("administration_id")->constrained("administration")->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });
     }

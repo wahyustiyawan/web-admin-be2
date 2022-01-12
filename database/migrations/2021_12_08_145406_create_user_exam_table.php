@@ -29,7 +29,6 @@ class CreateUserExamTable extends Migration
             $table->foreignId("exam_id")->constrained("exam")->onDelete("cascade")->onUpdate("cascade");
             $table->boolean('isComplete')->default(false);
             $table->boolean('isremed')->default(false);
-            $table->boolean('akhir')->default(false)->nullable();
             $table->timestamps();
         });
     }
