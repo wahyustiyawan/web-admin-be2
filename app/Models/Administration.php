@@ -10,9 +10,7 @@ class Administration extends Model
     use HasFactory;
     protected $table = 'administration';
     protected $fillable = [
-        'nama_depan',
-        'nama_tengah',
-        'nama_akhir',
+        'nama_lengkap',
         'nik',
         'email',
         'prodi',
@@ -42,6 +40,7 @@ class Administration extends Model
         'transkip',
         'surat_rekomendasi',
         'program',
+        'isVerified'
     ];
 
     protected $primaryKey = 'id';
