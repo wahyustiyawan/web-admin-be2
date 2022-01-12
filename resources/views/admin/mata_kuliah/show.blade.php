@@ -701,6 +701,7 @@
                   <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Mahasiswa</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Grade</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nilai Akhir</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Assignment</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Quiz</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">UTS</th>
@@ -726,6 +727,10 @@
                       <a href="">
                         <p class="text-sm font-weight-bold mb-0">{{ $item->exam }}</p></a>
                     </td> --}}
+
+                    <td class="align-middle text-center text-sm">
+                      <span class="badge badge-success">{{ $item->grade }}</span>
+                    </td>
                     <td class="align-middle text-center text-sm">
                       <p class="text-sm font-weight-bold mb-0">{{ $item->nilai }}</p>
                     </td>
@@ -824,8 +829,6 @@
         </div>
       </div>
     </div>
-
-    
 
   {{-- @push('scripts')
   <script>
