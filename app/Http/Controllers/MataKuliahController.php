@@ -108,7 +108,7 @@ class MataKuliahController extends Controller
             $tambahassignment = $totalassignment->sum('grade');
 
             $totalquiz = $dataquiz->where('user_id', $item->user_id);
-            $countquiz = $totalquiz->count();
+            $countquiz = $quiz->count();
             $tambahquiz = $totalquiz->sum('grade');
 
             // Assignment
