@@ -15,9 +15,7 @@ class CreateAdministrationTable extends Migration
     {
         Schema::create('administration', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_depan')->nullable();
-            $table->string('nama_tengah')->nullable();
-            $table->string('nama_akhir')->nullable();
+            $table->string('nama_lengkap')->nullable();
             $table->string('nik')->nullable();
             $table->string('email')->nullable();
             $table->string('prodi')->nullable();
