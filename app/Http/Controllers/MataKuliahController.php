@@ -88,14 +88,19 @@ class MataKuliahController extends Controller
         
         $nilai = Nilai::where('mata_kuliah_id', $id)->get();
         
-        //Total + AVG Assignment
+        //Total + AVG Assignment 25%
         $dataassignment = UserAssignment::all();
 
-        //User Exam Uas UTS
+        //User Exam Uas UTS 30% UAS 35%
         $dataujian = UserExam::all();
-        
-        //Total + AVG Nilai Quiz
+
+        //Total + AVG Nilai Quiz 10%
         $dataquiz = NilaiQuiz::all();
+
+        foreach($enrolls as $item){
+            //ID 
+
+        }
 
 
         return view('admin.mata_kuliah.show', compact('enrolls', 'nilai','kategori','mataKuliahselect','kontenDokumen','kontenVideo', 'assignment','pertemuan','mataKuliah', 'quiz', 'pertemuanselect', 'ujian', 'ujianpilgan'));
