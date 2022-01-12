@@ -30,6 +30,7 @@ class DiscussionForumController extends Controller
 
         $ada1 = NULL;
         $ada = NULL;
+        $arr1 = [];
 
         if ($diskusi != NULL) {
             foreach ($diskusi as $diskusis) {
@@ -85,7 +86,7 @@ class DiscussionForumController extends Controller
                 $ada = NULL;
             }
         } else {
-            $arr1 = NULL;
+            $arr1 = [];
         }
 
         // dd($arr1);

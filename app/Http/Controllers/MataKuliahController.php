@@ -16,6 +16,10 @@ use App\Models\EnrollMataKuliah;
 use App\Models\Enrolls;
 use App\Models\ExamPilgan;
 use App\Models\Nilai;
+use App\Models\NilaiQuiz;
+use App\Models\User;
+use App\Models\UserAssignment;
+use App\Models\UserExam;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 
@@ -26,13 +30,13 @@ class MataKuliahController extends Controller
         $this->middleware('auth');
         View::share('AksesKelas', AksesKelas::all());
     }
-    
+
     public function index()
     {
         $mataKuliah = MataKuliah::all();
-        $pertemuan =Pertemuan::get();
+        $pertemuan = Pertemuan::get();
         $kategori = kategori::all();
-        return view('admin.mata_kuliah.show',['pertemuan'=> $pertemuan], compact('mataKuliah', 'kategori', 'pertemuan'));
+        return view('admin.mata_kuliah.show', ['pertemuan' => $pertemuan], compact('mataKuliah', 'kategori', 'pertemuan'));
     }
 
     public function create()
@@ -40,7 +44,7 @@ class MataKuliahController extends Controller
         $mataKuliah = MataKuliah::all();
         $kategori = kategori::all();
         $kelas = Kelas::all();
-        return view('admin.mata_kuliah.tambah',compact('mataKuliah', 'kategori','kelas'));
+        return view('admin.mata_kuliah.tambah', compact('mataKuliah', 'kategori', 'kelas'));
     }
 
     public function store(Request $request)
@@ -80,8 +84,81 @@ class MataKuliahController extends Controller
         $ujian = Exam::where('mata_kuliah_id', $id)->get();
         $ujianpilgan = ExamPilgan::where('mata_kuliah_id', $id)->get();
         $enrolls = EnrollMataKuliah::where('mata_kuliah_id', $id)->get();
-        $nilai = Nilai::where('mata_kuliah_id', $id)->get();
-        return view('admin.mata_kuliah.show', compact('enrolls', 'nilai','kategori','mataKuliahselect','kontenDokumen','kontenVideo', 'assignment','pertemuan','mataKuliah', 'quiz', 'pertemuanselect', 'ujian', 'ujianpilgan'));
+
+
+        //Total + AVG Assignment 25%
+        $dataassignment = UserAssignment::where('mata_kuliah_id', $id)->get();
+
+        //User Exam Uas UTS 30% UAS 35%
+        $dataujian = UserExam::where('mata_kuliah_id', $id)->get();
+
+        //Total + AVG Nilai Quiz 10%
+        $dataquiz = NilaiQuiz::where('mata_kuliah_id', $id)->get();
+
+        $nilaimahasiswa = [];
+        foreach ($enrolls as $item) {
+
+            $user = User::find($item->id);
+
+            $uts = $dataujian->where('tipe', 'uts')->where('user_id', $item->user_id)->first();
+            $uas = $dataujian->where('tipe', 'uas')->where('user_id', $item->user_id)->first();
+
+            $totalassignment = $dataassignment->where('user_id', $item->user_id);
+            $countassignment = $assignment->count();  //Keseluruhan Assignment di mata kuliah tersebut
+            $tambahassignment = $totalassignment->sum('grade');
+
+            $totalquiz = $dataquiz->where('user_id', $item->user_id);
+            $countquiz = $totalquiz->count();
+            $tambahquiz = $totalquiz->sum('grade');
+
+            // Assignment
+            if ($countassignment != null) {
+                $tobat1 = $tambahassignment / $countassignment;
+            } else {
+                $tobat1 = null;
+            }
+
+            // Quiz 
+            if ($countquiz != null) {
+                $tobat2 = $tambahquiz / $countquiz;
+            } else {
+                $tobat2 = null;
+            }
+
+            // UAS 
+            if ($uas != null) {
+                $tobat4 = $uas->grade;
+            } else {
+                $tobat4 = null;
+            }
+
+            // UTS 
+            if ($uts != null) {
+                $tobat3 = $uts->grade;
+            } else {
+                $tobat3 = null;
+            }
+
+
+            $avgtugas = $tobat1 * 25 / 100;
+            $avgquiz = $tobat2 * 10 / 100;
+            $avguts = $tobat3 * 30 / 100;
+            $avguas = $tobat4 * 35 / 100;
+
+            $nilaimahasiswa[] = [
+                'nama' => $user->name,
+                'id' => $item->user_id,
+                'assignment' => $tobat1,    //Total Assignment/Jumlah Assignment -> Grade
+                'quiz' => $tobat2,
+                'uts' => $tobat3,
+                'uas' => $tobat4,
+                'nilai' => $avgquiz + $avgtugas + $avguts + $avguas,
+            ];
+        }
+
+        //BLOM BISA NULL
+        // dd($nilaimahasiswa); 
+        return view('admin.mata_kuliah.show', compact('enrolls', 'kategori', 'mataKuliahselect', 'kontenDokumen', 'kontenVideo', 'assignment', 'pertemuan', 'mataKuliah', 'quiz', 'pertemuanselect', 'ujian', 'ujianpilgan', 'nilaimahasiswa'));
     }
 
 
@@ -89,7 +166,7 @@ class MataKuliahController extends Controller
     {
         $kategori = kategori::all();
         $matakuliah = MataKuliah::find($id);
-        return view('admin.mata_kuliah.edit', compact('matakuliah','kategori'));
+        return view('admin.mata_kuliah.edit', compact('matakuliah', 'kategori'));
     }
 
     public function update(Request $request, $id)
@@ -103,8 +180,8 @@ class MataKuliahController extends Controller
         $mata_kuliah->kode = $request->kode;
         $mata_kuliah->save();
         //notify()->success('Kelas berhasil diedit!');
-        return redirect()->route('kelas.show',$request->kelas_id)
-        ->with('edit', 'mata_kuliah Berhasil Diedit');
+        return redirect()->route('kelas.show', $request->kelas_id)
+            ->with('edit', 'mata_kuliah Berhasil Diedit');
     }
 
     public function destroy($id)

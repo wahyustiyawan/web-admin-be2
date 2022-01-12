@@ -710,7 +710,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($nilai as $item)
+                  @foreach ($nilaimahasiswa as $key => $item)
                   <tr>
                     <td>
                       <div class="d-flex px-3 py-1">
@@ -718,36 +718,36 @@
                           <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/blue-shoe.jpg" class="avatar me-3" alt="image">
                         </div>
                         <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">{{ $item->user->name }}</h6>
+                          <h6 class="mb-0 text-sm">{{ $item['nama'] }}</h6>
                           {{-- <p class="text-sm font-weight-bold text-secondary mb-0"><span class="text-success">Submitted</span> exam</p> --}}
                         </div>
                       </div>
                     </td>
                     {{-- <td>
                       <a href="">
-                        <p class="text-sm font-weight-bold mb-0">{{ $item->exam }}</p></a>
+                        <p class="text-sm font-weight-bold mb-0">{{ $item['exam }}</p></a>
                     </td> --}}
 
                     <td class="align-middle text-center text-sm">
-                      <span class="badge badge-success">{{ $item->grade }}</span>
+                      <span class="badge badge-success">y</span>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <p class="text-sm font-weight-bold mb-0">{{ $item->nilai }}</p>
+                      <p class="text-sm font-weight-bold mb-0">{{ $item['nilai'] }}</p>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <p class="text-sm font-weight-bold mb-0">{{ $item->assignment }}</p>
+                      <p class="text-sm font-weight-bold mb-0">{{ $item['assignment'] }}</p>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <p class="text-sm font-weight-bold mb-0">{{ $item->quiz }}</p>
+                      <p class="text-sm font-weight-bold mb-0">{{ $item['quiz'] }}</p>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <p class="text-sm font-weight-bold mb-0">{{ $item->uts }}</p>
+                      <p class="text-sm font-weight-bold mb-0">{{ $item['uts'] }}</p>
                     </td><td class="align-middle text-center text-sm">
-                      <p class="text-sm font-weight-bold mb-0">{{ $item->uas }}</p>
+                      <p class="text-sm font-weight-bold mb-0">{{ $item['uas'] }}</p>
                     </td>
                     <td class="align-middle text-end">
                       <div class="d-flex px-3 py-1 justify-content-center align-items-center">
-                        <button class="btn btn-link text-dark px-3 mb-0 btn-update" data-link="{{ route('storeExam', $item->id) }}" data-grade="{{ $item->grade ?? 0 }}" data-grade_1="{{ $item->grade_1 ?? 0 }}" data-grade_2="{{ $item->grade_2 ?? 0 }}" data-grade_3="{{ $item->grade_3 ?? 0 }}" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp"><i class="fas fa-user-edit text-secondary"></i></button>
+                        <button class="btn btn-link text-dark px-3 mb-0 btn-update" data-link="{{ route('storeExam', $item['id']) }}" data-grade="{{ $item->grade ?? 0 }}" data-grade_1="{{ $item->grade_1 ?? 0 }}" data-grade_2="{{ $item->grade_2 ?? 0 }}" data-grade_3="{{ $item->grade_3 ?? 0 }}" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp"><i class="fas fa-user-edit text-secondary"></i></button>
                         {{-- <a class="btn btn-link text-dark px-3 mb-0" href="#"><i class="fas fa-user-edit text-secondary"></i></a> --}}
                         <button type="button" class="btn btn-sm btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Refund rate is lower with 97% than other products">
                           <i class="fas fa-info" aria-hidden="true"></i>

@@ -12,9 +12,7 @@ class AdministrationController extends Controller
     {
 
         $data = Administration::create([
-            'nama_depan'=> $request->nama_depan,
-            'nama_tengah'=> $request->nama_tengah,
-            'nama_akhir'=> $request->nama_akhir,
+            'nama_lengkap'=> $request->nama_lengkap,
             'nik'=> $request->nik,
             'email'=> $request->email,
             'prodi'=> $request->prodi,

@@ -26,6 +26,7 @@ use App\Http\Controllers\PertemuanController;
 use App\Http\Controllers\QuizController as ControllersQuizController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ExamPilganController;
+use App\Http\Controllers\AdministrasiController;
 use App\Models\Assignment;
 use App\Models\UserExam;
 
@@ -113,6 +114,8 @@ Route::get('/examDestroy/{id}', [ExamController::class, 'destroy'])->name('destr
 Route::get('/examShow/{id}', [ExamController::class, 'show'])->name('showExam');
 Route::put('/storeExam/{id}', [ExamController::class, 'storeExam'])->name('storeExam');
 Route::get('/show-userExam/{id}', [ExamController::class, 'showUserExam'])->name('showUserExam');
+
+Route::resource('administrasi', AdministrasiController::class);
 
 
 
@@ -212,10 +215,6 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     })->name('user.dashboard');
 });
 
-Route::get('/linkstorage', function () {
-    Artisan::call('storage:link');
-    return '<h1>Storage Linked</h1>';
-});
 
 
 
