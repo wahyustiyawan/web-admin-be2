@@ -78,7 +78,6 @@ class ExamController extends Controller
             $ujian = Exam::where('id', $id)->first();
             $user = UserExam::all();
             $remed = UserExam::where('exam_id', $id)->where('tipe', 'remed')->get();
-
             // $user = UserExam::where('exam_id', $id);
             return view('admin.ujian.show', compact('ujian', 'user', 'remed'));
         }

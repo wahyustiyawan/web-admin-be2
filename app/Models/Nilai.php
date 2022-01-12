@@ -12,7 +12,14 @@ class Nilai extends Model
     protected $fillable = [
         'nilai',
         'grade',
+        'uts',
+        'uas',
+        'assignment',
+        'quiz',
     ];
 
-    
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }
