@@ -212,10 +212,6 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     })->name('user.dashboard');
 });
 
-Route::get('/linkstorage', function () {
-    Artisan::call('storage:link');
-    return '<h1>Storage Linked</h1>';
-});
 
 
 

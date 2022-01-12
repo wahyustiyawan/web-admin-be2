@@ -16,6 +16,9 @@ use App\Models\EnrollMataKuliah;
 use App\Models\Enrolls;
 use App\Models\ExamPilgan;
 use App\Models\Nilai;
+use App\Models\NilaiQuiz;
+use App\Models\UserAssignment;
+use App\Models\UserExam;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 
@@ -80,7 +83,21 @@ class MataKuliahController extends Controller
         $ujian = Exam::where('mata_kuliah_id', $id)->get();
         $ujianpilgan = ExamPilgan::where('mata_kuliah_id', $id)->get();
         $enrolls = EnrollMataKuliah::where('mata_kuliah_id', $id)->get();
+        
+        
+        
         $nilai = Nilai::where('mata_kuliah_id', $id)->get();
+        
+        //Total + AVG Assignment
+        $dataassignment = UserAssignment::all();
+
+        //User Exam Uas UTS
+        $dataujian = UserExam::all();
+        
+        //Total + AVG Nilai Quiz
+        $dataquiz = NilaiQuiz::all();
+
+
         return view('admin.mata_kuliah.show', compact('enrolls', 'nilai','kategori','mataKuliahselect','kontenDokumen','kontenVideo', 'assignment','pertemuan','mataKuliah', 'quiz', 'pertemuanselect', 'ujian', 'ujianpilgan'));
     }
 
