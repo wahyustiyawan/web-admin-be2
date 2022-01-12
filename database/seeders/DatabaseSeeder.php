@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             HakAksesDosenSeeder::class,
             KontenVideoSeeder::class,
             NilaiSeeder::class,
+            EnrollsSeeder::class,
             KontenDokumenSeeder::class
         ]);
     }
