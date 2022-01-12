@@ -415,7 +415,7 @@
           </ul>
           <ul class="nav ms-4 ps-3">
             <li class="nav-item {{Route::is('dataMahasiswa.*') ? 'active' : ''}}">
-              <a class="nav-link {{Route::is('dataMahasiswa.*') ? 'active' : ''}}" href="{{route('kontenDokumen.index')}}">
+              <a class="nav-link {{Route::is('dataMahasiswa.*') ? 'active' : ''}}" href="{{url('data-mahasiswa', $item->id)}}">
                 <span class="sidenav-normal"> Data Mahasiswa </span>
               </a>
             </li>
