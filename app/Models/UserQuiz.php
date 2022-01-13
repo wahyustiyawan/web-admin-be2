@@ -27,5 +27,6 @@ class UserQuiz extends Model
         'quiz_id' => 'integer',
     ];
 
+ 
 
 }

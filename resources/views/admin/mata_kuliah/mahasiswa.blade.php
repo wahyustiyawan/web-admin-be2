@@ -63,7 +63,7 @@
                           <button type="button" class="btn btn-sm btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Refund rate is lower with 97% than other products">
                             <i class="fas fa-info" aria-hidden="true"></i>
                           </button>
-                          <li><a class="dropdown-item border-radius-md" href="{{route('detailNilai')}}">Action</a></li>
+                          <li><a class="dropdown-item border-radius-md" href="{{url('/detail-nilai/'.$item['id'].'/'.$matkul->id)}}">Action</a></li>
                         </div>          
                       </td>
                     </tr>

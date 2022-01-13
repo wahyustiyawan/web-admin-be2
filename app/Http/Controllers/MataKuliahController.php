@@ -131,7 +131,7 @@ class MataKuliahController extends Controller
     {
         $assignment = Assignment::where('mata_kuliah_id', $id)->get();
         $enrolls = EnrollMataKuliah::where('mata_kuliah_id', $id)->get();
-
+        $matkul = MataKuliah::find($id);
         //Total + AVG Assignment 25%
         $dataassignment = UserAssignment::where('mata_kuliah_id', $id)->get();
 
@@ -200,12 +200,29 @@ class MataKuliahController extends Controller
                 'nilai' => $avgquiz + $avgtugas + $avguts + $avguas,
             ];
         }
-        return view('admin.mata_kuliah.mahasiswa', compact('nilaimahasiswa'));
+        return view('admin.mata_kuliah.mahasiswa', compact('nilaimahasiswa','matkul'));
     }
 
-    public function detailNilai()
+    public function detailNilai($id, $matkul)
     {
-        
-        return view('admin.mata_kuliah.nilai');
+        $user = User::find($id);
+        $matakuliah = MataKuliah::find($matkul);
+        $UserAssignment = UserAssignment::where('user_id',$id)->where('mata_kuliah_id',$matkul)->get();
+        $UserExam = UserExam::where('user_id',$id)->where('mata_kuliah_id',$matkul)->get();
+        $NilaiQuiz = NilaiQuiz::where('user_id',$id)->where('mata_kuliah_id',$matkul)->get();
+
+        $nilaiuts = $UserExam->where('tipe','uts')->first();
+        $nilaiuas = $UserExam->where('tipe','uas')->first();
+
+        $dataquiz = Quiz::where('mata_kuliah_id',$matkul)->count();
+        $jumlahquiz = $NilaiQuiz->sum('grade');
+        $avgquiz = $jumlahquiz/$dataquiz;
+
+        $dataassignment = Assignment::where('mata_kuliah_id',$matkul)->count();
+        $jumlahassignment = $UserAssignment->sum('grade');
+        $avgassignment = $dataassignment/$jumlahassignment;  
+
+        // dd($UserExam);
+        return view('admin.mata_kuliah.nilai', compact('user','matakuliah','UserAssignment','UserExam','NilaiQuiz','nilaiuts','nilaiuas','avgquiz','avgassignment'));
     }
 }

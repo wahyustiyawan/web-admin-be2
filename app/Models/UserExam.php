@@ -43,6 +43,11 @@ class UserExam extends Model
         return $this->belongsTo(MataKuliah::class, 'mata_kuliah_id', 'id');
     }
 
+    public function relasiexam()
+    {
+        return $this->belongsTo(Exam::class, 'exam_id', 'id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
