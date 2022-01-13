@@ -44,17 +44,17 @@
                 </select>
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlSelect1">Pengalaman</label>
-                <input type="text" class="form-control" name="pengalaman" value="{{$jobChannel->requirement}}" required>
-              </div>        
-              <div class="mb-3">
-                <label for="exampleFormControlSelect1">Job Desk</label>
-                <input type="text" class="form-control" name="job_desk" value="{{$jobChannel->job_desk}}" required>
-              </div>
-              <div class="mb-3">
-                <label for="exampleFormControlSelect1">Alamat</label>
-                <input type="text" class="form-control" name="alamat" value="{{$jobChannel->alamat}}" required>
-              </div>
+                <label for="exampleFormControlSelect1">Requirement</label>
+                  <textarea class="form-control ckeditor" name="requirement" rows="6" value="{{$jobChannel->requirement}}">{{$jobChannel->requirement}}</textarea>
+            </div> 
+            <div class="mb-3">
+              <label for="exampleFormControlSelect1">Job Desk</label>
+                <textarea class="form-control ckeditor" name="job_desk" rows="6" value="{{$jobChannel->requirement}}">{{$jobChannel->job_desk}}</textarea>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlSelect1">Alamat</label>
+            <textarea class="form-control" aria-label="With textarea" name="alamat" rows="4" value="{{$jobChannel->alamat}}" required>{{$jobChannel->alamat}}</textarea>
+          </div>
               <div class="mb-3">
                 <label for="exampleFormControlSelect1">Foto</label> <br>
                 <img src="{{ asset( 'storage/job-channel/'. $jobChannel->foto) }}" alt="" width="100%"> <br>
@@ -70,4 +70,5 @@
       </div>
     </div>
   </div>
+  <script type="text/javascript" src="{{asset('assets/ckeditor/ckeditor.js')}}"></script>
 </x-app-layout>
