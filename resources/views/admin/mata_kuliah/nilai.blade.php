@@ -10,7 +10,7 @@
                 <div class="card-body pt-4 text-center">
                   <h2 class="text-white mb-0 mt-2 up">Nilai Akhir</h2>
                   <h1 class="text-white mb-0 up">90</h1>
-                  <h3 class="badge-primary">B</h3>
+                  <h3 class="badge-success">B</h3>
                 </div>
               </div>
             </div>
