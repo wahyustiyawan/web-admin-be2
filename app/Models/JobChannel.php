@@ -16,7 +16,9 @@ class JobChannel extends Model
         'bidang',
         'tipe',
         'jenis',
-        'pengalaman',
+        'requirement',
+        'job_desk',
+        'alamat',
         'foto',
     ];
 

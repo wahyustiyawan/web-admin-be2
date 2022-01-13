@@ -56,9 +56,17 @@
             </div>
             <input type="hidden" name="tipe" value="Kerja">
             <div class="mb-3">
-              <label for="exampleFormControlSelect1">Pengalaman</label>
-              <input type="text" class="form-control" name="pengalaman" placeholder="Pengalaman" required>
-            </div>        
+              <label for="exampleFormControlSelect1">Requirement</label>
+                <textarea class="form-control ckeditor" name="requirement" rows="6"> </textarea>
+          </div> 
+          <div class="mb-3">
+            <label for="exampleFormControlSelect1">Job Desk</label>
+              <textarea class="form-control ckeditor" name="job_desk" rows="6"> </textarea>
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlSelect1">Alamat</label>
+          <textarea class="form-control" aria-label="With textarea" name="alamat" rows="4" required></textarea>
+        </div>       
             <div class="mb-3">
               <label for="exampleFormControlSelect1">Foto</label>
               <input type="file" class="form-control" name="foto" required>
@@ -99,9 +107,17 @@
             </div>
             <input type="hidden" name="tipe" value="Magang">
             <div class="mb-3">
-              <label for="exampleFormControlSelect1">Pengalaman</label>
-              <input type="text" class="form-control" name="pengalaman" placeholder="Pengalaman" required>
-            </div>        
+              <label for="exampleFormControlSelect1">Requirement</label>
+                <textarea class="form-control ckeditor" name="requirement" rows="6"> </textarea>
+          </div> 
+          <div class="mb-3">
+            <label for="exampleFormControlSelect1">Job Desk</label>
+              <textarea class="form-control ckeditor" name="job_desk" rows="6"> </textarea>
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlSelect1">Alamat</label>
+          <textarea class="form-control" aria-label="With textarea" name="alamat" rows="4" required></textarea>
+        </div>      
             <div class="mb-3">
               <label for="exampleFormControlSelect1">Foto</label>
               <input type="file" class="form-control" name="foto" required>
@@ -139,11 +155,19 @@
                 <option value="Part Time">Part Time</option>
               </select>
             </div>
-            <input type="hidden" name="tipe" value="Project">
+            <input type="hidden" name="tipe" value="Project"> 
             <div class="mb-3">
-              <label for="exampleFormControlSelect1">Pengalaman</label>
-              <input type="text" class="form-control" name="pengalaman" placeholder="Pengalaman" required>
-            </div>        
+                <label for="exampleFormControlSelect1">Requirement</label>
+                  <textarea class="form-control ckeditor" name="requirement" rows="6"> </textarea>
+            </div> 
+            <div class="mb-3">
+              <label for="exampleFormControlSelect1">Job Desk</label>
+                <textarea class="form-control ckeditor" name="job_desk" rows="6"> </textarea>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlSelect1">Alamat</label>
+            <textarea class="form-control" aria-label="With textarea" name="alamat" rows="4" required></textarea>
+          </div>     
             <div class="mb-3">
               <label for="exampleFormControlSelect1">Foto</label>
               <input type="file" class="form-control" name="foto" required>
@@ -159,4 +183,6 @@
   </div>
 </div>
 </div>
+{{-- @push('scripts') --}}
+<script type="text/javascript" src="{{asset('assets/ckeditor/ckeditor.js')}}"></script>
 </x-app-layout>

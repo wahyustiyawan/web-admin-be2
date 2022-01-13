@@ -25,8 +25,8 @@
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Bidang</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tipe</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jenis</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pengalaman</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Job Desk</th>
+                  {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Requirement</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Job Desk</th> --}}
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alamat</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Foto</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
@@ -57,12 +57,12 @@
                   <td class="align-middle text-center">
                     <p class="text-xs font-weight-bold mb-0">{{ $item->jenis }}</p>
                   </td>
-                  <td class="align-middle text-center">
+                  {{-- <td class="align-middle text-center">
                     <p class="text-xs font-weight-bold mb-0">{{ $item->requirement }}</p>
                   </td>
                   <td class="align-middle text-center">
                     <p class="text-xs font-weight-bold mb-0">{{ $item->job_desk }}</p>
-                  </td>
+                  </td> --}}
                   <td class="align-middle text-center">
                     <p class="text-xs font-weight-bold mb-0">{{ $item->alamat }}</p>
                   </td>
