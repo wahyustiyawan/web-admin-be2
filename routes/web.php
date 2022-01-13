@@ -168,6 +168,10 @@ Route::middleware(['auth', 'role:dosen'])->group(function () {
         return view('dosen.tugas.show');
     });
 
+    Route::get('/detail-nilai', function () {
+        return view('admin.mata_kuliah.nilai');
+    });
+
     Route::get('/assignment/{id}', [DashboardController::class, 'assignment'])->name('assignment');
     
     Route::get('/assignment/{id}/show', [DashboardController::class, 'show']);

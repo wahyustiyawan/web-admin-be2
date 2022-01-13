@@ -164,14 +164,16 @@ class MataKuliahController extends Controller
         $enrolls = EnrollMataKuliah::where('mata_kuliah_id', $id)->get();
 
 
-        //Total + AVG Assignment 25%
+        //Total + AVG Assignment 25% -> 20%
         $dataassignment = UserAssignment::where('mata_kuliah_id', $id)->get();
 
-        //User Exam Uas UTS 30% UAS 35%
+        //User Exam Uas UTS 30% -> 25% UAS 30% 
         $dataujian = UserExam::where('mata_kuliah_id', $id)->get();
 
         //Total + AVG Nilai Quiz 10%
         $dataquiz = NilaiQuiz::where('mata_kuliah_id', $id)->get();
+
+        // Absen 10%, syarat 
 
         $nilaimahasiswa = [];
         foreach ($enrolls as $item) {
