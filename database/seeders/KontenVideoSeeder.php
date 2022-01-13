@@ -19,7 +19,7 @@ class KontenVideoSeeder extends Seeder
             'judul' => 'Belajar Python 1',
             'deskripsi' => 'Ini video python',
             'link' => 'iA8lLwmtKQM',
-            'durasi' => '1380',
+            'durasi' => '1437',
             'mata_kuliah_id' => '1',
             'kategori_id' => '1'
         ]);
@@ -29,7 +29,7 @@ class KontenVideoSeeder extends Seeder
             'judul' => 'Belajar Python 2',
             'deskripsi' => 'Ini video python',
             'link' => 'iA8lLwmtKQM',
-            'durasi' => '1380',
+            'durasi' => '1437',
             'mata_kuliah_id' => '1',
             'kategori_id' => '1'
         ]);
@@ -39,7 +39,7 @@ class KontenVideoSeeder extends Seeder
             'judul' => 'Belajar Python 3',
             'deskripsi' => 'Ini video python',
             'link' => 'iA8lLwmtKQM',
-            'durasi' => '1380',
+            'durasi' => '1437',
             'mata_kuliah_id' => '1',
             'kategori_id' => '1'
         ]);
