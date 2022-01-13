@@ -10,7 +10,6 @@
                 <div class="card-body pt-4 text-center">
                   <h2 class="text-white mb-0 mt-2 up">Nilai Akhir</h2>
                   <h1 class="text-white mb-0 up">90</h1>
-                  <a href="javascript:;" class="btn btn-outline-white mb-2 px-5 up">View more</a>
                 </div>
               </div>
             </div>
@@ -113,7 +112,7 @@
                   </div>
                 </div>
                 <div class="col-4">
-                  <span class="badge bg-gradient-info ms-auto float-end">Recommendation</span>
+                  <span class="badge bg-gradient-info ms-auto float-end">Mahasiswa</span>
                 </div>
               </div>
             </div>
@@ -122,9 +121,9 @@
               <p class="text-sm">Deskripsi mata kuliah</p>
               <div class="d-flex bg-gray-100 border-radius-lg p-3">
                 <h4 class="my-auto">
-                  <span class="text-secondary text-sm me-1">$</span>3,000<span class="text-secondary text-sm ms-1">/ month </span>
+                  <span class="text-secondary text-sm me-1"></span>Lulus<span class="text-secondary text-sm ms-1"></span>
                 </h4>
-                <a href="javascript:;" class="btn btn-outline-dark mb-0 ms-auto">Apply</a>
+                <a href="javascript:;" class="btn btn-outline-dark mb-0 ms-auto">Akses Remedial</a>
               </div>
             </div>
           </div>
@@ -148,7 +147,7 @@
             <div class="card-body p-3 pt-0">
               <ul class="list-group list-group-flush" data-toggle="checklist">
                 <li class="list-group-item border-0 flex-column align-items-start ps-0 py-0 mb-3">
-                  <div class="checklist-item checklist-item-primary ps-2 ms-3">
+                  <div class="checklist-item checklist-item-success ps-2 ms-3">
                     <div class="d-flex align-items-center">
                       <h6 class="mb-0 text-dark font-weight-bold text-sm">Judul Ujian</h6>
                       <div class="dropstart float-lg-end ms-auto pe-0">
@@ -198,7 +197,7 @@
             <div class="card-body p-3 pt-0">
               <ul class="list-group list-group-flush" data-toggle="checklist">
                 <li class="list-group-item border-0 flex-column align-items-start ps-0 py-0 mb-3">
-                  <div class="checklist-item checklist-item-primary ps-2 ms-3">
+                  <div class="checklist-item checklist-item-info ps-2 ms-3">
                     <div class="d-flex align-items-center">
                       <h6 class="mb-0 text-dark font-weight-bold text-sm">Judul Ujian</h6>
                       <div class="dropstart float-lg-end ms-auto pe-0">
