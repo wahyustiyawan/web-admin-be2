@@ -65,7 +65,7 @@ class QuizController extends Controller
     public function destroy($id)
     {
         Quiz::where('id', $id)->delete();
-        //notify()->success('Kelas berhasil dihapus!');
+        
         return redirect()->back()
             ->with('delete', 'Quiz Berhasil Dihapus');
     }

@@ -67,7 +67,7 @@ class ExamPilganController extends Controller
         public function destroy($id)
         {
             ExamPilgan::where('id', $id)->delete();
-            //notify()->success('Kelas berhasil dihapus!');
+            
             return redirect()->back()
                 ->with('delete', 'Exam Pilgan Berhasil Dihapus');
         }

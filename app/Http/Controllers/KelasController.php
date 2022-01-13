@@ -48,7 +48,7 @@ class KelasController extends Controller
             //'kategori_id' => $request->kategori_id,
             'sebelum' => $request->sebelum,
         ]);
-        //notify()->success('Kelas berhasil ditambahkan!');
+        
         return redirect()->route('kelas.index')
             ->with('success', 'Program Studi Berhasil Ditambahkan');
     }
@@ -82,7 +82,7 @@ class KelasController extends Controller
         //$kelas->kategori_id = $request->kategori_id;
         $kelas->sebelum = $request->sebelum;
         $kelas->save();
-        //notify()->success('Kelas berhasil diedit!');
+        
         return redirect()->route('kelas.index')
         ->with('edit', 'Program Studi Berhasil Diedit');
     }
@@ -90,7 +90,7 @@ class KelasController extends Controller
     public function destroy($id)
     {
         Kelas::where('id', $id)->delete();
-        //notify()->success('Kelas berhasil dihapus!');
+        
         return redirect()->route('kelas.index')
             ->with('delete', 'Program Studi Berhasil Dihapus');
     }

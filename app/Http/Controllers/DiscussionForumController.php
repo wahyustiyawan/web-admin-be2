@@ -61,7 +61,7 @@ class DiscussionForumController extends Controller
             'mata_kuliah_id' => $request->mata_kuliah_id,
             'gambar' => $txt,
         ]);
-        //notify()->success('Kelas berhasil ditambahkan!');
+        
         return redirect()->route('discussion-forum')
             ->with('success', 'Diskusi Berhasil Ditambahkan');
     }

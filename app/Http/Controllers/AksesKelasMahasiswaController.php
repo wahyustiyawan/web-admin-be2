@@ -46,7 +46,7 @@ class AksesKelasMahasiswaController extends Controller
             'user_id' => $request->user_id,
             // 'kategori' => $request->kategori,
         ]);
-        //notify()->success('Kelas berhasil ditambahkan!');
+        
         return redirect()->route('akseskelasMahasiswa.index')
             ->with('success', 'Kelas Berhasil Ditambahkan');
     }
@@ -76,7 +76,7 @@ class AksesKelasMahasiswaController extends Controller
         $kelas->deskripsi = $request->deskripsi;
         // $kelas->kategori = $request->kategori;
         $kelas->save();
-        //notify()->success('Kelas berhasil diedit!');
+        
         return redirect()->route('akseskelasMahasiswa.index')
         ->with('edit', 'Kelas Berhasil Diedit');
     }
@@ -84,7 +84,7 @@ class AksesKelasMahasiswaController extends Controller
     public function destroy($id)
     {
         Kelas::where('id', $id)->delete();
-        //notify()->success('Kelas berhasil dihapus!');
+        
         return redirect()->route('akseskelasMahasiswa.index')
             ->with('delete', 'Kelas Berhasil Dihapus');
     }

@@ -47,7 +47,7 @@ use App\Models\AksesKelas;
 //             'nama' => $request->nama,
 //             'deskripsi' => $request->deskripsi,
 //         ]);
-//         //notify()->success('Kelas berhasil ditambahkan!');
+//         
 //         return redirect()->route('assignment.index')
 //             ->with('success', 'Assignment Berhasil Ditambahkan');
 //     }
@@ -74,7 +74,7 @@ use App\Models\AksesKelas;
 //         $assignment->nama = $request->nama;
 //         $assignment->deskripsi = $request->deskripsi;
 //         $assignment->save();
-//         //notify()->success('Kelas berhasil diedit!');
+//         
 //         return redirect()->route('assignment.index')
 //         ->with('edit', 'Assignment Berhasil Diedit');
 //     }
@@ -82,7 +82,7 @@ use App\Models\AksesKelas;
 //     public function destroy($id)
 //     {
 //         Assignment::where('id', $id)->delete();
-//         //notify()->success('Kelas berhasil dihapus!');
+//         
 //         return redirect()->route('assignment.index')
 //             ->with('delete', 'Assignment Berhasil Dihapus');
 //     }
@@ -262,7 +262,7 @@ class AssignmentController extends Controller
     public function destroy($id)
     {
         Assignment::where('id', $id)->delete();
-        //notify()->success('Kelas berhasil dihapus!');
+        
         return redirect()->back()
             ->with('delete', 'Assignment Berhasil Dihapus');
     }

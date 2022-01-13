@@ -85,7 +85,7 @@ class ExamController extends Controller
         public function destroy($id)
         {
             Exam::where('id', $id)->delete();
-            //notify()->success('Kelas berhasil dihapus!');
+            
             return redirect()->back()
                 ->with('delete', 'Ujian Berhasil Dihapus');
         }
