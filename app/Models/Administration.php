@@ -22,6 +22,7 @@ class Administration extends Model
         'tempat_lahir',
         'tgl_lahir',
         'kelamin',
+        'kebutuhan_khusus',
         'tinggal',
         'pembiayan',
         'nama_ayah',
@@ -44,5 +45,6 @@ class Administration extends Model
     ];
 
     protected $primaryKey = 'id';
+    protected $casts = ['kebutuhan_khusus'=> 'array'];
 
 }

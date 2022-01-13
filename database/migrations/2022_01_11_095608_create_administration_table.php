@@ -27,6 +27,7 @@ class CreateAdministrationTable extends Migration
             $table->string('tempat_lahir')->nullable();
             $table->string('tgl_lahir')->nullable();
             $table->string('kelamin')->nullable();
+            $table->json('kebutuhan_khusus')->nullable();
             $table->string('tinggal')->nullable();
             $table->string('pembiaya')->nullable();
             $table->string('nama_ayah')->nullable();
