@@ -121,7 +121,7 @@
               <h6>Nama Mata Kuliah</h6>
               <p class="text-sm">Deskripsi mata kuliah</p>
               <div class="d-flex bg-gray-100 border-radius-lg p-3">
-                <h4 class="my-auto">
+                <h4 class="my-auto  ">
                   <span class="text-secondary text-sm me-1"></span>Lulus<span class="text-secondary text-sm ms-1"></span>
                 </h4>
                 <a href="javascript:;" class="btn btn-outline-dark mb-0 ms-auto">Akses Remedial</a>
