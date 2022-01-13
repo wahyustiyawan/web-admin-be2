@@ -64,7 +64,6 @@ class MataKuliahController extends Controller
             'deskripsi' => $request->deskripsi,
             'sks' => $request->sks,
             'semester' => $request->semester,
-            'slug' => Str::slug($request->judul),
             'kategori_id' => $request->kategori_id,
             'kategori_id' => $request->kategori_id,
             'kelas_id' => $request->kelas_id,
@@ -112,7 +111,6 @@ class MataKuliahController extends Controller
         $mata_kuliah->deskripsi = $request->deskripsi;
         $mata_kuliah->sks = $request->sks;
         $mata_kuliah->semester = $request->semester;
-        $mata_kuliah->slug = Str::slug($request->judul);
         $mata_kuliah->kelas_id = $request->kelas_id;
         $mata_kuliah->kode = $request->kode;
         $mata_kuliah->save();

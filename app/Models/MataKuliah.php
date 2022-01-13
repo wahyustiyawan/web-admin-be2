@@ -14,6 +14,7 @@ class MataKuliah extends Model
         'deskripsi',
         'sks',
         'kategori_id',
+        'semester',
         'kelas_id',
         'kode',
     ];
@@ -21,6 +22,7 @@ class MataKuliah extends Model
     protected $primaryKey = 'id';
     protected $casts = [
         'kategori_id' => 'integer',
+        'semester' => 'integer',
         'kelas_id' => 'integer',
         'sks' => 'integer',
     ];

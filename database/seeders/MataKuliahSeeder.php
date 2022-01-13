@@ -21,7 +21,8 @@ class MataKuliahSeeder extends Seeder
             'deskripsi' => 'Ini kelas kredit',
             'kategori_id' => '1',
             'kelas_id' => '1',
-            'sks' => '2'
+            'sks' => '2',
+            'semester' => '1',
         ]);    
         
         MataKuliah::create([
@@ -31,7 +32,8 @@ class MataKuliahSeeder extends Seeder
             'deskripsi' => 'Ini kelas KREDIT',
             'kategori_id' => '1',
             'kelas_id' => '1',
-            'sks' => '2'
+            'sks' => '2',
+            'semester' => '2',
         ]);   
 
         MataKuliah::create([
@@ -41,7 +43,8 @@ class MataKuliahSeeder extends Seeder
             'deskripsi' => 'Ini kelas collection',
             'kategori_id' => '1',
             'kelas_id' => '1',
-            'sks' => '3'
+            'sks' => '3',
+            'semester' => '3',
         ]);  
     }
 }

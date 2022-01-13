@@ -19,7 +19,6 @@ class CreateMataKuliahTable extends Migration
             $table->string('deskripsi');
             $table->string('kode');
             $table->integer('sks');
-            $table->string('slug');
             $table->integer('semester');
             $table->foreignId("kategori_id")->constrained("kategori")->onDelete("cascade")->onUpdate("cascade");
             $table->foreignId("kelas_id")->constrained("kelas")->onDelete("cascade")->onUpdate("cascade");

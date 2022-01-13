@@ -168,10 +168,8 @@ Route::middleware(['auth', 'role:dosen'])->group(function () {
         return view('dosen.tugas.show');
     });
 
-    Route::get('/detail-nilai', function () {
-        return view('admin.mata_kuliah.nilai');
-    });
-
+   
+    Route::get('/detail-nilai', [MataKuliahController::class, 'detailNilai'])->name('detailNilai');
     Route::get('/assignment/{id}', [DashboardController::class, 'assignment'])->name('assignment');
     
     Route::get('/assignment/{id}/show', [DashboardController::class, 'show']);
@@ -212,6 +210,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::put('/updateAksesKelasDosen/{id}', [AksesKelasDosenController::class, 'update'])->name('updateAksesKelasDosen');
     Route::delete('/destroyAksesKelasDosen/{id}', [AksesKelasDosenController::class, 'destroy'])->name('destroyAksesKelasDosen');
     Route::resource('kategori', KategoriController::class);
+
+
 });
 
 //Role User

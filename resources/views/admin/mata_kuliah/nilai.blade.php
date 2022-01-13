@@ -306,7 +306,7 @@
                           <i class="fa fa-ellipsis-h text-secondary" aria-hidden="true"></i>
                         </a>
                         <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable2" style="">
-                          <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
+                          <li><a class="dropdown-item border-radius-md" href="#">Action</a></li>
                           <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
                           <li><a class="dropdown-item border-radius-md" href="javascript:;">Something else here</a></li>
                         </ul>
