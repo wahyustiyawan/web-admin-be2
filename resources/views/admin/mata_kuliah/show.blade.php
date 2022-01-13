@@ -702,7 +702,7 @@
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Mahasiswa</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Grade</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nilai Akhir</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Assignment</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Assignment </th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Quiz</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">UTS</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">UAS</th>
