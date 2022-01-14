@@ -23,7 +23,7 @@ class EnrollsSeeder extends Seeder
         ]);
 
         EnrollMataKuliah::create([
-            'id' => 1,
+            'id' => 4,
             'user_id' => 4,
             'mata_kuliah_id' => 1,
             'enroll_studi_id' => 1,
