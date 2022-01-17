@@ -688,8 +688,10 @@
       </div>
     </div>
 
+    {{--  --}}
+
     <!-- Grading Modal -->
-    <div class="modal fade" id="exampleModalSignUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalSignTitle" aria-hidden="true">
+    {{-- <div class="modal fade" id="exampleModalSignUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalSignTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-body p-0">
@@ -751,7 +753,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
 
   {{-- @push('scripts')
   <script>

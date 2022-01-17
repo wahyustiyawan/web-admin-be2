@@ -39,6 +39,7 @@ use App\Http\Controllers\API\DiscussionLike2Controller;
 use App\Http\Controllers\API\ExamController;
 use App\Http\Controllers\API\LeaderboardController;
 use App\Http\Controllers\API\UserExamController;
+use App\Http\Controllers\API\UserJobChannelController;
 use App\Models\DiscussionForum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -206,6 +207,8 @@ Route::post('/administrasi', [AdministrationController::class, 'store']);
 
 // Protected routes
 Route::group(['middleware' => ['auth:api']], function () {
+    //User Job Channel
+    Route::post('/userjobchannel', [UserJobChannelController::class, 'store']);
     //DiscussionForum
     Route::post('/discussionForum', [DiscussionForumController::class, 'store']);
     Route::put('/discussionForum/update/{id}', [DiscussionForumController::class, 'update']);
