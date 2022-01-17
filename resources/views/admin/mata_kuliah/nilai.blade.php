@@ -12,8 +12,10 @@
                                 </div>
                                 <div class="card-body pt-4 text-center">
                                     <h2 class="text-white mb-0 mt-2 up">Nilai Akhir</h2>
-                                    <h1 class="text-white mb-0 up">90</h1>
-                                    <h3 class="badge-success">B</h3>
+                                    <h1 class="text-white mb-0 up">{{ $nilaiakhir }}</h1>
+                                    <h3 class="badge-success">
+                                        {{$variabel}}
+                                    </h3>
                                 </div>
                             </div>
                         </div>
@@ -31,7 +33,7 @@
                                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">Ujian Akhir
                                                     Semester</p>
                                                 <h5 class="font-weight-bolder mb-0">
-                                                    {{$nilaiuas->grade}}
+                                                    {{ $nilaiuas->grade }}
                                                 </h5>
                                             </div>
                                         </div>
@@ -51,8 +53,8 @@
                                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">Ujian Tengah
                                                     Semester</p>
                                                 <h5 class="font-weight-bolder mb-0">
-                                                    {{$nilaiuts->grade}}
-                                                    <span class="text-success text-sm font-weight-bolder">+15%</span>
+                                                    {{ $nilaiuts->grade }}
+                                                    <span class="text-success text-sm font-weight-bolder"></span>
                                                 </h5>
                                             </div>
                                         </div>
@@ -73,8 +75,8 @@
                                             <div class="numbers">
                                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">Assignment</p>
                                                 <h5 class="font-weight-bolder mb-0">
-                                                    {{$avgassignment}}
-                                                    <span class="text-success text-sm font-weight-bolder">+3%</span>
+                                                    {{ $avgassignment }}
+                                                    <span class="text-success text-sm font-weight-bolder"></span>
                                                 </h5>
                                             </div>
                                         </div>
@@ -93,8 +95,8 @@
                                             <div class="numbers">
                                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">Quiz</p>
                                                 <h5 class="font-weight-bolder mb-0">
-                                                    {{$avgquiz}}
-                                                    <span class="text-success text-sm font-weight-bolder">+12%</span>
+                                                    {{ $avgquiz }}
+                                                    <span class="text-success text-sm font-weight-bolder"></span>
                                                 </h5>
                                             </div>
                                         </div>
@@ -114,21 +116,23 @@
                                             alt="avatar image">
                                     </div>
                                     <div class="d-flex flex-column justify-content-center">
-                                        <h6 class="mb-0 text-sm">{{$user->name}}</h6>
+                                        <h6 class="mb-0 text-sm">{{ $user->name }}</h6>
                                         <p class="text-xs">2h ago</p>
                                     </div>
                                 </div>
                                 <div class="col-4">
-                                    <span class="badge bg-gradient-info ms-auto float-end">{{$user->role}}</span>
+                                    <span class="badge bg-gradient-info ms-auto float-end">{{ $user->role }}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body p-3 pt-1">
-                            <h6>{{$matakuliah->judul}}</h6>
-                            <p class="text-sm">{{$matakuliah->deskripsi}}</p>
+                            <h6>{{ $matakuliah->judul }}</h6>
+                            <p class="text-sm">{{ $matakuliah->deskripsi }}</p>
                             <div class="d-flex bg-gray-100 border-radius-lg p-3">
                                 <h4 class="my-auto  ">
-                                    <span class="text-secondary text-sm me-1"></span>Lulus<span
+                                    <span class="text-secondary text-sm me-1"></span>
+                                        {{Helper::lulus($nilaiakhir)}}
+                                    <span
                                         class="text-secondary text-sm ms-1"></span>
                                 </h4>
                                 <a href="javascript:;" class="btn btn-outline-dark mb-0 ms-auto">Akses Remedial</a>
@@ -185,11 +189,12 @@
                                                 </div>
                                                 <div class="ms-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Nilai</p>
-                                                    <span class="text-xs font-weight-bolder">{{ $item->grade }}</span>
+                                                    <span
+                                                        class="text-xs font-weight-bolder">{{ $item->grade }}</span>
                                                 </div>
                                                 <div class="mx-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Status</p>
-                                                    <span class="badge badge-success">Lulus</span>
+                                                    <span class="badge badge-success">{{Helper::variabel_nilai($item->grade)}}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -307,7 +312,8 @@
                                                 </div>
                                                 <div class="ms-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Nilai</p>
-                                                    <span class="text-xs font-weight-bolder">{{ $item->grade }}</span>
+                                                    <span
+                                                        class="text-xs font-weight-bolder">{{ $item->grade }}</span>
                                                 </div>
                                                 <div class="mx-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Status</p>
@@ -340,7 +346,8 @@
                                     <li class="list-group-item border-0 flex-column align-items-start ps-0 py-0 mb-3">
                                         <div class="checklist-item checklist-item-warning ps-2 ms-3">
                                             <div class="d-flex align-items-center">
-                                                <h6 class="mb-0 text-dark font-weight-bold text-sm">{{$item->usequizr->judul}}</h6>
+                                                <h6 class="mb-0 text-dark font-weight-bold text-sm">
+                                                    {{ $item->usequizr->judul }}</h6>
                                                 <div class="dropstart float-lg-end ms-auto pe-0">
                                                     <a href="javascript:;" class="cursor-pointer" id="dropdownTable2"
                                                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -366,7 +373,8 @@
                                                 </div>
                                                 <div class="ms-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Nilai</p>
-                                                    <span class="text-xs font-weight-bolder">{{$item->grade}}</span>
+                                                    <span
+                                                        class="text-xs font-weight-bolder">{{ $item->grade }}</span>
                                                 </div>
                                                 <div class="mx-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Status</p>

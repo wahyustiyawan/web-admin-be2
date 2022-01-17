@@ -23,6 +23,7 @@ use App\Models\UserExam;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Helpers\Helper;
 
 class MataKuliahController extends Controller
 {
@@ -134,10 +135,8 @@ class MataKuliahController extends Controller
         $matkul = MataKuliah::find($id);
         //Total + AVG Assignment 25%
         $dataassignment = UserAssignment::where('mata_kuliah_id', $id)->get();
-
         //User Exam Uas UTS 30% UAS 35%
         $dataujian = UserExam::where('mata_kuliah_id', $id)->get();
-
         //Total + AVG Nilai Quiz 10%
         $dataquiz = NilaiQuiz::where('mata_kuliah_id', $id)->get();
 
@@ -162,28 +161,24 @@ class MataKuliahController extends Controller
             } else {
                 $tobat1 = null;
             }
-
             // Quiz 
             if ($countquiz != null) {
                 $tobat2 = $tambahquiz / $countquiz;
             } else {
                 $tobat2 = null;
             }
-
             // UAS 
             if ($uas != null) {
                 $tobat4 = $uas->grade;
             } else {
                 $tobat4 = null;
             }
-
             // UTS 
             if ($uts != null) {
                 $tobat3 = $uts->grade;
             } else {
                 $tobat3 = null;
             }
-
 
             $avgtugas = $tobat1 * 25 / 100;
             $avgquiz = $tobat2 * 10 / 100;
@@ -220,9 +215,18 @@ class MataKuliahController extends Controller
 
         $dataassignment = Assignment::where('mata_kuliah_id',$matkul)->count();
         $jumlahassignment = $UserAssignment->sum('grade');
-        $avgassignment = $dataassignment/$jumlahassignment;  
+        $avgassignment = $jumlahassignment/$dataassignment;  
 
-        // dd($UserExam);
-        return view('admin.mata_kuliah.nilai', compact('user','matakuliah','UserAssignment','UserExam','NilaiQuiz','nilaiuts','nilaiuas','avgquiz','avgassignment'));
+        $avgtugas1 = $avgassignment * 25 / 100;
+        $avgquiz1 = $avgquiz * 10 / 100;
+        $avguts1 = $nilaiuts->grade * 30 / 100;
+        $avguas1 = $nilaiuas->grade * 35 / 100;
+
+        $nilaiakhir = $avgtugas1 + $avgquiz1 + $avguts1 + $avguas1;
+        
+        $variabel = Helper::variabel_nilai($nilaiakhir);
+        // dd($variabel);
+
+        return view('admin.mata_kuliah.nilai', compact('variabel','nilaiakhir','user','matakuliah','UserAssignment','UserExam','NilaiQuiz','nilaiuts','nilaiuas','avgquiz','avgassignment'));
     }
 }
