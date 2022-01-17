@@ -38,6 +38,7 @@ use App\Http\Controllers\API\DiscussionLikeController;
 use App\Http\Controllers\API\DiscussionLike2Controller;
 use App\Http\Controllers\API\ExamController;
 use App\Http\Controllers\API\LeaderboardController;
+use App\Http\Controllers\API\TranskipController;
 use App\Http\Controllers\API\UserExamController;
 use App\Http\Controllers\API\UserJobChannelController;
 use App\Models\DiscussionForum;
@@ -126,6 +127,10 @@ Route::get('/quiz/{id}', [QuizController::class, 'show']);
 
 //User Quiz
 Route::get('/user-quiz', [UserQuizController::class, 'index']);
+
+//Transkip
+Route::get('/transkip/{id}', [TranskipController::class, 'index']);
+
 //User ExamPG
 Route::post('/user-exampg', [UserExamPGController::class, 'store']);
 
