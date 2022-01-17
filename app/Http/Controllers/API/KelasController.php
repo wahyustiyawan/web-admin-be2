@@ -26,7 +26,7 @@ class KelasController extends Controller
         }
         // return new MataKuliahCollection($mata_kuliah);
         // //return Kelas::all();
-        return new KelasCollection($kelas->paginate(15));
+        return new KelasCollection($kelas->paginate(18));
         // return ResponseFormatter::success($kelas1);
     }
 
