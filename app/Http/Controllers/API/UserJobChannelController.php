@@ -10,7 +10,7 @@ class UserJobChannelController extends Controller
 {
     public function store(Request $request)
     {
-        $user   =   Auth::user();
+        // $user   =   Auth::user();
         $input = new UserJobChannel();
         if ($files = $request->file('cv')) {
 
@@ -24,7 +24,8 @@ class UserJobChannelController extends Controller
 
         $input->job_id = $request->job_id;
         $input->no_telp = $request->no_telp;
-        $input->user_id = $user->id;
+        $input->user_id = $request->user_id;
+        $input->approve = false;
 
         $input->save();
         return response()->json([

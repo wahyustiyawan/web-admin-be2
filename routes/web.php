@@ -146,6 +146,11 @@ Route::resource('artikel', ArtikelController::class);
 Route::resource('iklan', IklanController::class);
 Route::resource('profil', ProfilController::class);
 Route::resource('jobChannel', JobChannelController::class);
+Route::get('jobChannel/show/{id}', [JobChannelController::class, 'show']);
+Route::get('jobChannel/userDestroy/{id}', [JobChannelController::class, 'userDestroy']);
+Route::get('jobChannel/view_approve/{id}', [JobChannelController::class, 'view_approve']);
+Route::put('jobChannel/approve/{id}', [JobChannelController::class, 'approve']);
+
 // Route::resource('assignment', AssignmentController::class);
 Route::resource('assignmentFile', AssignmentFileController::class);
 //Route::resource('assignmentPilgan', AssignmentPilganController::class);

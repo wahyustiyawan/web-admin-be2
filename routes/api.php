@@ -209,11 +209,11 @@ Route::get('/jumlah-enroll-matkul/{id}', [EnrollMataKuliahController::class, 'en
 
 //Route Administrasai
 Route::post('/administrasi', [AdministrationController::class, 'store']);    
-
+Route::post('/userjobchannel', [UserJobChannelController::class, 'store']);
 // Protected routes
 Route::group(['middleware' => ['auth:api']], function () {
     //User Job Channel
-    Route::post('/userjobchannel', [UserJobChannelController::class, 'store']);
+
     //DiscussionForum
     Route::post('/discussionForum', [DiscussionForumController::class, 'store']);
     Route::put('/discussionForum/update/{id}', [DiscussionForumController::class, 'update']);
