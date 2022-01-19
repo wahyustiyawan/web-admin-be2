@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\JobChannel;
+use App\Models\UserJobChannel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Models\AksesKelas;
@@ -69,8 +70,26 @@ class JobChannelController extends Controller
     public function show($id)
     {
         $jobChannel = JobChannel::where('id', $id)->first();
+        $userJobChannel = UserJobChannel::where('job_id', $id)->get();
         // dd($kontenVideo);
-        return view('admin.jobChannel.show', compact('jobChannel'));
+        return view('admin.jobChannel.show', compact('jobChannel', 'userJobChannel'));
+    }
+
+    public function view_approve($id)
+    {
+        $userJobChannel = UserJobChannel::where('id', $id)->first();
+        return view('admin.jobChannel.view_approve', compact('userJobChannel'));
+    }
+
+    public function approve($id)
+    {
+        $userJobChannel = UserJobChannel::findOrfail($id);
+        $userJobChannel->update([
+            'approve' => true
+            ]);
+
+        return redirect()->route('jobChannel.index')
+        ->with('success', 'User telah diapprove!');
     }
 
 
@@ -114,5 +133,13 @@ class JobChannelController extends Controller
         //notify()->success('Job Channel berhasil dihapus!');
         return redirect()->route('jobChannel.index')
             ->with('delete', 'Job Channel Berhasil Dihapus');
+    }
+
+    public function destroyUser($id)
+    {
+        UserJobChannel::where('id', $id)->delete();
+        //notify()->success('Job Channel berhasil dihapus!');
+        return redirect()->back()
+            ->with('delete', 'Data User Berhasil Dihapus');
     }
 }

@@ -16,7 +16,8 @@ class EnrollMataKuliah extends Model
         'mata_kuliah_id',
         'enroll_studi_id',
         'isComplete',
-        'semester,'
+        'semester',
+        'nilai_akhir'
     ];
 
     protected $primaryKey = 'id';
@@ -27,6 +28,7 @@ class EnrollMataKuliah extends Model
         'mata_kuliah_id' => 'integer',
         'enroll_studi_id' => 'integer',
         'semester' => 'integer',
+        'nilai_akhir' => 'integer',
     ];
 
     public function get_dokumen()
