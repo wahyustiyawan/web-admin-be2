@@ -20,10 +20,7 @@ class CreateEnrollMataKuliahTable extends Migration
             $table->foreignId("mata_kuliah_id")->constrained("mata_kuliah")->onDelete("cascade")->onUpdate("cascade");
             $table->foreignId("enroll_studi_id")->constrained("enroll_studi")->onDelete("cascade")->onUpdate("cascade");
             $table->integer('semester')->nullable();
-<<<<<<< Updated upstream
-=======
             $table->double('nilai_akhir')->nullable();
->>>>>>> Stashed changes
             $table->boolean('isComplete')->default(false);
             $table->boolean('isStart')->default(false);
             $table->timestamps();
