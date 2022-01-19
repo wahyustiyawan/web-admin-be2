@@ -117,7 +117,7 @@
                                     </div>
                                     <div class="d-flex flex-column justify-content-center">
                                         <h6 class="mb-0 text-sm">{{ $user->name }}</h6>
-                                        <p class="text-xs">2h ago</p>
+                                        {{-- <p class="text-xs">2h ago</p> --}}
                                     </div>
                                 </div>
                                 <div class="col-4">
@@ -132,10 +132,15 @@
                                 <h4 class="my-auto  ">
                                     <span class="text-secondary text-sm me-1"></span>
                                         {{Helper::lulus($nilaiakhir)}}
-                                    <span
-                                        class="text-secondary text-sm ms-1"></span>
                                 </h4>
                                 <a href="javascript:;" class="btn btn-outline-dark mb-0 ms-auto">Akses Remedial</a>
+                                <form method="post" action="{{ url('konfirmasi-nilai/'.$matakuliah->id.'/'.$user->id)}}" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="nilai_akhir" id="" value="{{ $nilaiakhir }}">
+                                    <button type="submit" class="btn btn-outline-dark mb-0 ms-auto">Konfirmasi Nilai</button>
+                                </form>
+                                {{-- <a href="javascript:;" class="btn btn-outline-dark mb-0 ms-auto">Konfirmasi Nilai</a> --}}
                             </div>
                         </div>
                     </div>

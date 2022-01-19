@@ -170,6 +170,7 @@ Route::middleware(['auth', 'role:dosen'])->group(function () {
 
    
     Route::get('/detail-nilai/{matkul}/{id}', [MataKuliahController::class, 'detailNilai'])->name('detailNilai');
+    Route::put('/konfirmasi-nilai/{matkul}/{id}', [MataKuliahController::class, 'konfirmasiNilai'])->name('konfirmasiNilai');
     Route::get('/assignment/{id}', [DashboardController::class, 'assignment'])->name('assignment');
     
     Route::get('/assignment/{id}/show', [DashboardController::class, 'show']);

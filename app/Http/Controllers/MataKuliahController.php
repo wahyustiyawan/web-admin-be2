@@ -229,4 +229,15 @@ class MataKuliahController extends Controller
 
         return view('admin.mata_kuliah.nilai', compact('variabel','nilaiakhir','user','matakuliah','UserAssignment','UserExam','NilaiQuiz','nilaiuts','nilaiuas','avgquiz','avgassignment'));
     }
+
+    public function konfirmasiNilai(Request $request, $matkul, $id)
+    {
+        $nilaiAkhir = EnrollMataKuliah::where('user_id', $id)->where('mata_kuliah_id', $matkul)->first();
+        $nilaiAkhir->nilai_akhir = $request->nilai_akhir;
+        $nilaiAkhir->save();
+        
+        
+        return back()
+            ->with('success', 'Sukses Melakukan Konfirmasi Nilai Akhir');
+    }
 }
