@@ -14,6 +14,7 @@ class UserJobChannel extends Model
         'user_id',
         'cv',
         'no_telp',
+        'approve'
     ];
 
     protected $primaryKey = 'id';

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Assignment;
 use App\Models\MataKuliah;
+use App\Models\User;
 // use App\Models\Nilai;
 use App\Models\UserAssignment;
 use Illuminate\Support\Facades\Auth;
@@ -50,28 +51,26 @@ class UserAssignmentController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        // if (isset($request->assignment)) {
-        //     $extention = $request->file->extension();
-        //     $file_name = time() . '.' . $extention;
-        //     $txt = "storage/assignments/". $file_name;
-        //     $request->assignment->storeAs('public/assignments', $file_name);
-        // } else {
-        //     $txt = null;
-        // }
 
-        if ($files = $request->file('assignment')) {
-
-        // $input2 = new Nilai();
-        // $input2->user_id = $user->id;
-        // $input2->mata_kuliah_id = $request->mata_kuliah_id;
-        // $input2->tipe = 'assignment';
-        // $input2->nilai = 0;
-        // $input2->save();
-  
+        if (isset($request->assignment)) {
+            $extention = $request->assignment->extension();
+            $file_name = time() . '.' . $extention;
+            $txt = "storage/userAssignments/". $file_name;
+            $request->assignment->storeAs('public/userAssignments', $file_name);
+            UserAssignment::create([
+                'assignment' => $txt,
+                'grade' => '0',
+                'user_id' => $user->id,
+                'mata_kuliah_id' => $request->mata_kuliah_id,
+                'assignment_id' => $request->assignment_id,
+                'isComplete' => '0',
+            ]);
+        }
         return response()->json([
             "error" => false,
             "message" => "success"
         ]);
+    
     }
 
     /**
