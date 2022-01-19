@@ -25,6 +25,7 @@ class UserJobChannelController extends Controller
         $input->job_id = $request->job_id;
         $input->no_telp = $request->no_telp;
         $input->user_id = $user->id;
+        $input->approve = false;
 
         $input->save();
         return response()->json([

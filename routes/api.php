@@ -214,6 +214,7 @@ Route::post('/administrasi', [AdministrationController::class, 'store']);
 Route::group(['middleware' => ['auth:api']], function () {
     //User Job Channel
     Route::post('/userjobchannel', [UserJobChannelController::class, 'store']);
+    
     //DiscussionForum
     Route::post('/discussionForum', [DiscussionForumController::class, 'store']);
     Route::put('/discussionForum/update/{id}', [DiscussionForumController::class, 'update']);

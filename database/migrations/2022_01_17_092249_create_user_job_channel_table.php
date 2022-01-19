@@ -19,6 +19,7 @@ class CreateUserJobChannelTable extends Migration
             $table->foreignId("job_id")->constrained("job_channel")->onDelete("cascade")->onUpdate("cascade");
             $table->string('no_telp');
             $table->string('cv');
+            $table->boolean('approve');
             $table->timestamps();
         });
     }

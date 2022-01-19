@@ -11,6 +11,7 @@ use lcobucci\jwt\Token\RegisteredClaimGiven;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\URL;
 
 class PassportAuthController extends Controller
 {
@@ -152,7 +153,8 @@ class PassportAuthController extends Controller
             $gambar2 = Str::slug($request->gambar);
             $extention = $request->gambar->getClientOriginalExtension();
             $file_name = time().'.'.$extention;
-            $txt = $currentURL+'/storage/images/'. $file_name;
+            // $txt = $currentURL.'/storage/images/'. $file_name;
+            $txt = 'storage/images/'. $file_name;
             $request->gambar->storeAs('public/images', $file_name);
             $input = $txt;
         }else{
