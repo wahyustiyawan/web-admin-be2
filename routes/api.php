@@ -130,7 +130,7 @@ Route::get('/user-quiz', [UserQuizController::class, 'index']);
 
 //Transkip
 Route::get('/transkip/{id}', [TranskipController::class, 'index']);
-
+Route::get('/transkip/{id}/semester/{semester}', [TranskipController::class, 'transkipSemester']);
 //User ExamPG
 Route::post('/user-exampg', [UserExamPGController::class, 'store']);
 
