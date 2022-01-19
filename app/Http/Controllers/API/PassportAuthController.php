@@ -11,6 +11,7 @@ use lcobucci\jwt\Token\RegisteredClaimGiven;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\URL;
 
 class PassportAuthController extends Controller
 {
