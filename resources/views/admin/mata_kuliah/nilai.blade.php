@@ -138,9 +138,8 @@
                                     @csrf
                                     @method('PUT')
                                     <input type="hidden" name="nilai_akhir" id="" value="{{ $nilaiakhir }}">
-                                    <button type="submit" class="btn btn-outline-dark mb-0 ms-auto">Konfirmasi Nilai</button>
+                                    <button type="submit" class="btn btn-outline-dark mb-0 ms-2">Konfirmasi Nilai</button>
                                 </form>
-                                {{-- <a href="javascript:;" class="btn btn-outline-dark mb-0 ms-auto">Konfirmasi Nilai</a> --}}
                             </div>
                         </div>
                     </div>
