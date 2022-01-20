@@ -18,11 +18,12 @@ class CreatePertemuanTable extends Migration
             $table->integer('pertemuan');
             $table->string('judul');
             $table->string('deskripsi');
+            $table->string('tugas_mandiri')->nullable();
+            $table->enum('tipe', ['1', '2', '3'])->default('1');
             $table->foreignId("mata_kuliah_id")->constrained("mata_kuliah")->onDelete("cascade")->onUpdate("cascade");
             $table->json("kontenVideo_id");
             $table->json("kontenDokumen_id");
             $table->timestamps();
-
         });
     }
 

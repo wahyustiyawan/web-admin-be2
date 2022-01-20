@@ -85,8 +85,7 @@ class PertemuanController extends Controller
         // }
 
         // dd($request->all(), $kontenDokumen_id, $kontenVideo_id, $dataa);
-
-        $pertemuan = Pertemuan::create([
+        Pertemuan::create([
             'pertemuan' => $request->pertemuan,
             'deskripsi' => $request->deskripsi,
             'judul' => $request->judul,
@@ -94,6 +93,8 @@ class PertemuanController extends Controller
             'kontenVideo_id' => $dataa,
             'kontenDokumen_id' => $dataaa,
             'mata_kuliah_id' => $request->mata_kuliah_id,
+            'tugas_mandiri' => $request->tugas_mandiri,
+            'tipe' => $request->tipe,
         ]);
 
         // foreach ($kontenVideo_id as $item) {
