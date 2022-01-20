@@ -133,6 +133,7 @@ class MataKuliahController extends Controller
         $assignment = Assignment::where('mata_kuliah_id', $id)->get();
         $enrolls = EnrollMataKuliah::where('mata_kuliah_id', $id)->get();
         $matkul = MataKuliah::find($id);
+        $mandiri = Pertemuan::where('mata_kuliah_id', $id)->get();
         //Total + AVG Assignment 25%
         $dataassignment = UserAssignment::where('mata_kuliah_id', $id)->get();
         //User Exam Uas UTS 30% UAS 35%
@@ -154,6 +155,7 @@ class MataKuliahController extends Controller
             $totalquiz = $dataquiz->where('user_id', $item->user_id);
             $countquiz = $totalquiz->count();
             $tambahquiz = $totalquiz->sum('grade');
+
 
             // Assignment
             if ($countassignment != null) {

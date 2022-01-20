@@ -57,6 +57,7 @@ class PertemuanController extends Controller
             'deskripsi' => 'required',
         ]);
 
+        // dd($request);
         $kontenVideo_id = $request->kontenVideo_id;
         $kontenDokumen_id = $request->kontenDokumen_id;
 
@@ -85,6 +86,12 @@ class PertemuanController extends Controller
         // }
 
         // dd($request->all(), $kontenDokumen_id, $kontenVideo_id, $dataa);
+        if($request->mandiri != null){
+            $mandiri =  true;
+        }
+        else{
+            $mandiri = false;
+        }
 
         Pertemuan::create([
             'pertemuan' => $request->pertemuan,
@@ -93,10 +100,13 @@ class PertemuanController extends Controller
             'kontenVideo_id' => $dataa,
             'kontenDokumen_id' => $dataaa,
             'mata_kuliah_id' => $request->mata_kuliah_id,
-            'tugas_mandiri' => $request->tugas_mandiri,
+            'tugas_mandiri' => $request->mandiri,
             'tipe' => $request->tipe,
-            'isMandiri' => true
+            'isMandiri' => $mandiri,
         ]);
+
+ 
+
 
         // foreach ($kontenVideo_id as $item) {
         //     $video = KontenVideo::find((int) $item)->get();

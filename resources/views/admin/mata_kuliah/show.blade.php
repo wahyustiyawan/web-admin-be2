@@ -544,7 +544,7 @@
                 <div class="mb-3">
                   <label for="exampleFormControlSelect1">Tugas Mandiri *opsional, masukkan link tugas</label>
                   {{-- <input type="file" class="form-control" name="tugas_mandiri"> --}}
-                  <input type="text" class="form-control" name="tugas_mandiri " placeholder="Masukkan link materi tugas mandiri" aria-label="Name" aria-describedby="email-addon">
+                  <input type="text" class="form-control" name="mandiri" placeholder="Masukkan link materi tugas mandiri" aria-label="Name" aria-describedby="email-addon">
                 </div>
                 <div class="mb-3">
                   <label for="exampleFormControlSelect1">Tipe</label>
