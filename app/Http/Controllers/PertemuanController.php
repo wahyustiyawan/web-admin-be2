@@ -95,6 +95,7 @@ class PertemuanController extends Controller
             'mata_kuliah_id' => $request->mata_kuliah_id,
             'tugas_mandiri' => $request->tugas_mandiri,
             'tipe' => $request->tipe,
+            'isMandiri' => true
         ]);
 
         // foreach ($kontenVideo_id as $item) {
