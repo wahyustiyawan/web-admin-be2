@@ -23,6 +23,7 @@ class CreatePertemuanTable extends Migration
             $table->foreignId("mata_kuliah_id")->constrained("mata_kuliah")->onDelete("cascade")->onUpdate("cascade");
             $table->json("kontenVideo_id");
             $table->json("kontenDokumen_id");
+            $table->boolean("isMandiri")->default(false);
             $table->timestamps();
         });
     }

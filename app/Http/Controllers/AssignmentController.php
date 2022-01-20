@@ -165,7 +165,7 @@ class AssignmentController extends Controller
                 'pertemuan_id' => $request->pertemuan_id,
                 'file' => $txt,
                 'mata_kuliah_id' => $request->mata_kuliah_id,
-                'user_id' => Auth::user()->id,
+                'user_id' => Auth::user()->id, 
             ]);
             
         return redirect()->back()

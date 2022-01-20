@@ -23,6 +23,9 @@ class PertemuanSeeder extends Seeder
             'mata_kuliah_id' => '1',
             'kontenVideo_id' => json_decode('[{"id":1},{"id":2}]'),
             'kontenDokumen_id' => json_decode('[{"id":1}]'),
+            'isMandiri' => true,
+            'tugas_mandiri' => 'abc.com',
+            'tipe' => 1
         ]);
 
         Pertemuan::create([
@@ -33,6 +36,9 @@ class PertemuanSeeder extends Seeder
             'mata_kuliah_id' => '1',
             'kontenVideo_id' => json_decode('[{"id":1},{"id":2}]'),
             'kontenDokumen_id' => json_decode('[{"id":1}]'),
+            'isMandiri' => true,
+            'tugas_mandiri' => 'abc.com',
+            'tipe' => 1
         ]);
 
         Pertemuan::create([
@@ -43,6 +49,9 @@ class PertemuanSeeder extends Seeder
             'mata_kuliah_id' => '1',
             'kontenVideo_id' => json_decode('[{"id":1},{"id":2}]'),
             'kontenDokumen_id' => json_decode('[{"id":1}]'),
+            'isMandiri' => true,
+            'tugas_mandiri' => 'abc.com',
+            'tipe' => 1
         ]);
 
         Pertemuan::create([
@@ -53,6 +62,9 @@ class PertemuanSeeder extends Seeder
             'mata_kuliah_id' => '1',
             'kontenVideo_id' => json_decode('[{"id":1},{"id":2}]'),
             'kontenDokumen_id' => json_decode('[{"id":1}]'),
+            'isMandiri' => false,
+            'tugas_mandiri' => 'abc.com',
+            'tipe' => 1
         ]);
 
         Pertemuan::create([
@@ -63,6 +75,9 @@ class PertemuanSeeder extends Seeder
             'mata_kuliah_id' => '1',
             'kontenVideo_id' => json_decode('[{"id":1},{"id":2}]'),
             'kontenDokumen_id' => json_decode('[{"id":1}]'),
+            'isMandiri' => false,
+            'tugas_mandiri' => 'abc.com',
+            'tipe' => 1
         ]);        
     }
 }

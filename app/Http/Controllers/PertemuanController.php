@@ -85,11 +85,11 @@ class PertemuanController extends Controller
         // }
 
         // dd($request->all(), $kontenDokumen_id, $kontenVideo_id, $dataa);
+
         Pertemuan::create([
             'pertemuan' => $request->pertemuan,
             'deskripsi' => $request->deskripsi,
             'judul' => $request->judul,
-            'deskripsi' => $request->deskripsi,
             'kontenVideo_id' => $dataa,
             'kontenDokumen_id' => $dataaa,
             'mata_kuliah_id' => $request->mata_kuliah_id,
