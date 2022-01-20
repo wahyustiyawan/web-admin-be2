@@ -18,15 +18,23 @@ class TranskipController extends Controller
             ->groupBy('semester')->where('enroll_mata_kuliah.user_id', $id)->get();
 
         foreach ($transkip as $item) {
+            $tahun = EnrollMataKuliah::select(DB::raw('YEAR(created_at) year'))->where('semester',$item->semester)->first();
+            
+            $bil = $item->semester;
+            if ($bil % 2 == 0) { 
+                $ajaran = "Genap"; 
+            } else {
+                $ajaran = "Gasal"; 
+            }
+
+            $tahunajaran = $ajaran.' '.$tahun['year'];
             $data[] = [
-                'SKS' => (int)$item->jumlahsks,
-                // 'IPS' => (int)$item->nilai/$item->jumlahsks,
-                'IPS' => (int)($item->nilai / $item->jumlahsks) / 25,
-                'Semester' => $item->semester,
+                'sks' => (int)$item->jumlahsks,
+                'ips' => (int)($item->nilai / $item->jumlahsks) / 25,
+                'semester' => $item->semester,
+                'tahun_ajaran' => $tahunajaran,
             ];
         }
-
-        // dd($transkip);
 
         return response()->json([
             "error" => false,
@@ -72,7 +80,7 @@ class TranskipController extends Controller
             'IPK' => $IPK / $totalsemester,
             'detail' => $data,
         ];
-        
+
         return response()->json([
             "error" => false,
             "message" => "Success",
