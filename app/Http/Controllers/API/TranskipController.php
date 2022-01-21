@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
+use App\Models\AksesKelas;
 use App\Models\EnrollMataKuliah;
 use App\Models\MataKuliah;
 use Illuminate\Http\Request;
@@ -18,16 +19,16 @@ class TranskipController extends Controller
             ->groupBy('semester')->where('enroll_mata_kuliah.user_id', $id)->get();
 
         foreach ($transkip as $item) {
-            $tahun = EnrollMataKuliah::select(DB::raw('YEAR(created_at) year'))->where('semester',$item->semester)->first();
-            
+            $tahun = EnrollMataKuliah::select(DB::raw('YEAR(created_at) year'))->where('semester', $item->semester)->first();
+
             $bil = $item->semester;
-            if ($bil % 2 == 0) { 
-                $ajaran = "Genap"; 
+            if ($bil % 2 == 0) {
+                $ajaran = "Genap";
             } else {
-                $ajaran = "Gasal"; 
+                $ajaran = "Gasal";
             }
 
-            $tahunajaran = $ajaran.' '.$tahun['year'];
+            $tahunajaran = $ajaran . ' ' . $tahun['year'];
             $data[] = [
                 'sks' => (int)$item->jumlahsks,
                 'ips' => (int)($item->nilai / $item->jumlahsks) / 25,
@@ -45,8 +46,8 @@ class TranskipController extends Controller
 
     public function transkipSemester($id, $semester)
     {
-        $transkipsemester = EnrollMataKuliah::select('mata_kuliah.sks', 'mata_kuliah.kode', 'mata_kuliah.judul', 'enroll_mata_kuliah.semester', 'enroll_mata_kuliah.nilai_akhir')
-            ->join('mata_kuliah', 'mata_kuliah.id', '=', 'enroll_mata_kuliah.mata_kuliah_id')
+        $transkipsemester = EnrollMataKuliah::select('mata_kuliah.sks', 'akses_kelas.user_id', 'mata_kuliah.id as matkul_id', 'mata_kuliah.kode', 'mata_kuliah.judul', 'enroll_mata_kuliah.semester', 'enroll_mata_kuliah.nilai_akhir')
+            ->join('mata_kuliah', 'mata_kuliah.id', '=', 'enroll_mata_kuliah.mata_kuliah_id')->join('akses_kelas', 'akses_kelas.mata_kuliah_id', '=', 'mata_kuliah.id')
             ->where('enroll_mata_kuliah.user_id', $id)
             ->where('enroll_mata_kuliah.semester', $semester)->get();
 
@@ -56,6 +57,9 @@ class TranskipController extends Controller
 
         $totalnilai = 0;
         foreach ($transkipsemester as $item) {
+            $dosen = AksesKelas::select('users.name')
+                ->join('users', 'users.id', '=', 'akses_kelas.user_id')
+                ->where('akses_kelas.mata_kuliah_id', $item->matkul_id)->first();
             $nilai = Helper::variabel_nilai($item->nilai_akhir);
             $var1 = $item->nilai_akhir * $item->sks;
             $totalnilai = $totalnilai + $var1;
@@ -65,6 +69,7 @@ class TranskipController extends Controller
                 'mata_kuliah' => $item->judul,
                 'sks' => $item->sks,
                 'nilai' => $nilai,
+                'dosen' => $dosen->name,
             ];
         }
 
