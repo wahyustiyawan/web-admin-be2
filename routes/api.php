@@ -41,6 +41,7 @@ use App\Http\Controllers\API\LeaderboardController;
 use App\Http\Controllers\API\TranskipController;
 use App\Http\Controllers\API\UserExamController;
 use App\Http\Controllers\API\UserJobChannelController;
+use App\Http\Controllers\API\UserMandiriController;
 use App\Models\DiscussionForum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -272,7 +273,9 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     //User Assignment
     Route::post('/userAssignment', [UserAssignmentController::class, 'store']); 
-     
+    
+    // User Mandiri
+    Route::post('/userMandiri', [UserMandiriController::class, 'store']); 
 
     //Route Nilai
     // Route::post('/nilaiQuiz', [NilaiController::class, 'nilaiQuiz']);

@@ -542,6 +542,19 @@
                   <textarea class="form-control" aria-label="With textarea" name="deskripsi" rows="4" required></textarea>
                 </div>
                 <div class="mb-3">
+                  <label for="exampleFormControlSelect1">Tugas Mandiri *opsional, masukkan link tugas</label>
+                  {{-- <input type="file" class="form-control" name="tugas_mandiri"> --}}
+                  <input type="text" class="form-control" name="mandiri" placeholder="Masukkan link materi tugas mandiri" aria-label="Name" aria-describedby="email-addon">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlSelect1">Tipe</label>
+                  <select class="form-control" name="tipe" id="exampleFormControlSelect1">
+                    <option value="1">Sebelum Video</option>
+                    <option value="2">Pertengahan Video</option>
+                    <option value="3">Setelah Video</option>
+                  </select>
+                </div>
+                <div class="mb-3">
                   <label for="exampleFormControlSelect2">Konten Video</label>
                   <select class="form-control selectpicker"  multiple="" data-live-search="true" name="kontenVideo_id[]" id="exampleFormControlSelect2">
                     @foreach ($kontenVideo as $item)

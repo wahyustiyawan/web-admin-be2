@@ -13,6 +13,9 @@ class Pertemuan extends Model
         'pertemuan',
         'judul',
         'deskripsi',
+        'tugas_mandiri',
+        'tipe',
+        'isMandiri',
         'mata_kuliah_id',
         'kontenVideo_id',
         'kontenDokumen_id'
