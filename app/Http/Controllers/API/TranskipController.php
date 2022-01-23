@@ -14,11 +14,13 @@ class TranskipController extends Controller
 {
     public function index($id)
     {
-        $transkip = EnrollMataKuliah::join('mata_kuliah', 'mata_kuliah.id', '=', 'enroll_mata_kuliah.mata_kuliah_id')
+        $dataenroll = EnrollMataKuliah::join('mata_kuliah', 'mata_kuliah.id', '=', 'enroll_mata_kuliah.mata_kuliah_id')
             ->select('enroll_mata_kuliah.semester', DB::raw('SUM(mata_kuliah.sks) as jumlahsks'), DB::raw('SUM(enroll_mata_kuliah.nilai_akhir*mata_kuliah.sks) as nilai'))
             ->groupBy('semester')->where('enroll_mata_kuliah.user_id', $id)->get();
 
-        foreach ($transkip as $item) {
+        $totalips = 0;
+        $totalsemester = 0;
+        foreach ($dataenroll as $item) {
             $tahun = EnrollMataKuliah::select(DB::raw('YEAR(created_at) year'))->where('semester', $item->semester)->first();
 
             $bil = $item->semester;
@@ -28,19 +30,29 @@ class TranskipController extends Controller
                 $ajaran = "Gasal";
             }
 
-            $tahunajaran = $ajaran . ' ' . $tahun['year'];
+            $ips = (int)($item->nilai / $item->jumlahsks) / 25;
+            
+            $totalips = $totalips + $ips;
+
+            $tahunajaran = 'KHS '.$ajaran . ' ' . $tahun['year'];
             $data[] = [
                 'sks' => (int)$item->jumlahsks,
-                'ips' => (int)($item->nilai / $item->jumlahsks) / 25,
+                'ips' => $ips,
                 'semester' => $item->semester,
                 'tahun_ajaran' => $tahunajaran,
             ];
         }
 
+        $transkip = [
+            'IPK' => $totalips/$dataenroll->max('semester'),
+            'dosen_pembimbing' => '',
+            'transkip' => $data,
+        ];
+
         return response()->json([
             "error" => false,
             "message" => "Success",
-            "data" => $data
+            "data" => $transkip
         ], 200);
     }
 

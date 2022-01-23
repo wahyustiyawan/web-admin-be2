@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Helpers\Helper;
+use App\Models\UserMandiri;
 
 class MataKuliahController extends Controller
 {
@@ -133,7 +134,6 @@ class MataKuliahController extends Controller
         $assignment = Assignment::where('mata_kuliah_id', $id)->get();
         $enrolls = EnrollMataKuliah::where('mata_kuliah_id', $id)->get();
         $matkul = MataKuliah::find($id);
-        $mandiri = Pertemuan::where('mata_kuliah_id', $id)->get();
         //Total + AVG Assignment 25%
         $dataassignment = UserAssignment::where('mata_kuliah_id', $id)->get();
         //User Exam Uas UTS 30% UAS 35%
@@ -141,12 +141,18 @@ class MataKuliahController extends Controller
         //Total + AVG Nilai Quiz 10%
         $dataquiz = NilaiQuiz::where('mata_kuliah_id', $id)->get();
 
+        $datapertemuan = Pertemuan::where('mata_kuliah_id',$id)->get();
+        // dd($enrolls);
         $nilaimahasiswa = [];
         foreach ($enrolls as $item) {
 
             $user = User::find($item->id);
             $uts = $dataujian->where('tipe', 'uts')->where('user_id', $item->user_id)->first();
             $uas = $dataujian->where('tipe', 'uas')->where('user_id', $item->user_id)->first();
+
+            // Tugas Mandiri
+            $tmandiri = UserMandiri::where('user_id',$item->user_id)->get()->SUM('isComplete');
+            $scoretmandiri = (int)$datapertemuan->sum('isMandiri')-$tmandiri;
 
             $totalassignment = $dataassignment->where('user_id', $item->user_id);
             $countassignment = $assignment->count();  //Keseluruhan Assignment di mata kuliah tersebut
@@ -165,7 +171,7 @@ class MataKuliahController extends Controller
             }
             // Quiz 
             if ($countquiz != null) {
-                $tobat2 = $tambahquiz / $countquiz;
+                $tobat2 = ($tambahquiz / $countquiz)-$scoretmandiri; //msh gw kurangin langsung tmandiri
             } else {
                 $tobat2 = null;
             }
@@ -183,7 +189,7 @@ class MataKuliahController extends Controller
             }
 
             $avgtugas = $tobat1 * 25 / 100;
-            $avgquiz = $tobat2 * 10 / 100;
+            $avgquiz = $tobat2 * 10 / 100; 
             $avguts = $tobat3 * 30 / 100;
             $avguas = $tobat4 * 35 / 100;
 
@@ -197,6 +203,7 @@ class MataKuliahController extends Controller
                 'nilai' => $avgquiz + $avgtugas + $avguts + $avguas,
             ];
         }
+        // dd($nilaimahasiswa);
         return view('admin.mata_kuliah.mahasiswa', compact('nilaimahasiswa','matkul'));
     }
 
