@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'Asia/Jakarta',
+    'timezone' => 'UTC',
 
     /*
     |--------------------------------------------------------------------------
@@ -161,10 +161,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Laravel\Passport\PassportServiceProvider::class,
-        Mckenziearts\Notify\LaravelNotifyServiceProvider::class,
-        Kreait\Laravel\Firebase\ServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
@@ -211,8 +208,8 @@ return [
         'File' => Illuminate\Support\Facades\File::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
         'Hash' => Illuminate\Support\Facades\Hash::class,
-        'Helper'=> App\Helpers\Helper::class,
         'Http' => Illuminate\Support\Facades\Http::class,
+        'Js' => Illuminate\Support\Js::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
@@ -232,7 +229,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Image' => Intervention\Image\Facades\Image::class
 
     ],
 

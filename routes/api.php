@@ -42,6 +42,7 @@ use App\Http\Controllers\API\TranskipController;
 use App\Http\Controllers\API\UserExamController;
 use App\Http\Controllers\API\UserJobChannelController;
 use App\Http\Controllers\API\UserMandiriController;
+use App\Http\Controllers\API\SertifikatController;
 use App\Models\DiscussionForum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -209,7 +210,8 @@ Route::get('/jumlah-enroll/{id}', [EnrollStudiController::class, 'enroll']);
 Route::get('/jumlah-enroll-matkul/{id}', [EnrollMataKuliahController::class, 'enroll']);
 
 //Route Administrasai
-Route::post('/administrasi', [AdministrationController::class, 'store']);    
+Route::post('/administrasi', [AdministrationController::class, 'store']);
+Route::get('/sertifikat/{id}', [SertifikatController::class, 'sertifikat']);    
 
 // Protected routes
 Route::group(['middleware' => ['auth:api']], function () {
