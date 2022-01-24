@@ -215,6 +215,7 @@ Route::get('/sertifikat/{id}', [SertifikatController::class, 'sertifikat']);
 
 // Protected routes
 Route::group(['middleware' => ['auth:api']], function () {
+    Route::get('/sertifikat', [SertifikatController::class, 'sertifikat']);  
     //User Job Channel
     Route::post('/userjobchannel', [UserJobChannelController::class, 'store']);
     

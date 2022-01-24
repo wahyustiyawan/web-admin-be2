@@ -10,8 +10,9 @@ use Image;
 
 class SertifikatController extends Controller
 {
-    public function sertifikat($user)  
-    {  
+    public function sertifikat(Request $request)  
+    { 
+       $host = $request->getSchemeAndHttpHost(); 
        $user = Auth::user();
        $img = Image::make(public_path('sertifikat/sertifikat.jpg'));  
        $img->text($user->name, 120, 100, function() {  
@@ -27,7 +28,7 @@ class SertifikatController extends Controller
         return response()->json([
             "error" => false,
             "message" => "Success",
-            "data" => $img
+            "data" => $host.'/'.$img
         ], 200);
     }
 
