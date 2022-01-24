@@ -86,7 +86,7 @@ class EnrollStudiController extends Controller
         }catch (QueryException $e){
             $success['error']  =   true;
             $success['message'] =   $e->getMessage();
-            //$success['data']    =   new EnrollsResource(Enrolls::where(['kelas_id' => $kelas->id, 'user_id' => $user->id])->get());
+
             return response()->json($success);
         }
 
@@ -99,7 +99,6 @@ class EnrollStudiController extends Controller
                 'isComplete'     =>   false,
             );
             $enroll_Mkuliah = new EnrollMataKuliah($Input);    
-            //UserDokumen::create($Input);
             $enrolls->enroll_mata_kuliah()->save($enroll_Mkuliah);
 
             $kontendokumen = KontenDokumen::where('mata_kuliah_id', $Mkuliah->id)->get();
@@ -109,11 +108,9 @@ class EnrollStudiController extends Controller
                 $Input      =       array(
                     'progress'     => 0,
                     'user_id' => $user->id,
-                    //'enroll_id'    => $enrolls->id,
                     'konten_video_id' => $kvideo->id,
                 );
                 $video = new UserVideo($Input);  
-                //UserVideo::create($Input);
                 $enroll_Mkuliah->get_video()->save($video);
             }
     
@@ -130,33 +127,6 @@ class EnrollStudiController extends Controller
             }
         }
         
-        // $kontendokumen = MataKuliah::find($kelas->id)->get_dokumen;
-        // $kontenvideo = MataKuliah::find($kelas->id)->get_video;
-
-        // foreach ($kontenvideo as $kvideo){
-        //     $Input      =       array(
-        //         'progress'     => 0,
-        //         'user_id' => $user->id,
-        //         //'enroll_id'    => $enrolls->id,
-        //         'konten_video_id' => $kvideo->id,
-        //     );
-        //     $video = new UserVideo($Input);  
-        //     //UserVideo::create($Input);
-        //     $enrolls->get_video()->save($video);
-        // }
-
-        // if(!is_null($enrolls)) {
-        //     $success['error']  =   false;
-        //     $success['status']  =   "success";
-        //     $success['data']    =   new EnrollsResource($enrolls);
-        // }
-        // else {
-        //     $success['error']  =   true;
-        //     $success['status']  =   "failed";
-        //     $success['message'] =   "Whoops! no detail found";
-
-        //     return response()->json($success);
-        // }
         
         if(!is_null($enrolls)) {
             $success['error']  =   false;
