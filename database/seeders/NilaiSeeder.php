@@ -35,7 +35,7 @@ class NilaiSeeder extends Seeder
             'deskripsi' => 'yayayayayayay',
             'mata_kuliah_id' => 1,
             'jenis' => 'uts',
-            'deadline' => '11/06/2022',
+            'deadline' => '2022-01-21',
         ]);
 
         Assignment::create([

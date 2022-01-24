@@ -9,6 +9,8 @@ use App\Http\Resources\KalenderResource;
 use App\Http\Resources\KalenderCollection;
 use App\Models\Assignment;
 use App\Helpers\ResponseFormatter;
+use App\Models\Exam;
+use App\Models\Quiz;
 
 class KalenderController extends Controller
 {
@@ -19,15 +21,20 @@ class KalenderController extends Controller
      */
     public function index(Request $request)
     {
-        $mata_kuliah =  Assignment::all();
-        return  new KalenderCollection($mata_kuliah);
-        // return ResponseFormatter::success($kalender);
+        $exam =  Exam::all();
+        $assignment =  Assignment::all();
+        $collection1 = new KalenderCollection($assignment, 'assignment');
+        $collection2 = new KalenderCollection($exam, 'exam');
+        $allItems = new \Illuminate\Database\Eloquent\Collection; 
+        $allItems = $allItems->concat($collection1->values());
+        $allItems = $allItems->concat($collection2->values());
+        return $collection2;
     }
 
     public function findbyid($id)
     {
         $meet = Assignment::find($id);
-         return new KalenderResource($meet);
+         return new KalenderResource($meet, 'a');
         // return ResponseFormatter::success($kalender);
     }
 
