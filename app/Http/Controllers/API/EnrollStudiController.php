@@ -96,11 +96,12 @@ class EnrollStudiController extends Controller
             $Input      =       array(
                 'user_id'     =>      $user->id,
                 'mata_kuliah_id'   =>  $Mkuliah->id,
+                // 'enroll_studi_id' => $enrolls->id,
                 'isComplete'     =>   false,
             );
             $enroll_Mkuliah = new EnrollMataKuliah($Input);
-            $enroll_Mkuliah->save();    
-            // $enrolls->enroll_mata_kuliah()->save($enroll_Mkuliah);
+            // $enroll_Mkuliah->save();    
+            $enrolls->enroll_mata_kuliah()->save($enroll_Mkuliah);
 
             $kontendokumen = KontenDokumen::where('mata_kuliah_id', $Mkuliah->id)->get();
             $kontenvideo = KontenVideo::where('mata_kuliah_id', $Mkuliah->id)->get();
