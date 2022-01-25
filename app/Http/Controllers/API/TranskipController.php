@@ -31,10 +31,10 @@ class TranskipController extends Controller
             }
 
             $ips = (int)($item->nilai / $item->jumlahsks) / 25;
-            
+
             $totalips = $totalips + $ips;
 
-            $tahunajaran = 'KHS '.$ajaran . ' ' . $tahun['year'];
+            $tahunajaran = 'KHS ' . $ajaran . ' ' . $tahun['year'];
             $data[] = [
                 'sks' => (int)$item->jumlahsks,
                 'ips' => $ips,
@@ -44,7 +44,7 @@ class TranskipController extends Controller
         }
 
         $transkip = [
-            'IPK' => $totalips/$dataenroll->max('semester'),
+            'IPK' => $totalips / $dataenroll->max('semester'),
             'dosen_pembimbing' => '',
             'transkip' => $data,
         ];
@@ -90,11 +90,24 @@ class TranskipController extends Controller
             $a = (int)($item->nilai / $item->jumlahsks) / 25;
             $IPK = $IPK + $a;
         }
+
+        if ($transkipsemester->sum('sks') != null) {
+            $ips = (int)($totalnilai / $transkipsemester->sum('sks')) / 25;
+        } else {
+            $ips = null;
+        }
+        
         $totalsemester = $transkip->count('semester');
+        if ($totalsemester != null) {
+            $ipkakhir = $IPK / $totalsemester;
+        } else {
+            $ipkakhir = null;
+        }
+
         $hasil = [
             'totalsks' => (int)$transkip->SUM('jumlahsks'),
-            'IPS' => (int)($totalnilai / $transkipsemester->sum('sks')) / 25,
-            'IPK' => $IPK / $totalsemester,
+            'IPS' => $ips,
+            'IPK' => $ipkakhir,
             'detail' => $data,
         ];
 
