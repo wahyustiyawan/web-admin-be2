@@ -211,11 +211,13 @@ Route::get('/jumlah-enroll-matkul/{id}', [EnrollMataKuliahController::class, 'en
 
 //Route Administrasai
 Route::post('/administrasi', [AdministrationController::class, 'store']);
+
 // Route::get('/sertifikat', [SertifikatController::class, 'sertifikat']);    
+Route::get('/sertifikat', [SertifikatController::class, 'sertifikat']);  
 
 // Protected routes
 Route::group(['middleware' => ['auth:api']], function () {
-    Route::get('/sertifikat', [SertifikatController::class, 'sertifikat']);  
+
     //User Job Channel
     Route::post('/userjobchannel', [UserJobChannelController::class, 'store']);
     
