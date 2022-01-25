@@ -67,9 +67,9 @@ class TranskipController extends Controller
             ->select('enroll_mata_kuliah.semester', DB::raw('SUM(mata_kuliah.sks) as jumlahsks'), DB::raw('SUM(enroll_mata_kuliah.nilai_akhir*mata_kuliah.sks) as nilai'))
             ->groupBy('semester')->where('enroll_mata_kuliah.user_id', $id)->get();
 
-        $totalnilai = 0;
 
-        if ($transkipsemester != null) {
+            $totalnilai = 0;
+            $data = null;
             foreach ($transkipsemester as $item) {
                 $dosen = AksesKelas::select('users.name')
                     ->join('users', 'users.id', '=', 'akses_kelas.user_id')
@@ -86,10 +86,7 @@ class TranskipController extends Controller
                     'dosen' => $dosen->name,
                 ];
             }
-        } else {
-            $data = null;
-        }
-        dd($data);
+  
 
 
         $IPK = 0;
