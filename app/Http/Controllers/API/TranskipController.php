@@ -89,6 +89,7 @@ class TranskipController extends Controller
         } else {
             $data = null;
         }
+        dd($data);
 
 
         $IPK = 0;
