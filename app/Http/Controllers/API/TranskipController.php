@@ -68,22 +68,28 @@ class TranskipController extends Controller
             ->groupBy('semester')->where('enroll_mata_kuliah.user_id', $id)->get();
 
         $totalnilai = 0;
-        foreach ($transkipsemester as $item) {
-            $dosen = AksesKelas::select('users.name')
-                ->join('users', 'users.id', '=', 'akses_kelas.user_id')
-                ->where('akses_kelas.mata_kuliah_id', $item->matkul_id)->first();
-            $nilai = Helper::variabel_nilai($item->nilai_akhir);
-            $var1 = $item->nilai_akhir * $item->sks;
-            $totalnilai = $totalnilai + $var1;
 
-            $data[] = [
-                'kode' => $item->kode,
-                'mata_kuliah' => $item->judul,
-                'sks' => $item->sks,
-                'nilai' => $nilai,
-                'dosen' => $dosen->name,
-            ];
+        if ($transkipsemester != null) {
+            foreach ($transkipsemester as $item) {
+                $dosen = AksesKelas::select('users.name')
+                    ->join('users', 'users.id', '=', 'akses_kelas.user_id')
+                    ->where('akses_kelas.mata_kuliah_id', $item->matkul_id)->first();
+                $nilai = Helper::variabel_nilai($item->nilai_akhir);
+                $var1 = $item->nilai_akhir * $item->sks;
+                $totalnilai = $totalnilai + $var1;
+
+                $data[] = [
+                    'kode' => $item->kode,
+                    'mata_kuliah' => $item->judul,
+                    'sks' => $item->sks,
+                    'nilai' => $nilai,
+                    'dosen' => $dosen->name,
+                ];
+            }
+        } else {
+            $data = null;
         }
+
 
         $IPK = 0;
         foreach ($transkip as $item) {
@@ -96,7 +102,7 @@ class TranskipController extends Controller
         } else {
             $ips = null;
         }
-        
+
         $totalsemester = $transkip->count('semester');
         if ($totalsemester != null) {
             $ipkakhir = $IPK / $totalsemester;
