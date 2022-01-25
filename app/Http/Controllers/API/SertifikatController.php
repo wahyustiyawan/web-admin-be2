@@ -15,7 +15,8 @@ class SertifikatController extends Controller
 {
     public function sertifikat()
     {
-        $user = User::where('id', 1)->first();
+        // $user = User::where('id', 1)->first();
+        $user = Auth::user();
 
         $image = ('sertifikat/sertifikat.jpg');
         $path = ('sertifikat/'.Str::random(5).'.jpg');
@@ -23,19 +24,19 @@ class SertifikatController extends Controller
         $img = Image::make($image);
 
         // write text
-        $img->text('The quick brown fox jumps over the lazy dog.');
+        // $img->text('The quick brown fox jumps over the lazy dog.');
 
         // write text at position x , y 
-        $img->text('The quick brown fox jumps over the lazy dog.', 120, 100);
+        // $img->text('The quick brown fox jumps over the lazy dog.', 120, 100);
 
         // use callback to define details
-        $img->text('foo', 0, 0, function ($font) {
+        $img->text($user->name, 1700, 1300, function ($font) {
             $font->file(public_path('font/roboto.regular.ttf'));
-            $font->size(24);
-            $font->color('#fdf6e3');
+            $font->size(300);
+            $font->color('#00000');
             $font->align('center');
-            $font->valign('top');
-            $font->angle(45);
+            $font->valign('bottom');
+            // $font->angle(45);
         });
 
         // draw transparent text
