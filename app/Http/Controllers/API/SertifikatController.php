@@ -27,14 +27,14 @@ class SertifikatController extends Controller
     });  
        $img->save('sertifikat/sertifikat.jpg');
        
-        // return response()->json([
-        //     "error" => false,
-        //     "message" => "Success",
-        //     "data" => base64_encode($host.'/'.$img)
-        // ], 200);
+        return response()->json([
+            "error" => false,
+            "message" => "Success",
+            "data" => base64_encode($img)
+        ], 200);
 
-        print($img);
-        return redirect($img);
+        // print($img);
+        // return redirect($img);
     }
 
 
