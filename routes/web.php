@@ -206,9 +206,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/tambahDataDosen', [DashboardController::class, 'tambahDataDosen'])->name('tambahDataDosen');
     Route::post('/storeDataDosen', [DashboardController::class, 'storeDataDosen'])->name('storeDataDosen'); 
     Route::get('/editDataDosen/{id}', [DashboardController::class, 'editDataDosen'])->name('editDataDosen');
+    Route::get('/showDataDosen/{id}', [DashboardController::class, 'showDataDosen'])->name('showDataDosen');
     Route::put('/updateDataDosen/{id}', [DashboardController::class, 'updateDataDosen'])->name('updateDataDosen'); 
     Route::delete('/deleteDataDosen/{id}', [DashboardController::class, 'deleteDataDosen'])->name('deleteDataDosen');
     Route::get('/dataMahasiswa', [DashboardController::class, 'dataMahasiswa'])->name('dataMahasiswa');
+    Route::get('/editDataMahasiswa/{id}', [DashboardController::class, 'editDataMahasiswa'])->name('editDataMahasiswa');
+    Route::put('/updateDataMahasiswa/{id}', [DashboardController::class, 'updateDataMahasiswa'])->name('updateDataMahasiswa');
+    Route::delete('/deleteDataMahasiswa/{id}', [DashboardController::class, 'deleteDataMahasiswa'])->name('deleteDataMahasiswa');
     Route::put('/warna-kalender/{id}', [DashboardController::class, 'warnaKalender'])->name('warnaKelender');
     Route::resource('akseskelasMahasiswa', AksesKelasMahasiswaController::class);
     Route::resource('akseskelasDosen', AksesKelasDosenController::class)->except('edit', 'update');

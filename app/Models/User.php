@@ -30,6 +30,7 @@ class User extends Authenticatable
         'gambar',
         'no_hp',
         'firebaseUID',
+        'dosen_akademik',
         'role'
     ];
 

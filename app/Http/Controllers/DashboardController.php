@@ -9,7 +9,7 @@ use App\Models\Assignment;
 use App\Models\AssignmentText;
 use App\Models\AssignmentPilgan;
 use App\Models\Kalender;
-use App\Models\MataKuliah;
+use App\Models\Dosen;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use App\Models\Akses;
@@ -44,6 +44,12 @@ class DashboardController extends Controller
         return view('admin.dataKelas.dosen.index', compact('user'));
     }
 
+    public function showDataDosen($id)
+    {
+        $user = User::find($id);
+        $detail = Dosen::where('user_id', $id)->get();
+        return view('admin.dataKelas.dosen.show', compact('user', 'detail'));
+    }
     
     public function tambahDataDosen()
     {
@@ -102,6 +108,36 @@ class DashboardController extends Controller
     {
         $user = User::where('role','mahasiswa')->get();
         return view('admin.dataKelas.mahasiswa.index', compact('user'));
+    } 
+
+    public function editDataMahasiswa($id)
+    {
+        $user = User::find($id);
+        $dosen = User::where('role', 'dosen')->get();
+        return view('admin.dataKelas.mahasiswa.edit', compact('user', 'dosen'));
+    }
+
+    public function updateDataMahasiswa(Request $request, $id)
+    {
+
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $user->password;
+        $user->role = $request->role;
+        $user->firebaseUID = $request->firebaseUID;
+        $user->dosen_akademik = $request->dosen_akademik;
+
+        $user->save();
+        return redirect()->route('dataMahasiswa')
+        ->with('success', 'Data Mahasiswa berhasil diedit!');
+    }
+
+    public function deleteDataMahasiswa($id)
+    {
+        User::find($id)->delete();
+        return redirect()->route('dataMahasiswa')
+        ->with('success', 'Data Mahasiswa berhasil dihapus!');
     }
 
     public function assignment($id)

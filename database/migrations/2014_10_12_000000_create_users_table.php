@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('gambar')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('firebaseUID')->unique();
+            $table->string('dosen_akademik')->nullable();
             $table->enum('role', ['admin', 'dosen', 'mahasiswa']);
             $table->timestamps();
         });
@@ -45,6 +46,7 @@ class CreateUsersTable extends Migration
             'password' => bcrypt('123123123'),
             'role' => 'mahasiswa',
             'firebaseUID' => 'user',
+            'dosen_akademik' => 'dosen',
         ]);
         DB::table('users')->insert([
             'name' => 'learning',
@@ -52,6 +54,7 @@ class CreateUsersTable extends Migration
             'password' => bcrypt('123123123'),
             'role' => 'mahasiswa',
             'firebaseUID' => 'o6xpgIdzzuY5A4wgfQLwpIGoOs42',
+            'dosen_akademik' => 'dosen',
         ]);
         DB::table('users')->insert([
             'name' => 'learning',
@@ -59,6 +62,7 @@ class CreateUsersTable extends Migration
             'password' => bcrypt('123123123'),
             'role' => 'mahasiswa',
             'firebaseUID' => 'jkWufdhKgGed7WbF4msiyAttgBY2',
+            'dosen_akademik' => 'dosen',
         ]);
         DB::table('users')->insert([
             'name' => 'riyanto',
@@ -66,6 +70,7 @@ class CreateUsersTable extends Migration
             'password' => bcrypt('123123123'),
             'role' => 'mahasiswa',
             'firebaseUID' => 'NYErGOvHwWRui406d8MkwoMz4Qv2',
+            'dosen_akademik' => 'dosen',
         ]);
     }
 
