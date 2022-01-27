@@ -42,6 +42,17 @@ class JobChannelController extends Controller
         // return ResponseFormatter::success($jobChannel);
     }
 
+    public function index()
+    {
+        $jobChannel = JobChannel::all();
+        return response()->json([
+            "error" => false,
+            "message" => "success",
+            "data" => $jobChannel
+        ], 200);
+        // return ResponseFormatter::success($jobChannel);
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),
