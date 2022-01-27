@@ -31,10 +31,10 @@ class TranskipController extends Controller
             }
 
             $ips = (int)($item->nilai / $item->jumlahsks) / 25;
-            
+
             $totalips = $totalips + $ips;
 
-            $tahunajaran = 'KHS '.$ajaran . ' ' . $tahun['year'];
+            $tahunajaran = 'KHS ' . $ajaran . ' ' . $tahun['year'];
             $data[] = [
                 'sks' => (int)$item->jumlahsks,
                 'ips' => $ips,
@@ -44,7 +44,7 @@ class TranskipController extends Controller
         }
 
         $transkip = [
-            'IPK' => $totalips/$dataenroll->max('semester'),
+            'IPK' => $totalips / $dataenroll->max('semester'),
             'dosen_pembimbing' => '',
             'transkip' => $data,
         ];
@@ -67,34 +67,51 @@ class TranskipController extends Controller
             ->select('enroll_mata_kuliah.semester', DB::raw('SUM(mata_kuliah.sks) as jumlahsks'), DB::raw('SUM(enroll_mata_kuliah.nilai_akhir*mata_kuliah.sks) as nilai'))
             ->groupBy('semester')->where('enroll_mata_kuliah.user_id', $id)->get();
 
-        $totalnilai = 0;
-        foreach ($transkipsemester as $item) {
-            $dosen = AksesKelas::select('users.name')
-                ->join('users', 'users.id', '=', 'akses_kelas.user_id')
-                ->where('akses_kelas.mata_kuliah_id', $item->matkul_id)->first();
-            $nilai = Helper::variabel_nilai($item->nilai_akhir);
-            $var1 = $item->nilai_akhir * $item->sks;
-            $totalnilai = $totalnilai + $var1;
 
-            $data[] = [
-                'kode' => $item->kode,
-                'mata_kuliah' => $item->judul,
-                'sks' => $item->sks,
-                'nilai' => $nilai,
-                'dosen' => $dosen->name,
-            ];
-        }
+            $totalnilai = 0;
+            $data = null;
+            foreach ($transkipsemester as $item) {
+                $dosen = AksesKelas::select('users.name')
+                    ->join('users', 'users.id', '=', 'akses_kelas.user_id')
+                    ->where('akses_kelas.mata_kuliah_id', $item->matkul_id)->first();
+                $nilai = Helper::variabel_nilai($item->nilai_akhir);
+                $var1 = $item->nilai_akhir * $item->sks;
+                $totalnilai = $totalnilai + $var1;
+
+                $data[] = [
+                    'kode' => $item->kode,
+                    'mata_kuliah' => $item->judul,
+                    'sks' => $item->sks,
+                    'nilai' => $nilai,
+                    'dosen' => $dosen->name,
+                ];
+            }
+  
+
 
         $IPK = 0;
         foreach ($transkip as $item) {
             $a = (int)($item->nilai / $item->jumlahsks) / 25;
             $IPK = $IPK + $a;
         }
+
+        if ($transkipsemester->sum('sks') != null) {
+            $ips = (int)($totalnilai / $transkipsemester->sum('sks')) / 25;
+        } else {
+            $ips = null;
+        }
+
         $totalsemester = $transkip->count('semester');
+        if ($totalsemester != null) {
+            $ipkakhir = $IPK / $totalsemester;
+        } else {
+            $ipkakhir = null;
+        }
+
         $hasil = [
             'totalsks' => (int)$transkip->SUM('jumlahsks'),
-            'IPS' => (int)($totalnilai / $transkipsemester->sum('sks')) / 25,
-            'IPK' => $IPK / $totalsemester,
+            'IPS' => $ips,
+            'IPK' => $ipkakhir,
             'detail' => $data,
         ];
 
