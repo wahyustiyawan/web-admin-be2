@@ -50,7 +50,7 @@ class SertifikatController extends Controller
 
         // dd($img);
 
-        // print($img);
-        // return redirect($img);
+        print($path);
+        return redirect($path);
     }
 }

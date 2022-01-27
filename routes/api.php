@@ -211,8 +211,7 @@ Route::get('/jumlah-enroll-matkul/{id}', [EnrollMataKuliahController::class, 'en
 
 //Route Administrasai
 Route::post('/administrasi', [AdministrationController::class, 'store']);
-
-// Route::get('/sertifikat', [SertifikatController::class, 'sertifikat']);    
+  
 
 
 // Protected routes
