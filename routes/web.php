@@ -27,6 +27,7 @@ use App\Http\Controllers\QuizController as ControllersQuizController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ExamPilganController;
 use App\Http\Controllers\AdministrasiController;
+use App\Http\Controllers\GuideController;
 use App\Models\Assignment;
 use App\Models\UserExam;
 
@@ -116,6 +117,7 @@ Route::put('/storeExam/{id}', [ExamController::class, 'storeExam'])->name('store
 Route::get('/show-userExam/{id}', [ExamController::class, 'showUserExam'])->name('showUserExam');
 
 Route::resource('administrasi', AdministrasiController::class);
+Route::resource('guide', GuideController::class);
 
 
 
