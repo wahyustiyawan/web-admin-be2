@@ -42,6 +42,8 @@ use App\Http\Controllers\API\TranskipController;
 use App\Http\Controllers\API\UserExamController;
 use App\Http\Controllers\API\UserJobChannelController;
 use App\Http\Controllers\API\UserMandiriController;
+use App\Http\Controllers\API\SertifikatController;
+use App\Http\Controllers\API\GuideController;
 use App\Models\DiscussionForum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -113,7 +115,9 @@ Route::get('/iklan/{id}/view', [IklanController::class, 'view']);
 Route::resource('iklan', IklanController::class);
 
 //Route JobChannel
-Route::get('/jobChannel', [JobChannelController::class, 'index']);
+Route::get('/job_kerja', [JobChannelController::class, 'job_kerja']);
+Route::get('/job_magang', [JobChannelController::class, 'job_magang']);
+Route::get('/job_project', [JobChannelController::class, 'job_project']);
 Route::post('/jobChannel', [JobChannelController::class, 'store']);
 Route::get('/jobChannel/{id}', [JobChannelController::class, 'show']);
 Route::get('/jobChannel/{id}/download', [JobChannelController::class, 'download']);
@@ -209,10 +213,17 @@ Route::get('/jumlah-enroll/{id}', [EnrollStudiController::class, 'enroll']);
 Route::get('/jumlah-enroll-matkul/{id}', [EnrollMataKuliahController::class, 'enroll']);
 
 //Route Administrasai
-Route::post('/administrasi', [AdministrationController::class, 'store']);    
+Route::post('/administrasi', [AdministrationController::class, 'store']);
+
+//E-Guide
+Route::get('/buku_panduan', [GuideController::class, 'buku_panduan']);
+Route::get('/video_panduan', [GuideController::class, 'video_panduan']);
+Route::get('/kamus_kg', [GuideController::class, 'kamus_kg']);
+Route::get('/view3/{file_name}', [ViewController::class, 'view_buku_panduan']);
 
 // Protected routes
 Route::group(['middleware' => ['auth:api']], function () {
+    Route::get('/sertifikat', [SertifikatController::class, 'sertifikat']);  
     //User Job Channel
     Route::post('/userjobchannel', [UserJobChannelController::class, 'store']);
     

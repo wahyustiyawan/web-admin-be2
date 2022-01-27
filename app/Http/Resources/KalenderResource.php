@@ -4,6 +4,8 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+use function PHPSTORM_META\type;
+
 class KalenderResource extends JsonResource
 {
     /**
@@ -12,17 +14,25 @@ class KalenderResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
+
+    protected $foo = 1212;
+
+    public function __construct($resource, $foo)
+    {
+        // Ensure you call the parent constructor
+        parent::__construct($resource);
+        $this->resource = $resource;
+        
+        $this->foo = $foo;
+    }
+    
     public function toArray($request)
     {
-        $tanggal =  explode('-', $this->deadline);
+        // $tanggal =  explode('-', $this->deadline);
         return [
             'namaEvent' => $this->judul,
-            'jenisEvent' => 'assignment',
-            // 'assignment' => $this->assignment,
+            'jenisEvent' => $this->foo,
             'waktuSelesai' => $this->deadline,
-            // 'tahun' => $tanggal[0],
-            // 'bulan' => $tanggal[1],
-            // 'tanggal' => $tanggal[2],
             'pertemuan_id' => $this->pertemuan_id,
             'mata_kuliah_id' => $this->mata_kuliah_id,
         ];
@@ -36,5 +46,4 @@ class KalenderResource extends JsonResource
             //'kelas' => $kelas,
         ];
     }
-
 }

@@ -124,7 +124,7 @@ class JobChannelController extends Controller
         $jobChannel->save();
         //notify()->success('Job Channel berhasil diedit!');
         return redirect()->route('jobChannel.index')
-        ->with('edit', 'Job Channel Berhasil Diedit');
+        ->with('success', 'Job Channel Berhasil Diedit');
     }
 
     public function destroy($id)
