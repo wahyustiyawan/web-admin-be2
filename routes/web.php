@@ -204,6 +204,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // Route::get('/admin', function () {
     //     return view('admin.index');
     // })->name('admin.dashboard');
+    Route::get('/coba', [DashboardController::class, 'coba'])->name('coba');
+
     Route::get('/dataDosen', [DashboardController::class, 'dataDosen'])->name('dataDosen');
     Route::get('/tambahDataDosen', [DashboardController::class, 'tambahDataDosen'])->name('tambahDataDosen');
     Route::post('/storeDataDosen', [DashboardController::class, 'storeDataDosen'])->name('storeDataDosen'); 

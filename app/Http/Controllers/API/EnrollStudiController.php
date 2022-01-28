@@ -20,6 +20,7 @@ use App\Http\Resources\EnrollsResource;
 use App\Http\Resources\EnrollsCollection;
 use App\Http\Resources\EnrollStudiResource;
 use App\Http\Resources\EnrollStudiCollection;
+use App\Models\Administration;
 use App\Models\EnrollMataKuliah;
 use App\Models\EnrollStudi;
 use App\Models\MataKuliah;
@@ -76,7 +77,7 @@ class EnrollStudiController extends Controller
             return response()->json($success);
         }
         
-        $taskInput      =       array(
+        $taskInput      =       array( 
             'user_id'     =>      $user->id,
             'kelas_id'   =>  $kelas->id,
             'isComplete'     =>   false,
@@ -90,13 +91,13 @@ class EnrollStudiController extends Controller
             return response()->json($success);
         }
 
-        $listMkuliah = MataKuliah::where('kelas_id', $kelas->id)->get();
-        
+        $semester = Administration::where('user_id', $user->id)->first()->semester;
+        $listMkuliah = MataKuliah::where('kelas_id', $kelas->id)->where('semester', $semester)->get();
         foreach ($listMkuliah as $Mkuliah){
             $Input      =       array(
                 'user_id'     =>      $user->id,
                 'mata_kuliah_id'   =>  $Mkuliah->id,
-                // 'enroll_studi_id' => $enrolls->id,
+                'semester' => $Mkuliah->semester,
                 'isComplete'     =>   false,
             );
             $enroll_Mkuliah = new EnrollMataKuliah($Input);

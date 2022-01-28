@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Administration;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Kelas;
@@ -13,6 +15,7 @@ use App\Models\Dosen;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use App\Models\Akses;
+use App\Models\MataKuliah;
 
 class DashboardController extends Controller
 {
@@ -195,5 +198,14 @@ class DashboardController extends Controller
        
         return back()
             ->with('edit', 'Warna Kalender Berhasil Diedit');
+    }
+
+    public function coba()
+    {
+        
+        $semester = Administration::where('user_id', 6)->first()->semester;
+        $listMkuliah = MataKuliah::where('kelas_id',1)->where('semester', $semester)->get();
+
+        dd($listMkuliah);
     }
 }
