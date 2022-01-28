@@ -13,9 +13,9 @@ use Intervention\Image\Facades\Image;
 
 class SertifikatController extends Controller
 {
-    public function sertifikat()
+    public function sertifikat(Request $request)
     {
-        // $user = User::where('id', 1)->first();
+        $host = $request->getSchemeAndHttpHost();
         $user = Auth::user();
 
         $image = ('sertifikat/sertifikat.jpg');
@@ -50,7 +50,7 @@ class SertifikatController extends Controller
 
         // dd($img);
 
-        print($path);
-        return redirect($path);
+        print($host.'/'.$path);
+        return redirect($host.'/'.$path);
     }
 }
