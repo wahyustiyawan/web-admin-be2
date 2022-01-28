@@ -59,5 +59,15 @@ class User extends Authenticatable
         return $this->hasMany(MataKuliah::class);
     }
 
+    public function get_akses_kelas()
+    {
+        return $this->hasMany(AksesKelas::class);
+    }
+
+    public function data_dosen()
+    {
+        return $this->belongsTo(DataDosen::class);
+    }
+
     
 }

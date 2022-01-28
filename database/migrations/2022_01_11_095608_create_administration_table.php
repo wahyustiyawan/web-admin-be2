@@ -13,7 +13,7 @@ class CreateAdministrationTable extends Migration
      */
     public function up()
     {
-        Schema::create('administration', function (Blueprint $table) {
+        Schema::create('data_mahasiswa', function (Blueprint $table) {
             $table->id();
             $table->string('nama_lengkap')->nullable();
             $table->string('nik')->nullable();

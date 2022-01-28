@@ -19,9 +19,12 @@ class CreateDosenTable extends Migration
             // 1 => Academic & Career Expert
             // 2 => Administration & Regulation Expert 
             // 3 => Contract Lecturer & Content Creator Expert
-            $table->string('alamat');
-            $table->string('nidn');
-            $table->string('ktp');
+            $table->string('detail_dosen')->nullable();
+            $table->string('nama_lengkap')->nullable();
+            $table->string('no_hp')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('nidn')->nullable();
+            $table->string('ktp')->nullable();
             $table->foreignId("user_id")->constrained("users")->onDelete("cascade")->onUpdate("cascade");
             $table->boolean('isVerified')->nullable();
             $table->timestamps();
