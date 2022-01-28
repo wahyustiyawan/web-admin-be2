@@ -134,9 +134,6 @@ Route::get('/quiz/{id}', [QuizController::class, 'show']);
 //User Quiz
 Route::get('/user-quiz', [UserQuizController::class, 'index']);
 
-//Transkip
-Route::get('/transkip/{id}', [TranskipController::class, 'index']);
-Route::get('/transkip/{id}/semester/{semester}', [TranskipController::class, 'transkipSemester']);
 //User ExamPG
 Route::post('/user-exampg', [UserExamPGController::class, 'store']);
 
@@ -227,6 +224,10 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/sertifikat', [SertifikatController::class, 'sertifikat']);  
     //User Job Channel
     Route::post('/userjobchannel', [UserJobChannelController::class, 'store']);
+    
+    //Transkip
+    Route::get('/transkip', [TranskipController::class, 'index']);
+    Route::get('/transkip/semester/{semester}', [TranskipController::class, 'transkipSemester']);
     
     //DiscussionForum
     Route::post('/discussionForum', [DiscussionForumController::class, 'store']);
