@@ -16,7 +16,7 @@
                     <div class="col-auto my-auto">
                         <div class="h-100">
                             <h5 class="mb-1">
-                                {{ $user->name }}
+                                {{ $user->data_dosen->nama_lengkap }}
                             </h5>
                             <p class="mb-0 font-weight-bold text-sm">
                                 {{$user->role}} {{-- Sementara Pakai Role Dulu --}}
@@ -74,17 +74,17 @@
                             <hr class="horizontal gray-light my-4">
                             <ul class="list-group">
                                 <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
-                                        class="text-dark">Nama Lengkap:</strong> &nbsp; Isi Nama Lengkap</li>
+                                        class="text-dark">Nama Lengkap:</strong> &nbsp; {{$user->data_dosen->nama_lengkap}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Nomor
-                                        Hp:</strong> &nbsp; Isi Nomor HP</li>
+                                        Hp:</strong> &nbsp; {{$user->data_dosen->no_hp}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                        class="text-dark">Email:</strong> &nbsp; Isi Email</li>
+                                        class="text-dark">Email:</strong> &nbsp; {{$user->email}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                        class="text-dark">Alamat:</strong> &nbsp; Isi Alamat</li>
+                                        class="text-dark">Alamat:</strong> &nbsp; {{$user->data_dosen->alamat}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">No
-                                        KTP:</strong> &nbsp; Isi No KTP</li>
+                                        KTP:</strong> &nbsp; {{$user->data_dosen->ktp}}</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">No
-                                        NIDN:</strong> &nbsp; Isi NIDN</li>
+                                        NIDN:</strong> &nbsp; {{$user->data_dosen->nidn}}</li>
                                 <li class="list-group-item border-0 ps-0 pb-0">
                                     <strong class="text-dark text-sm">Social:</strong> &nbsp;
                                     <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">

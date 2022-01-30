@@ -49,9 +49,9 @@ class DashboardController extends Controller
 
     public function showDataDosen($id)
     {
-        $user = User::find($id);
+        $user = User::where('id',$id)->with(['data_dosen'])->first();
         $detail = Dosen::where('user_id', $id)->get();
-        $akseskelas = AksesKelas::where('user_id',$id)->get();
+        $akseskelas = AksesKelas::where('user_id',$id)->with(['matkul','matkul.kelas'])->get();
         // dd($user->data_dosen);
         return view('admin.dataKelas.dosen.show', compact('user', 'detail','akseskelas'));
     }
