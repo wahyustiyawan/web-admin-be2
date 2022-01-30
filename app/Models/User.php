@@ -66,7 +66,7 @@ class User extends Authenticatable
 
     public function data_dosen()
     {
-        return $this->belongsTo(DataDosen::class);
+        return $this->hasOne(DataDosen::class);
     }
 
     
