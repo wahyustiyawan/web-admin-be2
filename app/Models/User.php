@@ -30,6 +30,7 @@ class User extends Authenticatable
         'gambar',
         'no_hp',
         'firebaseUID',
+        'dosen_akademik',
         'role'
     ];
 
@@ -56,6 +57,16 @@ class User extends Authenticatable
     public function get_mata_kuliah()
     {
         return $this->hasMany(MataKuliah::class);
+    }
+
+    public function get_akses_kelas()
+    {
+        return $this->hasMany(AksesKelas::class);
+    }
+
+    public function data_dosen()
+    {
+        return $this->hasOne(DataDosen::class);
     }
 
     

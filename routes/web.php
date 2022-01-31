@@ -27,6 +27,7 @@ use App\Http\Controllers\QuizController as ControllersQuizController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ExamPilganController;
 use App\Http\Controllers\AdministrasiController;
+use App\Http\Controllers\GuideController;
 use App\Models\Assignment;
 use App\Models\UserExam;
 
@@ -116,6 +117,7 @@ Route::put('/storeExam/{id}', [ExamController::class, 'storeExam'])->name('store
 Route::get('/show-userExam/{id}', [ExamController::class, 'showUserExam'])->name('showUserExam');
 
 Route::resource('administrasi', AdministrasiController::class);
+Route::resource('guide', GuideController::class);
 
 
 
@@ -202,13 +204,19 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // Route::get('/admin', function () {
     //     return view('admin.index');
     // })->name('admin.dashboard');
+    Route::get('/coba', [DashboardController::class, 'coba'])->name('coba');
+
     Route::get('/dataDosen', [DashboardController::class, 'dataDosen'])->name('dataDosen');
     Route::get('/tambahDataDosen', [DashboardController::class, 'tambahDataDosen'])->name('tambahDataDosen');
     Route::post('/storeDataDosen', [DashboardController::class, 'storeDataDosen'])->name('storeDataDosen'); 
     Route::get('/editDataDosen/{id}', [DashboardController::class, 'editDataDosen'])->name('editDataDosen');
+    Route::get('/showDataDosen/{id}', [DashboardController::class, 'showDataDosen'])->name('showDataDosen');
     Route::put('/updateDataDosen/{id}', [DashboardController::class, 'updateDataDosen'])->name('updateDataDosen'); 
     Route::delete('/deleteDataDosen/{id}', [DashboardController::class, 'deleteDataDosen'])->name('deleteDataDosen');
     Route::get('/dataMahasiswa', [DashboardController::class, 'dataMahasiswa'])->name('dataMahasiswa');
+    Route::get('/editDataMahasiswa/{id}', [DashboardController::class, 'editDataMahasiswa'])->name('editDataMahasiswa');
+    Route::put('/updateDataMahasiswa/{id}', [DashboardController::class, 'updateDataMahasiswa'])->name('updateDataMahasiswa');
+    Route::delete('/deleteDataMahasiswa/{id}', [DashboardController::class, 'deleteDataMahasiswa'])->name('deleteDataMahasiswa');
     Route::put('/warna-kalender/{id}', [DashboardController::class, 'warnaKalender'])->name('warnaKelender');
     Route::resource('akseskelasMahasiswa', AksesKelasMahasiswaController::class);
     Route::resource('akseskelasDosen', AksesKelasDosenController::class)->except('edit', 'update');

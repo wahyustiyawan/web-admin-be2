@@ -49,7 +49,7 @@
                     <button type="submit" class="btn btn-link text-danger text-gradient px-3 mb-0 show_confirm" data-toggle="tooltip" title='Delete'><i class="fas fa-trash text-secondary"></i></button>
                   </form>
                   <a class="btn btn-link text-dark px-3 mb-0" href="{{route('editDataDosen', $item->id)}}"><i class="fas fa-user-edit text-secondary"></i></a>
-                  {{-- <a class="btn btn-link text-dark px-3 mb-0" href="{{route('kelas.show', $item->id)}}"><i class="fas fa-eye text-secondary"></i></a> --}}
+                  <a class="btn btn-link text-dark px-3 mb-0" href="{{route('showDataDosen', $item->id)}}"><i class="fas fa-eye text-secondary"></i></a>
                 </div>
               </td>
             </tr>

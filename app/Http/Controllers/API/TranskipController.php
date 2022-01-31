@@ -8,15 +8,17 @@ use App\Models\AksesKelas;
 use App\Models\EnrollMataKuliah;
 use App\Models\MataKuliah;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TranskipController extends Controller
 {
-    public function index($id)
+    public function index()
     {
+        $user = Auth::user();
         $dataenroll = EnrollMataKuliah::join('mata_kuliah', 'mata_kuliah.id', '=', 'enroll_mata_kuliah.mata_kuliah_id')
             ->select('enroll_mata_kuliah.semester', DB::raw('SUM(mata_kuliah.sks) as jumlahsks'), DB::raw('SUM(enroll_mata_kuliah.nilai_akhir*mata_kuliah.sks) as nilai'))
-            ->groupBy('semester')->where('enroll_mata_kuliah.user_id', $id)->get();
+            ->groupBy('semester')->where('enroll_mata_kuliah.user_id', $user->id)->get();
 
         $totalips = 0;
         $totalsemester = 0;
@@ -56,16 +58,17 @@ class TranskipController extends Controller
         ], 200);
     }
 
-    public function transkipSemester($id, $semester)
+    public function transkipSemester($semester)
     {
+        $user = Auth::user();
         $transkipsemester = EnrollMataKuliah::select('mata_kuliah.sks', 'akses_kelas.user_id', 'mata_kuliah.id as matkul_id', 'mata_kuliah.kode', 'mata_kuliah.judul', 'enroll_mata_kuliah.semester', 'enroll_mata_kuliah.nilai_akhir')
             ->join('mata_kuliah', 'mata_kuliah.id', '=', 'enroll_mata_kuliah.mata_kuliah_id')->join('akses_kelas', 'akses_kelas.mata_kuliah_id', '=', 'mata_kuliah.id')
-            ->where('enroll_mata_kuliah.user_id', $id)
+            ->where('enroll_mata_kuliah.user_id', $user->id)
             ->where('enroll_mata_kuliah.semester', $semester)->get();
 
         $transkip = EnrollMataKuliah::join('mata_kuliah', 'mata_kuliah.id', '=', 'enroll_mata_kuliah.mata_kuliah_id')
             ->select('enroll_mata_kuliah.semester', DB::raw('SUM(mata_kuliah.sks) as jumlahsks'), DB::raw('SUM(enroll_mata_kuliah.nilai_akhir*mata_kuliah.sks) as nilai'))
-            ->groupBy('semester')->where('enroll_mata_kuliah.user_id', $id)->get();
+            ->groupBy('semester')->where('enroll_mata_kuliah.user_id', $user->id)->get();
 
 
             $totalnilai = 0;

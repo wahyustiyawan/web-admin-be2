@@ -61,7 +61,7 @@ class KelasController extends Controller
         $kelasselect = Kelas::all();
         $kategori = Kategori::all();
         $assignment = Assignment::all();
-        $mataKuliah = MataKuliah::all();
+        $mataKuliah = MataKuliah::with(['pertemuan','kategori','kelas'])->get();
         $pertemuan = Pertemuan::all();
         return view('admin.kelas.show', compact('kelas','kategori', 'mataKuliah','kelasselect', 'assignment','pertemuan'));
     }

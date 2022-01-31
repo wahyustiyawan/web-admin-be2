@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Administration;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Kelas;
@@ -9,10 +11,11 @@ use App\Models\Assignment;
 use App\Models\AssignmentText;
 use App\Models\AssignmentPilgan;
 use App\Models\Kalender;
-use App\Models\MataKuliah;
+use App\Models\Dosen;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use App\Models\Akses;
+use App\Models\MataKuliah;
 
 class DashboardController extends Controller
 {
@@ -44,6 +47,14 @@ class DashboardController extends Controller
         return view('admin.dataKelas.dosen.index', compact('user'));
     }
 
+    public function showDataDosen($id)
+    {
+        $user = User::where('id',$id)->with(['data_dosen'])->first();
+        $detail = Dosen::where('user_id', $id)->get();
+        $akseskelas = AksesKelas::where('user_id',$id)->with(['matkul','matkul.kelas'])->get();
+        // dd($user->data_dosen);
+        return view('admin.dataKelas.dosen.show', compact('user', 'detail','akseskelas'));
+    }
     
     public function tambahDataDosen()
     {
@@ -102,6 +113,36 @@ class DashboardController extends Controller
     {
         $user = User::where('role','mahasiswa')->get();
         return view('admin.dataKelas.mahasiswa.index', compact('user'));
+    } 
+
+    public function editDataMahasiswa($id)
+    {
+        $user = User::find($id);
+        $dosen = User::where('role', 'dosen')->get();
+        return view('admin.dataKelas.mahasiswa.edit', compact('user', 'dosen'));
+    }
+
+    public function updateDataMahasiswa(Request $request, $id)
+    {
+
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $user->password;
+        $user->role = $request->role;
+        $user->firebaseUID = $request->firebaseUID;
+        $user->dosen_akademik = $request->dosen_akademik;
+
+        $user->save();
+        return redirect()->route('dataMahasiswa')
+        ->with('success', 'Data Mahasiswa berhasil diedit!');
+    }
+
+    public function deleteDataMahasiswa($id)
+    {
+        User::find($id)->delete();
+        return redirect()->route('dataMahasiswa')
+        ->with('success', 'Data Mahasiswa berhasil dihapus!');
     }
 
     public function assignment($id)
@@ -157,5 +198,14 @@ class DashboardController extends Controller
        
         return back()
             ->with('edit', 'Warna Kalender Berhasil Diedit');
+    }
+
+    public function coba()
+    {
+        
+        $semester = Administration::where('user_id', 6)->first()->semester;
+        $listMkuliah = MataKuliah::where('kelas_id',1)->where('semester', $semester)->get();
+
+        dd($listMkuliah);
     }
 }

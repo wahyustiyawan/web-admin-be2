@@ -10,6 +10,38 @@ use App\Helpers\ResponseFormatter;
 
 class JobChannelController extends Controller
 {
+    public function job_kerja()
+    {
+        $jobChannel = JobChannel::where('tipe', 'Kerja')->get();
+        return response()->json([
+            "error" => false,
+            "message" => "success",
+            "data" => $jobChannel
+        ], 200);
+        // return ResponseFormatter::success($jobChannel);
+    }
+    public function job_magang()
+    {
+        $jobChannel = JobChannel::where('tipe', 'Magang')->get();
+        return response()->json([
+            "error" => false,
+            "message" => "success",
+            "data" => $jobChannel
+        ], 200);
+        // return ResponseFormatter::success($jobChannel);
+    }
+
+    public function job_project()
+    {
+        $jobChannel = JobChannel::where('tipe', 'Project')->get();
+        return response()->json([
+            "error" => false,
+            "message" => "success",
+            "data" => $jobChannel
+        ], 200);
+        // return ResponseFormatter::success($jobChannel);
+    }
+
     public function index()
     {
         $jobChannel = JobChannel::all();

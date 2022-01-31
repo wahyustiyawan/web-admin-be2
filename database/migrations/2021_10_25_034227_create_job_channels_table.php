@@ -21,8 +21,8 @@ class CreateJobChannelsTable extends Migration
             $table->string('bidang');
             $table->enum('tipe', ['Kerja', 'Magang', 'Project'])->default('Kerja');
             $table->enum('jenis', ['Full Time', 'Part Time', 'Internship'])->default('Full Time');
-            $table->string('requirement'); 
-            $table->string('job_desk'); 
+            $table->longText('requirement'); 
+            $table->longText('job_desk'); 
             $table->string('alamat'); 
             $table->string('foto');
             $table->timestamps();

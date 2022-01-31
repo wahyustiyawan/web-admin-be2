@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
             KontenVideoSeeder::class,
             NilaiSeeder::class,
             // EnrollsSeeder::class,
-            KontenDokumenSeeder::class
+            KontenDokumenSeeder::class,
+            QuestionSeeder::class,
         ]);
     }
 }

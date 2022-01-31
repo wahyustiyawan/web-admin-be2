@@ -13,14 +13,14 @@ class CreateAdministrationTable extends Migration
      */
     public function up()
     {
-        Schema::create('administration', function (Blueprint $table) {
+        Schema::create('data_mahasiswa', function (Blueprint $table) {
             $table->id();
             $table->string('nama_lengkap')->nullable();
             $table->string('nik')->nullable();
             $table->string('email')->nullable();
             $table->string('prodi')->nullable();
             $table->string('tahun_ajar')->nullable();
-            $table->string('semester')->nullable();
+            $table->integer('semester')->nullable();
             $table->string('alamat_domisili')->nullable();
             $table->string('alamat_ktp')->nullable();
             $table->string('no_hp')->nullable();
@@ -47,6 +47,7 @@ class CreateAdministrationTable extends Migration
             $table->string('surat_rekomendasi')->nullable();
             $table->enum('program', ['D1', ['S1'], ['Kursus']])->nullable();
             $table->boolean('isVerified')->nullable();
+            $table->foreignId("user_id")->constrained("users")->onDelete("cascade")->onUpdate("cascade")->nullable();
             $table->timestamps();
         });
     }
