@@ -13,6 +13,7 @@ use App\Models\Dosen;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use App\Models\Akses;
+use App\Models\MataKuliah;
 
 class DashboardController extends Controller
 {
@@ -27,14 +28,22 @@ class DashboardController extends Controller
         if(Auth::user()->role == 'dosen'){
             $Kalender = Kalender::where('user_id',Auth::user()->id)->get();
             $user = User::has('AksesKelas')->get();
-            return view('dosen.index', compact('user','Kalender'));
+            $mahasiswa = User::where('role', 'mahasiswa')->count();
+            $dosen = User::where('role', 'dosen')->count();
+            return view('dosen.index', compact('user','Kalender', 'mahasiswa', 'dosen'));
         }
         elseif(Auth::user()->role == 'admin'){
-            return view('admin.index');
+            $mahasiswa = User::where('role', 'mahasiswa')->count();
+            $dosen = User::where('role', 'dosen')->count();
+            $prodi = Kelas::count();
+            $matakuliah = MataKuliah::count();
+            return view('admin.index', compact('mahasiswa', 'dosen', 'prodi', 'matakuliah'));
         }
         else{
 
         }
+
+
 
     }
 

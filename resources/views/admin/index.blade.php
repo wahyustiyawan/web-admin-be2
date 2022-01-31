@@ -6,7 +6,7 @@
           <div class="row">
             <div class="col-lg-6">
               <div class="d-flex flex-column h-100">
-                <h2 class="font-weight-bolder mb-0">General Statistics</h2>
+                <h2 class="font-weight-bolder mb-0">Selamat Datang di Dashboard Admin!</h2>
               </div>
             </div>
           </div>
@@ -19,10 +19,10 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Today's Money</p>
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Jumlah Mahasiswa</p>
                     <h5 class="font-weight-bolder mb-0">
-                      $53,000
-                      <span class="text-success text-sm font-weight-bolder">+55%</span>
+                      {{$mahasiswa}}
+                      {{-- <span class="text-success text-sm font-weight-bolder">+55%</span> --}}
                     </h5>
                   </div>
                 </div>
@@ -39,10 +39,10 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Today's Users</p>
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Jumlah Program Studi</p>
                     <h5 class="font-weight-bolder mb-0">
-                      2,300
-                      <span class="text-success text-sm font-weight-bolder">+3%</span>
+                      {{$prodi}}
+                      {{-- <span class="text-success text-sm font-weight-bolder">+3%</span> --}}
                     </h5>
                   </div>
                 </div>
@@ -61,10 +61,10 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-capitalize font-weight-bold">New Clients</p>
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Jumlah Dosen</p>
                     <h5 class="font-weight-bolder mb-0">
-                      +3,462
-                      <span class="text-danger text-sm font-weight-bolder">-2%</span>
+                      {{$dosen}}
+                      {{-- <span class="text-danger text-sm font-weight-bolder">-2%</span> --}}
                     </h5>
                   </div>
                 </div>
@@ -81,10 +81,10 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Sales</p>
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Jumlah Mata Kuliah</p>
                     <h5 class="font-weight-bolder mb-0">
-                      $103,430
-                      <span class="text-success text-sm font-weight-bolder">+5%</span>
+                      {{$matakuliah}}
+                      {{-- <span class="text-success text-sm font-weight-bolder">+5%</span> --}}
                     </h5>
                   </div>
                 </div>
@@ -103,7 +103,7 @@
           <div class="card ">
             <div class="card-header pb-0 p-3">
               <div class="d-flex justify-content-between">
-                <h6 class="mb-2">Sales by Country</h6>
+                <h6 class="mb-2">Report Dosen</h6>
               </div>
             </div>
             <div class="table-responsive">
@@ -113,7 +113,7 @@
                     <td class="w-30">
                       <div class="d-flex px-2 py-1 align-items-center">
                         <div>
-                          <img src="../../assets/img/icons/flags/US.png" alt="Country flag">
+                          {{-- <img src="../../assets/img/icons/flags/US.png" alt="Country flag"> --}}
                         </div>
                         <div class="ms-4">
                           <p class="text-xs font-weight-bold mb-0">Country:</p>
@@ -144,7 +144,7 @@
                     <td class="w-30">
                       <div class="d-flex px-2 py-1 align-items-center">
                         <div>
-                          <img src="../../assets/img/icons/flags/DE.png" alt="Country flag">
+                          {{-- <img src="../../assets/img/icons/flags/DE.png" alt="Country flag"> --}}
                         </div>
                         <div class="ms-4">
                           <p class="text-xs font-weight-bold mb-0">Country:</p>
@@ -175,7 +175,7 @@
                     <td class="w-30">
                       <div class="d-flex px-2 py-1 align-items-center">
                         <div>
-                          <img src="../../assets/img/icons/flags/GB.png" alt="Country flag">
+                          {{-- <img src="../../assets/img/icons/flags/GB.png" alt="Country flag"> --}}
                         </div>
                         <div class="ms-4">
                           <p class="text-xs font-weight-bold mb-0">Country:</p>
@@ -206,7 +206,7 @@
                     <td class="w-30">
                       <div class="d-flex px-2 py-1 align-items-center">
                         <div>
-                          <img src="../../assets/img/icons/flags/BR.png" alt="Country flag">
+                          {{-- <img src="../../assets/img/icons/flags/BR.png" alt="Country flag"> --}}
                         </div>
                         <div class="ms-4">
                           <p class="text-xs font-weight-bold mb-0">Country:</p>
@@ -250,8 +250,8 @@
               <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
             </div>
           </div>
-          <h6 class="ms-2 mt-4 mb-0"> Active Users </h6>
-          <p class="text-sm ms-2"> (<span class="font-weight-bolder">+23%</span>) than last week </p>
+          <h6 class="ms-2 mt-4 mb-0"> Mahasiswa Aktif </h6>
+          <p class="text-sm ms-2"><span class="font-weight-bolder">{{$mahasiswa}} Mahasiswa</span></p>
           <div class="container border-radius-lg">
             <div class="row">
               <div class="col-3 py-3 ps-0">
@@ -388,19 +388,18 @@
   
   <script>
     var ctx = document.getElementById("chart-bars").getContext("2d");
-
     new Chart(ctx, {
       type: "bar",
       data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", ],
         datasets: [{
-          label: "Sales",
+          label: "Mahasiswa",
           tension: 0.4,
           borderWidth: 0,
           borderRadius: 4,
           borderSkipped: false,
           backgroundColor: "#fff",
-          data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
+          data: [450, 200, 100, 220, 500, 100, 400, 230, 500, 50, 100, 200],
           maxBarThickness: 6
         }, ],
       },
