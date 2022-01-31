@@ -47,6 +47,7 @@ class CreateAdministrationTable extends Migration
             $table->string('surat_rekomendasi')->nullable();
             $table->enum('program', ['D1', ['S1'], ['Kursus']])->nullable();
             $table->boolean('isVerified')->nullable();
+            $table->boolean('isComplete')->nullable();
             $table->foreignId("user_id")->constrained("users")->onDelete("cascade")->onUpdate("cascade")->nullable();
             $table->timestamps();
         });

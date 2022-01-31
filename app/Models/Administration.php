@@ -42,6 +42,7 @@ class Administration extends Model
         'surat_rekomendasi',
         'program',
         'isVerified',
+        'isComplete',
         'user_id'
     ];
 
