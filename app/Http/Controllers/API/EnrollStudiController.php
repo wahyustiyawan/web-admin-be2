@@ -77,6 +77,94 @@ class EnrollStudiController extends Controller
             return response()->json($success);
         }
         
+        $taskInput      =       array(
+            'user_id'     =>      $user->id,
+            'kelas_id'   =>  $kelas->id,
+            'isComplete'     =>   false,
+        );
+        try{
+            $enrolls   =  EnrollStudi::create($taskInput);
+        }catch (QueryException $e){
+            $success['error']  =   true;
+            $success['message'] =   $e->getMessage();
+
+            return response()->json($success);
+        }
+
+        $listMkuliah = MataKuliah::where('kelas_id', $kelas->id)->get();
+        
+        foreach ($listMkuliah as $Mkuliah){
+            $Input      =       array(
+                'user_id'     =>      $user->id,
+                'mata_kuliah_id'   =>  $Mkuliah->id,
+                // 'enroll_studi_id' => $enrolls->id,
+                'isComplete'     =>   false,
+            );
+            $enroll_Mkuliah = new EnrollMataKuliah($Input);
+            // $enroll_Mkuliah->save();    
+            $enrolls->enroll_mata_kuliah()->save($enroll_Mkuliah);
+
+            $kontendokumen = KontenDokumen::where('mata_kuliah_id', $Mkuliah->id)->get();
+            $kontenvideo = KontenVideo::where('mata_kuliah_id', $Mkuliah->id)->get();
+
+            foreach ($kontenvideo as $kvideo){
+                $Input      =       array(
+                    'progress'     => 0,
+                    'user_id' => $user->id,
+                    'konten_video_id' => $kvideo->id,
+                );
+                $video = new UserVideo($Input);  
+                $enroll_Mkuliah->get_video()->save($video);
+            }
+    
+            foreach ($kontendokumen as $kdokumen){
+                $Input      =       array(
+                    'progress'     => 0,
+                    'user_id' => $user->id,
+                    //'enroll_id'    => $enrolls->id,
+                    'konten_dokumen_id' => $kdokumen->id,
+                );
+                $dokumen = new UserDokumen($Input);    
+                //UserDokumen::create($Input);
+                $enroll_Mkuliah->get_dokumen()->save($dokumen);
+            }
+        }
+        
+        
+        if(!is_null($enrolls)) {
+            $success['error']  =   false;
+            $success['message']  =   "berhasil enroll ke kelas ".$enrolls->kelas->nama;
+        }
+        else {
+            $success['error']  =   true;
+            $success['message'] =   "Whoops! no detail found";
+
+            return response()->json($success);
+        }
+
+        return response()->json($success);
+    }
+
+    public function store2(Request $request)
+    {
+        $user   =   Auth::user();
+        $validator = Validator::make($request->all(),
+            [
+                'kelas_id' => 'required',
+            ]
+        );
+
+        if($validator->fails()) {
+            return response()->json(["validation_errors" => $validator->errors()]);
+        }
+        $kelas = Kelas::find($request->kelas_id);
+        if(is_null($kelas)) {
+            $success['error']  =   true;
+            $success['message'] =   "id kelas tidak ditemukan";
+
+            return response()->json($success);
+        }
+        
         $taskInput      =       array( 
             'user_id'     =>      $user->id,
             'kelas_id'   =>  $kelas->id,
