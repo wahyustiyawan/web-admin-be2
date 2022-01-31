@@ -55,6 +55,14 @@
                     <label for="exampleFormControlSelect1">Link</label>
                     <input type="text" class="form-control" name="link" placeholder="Link Video Panduan" required>
                   </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlSelect1">Thumbnail</label>
+                    <input type="file" class="form-control" name="thumbnail" placeholder="Thumbnail video" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlSelect1">Deskripsi</label>
+                      <textarea class="form-control ckeditor" name="deskripsi" rows="6"> </textarea>
+                </div>
                   <input type="hidden" name="tipe" value="Video Panduan">
                 <div class="text-center">
                   <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Tambah</button>

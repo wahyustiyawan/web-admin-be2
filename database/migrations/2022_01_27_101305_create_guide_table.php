@@ -20,6 +20,7 @@ class CreateGuideTable extends Migration
             $table->string('file')->nullable();
             $table->string('link')->nullable();
             $table->text('deskripsi')->nullable();
+            $table->string('thumbnail')->nullable();
             $table->timestamps();
         });
     }

@@ -62,9 +62,20 @@ class GuideController extends Controller
             $guide->file = $txt;
             $guide->judul = $request->judul;
             $guide->tipe = $request->tipe;
-        }else{
+        }
+        if (isset($request->thumbnail)){
+            $extention = $request->thumbnail->extension();
+            $file_name = time().'.'.$extention;
+            $txt2 = "storage/thumbnail/". $file_name;
+            $request->thumbnail->storeAs('public/thumbnail', $file_name);
+            $guide->thumbnail = $txt2;
             $guide->judul = $request->judul;
             $guide->link = $request->link;
+            $guide->deskripsi = $request->deskripsi;
+            $guide->tipe = $request->tipe;
+        }
+        else{
+            $guide->judul = $request->judul;
             $guide->deskripsi = $request->deskripsi;
             $guide->tipe = $request->tipe;
         }

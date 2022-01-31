@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use App\Models\Akses;
 use App\Models\MataKuliah;
+use App\Models\UserPertemuan;
 
 class DashboardController extends Controller
 {
@@ -39,7 +40,9 @@ class DashboardController extends Controller
             $dosen = User::where('role', 'dosen')->count();
             $prodi = Kelas::count();
             $matakuliah = MataKuliah::count();
-            return view('admin.index', compact('mahasiswa', 'dosen', 'prodi', 'matakuliah'));
+            $pertemuan_lulus = UserPertemuan::where('isComplete', '1')->count();
+            $pertemuan_belum_lulus = UserPertemuan::where('isComplete', '0')->count();
+            return view('admin.index', compact('mahasiswa', 'dosen', 'prodi', 'matakuliah', 'pertemuan_lulus', 'pertemuan_belum_lulus'));
         }
         else{
 
