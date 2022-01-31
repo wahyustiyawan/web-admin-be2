@@ -25,7 +25,6 @@ class AdministrasiController extends Controller
         $admin->update([
             'isVerified' => true
             ]);
-
         return redirect()->route('administrasi.index')
         ->with('success', 'Data telah diverifikasi');
     }

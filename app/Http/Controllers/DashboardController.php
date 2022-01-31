@@ -10,7 +10,9 @@ use App\Models\AksesKelas;
 use App\Models\Assignment;
 use App\Models\AssignmentText;
 use App\Models\AssignmentPilgan;
+use App\Models\EnrollMataKuliah;
 use App\Models\Kalender;
+use App\Models\UserDokumen;
 use App\Models\Dosen;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
@@ -40,9 +42,12 @@ class DashboardController extends Controller
             $dosen = User::where('role', 'dosen')->count();
             $prodi = Kelas::count();
             $matakuliah = MataKuliah::count();
-            $pertemuan_lulus = UserPertemuan::where('isComplete', '1')->count();
-            $pertemuan_belum_lulus = UserPertemuan::where('isComplete', '0')->count();
-            return view('admin.index', compact('mahasiswa', 'dosen', 'prodi', 'matakuliah', 'pertemuan_lulus', 'pertemuan_belum_lulus'));
+            $pertemuan_selesai = UserPertemuan::where('isComplete', '1')->count();
+            $mahasiswa_lulus = Administration::where('isComplete', '1')->count();
+            $mahasiswa_belum_lulus = Administration::where('isComplete', '0')->count();
+            $materi_selesai = UserDokumen::where('isComplete', '1')->count();
+            $enroll_jumlah = MataKuliah::withcount('enroll')->with('enroll')->get();
+            return view('admin.index', compact('mahasiswa', 'dosen', 'prodi', 'matakuliah', 'pertemuan_selesai', 'mahasiswa_lulus', 'mahasiswa_belum_lulus', 'materi_selesai', 'enroll_jumlah'));
         }
         else{
 

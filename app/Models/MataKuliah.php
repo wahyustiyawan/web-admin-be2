@@ -57,4 +57,9 @@ class MataKuliah extends Model
         return $this->hasMany(UserAssignment::class);
     }
 
+    public function enroll()
+    {
+        return $this->hasMany(EnrollMataKuliah::class);
+    }
+
 }
