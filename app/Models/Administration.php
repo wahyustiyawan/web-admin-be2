@@ -41,10 +41,16 @@ class Administration extends Model
         'transkip',
         'surat_rekomendasi',
         'program',
-        'isVerified'
+        'isVerified',
+        'user_id'
     ];
 
     protected $primaryKey = 'id';
     protected $casts = ['kebutuhan_khusus'=> 'array'];
+
+    public function user()
+    {
+        return $this->belongsTo(user::class, 'user_id', 'id');
+    }
 
 }

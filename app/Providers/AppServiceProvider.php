@@ -42,25 +42,25 @@ class AppServiceProvider extends ServiceProvider
          * @param string $pageName
          * @return array
          */
-        // Collection::macro('paginate', function($perPage, $total = null, $page = null, $pageName = 'page') {
-        //     $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
+        Collection::macro('paginate', function($perPage, $total = null, $page = null, $pageName = 'page') {
+            $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
 
-        //     return new LengthAwarePaginator(
-        //         $this->forPage($page, $perPage),
-        //         $total ?: $this->count(),
-        //         $perPage,
-        //         $page,
-        //         [
-        //             'path' => LengthAwarePaginator::resolveCurrentPath(),
-        //             'pageName' => $pageName,
-        //         ]
-        //     );
-        // });
+            return new LengthAwarePaginator(
+                $this->forPage($page, $perPage),
+                $total ?: $this->count(),
+                $perPage,
+                $page,
+                [
+                    'path' => LengthAwarePaginator::resolveCurrentPath(),
+                    'pageName' => $pageName,
+                ]
+            );
+        });
 
-        // Blade::if('featured', function($post){
-        //     return $post->featured();
-        // });
-        // View::share('AksesKelas', AksesKelas::all());
+        Blade::if('featured', function($post){
+            return $post->featured();
+        });
+        View::share('AksesKelas', AksesKelas::all());
         
     }
 }

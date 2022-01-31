@@ -41,16 +41,6 @@ class MataKuliah extends Model
     	return $this->hasMany(KontenVideo::class);
     }
 
-    // public function video()
-    // {
-    //     return $this->belongsTo(KontenVideo::class, 'kontenVideo_id', 'id');
-    // }
-
-    // public function dokumen()
-    // {
-    //     return $this->belongsTo(KontenDokumen::class, 'kontenDokumen_id', 'id');
-    // }
-
     public function pertemuan()
     {
         return $this->belongsTo(Pertemuan::class, 'pertemuan_id', 'id');
@@ -67,23 +57,4 @@ class MataKuliah extends Model
         return $this->hasMany(UserAssignment::class);
     }
 
-    // public function setVideoAttribute($value)
-    // {
-    //     $this->attributes['kontenVideo_id'] = json_encode($value);
-    // }
-
-    // public function getVideoAttribute($value)
-    // {
-    //     return $this->attributes['kontenVideo_id'] = json_decode($value);
-    // }
-
-    // public function setDokumenAttribute($value)
-    // {
-    //     $this->attributes['kontenDokumen_id'] = json_encode($value);
-    // }
-
-    // public function getDokumenAttribute($value)
-    // {
-    //     return $this->attributes['kontenDokumen_id'] = json_decode($value);
-    // }
 }

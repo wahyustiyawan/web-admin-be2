@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Administration;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Kelas;
@@ -55,9 +57,9 @@ class DashboardController extends Controller
 
     public function showDataDosen($id)
     {
-        $user = User::find($id);
+        $user = User::where('id',$id)->with(['data_dosen'])->first();
         $detail = Dosen::where('user_id', $id)->get();
-        $akseskelas = AksesKelas::where('user_id',$id)->get();
+        $akseskelas = AksesKelas::where('user_id',$id)->with(['matkul','matkul.kelas'])->get();
         // dd($user->data_dosen);
         return view('admin.dataKelas.dosen.show', compact('user', 'detail','akseskelas'));
     }
@@ -204,5 +206,14 @@ class DashboardController extends Controller
        
         return back()
             ->with('edit', 'Warna Kalender Berhasil Diedit');
+    }
+
+    public function coba()
+    {
+        
+        $semester = Administration::where('user_id', 6)->first()->semester;
+        $listMkuliah = MataKuliah::where('kelas_id',1)->where('semester', $semester)->get();
+
+        dd($listMkuliah);
     }
 }

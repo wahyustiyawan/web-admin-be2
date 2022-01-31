@@ -24,6 +24,14 @@ class AksesKelas extends Model
     {
         return $this->belongsTo(MataKuliah::class, 'mata_kuliah_id', 'id');
     }
+
+    /**
+     * Get all of the comments for the AksesKelas
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+
+
     public function user()
     {
         return $this->belongsTo(user::class, 'user_id', 'id');
