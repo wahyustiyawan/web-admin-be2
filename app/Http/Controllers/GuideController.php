@@ -30,7 +30,21 @@ class GuideController extends Controller
                 'file' => $txt,
     
             ]);
-        } else {
+        }
+        elseif (isset($request->thumbnail)){
+            $extention = $request->thumbnail->extension();
+            $file_name = time().'.'.$extention;
+            $txt2 = "storage/thumbnail/". $file_name;
+            $request->thumbnail->storeAs('public/thumbnail', $file_name);
+            Guide::create([
+                'judul' => $request->judul,
+                'link' => $request->link,
+                'deskripsi' => $request->deskripsi,
+                'thumbnail' => $txt2,
+                'tipe' => $request->tipe,
+            ]);
+        }
+         else {
             $file_name = null;
             Guide::create([
                 'judul' => $request->judul,
@@ -63,7 +77,7 @@ class GuideController extends Controller
             $guide->judul = $request->judul;
             $guide->tipe = $request->tipe;
         }
-        if (isset($request->thumbnail)){
+        elseif (isset($request->thumbnail)){
             $extention = $request->thumbnail->extension();
             $file_name = time().'.'.$extention;
             $txt2 = "storage/thumbnail/". $file_name;
