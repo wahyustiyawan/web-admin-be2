@@ -15,62 +15,42 @@ class AdministrationController extends Controller
             $file_pakta_integritas = time() . '.' . $extention;
             $upload_pakta_integritas = 'storage/pakta_integritas/'. $file_pakta_integritas;
             $request->pakta_integritas->storeAs('public/pakta_integritas', $file_pakta_integritas);
-        } else {
-            $file_pakta_integritas = null;
-        }
-
-        if (isset($request->scan_ktp)) {
+        } 
+        elseif (isset($request->scan_ktp)) {
             $extention = $request->scan_ktp->extension();
             $file_scan_ktp = time() . '.' . $extention;
             $upload_scan_ktp = 'storage/scan_ktp/'. $file_scan_ktp;
             $request->scan_ktp->storeAs('public/scan_ktp', $file_scan_ktp);
-        } else {
-            $file_scan_ktp = null;
         }
-
-        if (isset($request->scan_kk)) {
+        elseif (isset($request->scan_kk)) {
             $extention = $request->scan_kk->extension();
             $file_scan_kk = time() . '.' . $extention;
             $upload_scan_kk = 'storage/scan_kk/'. $file_scan_kk;
             $request->scan_kk->storeAs('public/scan_kk', $file_scan_kk);
-        } else {
-            $file_scan_kk = null;
-        }
-
-        if (isset($request->scan_ijazah)) {
+        } 
+        elseif (isset($request->scan_ijazah)) {
             $extention = $request->scan_ijazah->extension();
             $file_scan_ijazah = time() . '.' . $extention;
             $upload_scan_ijazah = 'storage/scan_ijazah/'. $file_scan_ijazah;
             $request->scan_ijazah->storeAs('public/scan_ijazah', $file_scan_ijazah);
-        } else {
-            $file_scan_ijazah = null;
         }
-
-        if (isset($request->pas_foto)) {
+        elseif (isset($request->pas_foto)) {
             $extention = $request->pas_foto->extension();
             $file_pas_foto = time() . '.' . $extention;
             $upload_pas_foto = 'storage/pas_foto/'. $file_pas_foto;
             $request->pas_foto->storeAs('public/pas_foto', $file_pas_foto);
-        } else {
-            $file_pas_foto = null;
         }
-
-        if (isset($request->transkip)) {
+        elseif (isset($request->transkip)) {
             $extention = $request->transkip->extension();
             $file_transkip = time() . '.' . $extention;
             $upload_transkip = 'storage/transkip/'. $file_transkip;
             $request->transkip->storeAs('public/transkip', $file_transkip);
-        } else {
-            $file_transkip = null;
         }
-
-        if (isset($request->surat_rekomendasi)) {
+        elseif (isset($request->surat_rekomendasi)) {
             $extention = $request->surat_rekomendasi->extension();
             $file_surat_rekomendasi = time() . '.' . $extention;
             $upload_surat_rekomendasi = 'storage/surat_rekomendasi/'. $file_surat_rekomendasi;
             $request->surat_rekomendasi->storeAs('public/surat_rekomendasi', $file_surat_rekomendasi);
-        } else {
-            $file_surat_rekomendasi = null;
         }
 
         $data = Administration::create([
