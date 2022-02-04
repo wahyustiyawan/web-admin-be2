@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\KelasCollection;
 use App\Helpers\ResponseFormatter;
+use App\Http\Resources\KelasResource;
+use App\Http\Resources\KelasDetailsResource;
 
 class KelasController extends Controller
 {
@@ -56,7 +58,8 @@ class KelasController extends Controller
     public function show($id)
     {
         //
-        return Kelas::find($id);
+        $kelas = Kelas::find($id);
+        return new KelasDetailsResource($kelas);
         // return ResponseFormatter::success($kelas);
     }
 
