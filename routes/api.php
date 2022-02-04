@@ -62,6 +62,7 @@ use Illuminate\Support\Facades\Route;
 
 // Public routes
 Route::post('/register', [PassportAuthController::class, 'register']);
+Route::post('/apiRegist', [PassportAuthController::class, 'apiRegist']);
 Route::post('/login', [PassportAuthController::class, 'login']);
 
 // Route progam studi

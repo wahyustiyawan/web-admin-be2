@@ -42,6 +42,9 @@ use App\Models\UserExam;
 |
 */
 
+
+Route::get('cobaRegister', [AuthController::class, 'cobaRegister'])->name('cobaRegister');
+
 // Route::get('/test', function () {
 //     return view('admin.ujian.tambah');
 // });

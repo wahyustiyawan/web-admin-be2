@@ -90,6 +90,11 @@ class AuthController extends Controller
     {
         return view('auth.register');
     }
+
+    public function cobaRegister()
+    {
+        return view('auth.cobaRegister');
+    }
   
     public function register(Request $request)
     {

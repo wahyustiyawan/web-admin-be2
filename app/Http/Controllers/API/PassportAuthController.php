@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\URL;
 
 class PassportAuthController extends Controller
 {
-    //
     public function register(Request $request)
     {
         $this->validate($request, [
@@ -106,7 +105,54 @@ class PassportAuthController extends Controller
             )->toDateTimeString()
         ]);
       
-      }
+    }
+    
+
+    public function apiRegist(Request $request) {
+        
+        // $email = "kipasangin@gmail.com";
+        // $pass = "anya123";
+        $auth = app('firebase.auth');
+
+        try {
+            $newUser = $auth->createUserWithEmailAndPassword($request->email, $request->password);
+            // dd($newUser);
+            // $user = var_dump(json_decode($newUser));
+            $user = $auth->getUserByEmail($request->email);
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'role' => 'mahasiswa',
+                'firebaseUID' => $user->uid
+            ]);
+
+            return response()->json([
+                'error'=> false,
+                'message'=>"Success",
+                'data' => $newUser,
+                ], 200);
+
+        } catch (\Throwable $e) {
+            switch ($e->getMessage()) {
+                case 'The email address is already in use by another account.':
+                    return response()->json([
+                        'error' => true,
+                        'message' => 'Email sudah digunakan.'
+                    ]);
+                    break;
+                case 'A password must be a string with at least 6 characters.':
+                    return response()->json([
+                        'error' => true,
+                        'message' => 'Kata sandi minimal 6 karakter.'
+                    ]);
+                    break;
+                default:
+                    dd($e->getMessage());
+                    break;
+            }
+        }
+    }
  
     /**
      * Login
@@ -131,7 +177,7 @@ class PassportAuthController extends Controller
     // }
     
      // ---------------------------- [ Use Detail ] -------------------------------
-     public function userDetail() {
+    public function userDetail() {
         $user       =       Auth::user();
         return new UserResource($user);
     }

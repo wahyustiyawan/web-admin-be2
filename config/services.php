@@ -13,7 +13,17 @@ return [
     | a conventional file to locate the various service credentials.
     |
     */
-
+    'firebase' => [
+        'api_key' => 'AIzaSyA7xMlk09-Skzzr-Jt77ZQEFPYSX8VcsLw',
+        'auth_domain' => 'kampus-gratis2.firebaseapp.com',
+        'database_url' => 'https://kampus-gratis2-default-rtdb.asia-southeast1.firebasedatabase.app',
+        'project_id' => 'kampus-gratis2',
+        'storage_bucket' => 'kampus-gratis2.appspot.com',
+        'messaging_sender_id' => '36215335171',
+        'app_id' => '1:36215335171:web:36c5d4234c515fb83aa136',
+        'measurement_id' => 'G-M4QT5PH0HJ',
+    ],
+    
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
