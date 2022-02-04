@@ -10,12 +10,15 @@ use App\Models\AksesKelas;
 use App\Models\Assignment;
 use App\Models\AssignmentText;
 use App\Models\AssignmentPilgan;
+use App\Models\EnrollMataKuliah;
 use App\Models\Kalender;
+use App\Models\UserDokumen;
 use App\Models\Dosen;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use App\Models\Akses;
 use App\Models\MataKuliah;
+use App\Models\UserPertemuan;
 
 class DashboardController extends Controller
 {
@@ -30,14 +33,27 @@ class DashboardController extends Controller
         if(Auth::user()->role == 'dosen'){
             $Kalender = Kalender::where('user_id',Auth::user()->id)->get();
             $user = User::has('AksesKelas')->get();
-            return view('dosen.index', compact('user','Kalender'));
+            $mahasiswa = User::where('role', 'mahasiswa')->count();
+            $dosen = User::where('role', 'dosen')->count();
+            return view('dosen.index', compact('user','Kalender', 'mahasiswa', 'dosen'));
         }
         elseif(Auth::user()->role == 'admin'){
-            return view('admin.index');
+            $mahasiswa = User::where('role', 'mahasiswa')->count();
+            $dosen = User::where('role', 'dosen')->count();
+            $prodi = Kelas::count();
+            $matakuliah = MataKuliah::count();
+            $pertemuan_selesai = UserPertemuan::where('isComplete', '1')->count();
+            $mahasiswa_lulus = Administration::where('isComplete', '1')->count();
+            $mahasiswa_belum_lulus = Administration::where('isComplete', '0')->count();
+            $materi_selesai = UserDokumen::where('isComplete', '1')->count();
+            $enroll_jumlah = MataKuliah::withcount('enroll')->with('enroll')->get();
+            return view('admin.index', compact('mahasiswa', 'dosen', 'prodi', 'matakuliah', 'pertemuan_selesai', 'mahasiswa_lulus', 'mahasiswa_belum_lulus', 'materi_selesai', 'enroll_jumlah'));
         }
         else{
 
         }
+
+
 
     }
 

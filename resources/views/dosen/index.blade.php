@@ -6,7 +6,7 @@
           <div class="row">
             <div class="col-lg-6">
               <div class="d-flex flex-column h-100">
-                <h2 class="font-weight-bolder mb-0">Dashboard {{Auth::user()->role}}</h2>
+                <h2 class="font-weight-bolder mb-0">Selamat <span id="typed"></span>
               </div>
             </div>
           </div>
@@ -555,6 +555,16 @@
 
   @push('scripts')
   <script src="{{asset('assets/js/plugins/orbit-controls.js')}}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.8/typed.min.js"></script>
+  <script>
+    var typed = new Typed("#typed", {
+      strings: ["Datang di Dashboard Dosen!"],
+      typeSpeed: 40,
+      startDelay: 90,
+      loop: true
+    });
+  </script>
+
   <script>
     var ctx = document.getElementById("chart-bars").getContext("2d");
 

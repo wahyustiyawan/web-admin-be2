@@ -14,7 +14,8 @@ class Guide extends Model
         'tipe',
         'link',
         'file',
-        'deskripsi'
+        'deskripsi',
+        'thumbnail'
     ];
 
     

@@ -9,17 +9,19 @@ use Illuminate\Support\Str;
 use App\Models\User;
 use Illuminate\Support\Arr;
 use Intervention\Image\Facades\Image;
-
+use PDF;
+use PhpOffice\PhpSpreadsheet\Writer\Pdf\Dompdf;
 
 class SertifikatController extends Controller
 {
-    public function sertifikat()
+    public function sertifikat(Request $request)
     {
-        // $user = User::where('id', 1)->first();
+        $host = $request->getSchemeAndHttpHost();
         $user = Auth::user();
+        // $user = User::where('id', '1')->first();
 
         $image = ('sertifikat/sertifikat.jpg');
-        $path = ('sertifikat/'.Str::random(5).'.jpg');
+        $path = ('sertifikat/'.$user->name.'.jpg');
         // create Image from Input
         $img = Image::make($image);
 
@@ -50,7 +52,9 @@ class SertifikatController extends Controller
 
         // dd($img);
 
-        print($path);
-        return redirect($path);
+        print($host.'/'.$path);
+        return redirect($host.'/'.$path);
+
     }
+    
 }

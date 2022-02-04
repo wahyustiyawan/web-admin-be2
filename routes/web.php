@@ -66,8 +66,8 @@ Route::get('/tujuan-sasaran', function () {
     return view('landingPage.tujuan-sasaran');
 });
 
-Route::get('/cekoo', function () {
-    return view('admin.assignment.show-userAssignment');
+Route::get('/consultation', function () {
+    return view('admin.consultation.index');
 });
 
 // Route::get('/', [AuthController::class, 'showFormLogin'])->name('login');
