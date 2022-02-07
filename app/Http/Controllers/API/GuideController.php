@@ -29,10 +29,13 @@ class GuideController extends Controller
     public function video_panduan()
     {
         $guide = Guide::where('tipe', 'Video Panduan')->get();
+        $thumbnail = Guide::select('thumbnail')->get();
+        // Guide::('thumbnail', $thumbnail)->get();
         return response()->json([
             "error" => false,
             "message" => "success",
-            "data" => $guide
+            "data" => $guide,
+            "thumbnail" =>base64_encode($thumbnail),
         ], 200);
     }
 
