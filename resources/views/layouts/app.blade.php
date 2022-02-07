@@ -4,6 +4,10 @@
 @include('partials.head')
 {{-- @include('notify::components.notify')
 @notifyCss --}}
+<script>
+  var conversations = {!! isset($conversations) ? json_encode($conversations) : '' !!};
+  var participant = {!! isset($participant) ? json_encode($participant) : '' !!};
+</script>
 <body class="g-sidenav-show  bg-gray-100">
 
   <!-- sidebar -->
