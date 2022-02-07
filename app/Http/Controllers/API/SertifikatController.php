@@ -17,8 +17,8 @@ class SertifikatController extends Controller
     public function sertifikat(Request $request)
     {
         $host = $request->getSchemeAndHttpHost();
-        $user = Auth::user();
-        // $user = User::where('id', '1')->first();
+        // $user = Auth::user();
+        $user = User::where('id', '1')->first();
 
         $image = ('sertifikat/sertifikat.jpg');
         $path = ('sertifikat/'.$user->name.'.jpg');
@@ -52,8 +52,13 @@ class SertifikatController extends Controller
 
         // dd($img);
 
-        print($host.'/'.$path);
-        return redirect($host.'/'.$path);
+        print($path);
+        return response()->json([
+            "error" => false,
+            "message" => "Success",
+            "data" => base64_encode($path)
+        ], 200);
+        // return redirect($host.'/'.$path);
 
     }
     

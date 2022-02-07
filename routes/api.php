@@ -219,10 +219,10 @@ Route::get('/buku_panduan', [GuideController::class, 'buku_panduan']);
 Route::get('/video_panduan', [GuideController::class, 'video_panduan']);
 Route::get('/kamus_kg', [GuideController::class, 'kamus_kg']);
 Route::get('/view3/{file_name}', [ViewController::class, 'view_buku_panduan']);
-
+Route::get('/sertifikat', [SertifikatController::class, 'sertifikat']);  
 // Protected routes
 Route::group(['middleware' => ['auth:api']], function () {
-    Route::get('/sertifikat', [SertifikatController::class, 'sertifikat']);  
+
     //User Job Channel
     Route::post('/userjobchannel', [UserJobChannelController::class, 'store']);
     
