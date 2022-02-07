@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Kategori;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class MataKuliahResource extends JsonResource
+class KelasDetailsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,21 +14,15 @@ class MataKuliahResource extends JsonResource
      */
     public function toArray($request)
     {
-        $kategori = Kategori::find($this->kategori_id);
         return [
             'id' => $this->id,
-            'judul' => $this->judul,
+            'nama' => $this->nama,
             'deskripsi' => $this->deskripsi,
-            'sks' => $this->sks,
-            'kelas_id' => $this->kelas_id,
-            'kategori' => $kategori->nama_kategori,
-            'kode'=> $this->kode,
-            'semester'=> $this->semester,
-            //'video' => $this->get_video,
-        ];
-    }
+            'mata_kuliah' => new MataKuliahCollection($this->mata_kuliah)
 
-    //public static $wrap = 'mata_kuliah';
+            //'video' => $this->get_video,
+          ];
+    }
 
     public function with($request)
     {
