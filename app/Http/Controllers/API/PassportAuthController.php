@@ -11,6 +11,7 @@ use lcobucci\jwt\Token\RegisteredClaimGiven;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use App\Http\Resources\UserResource;
+use App\Models\Administration;
 use Illuminate\Support\Facades\URL;
 
 class PassportAuthController extends Controller
@@ -119,12 +120,17 @@ class PassportAuthController extends Controller
             // dd($newUser);
             // $user = var_dump(json_decode($newUser));
             $user = $auth->getUserByEmail($request->email);
-            User::create([
+            $user1 = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
                 'role' => 'mahasiswa',
                 'firebaseUID' => $user->uid
+            ]);
+
+            Administration::create([
+                'user_id' => $user1->id,
+                'nama_lengkap' => $request->name
             ]);
 
             return response()->json([

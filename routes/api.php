@@ -62,7 +62,7 @@ use Illuminate\Support\Facades\Route;
 
 // Public routes
 Route::post('/register', [PassportAuthController::class, 'register']);
-Route::post('/apiRegist', [PassportAuthController::class, 'apiRegist']);
+Route::post('/registration', [PassportAuthController::class, 'apiRegist']);
 Route::post('/login', [PassportAuthController::class, 'login']);
 
 // Route progam studi
@@ -213,6 +213,7 @@ Route::get('/jumlah-enroll-matkul/{id}', [EnrollMataKuliahController::class, 'en
 
 //Route Administrasai
 Route::post('/administrasi', [AdministrationController::class, 'store']);
+Route::put('/administrasi/{id}', [AdministrationController::class, 'update']);
 
 //E-Guide
 Route::get('/buku_panduan', [GuideController::class, 'buku_panduan']);
