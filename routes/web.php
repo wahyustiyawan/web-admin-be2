@@ -28,6 +28,7 @@ use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ExamPilganController;
 use App\Http\Controllers\AdministrasiController;
 use App\Http\Controllers\GuideController;
+use App\Http\Controllers\ChatController;
 use App\Models\Assignment;
 use App\Models\UserExam;
 
@@ -45,6 +46,7 @@ use App\Models\UserExam;
 // Route::get('/test', function () {
 //     return view('admin.ujian.tambah');
 // });
+Route::get('/home', [ChatController::class, 'index'])->name('home');
 Route::get('/landing-page', function () {
     return view('landingPage.index');
 });
