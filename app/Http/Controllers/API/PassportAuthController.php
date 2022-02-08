@@ -107,7 +107,6 @@ class PassportAuthController extends Controller
         ]);
       
     }
-    
 
     public function apiRegist(Request $request) {
         
