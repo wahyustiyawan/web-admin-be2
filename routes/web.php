@@ -140,7 +140,6 @@ Route::group(['middleware' => 'auth'], function () {
         return view('tab');
     })->name('form');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
- 
 });
 
 
