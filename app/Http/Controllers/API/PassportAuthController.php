@@ -120,6 +120,7 @@ class PassportAuthController extends Controller
             // dd($newUser);
             // $user = var_dump(json_decode($newUser));
             $user = $auth->getUserByEmail($request->email);
+            
             $user1 = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
