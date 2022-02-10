@@ -213,7 +213,6 @@ Route::get('/jumlah-enroll-matkul/{id}', [EnrollMataKuliahController::class, 'en
 
 //Route Administrasai
 Route::post('/administrasi', [AdministrationController::class, 'store']);
-Route::put('/administrasi/{id}', [AdministrationController::class, 'update']);
 
 //E-Guide
 Route::get('/buku_panduan', [GuideController::class, 'buku_panduan']);
@@ -223,6 +222,7 @@ Route::get('/view3/{file_name}', [ViewController::class, 'view_buku_panduan']);
 
 // Protected routes
 Route::group(['middleware' => ['auth:api']], function () {
+    Route::put('/administrasi', [AdministrationController::class, 'update']);
     Route::get('/sertifikat', [SertifikatController::class, 'sertifikat']);  
     //User Job Channel
     Route::post('/userjobchannel', [UserJobChannelController::class, 'store']);

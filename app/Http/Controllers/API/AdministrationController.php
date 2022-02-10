@@ -96,7 +96,7 @@ class AdministrationController extends Controller
     }
 
 
-    function update(Request $request, $id)
+    function update(Request $request)
     {
         $user = Auth::user();
 
@@ -183,7 +183,7 @@ class AdministrationController extends Controller
             'surat_rekomendasi'=> $upload_surat_rekomendasi,
             'program'=> $request->program,
         );
-        $administrasi = Administration::where('user_id', $id)->update($inputData);
+        $administrasi = Administration::where('user_id', $user->id)->update($inputData);
 
         return response()->json([
             "error" => false,
