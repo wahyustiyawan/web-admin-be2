@@ -20,7 +20,7 @@
               </div>
 
               <div class="mb-3">
-                <label for="exampleFormControlSelect1">Kelas</label>
+                <label for="exampleFormControlSelect1">Dosen</label>
                 <select class="form-control" name="user_id" id="exampleFormControlSelect1">
                   @foreach ($user->where('role','dosen') as $item)
                   <option value="{{$item->id}}">{{$item->name}}</option>
