@@ -12,6 +12,7 @@ class EnrollStudi extends Model
     protected $fillable = [
         'user_id',
         'kelas_id',
+        'semester',
         'isComplete',
         // 'kategori,'
     ];
@@ -21,6 +22,7 @@ class EnrollStudi extends Model
     protected $casts = [
         'isComplete' => 'boolean',
         'user_id' => 'integer',
+        'semester' => 'json',
         'kelas_id' => 'integer',
     ];
 

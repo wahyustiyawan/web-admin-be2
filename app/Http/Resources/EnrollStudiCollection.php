@@ -20,8 +20,8 @@ class EnrollStudiCollection extends ResourceCollection
     public function with($request)
     {
         return [
-            "error" => false,
-            "message" => "success",
+            "status" => "success",
+            "message" => "berhasil mendapatkan list enrollStudi",
         ];
     }
 }
