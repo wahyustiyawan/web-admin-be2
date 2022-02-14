@@ -18,17 +18,28 @@ class EnrollStudiResource extends JsonResource
         $kelas = Kelas::find($this->kelas_id);
         return [
             'id' => $this->id,
-            //'kelas' => $this->kelas_id,
             'isComplete' => $this->isComplete,
-            'kelas' => new KelasResource($kelas),
+            'semester' => $this->semester,
+            'studi' => $this->studiformat($kelas),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
+    }
+
+    public function studiformat($studi)
+    {
+        return [
+            'id' => $studi->id,
+            'nama' => $studi->nama,
+            'deskripsi' => $studi->deskripsi,
+          ];
     }
 
     public function with($request)
     {
         return [
-            "error" => false,
-            "message" => "success",
+            "status" => "success",
+            "message" => "berhasil mendapatkan enrollStudi",
         ];
     }
 }
