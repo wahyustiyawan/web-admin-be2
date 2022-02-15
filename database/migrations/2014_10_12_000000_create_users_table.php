@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('gambar')->nullable();
             $table->string('no_hp')->nullable();
-            $table->string('firebaseUID')->unique();
+            $table->string('firebaseUID')->unique()->nullable();
             $table->string('dosen_akademik')->nullable();
             $table->enum('role', ['admin', 'dosen', 'mahasiswa']);
             $table->timestamps();
