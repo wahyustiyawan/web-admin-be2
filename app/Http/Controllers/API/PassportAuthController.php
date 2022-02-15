@@ -118,7 +118,7 @@ class PassportAuthController extends Controller
             // $user = var_dump(json_decode($newUser));
             $user = $auth->getUserByEmail($request->email);
 
-            $user1 = User::where('id', $request->user_id)->update([
+            User::where('id', $request->user_id)->update([
                 'firebaseUID' => $user->uid,
                 'role' => 'mahasiswa',
             ]);
@@ -133,6 +133,7 @@ class PassportAuthController extends Controller
                 'message' => "Success",
                 'data' => $newUser,
             ], 200);
+            
         } catch (\Throwable $e) {
             switch ($e->getMessage()) {
                 case 'The email address is already in use by another account.':
