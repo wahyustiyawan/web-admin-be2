@@ -211,9 +211,6 @@ Route::get('/kalender', [KalenderController::class, 'index']);
 Route::get('/jumlah-enroll/{id}', [EnrollStudiController::class, 'enroll']);
 Route::get('/jumlah-enroll-matkul/{id}', [EnrollMataKuliahController::class, 'enroll']);
 
-//Route Administrasai
-Route::post('/administrasi', [AdministrationController::class, 'store']);
-
 //E-Guide
 Route::get('/buku_panduan', [GuideController::class, 'buku_panduan']);
 Route::get('/video_panduan', [GuideController::class, 'video_panduan']);
