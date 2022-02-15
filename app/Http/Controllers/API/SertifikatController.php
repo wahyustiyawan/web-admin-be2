@@ -52,7 +52,7 @@ class SertifikatController extends Controller
 
         // dd($img);
 
-        print($path);
+        // print($path);
         return response()->json([
             "error" => false,
             "message" => "Success",
