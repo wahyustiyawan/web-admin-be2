@@ -6,7 +6,9 @@ use App\Models\Kelas;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Kategori;
+use App\Http\Resources\KategoriCollection;
 use App\Helpers\ResponseFormatter;
+use App\Http\Resources\KategoriResource;
 
 class KategoriController extends Controller
 {
@@ -17,9 +19,9 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        //
-        return Kategori::all();
-        // return ResponseFormatter::success($kategori);
+
+        $kategori =  Kategori::all();
+        return new KategoriCollection($kategori);
     }
 
     /**

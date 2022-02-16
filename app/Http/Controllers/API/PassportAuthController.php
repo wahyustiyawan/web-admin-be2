@@ -56,11 +56,13 @@ class PassportAuthController extends Controller
         } catch (\InvalidArgumentException $e) { // If the token has the wrong format
 
             return response()->json([
+                'status'  => false,
                 'message' => 'Unauthorized - Can\'t parse the token: ' . $e->getMessage()
             ], 401);
         } catch (InvalidToken $e) { // If the token is invalid (expired ...)
 
             return response()->json([
+                'isAuth'  => false,
                 'message' => 'Unauthorized - Token is invalide: ' . $e->getMessage()
             ], 401);
         }
@@ -91,6 +93,7 @@ class PassportAuthController extends Controller
         // Return a JSON object containing the token datas
         // You may format this object to suit your needs
         return response()->json([
+            'isAuth'  => true,
             'success' => true,
             'id' => $user->id,
             'name' => $user->name,

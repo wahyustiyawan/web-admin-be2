@@ -28,7 +28,6 @@ class KalenderResource extends JsonResource
     
     public function toArray($request)
     {
-        // $tanggal =  explode('-', $this->deadline);
         return [
             'namaEvent' => $this->judul,
             'jenisEvent' => $this->foo,
