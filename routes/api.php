@@ -219,7 +219,6 @@ Route::get('/view3/{file_name}', [ViewController::class, 'view_buku_panduan']);
 
 // Protected routes
 Route::group(['middleware' => ['auth:api']], function () {
-    Route::put('/administrasi/{id}', [AdministrationController::class, 'update']);
     Route::get('/sertifikat', [SertifikatController::class, 'sertifikat']);  
     //User Job Channel
     Route::post('/userjobchannel', [UserJobChannelController::class, 'store']);
