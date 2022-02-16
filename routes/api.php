@@ -59,7 +59,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+Route::put('/administrasi/{id}', [AdministrationController::class, 'update']);
 // Public routes
 Route::post('/register', [PassportAuthController::class, 'register']);
 Route::post('/registration', [PassportAuthController::class, 'apiRegist']);

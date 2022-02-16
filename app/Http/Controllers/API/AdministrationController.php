@@ -92,7 +92,7 @@ class AdministrationController extends Controller
 
     function update(Request $request)
     {
-        $user = Auth::user();
+        // $user = Auth::user();
         // dd($request);
         if (isset($request->pakta_integritas)) {
             $extention = $request->pakta_integritas->extension();
@@ -111,7 +111,7 @@ class AdministrationController extends Controller
             $request->scan_ktp->storeAs('public/scan_ktp', $file_scan_ktp);
             // $input_scan_ktp = $upload_scan_ktp;
         }
-        else {
+        else{
             $upload_scan_ktp = null;
         }
         if (isset($request->scan_kk)) {
@@ -121,7 +121,7 @@ class AdministrationController extends Controller
             $request->scan_kk->storeAs('public/scan_kk', $file_scan_kk);
             // $input_scan_kk = $upload_scan_kk;
         }
-        else {
+        else{
             $upload_scan_kk = null;
         }
         if (isset($request->scan_ijazah)) {
@@ -131,7 +131,7 @@ class AdministrationController extends Controller
             $request->scan_ijazah->storeAs('public/scan_ijazah', $file_scan_ijazah);
             // $input_scan_ijazah = $upload_scan_ijazah;
         }
-        else {
+        else{
             $upload_scan_ijazah = null;
         }
         if (isset($request->pas_foto)) {
@@ -141,7 +141,7 @@ class AdministrationController extends Controller
             $request->pas_foto->storeAs('public/pas_foto', $file_pas_foto);
             // $input_pas_foto = $upload_pas_foto;
         }
-        else {
+        else{
             $upload_pas_foto = null;
         }
         if (isset($request->transkip)) {
@@ -151,7 +151,7 @@ class AdministrationController extends Controller
             $request->transkip->storeAs('public/transkip', $file_transkip);
             // $input_transkip = $upload_transkip;
         }
-        else {
+        else{
             $upload_transkip = null;
         }
         if (isset($request->surat_rekomendasi)) {
@@ -161,46 +161,11 @@ class AdministrationController extends Controller
             $request->surat_rekomendasi->storeAs('public/surat_rekomendasi', $file_surat_rekomendasi);
             // $input_surat_rekomendasi = $upload_surat_rekomendasi;
         }
-        else {
+        else{
             $upload_surat_rekomendasi = null;
         }
 
-        // $inputData = array(
-        //     // 'user_id' => $user->id,
-        //     'nama_lengkap' => $request->nama_lengkap,
-        //     'nik' => $request->nik,
-        //     'email' => $request->email,
-        //     'prodi' => $request->prodi,
-        //     'tahun_ajar' => $request->tahun_ajar,
-        //     'semester' => $request->semester,
-        //     'alamat_domisili' => $request->alamat_domisili,
-        //     'alamat_ktp' => $request->alamat_ktp,
-        //     'no_hp' => $request->no_hp,
-        //     'tempat_lahir' => $request->tempat_lahir,
-        //     'tgl_lahir' => $request->tgl_lahir,
-        //     'kelamin' => $request->kelamin,
-        //     'kebutuhan_khusus' => $request->kebutuhan_khusus,
-        //     'tinggal' => $request->tinggal,
-        //     'pembiaya' => $request->pembiaya,
-        //     'nama_ayah' => $request->nama_ayah,
-        //     'nama_ibu' => $request->nama_ibu,
-        //     'kerja_ayah' => $request->kerja_ayah,
-        //     'kerja_ibu' => $request->kerja_ibu,
-        //     'pekerjaan' => $request->pekerjaan,
-        //     'penghasilan' => $request->penghasilan,
-        //     'penghasilan_ayah' => $request->penghasilan_ayah,
-        //     'penghasilan_ibu' => $request->penghasilan_ibu,
-        //     'pakta_integritas' => $upload_pakta_integritas,
-        //     'scan_ktp' => $upload_scan_ktp,
-        //     'scan_kk' => $upload_scan_kk,
-        //     'scan_ijazah' => $upload_scan_ijazah,
-        //     'pas_foto' => $upload_pas_foto,
-        //     'transkip' => $upload_transkip,
-        //     'surat_rekomendasi' => $upload_surat_rekomendasi,
-        //     'program' => $request->program,
-        // );
-        $administrasi = Administration::where('user_id', $user->id)->update([
-            'user_id' => $user->id,
+        $administrasi = Administration::where('user_id', $id)->update([
             'nama_lengkap' => $request->nama_lengkap,
             'nik' => $request->nik,
             'email' => $request->email,
@@ -213,7 +178,7 @@ class AdministrationController extends Controller
             'tempat_lahir' => $request->tempat_lahir,
             'tgl_lahir' => $request->tgl_lahir,
             'kelamin' => $request->kelamin,
-            // 'kebutuhan_khusus' => $request->kebutuhan_khusus,
+            'kebutuhan_khusus' => $request->kebutuhan_khusus,
             'tinggal' => $request->tinggal,
             'pembiaya' => $request->pembiaya,
             'nama_ayah' => $request->nama_ayah,
@@ -224,20 +189,20 @@ class AdministrationController extends Controller
             'penghasilan' => $request->penghasilan,
             'penghasilan_ayah' => $request->penghasilan_ayah,
             'penghasilan_ibu' => $request->penghasilan_ibu,
-            // 'pakta_integritas' => $upload_pakta_integritas,
-            // 'scan_ktp' => $upload_scan_ktp,
-            // 'scan_kk' => $upload_scan_kk,
-            // 'scan_ijazah' => $upload_scan_ijazah,
-            // 'pas_foto' => $upload_pas_foto,
-            // 'transkip' => $upload_transkip,
-            // 'surat_rekomendasi' => $upload_surat_rekomendasi,
+            'pakta_integritas' => $upload_pakta_integritas,
+            'scan_ktp' => $upload_scan_ktp,
+            'scan_kk' => $upload_scan_kk,
+            'scan_ijazah' => $upload_scan_ijazah,
+            'pas_foto' => $upload_pas_foto,
+            'transkip' => $upload_transkip,
+            'surat_rekomendasi' => $upload_surat_rekomendasi,
             'program' => $request->program,
         ]);
 
         return response()->json([
             "error" => false,
             "message" => "success",
-            "data" => $administrasi
+            "data" => $request->nama_lengkap
         ]);
     }
 }
