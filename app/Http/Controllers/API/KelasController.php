@@ -26,10 +26,7 @@ class KelasController extends Controller
         } else {
             $kelas =  Kelas::all();
         }
-        // return new MataKuliahCollection($mata_kuliah);
-        // //return Kelas::all();
         return new KelasCollection($kelas->paginate(18));
-        // return ResponseFormatter::success($kelas1);
     }
 
     /**

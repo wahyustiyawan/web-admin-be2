@@ -43,5 +43,25 @@ class KontenVideoSeeder extends Seeder
             'mata_kuliah_id' => '1',
             'kategori_id' => '1'
         ]);
+
+        KontenVideo::create([
+            'id' => '4',
+            'judul' => 'Belajar Python 4',
+            'deskripsi' => 'Ini video python',
+            'link' => 'iA8lLwmtKQM',
+            'durasi' => '1437',
+            'mata_kuliah_id' => '1',
+            'kategori_id' => '2'
+        ]);
+
+        KontenVideo::create([
+            'id' => '5',
+            'judul' => 'Belajar Python 5',
+            'deskripsi' => 'Ini video python',
+            'link' => 'iA8lLwmtKQM',
+            'durasi' => '1437',
+            'mata_kuliah_id' => '1',
+            'kategori_id' => '3'
+        ]);
     }
 }
