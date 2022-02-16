@@ -47,11 +47,10 @@ class Administration extends Model
     ];
 
     protected $primaryKey = 'id';
-    protected $casts = ['kebutuhan_khusus'=> 'array'];
+    protected $casts = ['kebutuhan_khusus' => 'array'];
 
     public function user()
     {
         return $this->belongsTo(user::class, 'user_id', 'id');
     }
-
 }
