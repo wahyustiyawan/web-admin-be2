@@ -178,7 +178,7 @@ class AdministrationController extends Controller
         //     'surat_rekomendasi' => $upload_surat_rekomendasi,
         //     'program' => $request->program,
         // );
-        $administrasi = Administration::where('user_id', $request->user->id)->update([
+        $administrasi = Administration::where('user_id', $user->id)->update([
             'user_id' => $user->id,
             'nama_lengkap' => $request->nama_lengkap,
             'nik' => $request->nik,
