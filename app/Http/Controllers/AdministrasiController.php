@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Administration;
+use App\Models\User;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\ComparisonMethodDoesNotExistException;
 
@@ -25,6 +26,10 @@ class AdministrasiController extends Controller
         $admin->update([
             'isVerified' => true
             ]);
+        $user = User::where('id', $admin->id);
+        $user->update([
+            'role' => 'mahasiswa'
+        ]);
         return redirect()->route('administrasi.index')
         ->with('success', 'Data telah diverifikasi');
     }

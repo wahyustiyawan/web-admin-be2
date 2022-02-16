@@ -18,6 +18,7 @@
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">NIK</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">E-Mail</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Foto</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
                 </tr>
               </thead>
@@ -37,12 +38,16 @@
                     <span class="text-secondary text-xs font-weight-bold" maxlength="10" >{{ $item->email }}</span>
                   </td>
                   <td class="align-middle text-center">
-                    <img src="{{ asset( $item->pas_foto) }}" width="200" class="img-fluid shadow border-radius-xl">
+                    <img src="{{ asset( $item->pas_foto) }}" alt="foto_user" height="150" class="img-fluid shadow border-radius-xl">
                   </td>
-                  {{-- <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold" style="display:block;text-overflow: ellipsis;width: 200px;overflow: hidden; white-space: nowrap;">{!! $item->deskripsi !!}</span>
-                  </td> --}}
-                  <td>
+                  <td class="align-middle text-center">
+                    @if ( $item->isVerified == true )
+                      <span class="badge badge-success">Terverifikasi</span>
+                    @else
+                      <span class="badge badge-danger">Belum Terverifikasi</span>
+                    @endif
+                  </td>
+                  <td>`
                     <div class="align-middle text-center">
                       <form id="form-delete" action="{{route('administrasi.destroy', $item->id)}}" method="POST" style="display: inline">
                         @csrf
