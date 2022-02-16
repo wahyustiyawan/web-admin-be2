@@ -92,7 +92,7 @@ class AdministrationController extends Controller
 
     function update(Request $request ,$id)
     {
-        // $user = Auth::user();
+        $user = Auth::user();
         // dd($request);
         if (isset($request->pakta_integritas)) {
             $extention = $request->pakta_integritas->extension();
@@ -166,6 +166,7 @@ class AdministrationController extends Controller
         }
 
         $administrasi = Administration::where('user_id', $id)->update([
+            'user_id' => $user->id,
             'nama_lengkap' => $request->nama_lengkap,
             'nik' => $request->nik,
             'email' => $request->email,
