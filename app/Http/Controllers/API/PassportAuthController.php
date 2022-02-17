@@ -123,7 +123,7 @@ class PassportAuthController extends Controller
 
             User::where('id', $request->user_id)->update([
                 'firebaseUID' => $user->uid,
-                'role' => 'mahasiswa',
+                'role' => 'guest',
             ]);
 
             Administration::create([
