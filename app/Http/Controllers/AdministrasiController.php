@@ -26,7 +26,7 @@ class AdministrasiController extends Controller
         $admin->update([
             'isVerified' => true
             ]);
-        $user = User::where('id', $admin->id);
+        $user = User::where('id', $admin->user_id);
         $user->update([
             'role' => 'mahasiswa'
         ]);
