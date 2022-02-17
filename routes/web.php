@@ -28,7 +28,7 @@ use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ExamPilganController;
 use App\Http\Controllers\AdministrasiController;
 use App\Http\Controllers\GuideController;
-use App\Http\Controllers\ChatController;
+use App\Http\Controllers\ChatsController;
 use App\Models\Assignment;
 use App\Models\UserExam;
 
@@ -45,7 +45,9 @@ use App\Models\UserExam;
 
 
 Route::get('cobaRegister', [AuthController::class, 'cobaRegister'])->name('cobaRegister');
-
+Route::get('chat', [ChatsController::class, 'index']);
+Route::get('messages', [ChatsController::class, 'fetchMessages']);
+Route::get('messages', [ChatsController::class, 'sendMessage']);
 // Route::get('/test', function () {
 //     return view('admin.ujian.tambah');
 // });
