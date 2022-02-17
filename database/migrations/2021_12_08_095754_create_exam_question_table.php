@@ -23,6 +23,7 @@ class CreateExamQuestionTable extends Migration
             $table->text('opsi_d');
             $table->text('opsi_e');
             $table->text('jawaban');
+            $table->text('penjelasan');
             $table->foreignId("exam_pilgan_id")->constrained("exam_pilgan")->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });

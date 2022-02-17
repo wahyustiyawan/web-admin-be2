@@ -207,14 +207,14 @@ class PassportAuthController extends Controller
 
         $currentURL = URL::current();
 
-        if ($request->file('gambar')) {
+        if (isset($request->gambar)) {
             //store file into document folder
             $gambar2 = Str::slug($request->gambar);
-            $extention = $request->gambar->getClientOriginalExtension();
+            $extention = $request->gambar->extension();
             $file_name = time() . '.' . $extention;
             // $txt = $currentURL.'/storage/images/'. $file_name;
-            $txt = 'storage/images/' . $file_name;
-            $request->gambar->storeAs('public/images', $file_name);
+            $txt = 'storage/profil/' . $file_name;
+            $request->gambar->storeAs('public/profil', $file_name);
             $input = $txt;
         } else {
             $input = $user->gambar;

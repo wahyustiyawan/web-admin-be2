@@ -33,6 +33,7 @@ class ExamPilganImport implements ToModel
             'opsi_d' => $row[5],
             'opsi_e' => $row[6],
             'jawaban' => $row[7],
+            'penjelasan' => $row[8],
             'exam_pilgan_id' => $this->exam_pilgan_id,
         ]);
     }
