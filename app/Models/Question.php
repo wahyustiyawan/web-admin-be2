@@ -18,6 +18,7 @@ class Question extends Model
         'opsi_d',
         'opsi_e',
         'jawaban',
+        'penjelasan',
         'quiz_id',
     ];
     protected $casts = [

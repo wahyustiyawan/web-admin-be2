@@ -2060,7 +2060,51 @@ module.exports = {
   \*****************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+
+Vue.component('chat-messages', __webpack_require__(/*! ./components/ChatMessages.vue */ "./resources/js/components/ChatMessages.vue"));
+Vue.component('chat-form', __webpack_require__(/*! ./components/ChatForm.vue */ "./resources/js/components/ChatForm.vue"));
+var app = new Vue({
+  el: '#app',
+  data: {
+    messages: []
+  },
+  created: function created() {
+    var _this = this;
+
+    this.fetchMessages();
+    Echo["private"]('chat').listen('MessageSent', function (e) {
+      _this.messages.push({
+        message: e.message.message,
+        user: e.user
+      });
+    });
+  },
+  methods: {
+    fetchMessages: function fetchMessages() {
+      var _this2 = this;
+
+      axios.get('/messages').then(function (response) {
+        _this2.messages = response.data;
+      });
+    },
+    addMessage: function addMessage(message) {
+      this.messages.push(message);
+      axios.post('/messages', message).then(function (response) {});
+    }
+  }
+});
 
 /***/ }),
 
@@ -2068,10 +2112,14 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
   \***********************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+Object(function webpackMissingModule() { var e = new Error("Cannot find module 'laravel-echo'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 window.Noty = __webpack_require__(/*! noty */ "./node_modules/noty/lib/noty.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+window.Vue = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -2093,6 +2141,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+
+window.Echo = new Object(function webpackMissingModule() { var e = new Error("Cannot find module 'laravel-echo'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())({
+  broadcaster: 'pusher',
+  key: Laravel.pusherKey,
+  cluster: Laravel.pusherCluster,
+  encrypted: true
+});
 
 /***/ }),
 
@@ -22639,6 +22695,26 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
+
+/***/ }),
+
+/***/ "./resources/js/components/ChatForm.vue":
+/*!**********************************************!*\
+  !*** ./resources/js/components/ChatForm.vue ***!
+  \**********************************************/
+/***/ (() => {
+
+throw new Error("Module parse failed: Unexpected token (1:0)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n> <template>\n|     <div class=\"input-group\">\n|         <input id=\"btn-input\" type=\"text\" name=\"message\" class=\"form-control input-sm\" placeholder=\"Type your message here...\" v-model=\"newMessage\" @keyup.enter=\"sendMessage\">");
+
+/***/ }),
+
+/***/ "./resources/js/components/ChatMessages.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/ChatMessages.vue ***!
+  \**************************************************/
+/***/ (() => {
+
+throw new Error("Module parse failed: Unexpected token (1:0)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n> <template>\n|     <ul class=\"chat\">\n|         <li class=\"left clearfix\" v-for=\"message in messages\">");
 
 /***/ }),
 

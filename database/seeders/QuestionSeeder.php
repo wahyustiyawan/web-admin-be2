@@ -24,6 +24,7 @@ class QuestionSeeder extends Seeder
             'opsi_d' => "Usaha Mikro, Usaha Kecil, Usaha Menengah",
             'opsi_e' => "Usaha Kecil, Usaha Ritel, Usahsa Bear",
             'jawaban' => 4,
+            'penjelasan' => "Isi penjelasan",
             'quiz_id' => 1
         ]);
 
@@ -37,6 +38,7 @@ class QuestionSeeder extends Seeder
             'opsi_d' => "Tingkat pendidikan rata-rata relatif sangat rendah.",
             'opsi_e' => "Umumnya tidak memiliki izin usaha atau persyaratan legalitas lainnya termasuk NPWP",
             'jawaban' => 3,
+            'penjelasan' => "Isi penjelasan",
             'quiz_id' => 1
         ]);
         
@@ -50,6 +52,7 @@ class QuestionSeeder extends Seeder
             'opsi_d' => "Sudah menerapkan sistem akuntansi secara teratur yang memudahkan untuk auditing dan penilaian.",
             'opsi_e' => "Manajemen Profesional dan Modern.",
             'jawaban' => 2,
+            'penjelasan' => "Isi penjelasan",
             'quiz_id' => 1
         ]);
         
@@ -69,6 +72,7 @@ class QuestionSeeder extends Seeder
             'opsi_d' => "1,2,4",
             'opsi_e' => "1,2,5",
             'jawaban' => 5,
+            'penjelasan' => "Isi penjelasan",
             'quiz_id' => 1
         ]);
 
@@ -82,6 +86,7 @@ class QuestionSeeder extends Seeder
             'opsi_d' => "> 1000 orang",
             'opsi_e' => "< 999 orang",
             'jawaban' => 4,
+            'penjelasan' => "Isi penjelasan",
             'quiz_id' => 1
         ]);
     }

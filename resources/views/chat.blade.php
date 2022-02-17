@@ -6,7 +6,7 @@
                 <div class="panel-heading">Chats</div>
 
                 <div class="panel-body">
-                    <chat-messages :messages="messages"></chat-messages>
+                    <ChatMessages :messages="messages"></ChatMessages>
                 </div>
                 <div class="panel-footer">
                     <chat-form
