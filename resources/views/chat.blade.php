@@ -1,8 +1,4 @@
 <x-app-layout>
-    <!-- Styles -->
-    <link href="{{ asset('asset_message/css/app.css') }}" rel="stylesheet">
-    <!-- Scripts -->
-    <script src="{{ asset('asset_message/js/app.js') }}" defer></script>
     <div class="container">
         <div class="card">
             <div class="card-header text-center">Messages</div>
