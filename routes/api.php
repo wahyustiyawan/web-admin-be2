@@ -59,7 +59,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::put('/administrasi', [AdministrationController::class, 'update']);
+Route::put('/administrasi/{id}', [AdministrationController::class, 'update']);
 // Public routes
 Route::post('/register', [PassportAuthController::class, 'register']);
 Route::post('/registration', [PassportAuthController::class, 'apiRegist']);
@@ -219,7 +219,6 @@ Route::get('/view3/{file_name}', [ViewController::class, 'view_buku_panduan']);
 
 // Protected routes
 Route::group(['middleware' => ['auth:api']], function () {
-
     Route::get('/sertifikat', [SertifikatController::class, 'sertifikat']);  
     //User Job Channel
     Route::post('/userjobchannel', [UserJobChannelController::class, 'store']);

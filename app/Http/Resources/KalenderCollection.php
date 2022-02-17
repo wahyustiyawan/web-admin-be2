@@ -38,7 +38,6 @@ class KalenderCollection extends ResourceCollection
         return [
             "error" => false,
             "message" => "success",
-            //'kelas' => $kelas,
         ];
     }
 }
