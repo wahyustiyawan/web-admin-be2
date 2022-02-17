@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\MessageEvent;
 use App\Http\Resources\MessageResource;
-use App\Http\Resources\UserResource;
+use App\Http\Resources\UserMessageResource;
 use App\Models\Message;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\DB;
 
 class MessageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    public function index()
+    {
+        return view('chat');
+    }
     protected function user($query)
     {
         $field = ['id', 'name', 'email'];
@@ -50,7 +58,7 @@ class MessageController extends Controller
 
         }
 
-        $users = UserResource::collection($users->get($field));
+        $users = UserMessageResource::collection($users->get($field));
 
         return response()->json($users);
     }

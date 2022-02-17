@@ -29,6 +29,7 @@ use App\Http\Controllers\ExamPilganController;
 use App\Http\Controllers\AdministrasiController;
 use App\Http\Controllers\GuideController;
 use App\Http\Controllers\ChatsController;
+use App\Http\Controllers\MessageController;
 use App\Models\Assignment;
 use App\Models\UserExam;
 
@@ -45,9 +46,13 @@ use App\Models\UserExam;
 
 
 Route::get('cobaRegister', [AuthController::class, 'cobaRegister'])->name('cobaRegister');
-Route::get('chat', [ChatsController::class, 'index']);
-Route::get('messages', [ChatsController::class, 'fetchMessages']);
-Route::post('messages', [ChatsController::class, 'sendMessage']);
+Route::get('chat', [MessageController::class, 'index']);
+Route::group(['prefix' => 'message'], function () {
+    Route::get('user/{query}', [MessageController::class, 'user']);
+    Route::get('user-message/{id}', [MessageController::class, 'message']);
+    Route::get('user-message/{id}/read', [MessageController::class, 'read']);
+    Route::post('user-message', [MessageController::class, 'send']);
+});
 // Route::get('/test', function () {
 //     return view('admin.ujian.tambah');
 // });
