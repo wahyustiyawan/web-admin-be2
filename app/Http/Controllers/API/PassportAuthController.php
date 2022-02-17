@@ -95,6 +95,7 @@ class PassportAuthController extends Controller
         return response()->json([
             'isAuth'  => true,
             'success' => true,
+            'role' => $user->role,
             'id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,

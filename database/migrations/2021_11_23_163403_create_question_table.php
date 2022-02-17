@@ -23,6 +23,7 @@ class CreateQuestionTable extends Migration
             $table->text('opsi_d');
             $table->text('opsi_e');
             $table->text('jawaban');
+            $table->text('penjelasan');
             $table->foreignId("quiz_id")->constrained("quiz")->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });
