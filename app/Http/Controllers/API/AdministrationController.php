@@ -321,4 +321,18 @@ class AdministrationController extends Controller
             "nama" => $request->nama_lengkap
         ]);
     }
+
+    public function getAdministrasi()
+    {
+        $user = Auth::user();
+        // dd($request);
+        
+        $data = Administration::where('user_id', $user->id)->get();
+
+        return response()->json([
+            "error" => false,
+            "message" => "success",
+            "data" => $data
+        ]);
+    }
 }
