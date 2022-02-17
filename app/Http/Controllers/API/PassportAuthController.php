@@ -32,6 +32,11 @@ class PassportAuthController extends Controller
             'firebaseUID' => $request->firebaseUID,
         ]);
 
+        Administration::create([
+            'user_id' => $user->id,
+            'nama_lengkap' => $user->name
+        ]);
+
         //$token = $user->createToken('LaravelAuthApp')->accessToken;
 
         return response()->json([
