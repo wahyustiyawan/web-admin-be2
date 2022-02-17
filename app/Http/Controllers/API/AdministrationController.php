@@ -318,8 +318,7 @@ class AdministrationController extends Controller
         return response()->json([
             "error" => false,
             "message" => "success",
-            "nama" => $request->nama_lengkap,
-            "data" => $administrasi
+            "nama" => $request->nama_lengkap
         ]);
     }
 }

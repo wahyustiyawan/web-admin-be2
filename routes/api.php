@@ -223,7 +223,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     //User Job Channel
     Route::post('/userjobchannel', [UserJobChannelController::class, 'store']);
     
-    Route::put('/updateAdministrasi', [DiscussionForumController::class, 'updateAdministrasi'])->name('updateAdministrasi');
+    Route::put('/updateAdministrasi', [AdministrationController::class, 'updateAdministrasi'])->name('updateAdministrasi');
     
     //Transkip
     Route::get('/transkip', [TranskipController::class, 'index']);
