@@ -18,6 +18,7 @@ class ExamQuestion extends Model
         'opsi_d',
         'opsi_e',
         'jawaban',
+        'penjelasan',
         'exam_pilgan_id',
     ];
 

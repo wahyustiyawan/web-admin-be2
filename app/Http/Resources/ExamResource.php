@@ -14,20 +14,26 @@ class ExamResource extends JsonResource
      */
     public function toArray($request)
     {
+        $quest = $this->examquestion;
+        $quest_count = $this->examquestion->count();
         return [
             'id' => $this->id,
+            'tipe' => $this->tipe,
             'judul' => $this->judul,
             'deskripsi' => $this->deskripsi,
-            'file' => $this->file,
-            'waktu_pengerjaan' => date('d-m-Y', strtotime($this->waktu_pengerjaan)),
-            'jenis' => $this->jenis,
             'mata_kuliah_id' => $this->mata_kuliah_id,
-            //'kelas_id' => $this->kelas_id,
-            // 'count' =>  $countvideo + $countdokumen,
-            // 'count_complete' =>  $uvideo + $udokumen,
-            // 'isComplete' => $this->isComplete,
-            // 'nama_kelas'=> $kelas->nama,
+            'pertemuan_id' => $this->pertemuan_id,
+            'jumlah_soal' => $quest_count,
+            'soal_exam' => ExamQuestionResource::collection($quest),
             //'video' => $this->get_video,
+        ];
+    }
+
+    public function with($request)
+    {
+        return [
+            "error" => false,
+            "message" => "success",
         ];
     }
 }
