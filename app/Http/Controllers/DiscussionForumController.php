@@ -66,15 +66,12 @@ class DiscussionForumController extends Controller
             ->with('success', 'Diskusi Berhasil Ditambahkan');
     }
 
-
-
     public function show($id)
     {
         $DiscussionForums = DiscussionForum::where('id', $id)->first();
         return view('admin.DiscussionForum.show', compact('DiscussionForum'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
-
 
     public function edit($id)
     {
