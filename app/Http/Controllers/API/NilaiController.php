@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Nilai;
 use App\Http\Controllers\Controller;
+use App\Models\MataKuliah;
 use App\Models\NilaiQuiz;
 use App\Models\UserAssignment;
 use App\Models\UserExam;
@@ -32,14 +33,19 @@ class NilaiController extends Controller
     public function gradeQuiz($id)
     {
         $user = Auth::user();
-        $count = NilaiQuiz::where('user_id', 5)->where('mata_kuliah_id',$id)->count();
-        $grade = NilaiQuiz::where('user_id', 5)->where('mata_kuliah_id',$id)->sum('grade');
+        $matkul = MataKuliah::find($id);
+        $count = NilaiQuiz::where('user_id', $user->id)->where('mata_kuliah_id',$id)->count();
+        $grade = NilaiQuiz::where('user_id', $user->id)->where('mata_kuliah_id',$id)->sum('grade');
         $total = $grade / $count;
-
+        $data = [
+            'mata_kuliah' => $matkul->judul,
+            'total' => $total
+        ];
+        
         return response()->json([
             "error" => false,
             "message" => "success",
-            "data" => $total
+            "data" => $data
         ], 200);
     }
 
@@ -47,7 +53,7 @@ class NilaiController extends Controller
     {
         $user = Auth::user();
         $nilai = NilaiQuiz::create([
-            'user_id' => 5,
+            'user_id' => $user->id,
             'grade' => $request->grade,
             'mata_kuliah_id' => $request->mata_kuliah_id,
             'quiz_id' => $request->quiz_id,
@@ -65,7 +71,7 @@ class NilaiController extends Controller
     public function gradeUts($id)
     {
         $user = Auth::user();
-        $uts = UserExam::where('user_id', $user->id)->where('tipe', 'uts')->where('mata_kuliah_id',$id)->get();
+        $uts = UserExam::select('mata_kuliah.id','mata_kuliah.judul','user_exam.*')->join('mata_kuliah','user_exam.mata_kuliah_id','mata_kuliah.id')->where('user_id', $user->id)->where('tipe', 'uts')->where('mata_kuliah_id',$id)->get();
         return response()->json([
             "error" => false,
             "message" => "success",
@@ -76,7 +82,7 @@ class NilaiController extends Controller
     public function gradeUas($id)
     {
         $user = Auth::user();
-        $uas = UserExam::where('user_id', $user->id)->where('tipe', 'uas')->where('mata_kuliah_id',$id)->get();
+        $uas = UserExam::select('mata_kuliah.id','mata_kuliah.judul','user_exam.*')->join('mata_kuliah','user_exam.mata_kuliah_id','mata_kuliah.id')->where('user_id', $user->id)->where('tipe', 'uas')->where('mata_kuliah_id',$id)->get();
         return response()->json([
             "error" => false,
             "message" => "success",
