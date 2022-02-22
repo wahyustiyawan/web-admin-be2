@@ -22,10 +22,12 @@ class TranskipController extends Controller
 
         $totalips = 0;
         $totalsemester = 0;
+        $data = null;   
         foreach ($dataenroll as $item) {
             $tahun = EnrollMataKuliah::select(DB::raw('YEAR(created_at) year'))->where('semester', $item->semester)->first();
 
             $bil = $item->semester;
+
             if ($bil % 2 == 0) {
                 $ajaran = "Genap";
             } else {
@@ -45,8 +47,14 @@ class TranskipController extends Controller
             ];
         }
 
+        if ($dataenroll->max('semester') != NULL)
+            $dipk = $totalips / $dataenroll->max('semester');
+        else {
+            $dipk = null;
+        }
+
         $transkip = [
-            'IPK' => $totalips / $dataenroll->max('semester'),
+            'IPK' => $dipk,
             'dosen_pembimbing' => '',
             'transkip' => $data,
         ];
@@ -71,25 +79,25 @@ class TranskipController extends Controller
             ->groupBy('semester')->where('enroll_mata_kuliah.user_id', $user->id)->get();
 
 
-            $totalnilai = 0;
-            $data = null;
-            foreach ($transkipsemester as $item) {
-                $dosen = AksesKelas::select('users.name')
-                    ->join('users', 'users.id', '=', 'akses_kelas.user_id')
-                    ->where('akses_kelas.mata_kuliah_id', $item->matkul_id)->first();
-                $nilai = Helper::variabel_nilai($item->nilai_akhir);
-                $var1 = $item->nilai_akhir * $item->sks;
-                $totalnilai = $totalnilai + $var1;
+        $totalnilai = 0;
+        $data = null;
+        foreach ($transkipsemester as $item) {
+            $dosen = AksesKelas::select('users.name')
+                ->join('users', 'users.id', '=', 'akses_kelas.user_id')
+                ->where('akses_kelas.mata_kuliah_id', $item->matkul_id)->first();
+            $nilai = Helper::variabel_nilai($item->nilai_akhir);
+            $var1 = $item->nilai_akhir * $item->sks;
+            $totalnilai = $totalnilai + $var1;
 
-                $data[] = [
-                    'kode' => $item->kode,
-                    'mata_kuliah' => $item->judul,
-                    'sks' => $item->sks,
-                    'nilai' => $nilai,
-                    'dosen' => $dosen->name,
-                ];
-            }
-  
+            $data[] = [
+                'kode' => $item->kode,
+                'mata_kuliah' => $item->judul,
+                'sks' => $item->sks,
+                'nilai' => $nilai,
+                'dosen' => $dosen->name,
+            ];
+        }
+
 
 
         $IPK = 0;
