@@ -216,6 +216,7 @@ Route::get('/buku_panduan', [GuideController::class, 'buku_panduan']);
 Route::get('/video_panduan', [GuideController::class, 'video_panduan']);
 Route::get('/kamus_kg', [GuideController::class, 'kamus_kg']);
 Route::get('/view3/{file_name}', [ViewController::class, 'view_buku_panduan']);
+Route::get('/getAdministrasi', [AdministrationController::class, 'getAdministrasi'])->name('getAdministrasi');
 
 // Protected routes
 Route::group(['middleware' => ['auth:api']], function () {
@@ -224,7 +225,6 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/userjobchannel', [UserJobChannelController::class, 'store']);
     
     Route::put('/updateAdministrasi', [AdministrationController::class, 'updateAdministrasi'])->name('updateAdministrasi');
-    Route::get('/getAdministrasi', [AdministrationController::class, 'getAdministrasi'])->name('getAdministrasi');
     
     //Transkip
     Route::get('/transkip', [TranskipController::class, 'index']);
