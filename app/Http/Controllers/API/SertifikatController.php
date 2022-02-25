@@ -56,7 +56,7 @@ class SertifikatController extends Controller
         return response()->json([
             "error" => false,
             "message" => "Success",
-            "data" => base64_encode($path)
+            "data" => base64_encode($img)
         ], 200);
         // return redirect($host.'/'.$path);
 

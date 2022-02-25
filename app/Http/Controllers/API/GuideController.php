@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Guide;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
 
 class GuideController extends Controller
@@ -26,16 +28,16 @@ class GuideController extends Controller
         return redirect($txt);
     }
 
-    public function video_panduan()
+    public function video_panduan(Request $request)
     {
+        $host = $request->getSchemeAndHttpHost();
         $guide = Guide::where('tipe', 'Video Panduan')->get();
         $thumbnail = Guide::select('thumbnail')->get();
-        // Guide::('thumbnail', $thumbnail)->get();
         return response()->json([
             "error" => false,
             "message" => "success",
             "data" => $guide,
-            "thumbnail" =>base64_encode($thumbnail),
+            "thumbnail" =>$host.'/'.$thumbnail,
         ], 200);
     }
 
