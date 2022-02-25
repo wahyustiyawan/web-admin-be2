@@ -21,7 +21,12 @@ class NilaiController extends Controller
         $matkul = MataKuliah::find($id);
         $count = UserAssignment::where('user_id', $user->id)->where('mata_kuliah_id',$id)->count();
         $grade = UserAssignment::where('user_id', $user->id)->where('mata_kuliah_id',$id)->sum('grade');
-        $total = $grade / $count;
+        if ($count != NULL){
+            $total = $grade / $count;
+        }
+        else {
+            $total = NULL;
+        }
         
         $data = [
             'mata_kuliah' => $matkul->judul,
@@ -41,7 +46,12 @@ class NilaiController extends Controller
         $matkul = MataKuliah::find($id);
         $count = NilaiQuiz::where('user_id', $user->id)->where('mata_kuliah_id',$id)->count();
         $grade = NilaiQuiz::where('user_id', $user->id)->where('mata_kuliah_id',$id)->sum('grade');
-        $total = $grade / $count;
+        if ($count != NULL){
+            $total = $grade / $count;
+        }
+        else {
+            $total = NULL;
+        }
         $data = [
             'mata_kuliah' => $matkul->judul,
             'total' => $total
