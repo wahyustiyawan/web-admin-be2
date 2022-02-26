@@ -42,12 +42,15 @@ class PertemuanController extends Controller
     public function detail($id)
     {
         $pertemuan = Pertemuan::where('id', $id)->first();
+        dd($pertemuan);
         $kelas = Kelas::find($id);
         $kontenDokumen = KontenDokumen::get();
         $kontenVideo = KontenVideo::get();
         $pertemuanselect = Pertemuan::all();
-
-        return view('admin.pertemuan.index', compact('pertemuan', 'kontenDokumen', 'kontenVideo', 'kelas', 'pertemuanselect'));
+        $totalVideo = KontenVideo::count();
+        $totalDokumen = KontenDokumen::count();
+        // dd($kontenVideo);
+        return view('admin.pertemuan.index', compact('totalVideo', 'totalDokumen', 'pertemuan', 'kontenDokumen', 'kontenVideo', 'kelas', 'pertemuanselect'));
     }
 
     public function store(Request $request)

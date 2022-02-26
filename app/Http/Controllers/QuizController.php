@@ -14,6 +14,8 @@ use App\Models\Kalender;
 use App\Models\AksesKelas;
 use App\Models\Nilai;
 use App\Models\NilaiQuiz;
+use App\Models\Question;
+use App\Models\UserQuiz;
 
 class QuizController extends Controller
 {
@@ -76,4 +78,25 @@ class QuizController extends Controller
         $nilai = NilaiQuiz::get();
         return view('admin.assignment.show-quiz', compact('quiz', 'nilai'));
     }
+
+    public function question($id)
+    {
+        $quiz = Quiz::find($id); 
+        $question = Question::where('quiz_id', $id)->get();
+        $totalSoal = Question::where('quiz_id', $id)->count();
+        // dd($question[1]->jawaban);
+        return view('admin.assignment.show-question', compact('quiz', 'question', 'totalSoal'));
+    }
+
+    public function userQuiz($id, $quiz)
+    {
+        $answer = UserQuiz::where('user_id', $id)->where('quiz_id', $quiz)->get();
+        $nilai = NilaiQuiz::where('user_id', $id)->where('quiz_id', $quiz)->first();
+        $quiz = Quiz::find($quiz); 
+        // dd($nilai->grade);
+
+        return view('admin.assignment.show-userQuiz', compact('quiz', 'answer', 'nilai'));
+
+    }
+    
 }

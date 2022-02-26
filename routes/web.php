@@ -117,6 +117,8 @@ Route::put('/discussion/{id}', [DiscussionForumController::class, 'dosenUpdate']
 Route::post('/QuizImport', [ControllersQuizController::class,'QuizImport'])->name('QuizImport');
 Route::get('/quiz/destroy/{id}', [ControllersQuizController::class, 'destroy'])->name('QuizDestroy');
 Route::get('/quiz/{id}', [ControllersQuizController::class, 'show'])->name('QuizShow');
+Route::get('/question/{id}', [ControllersQuizController::class, 'question'])->name('question');
+Route::get('/user-quiz/{quiz}/{id}', [ControllersQuizController::class, 'userQuiz'])->name('userQuiz');
 
 Route::post('/ExamPilganImport', [ExamPilganController::class,'ExamPilganImport'])->name('ExamPilganImport');
 Route::get('/ExamPilgan/destroy/{id}', [ExamPilganController::class, 'destroy'])->name('ExamPilganDestroy');

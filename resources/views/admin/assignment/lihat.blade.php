@@ -14,20 +14,12 @@
                 <span class="badge badge-success">{{ $assignment->deadline }}</span>
                 <br>
                 <label class="mt-4">Deskripsi</label>
-                <ul>
+                <p>
                   {{ $assignment->deskripsi }}
-                </ul>
-                <div class="row mt-4">
-                  <div class="col-lg-5 mt-lg-0 mt-2">
-                      <div class="mb-3">
-                        <label for="exampleFormControlSelect1">File Assignmet</label>
-                        <input type="file" class="form-control" name="file" required value="">
-                      </div>
-                  </div>
-                </div>
+                </p>
                 <div class="row mt-4">
                   <div class="col-lg-5">
-                    <button class="btn bg-gradient-primary mb-0 mt-lg-auto w-100" type="button" name="button">Edit Assignment</button>
+                    <a href="{{ $assignment->file }}" class="btn bg-gradient-primary mb-0 mt-lg-auto w-100" target="_BLANK">Lihat Berkas Tugas</a>
                   </div>
                 </div>
               </div>
@@ -77,8 +69,7 @@
                       <div class="d-flex px-3 py-1 justify-content-center align-items-center">
                         <button class="btn btn-link text-dark px-3 mb-0 btn-update" data-link="{{ route('grading', $item->id) }}" data-grade="{{ $item->grade ?? 0 }}" data-grade_1="{{ $item->grade_1 ?? 0 }}" data-grade_2="{{ $item->grade_2 ?? 0 }}" data-grade_3="{{ $item->grade_3 ?? 0 }}" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp"><i class="fas fa-user-edit text-secondary"></i></button>
                         {{-- <a class="btn btn-link text-dark px-3 mb-0" href="#"><i class="fas fa-user-edit text-secondary"></i></a> --}}
-                        <button type="button" class="btn btn-sm btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Refund rate is lower with 97% than other products">
-                          <i class="fas fa-info" aria-hidden="true"></i>
+                        
                         </button>
                       </div>
                     </td>

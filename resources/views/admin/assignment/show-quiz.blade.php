@@ -13,9 +13,14 @@
                   <span class="badge badge-success">Pre test dan Post test</span>
                   <br>
                   <label class="mt-4">Deskripsi</label>
-                  <ul>
+                  <p>
                     {{ $quiz->deskripsi }}
-                  </ul>
+                  </p>
+                  <div class="row mt-4">
+                    <div class="col-lg-5">
+                      <a href="{{ route('question', $quiz->id) }}" class="btn bg-gradient-primary mb-0 mt-lg-auto w-100" target="_BLANK">Lihat Soal Quiz</a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -58,9 +63,7 @@
                       <td class="align-middle text-end">
                         <div class="d-flex px-3 py-1 justify-content-center align-items-center">
                           {{-- <a class="btn btn-link text-dark px-3 mb-0" href="#"><i class="fas fa-user-edit text-secondary"></i></a> --}}
-                          <button type="button" class="btn btn-sm btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Refund rate is lower with 97% than other products">
-                            <i class="fas fa-info" aria-hidden="true"></i>
-                          </button>
+                          <a href="{{ url('/user-quiz/'.$item->quiz_id, $item->user->id) }}" class="btn bg-gradient-info mb-0"> Lihat Jawaban</a>
                         </div>
                       </td>
                     </tr>

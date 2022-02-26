@@ -30,13 +30,13 @@
                       
                     </span> --}}
                     <hr class="horizontal dark my-3">
-                    <h5 class="mb-0">
+                    <h6 class="mb-0">
                       <ol>
                         @foreach ($kontenVideo as $item)
                         <li>{{$item->judul}}</li>
                         @endforeach
                       </ol>
-                    </h5>
+                    </h6>
                   </div>
                 </div>
               </div>
@@ -50,13 +50,13 @@
                   <div class="card-body pt-0 p-3 ">
                     <h6 class="text-center mb-0">Konten Dokumen</h6>
                     <hr class="horizontal dark my-3">
-                    <h5 class="mb-0">
+                    <h6 class="mb-0">
                       <ol>
                         @foreach ($kontenDokumen as $item)
                         <li>{{$item->judul}}</li>
                         @endforeach
                       </ol>
-                    </h5>
+                    </h6>
                   </div>
                 </div>
               </div>
@@ -201,9 +201,6 @@
                       {{ $item->judul }}
                     </h5>
                   </a>
-                  {{-- <p class="mb-4 text-sm">
-                    {{ $item->deskripsi }}
-                  </p> --}}
                 </div>
                 <div class="d-flex align-items-center justify-content-between">
                   <a class="btn bg-gradient-dark mb-0" href="{{route('detailPertemuan', $mataKuliah->id)}}">Lihat Pertemuan</a>
@@ -211,12 +208,10 @@
                     @csrf
                     <button type="submit" class="btn btn-outline-danger btn-sm mb-0">Hapus</button>
                   </form>
-                  {{-- <button type="button" class="btn btn-outline-primary btn-sm mb-0">Lihat Tugas</button> --}}
                 </div>
               </div>
             </div>
             @endforeach
-
             <div class="col-xl-3 col-md-6 mb-xl-0 mb-4 mt-4">
               <div class="card h-100 card-plain border">
                 <div class="card-body d-flex flex-column justify-content-center text-center">
@@ -245,7 +240,7 @@
           <div class="row">
             @foreach ($quiz->where('mata_kuliah_id',$mataKuliah->id) as $item)
             <div class="col-xl-3 col-md-6 mb-xl-0 mb-4 mt-4">
-              <div class="card h-100 card-plain border">
+              <div class="card h-100 card-plain">
                 <div class="position-relative">
                   <a class="d-block shadow-xl border-radius-xl">
                     <img src="../../../assets/img/home-decor-1.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl">
@@ -267,12 +262,6 @@
                       @csrf
                       <button type="submit" class="btn btn-outline-danger btn-sm mb-0">Hapus</button>
                     </form>
-                    {{-- <a class="btn bg-gradient-dark mb-0" href="{{route('detailPertemuan', $mataKuliah->id)}}">Lihat Pertemuan</a> --}}
-                    {{-- <form action="{{route('hapusQuiz', $item->id)}}" method="GET" style="display: inline">
-                      @csrf
-                      <button type="submit" class="btn btn-outline-danger btn-sm mb-0">Hapus</button>
-                    </form> --}}
-                    {{-- <button type="button" class="btn btn-outline-primary btn-sm mb-0">Lihat Tugas</button> --}}
                     <div class="avatar-group mt-2">
                     </div>
                   </div>
@@ -339,7 +328,7 @@
             </div>
             @endforeach
 
-            <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
+            <div class="col-xl-3 col-md-6 mb-xl-0 mb-4 mt-4">
               <div class="card h-100 card-plain border">
                 <div class="card-body d-flex flex-column justify-content-center text-center">
                   {{-- <a href="javascript:;"> --}}
@@ -428,7 +417,7 @@
             </div>
             @endforeach
 
-            <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
+            <div class="col-xl-3 col-md-6 mb-xl-0 mb-4 mt-4">
               <div class="card h-100 card-plain border">
                 <div class="card-body d-flex flex-column justify-content-center text-center">
                   {{-- <a href="javascript:;"> --}}

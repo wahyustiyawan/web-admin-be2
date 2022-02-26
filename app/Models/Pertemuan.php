@@ -35,6 +35,11 @@ class Pertemuan extends Model
         return $this->belongsTo(kelas::class, 'kelas_id', 'id');
     }
 
+    public function mataKuliah()
+    {
+        return $this->belongsTo(MataKuliah::class, 'mata_kuliah_id', 'id');
+    }
+
     public function video()
     {
         return $this->belongsTo(KontenVideo::class, 'kontenVideo_id', 'id');

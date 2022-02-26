@@ -36,6 +36,10 @@ class Quiz extends Model
         return $this->belongsTo(Pertemuan::class, 'pertemuan_id', 'id');
     }
 
+    public function mataKuliah()
+    {
+        return $this->belongsTo(MataKuliah::class, 'mata_kuliah_id', 'id');
+    }
     // public function mata_kuliah()
     // {
     //     return $this->belongsTo(MataKuliah::class, 'mata_kuliah_id', 'id');
