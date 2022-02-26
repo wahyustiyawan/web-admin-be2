@@ -146,7 +146,7 @@ class MataKuliahController extends Controller
         $nilaimahasiswa = [];
         foreach ($enrolls as $item) {
 
-            $user = User::find($item->id);
+            $user = User::find($item->user_id);
             $uts = $dataujian->where('tipe', 'uts')->where('user_id', $item->user_id)->first();
             $uas = $dataujian->where('tipe', 'uas')->where('user_id', $item->user_id)->first();
 
