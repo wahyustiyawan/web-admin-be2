@@ -64,8 +64,6 @@ class PertemuanController extends Controller
         $kontenVideo_id = $request->kontenVideo_id;
         $kontenDokumen_id = $request->kontenDokumen_id;
 
-
-
         $i = 0;
         foreach ($kontenVideo_id as $item) {
             // dd($item);
@@ -95,6 +93,8 @@ class PertemuanController extends Controller
         else{
             $mandiri = false;
         }
+        $ar = 1;
+
 
         Pertemuan::create([
             'pertemuan' => $request->pertemuan,
