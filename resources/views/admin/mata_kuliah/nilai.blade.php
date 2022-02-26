@@ -155,7 +155,7 @@
                                     <h6 class="mb-0">Data Ujian Akhir Semester</h6>
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-end align-items-center">
-                                    <small>23 - 30 March 2020</small>
+                                    {{-- <small>23 - 30 March 2020</small> --}}
                                 </div>
                             </div>
                             <hr class="horizontal dark mb-0">
@@ -216,7 +216,7 @@
                                     <h6 class="mb-0">Data Ujian Tengah Semester</h6>
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-end align-items-center">
-                                    <small>23 - 30 March 2020</small>
+                                    {{-- <small>23 - 30 March 2020</small> --}}
                                 </div>
                             </div>
                             <hr class="horizontal dark mb-0">
@@ -277,7 +277,7 @@
                                     <h6 class="mb-0">Data Assignment</h6>
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-end align-items-center">
-                                    <small>23 - 30 March 2020</small>
+                                    {{-- <small>23 - 30 March 2020</small> --}}
                                 </div>
                             </div>
                             <hr class="horizontal dark mb-0">
@@ -339,7 +339,7 @@
                                     <h6 class="mb-0">Data Quiz</h6>
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-end align-items-center">
-                                    <small>23 - 30 March 2020</small>
+                                    {{-- <small>23 - 30 March 2020</small> --}}
                                 </div>
                             </div>
                             <hr class="horizontal dark mb-0">

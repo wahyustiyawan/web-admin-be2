@@ -228,8 +228,18 @@ class MataKuliahController extends Controller
 
         $avgtugas1 = $avgassignment * 25 / 100;
         $avgquiz1 = $avgquiz * 10 / 100;
-        $avguts1 = $nilaiuts->grade * 30 / 100;
-        $avguas1 = $nilaiuas->grade * 35 / 100;
+        if ($nilaiuts->grade != NULL){
+            $avguts1 = $nilaiuts->grade * 30 / 100;
+        }
+        else{
+            $avguts1 = 0;
+        }
+        if ($nilaiuas->grade != NULL){
+            $avguas1 = $nilaiuas->grade * 35 / 100;
+        }
+        else{
+            $avguas1 = 0;
+        }
 
         $nilaiakhir = $avgtugas1 + $avgquiz1 + $avguts1 + $avguas1;
         

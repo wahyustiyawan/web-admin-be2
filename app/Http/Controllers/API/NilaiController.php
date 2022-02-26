@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Helpers\Helper;
 use App\Models\Nilai;
 use App\Http\Controllers\Controller;
+use App\Models\Assignment;
 use App\Models\MataKuliah;
 use App\Models\NilaiQuiz;
+use App\Models\Quiz;
 use App\Models\UserAssignment;
 use App\Models\UserExam;
 use App\Models\UserQuiz;
@@ -102,6 +105,52 @@ class NilaiController extends Controller
             "error" => false,
             "message" => "success",
             "data" => $uas
+        ], 200);
+    }
+
+    public function nilaiAkhir($matkul)
+    {
+        $user = Auth::user();
+        $matakuliah = MataKuliah::find($matkul);
+        $UserAssignment = UserAssignment::where('user_id',$user->id)->where('mata_kuliah_id',$matkul)->get();
+        $UserExam = UserExam::where('user_id',$user->id)->where('mata_kuliah_id',$matkul)->get();
+        $NilaiQuiz = NilaiQuiz::where('user_id',$user->id)->where('mata_kuliah_id',$matkul)->get();
+
+        $nilaiuts = $UserExam->where('tipe','uts')->first();
+        $nilaiuas = $UserExam->where('tipe','uas')->first();
+
+        $dataquiz = Quiz::where('mata_kuliah_id',$matkul)->count();
+        $jumlahquiz = $NilaiQuiz->sum('grade');
+        $avgquiz = $jumlahquiz/$dataquiz;
+
+        $dataassignment = Assignment::where('mata_kuliah_id',$matkul)->count();
+        $jumlahassignment = $UserAssignment->sum('grade');
+        $avgassignment = $jumlahassignment/$dataassignment;  
+
+        $avgtugas1 = $avgassignment * 25 / 100;
+        $avgquiz1 = $avgquiz * 10 / 100;
+        if ($nilaiuts->grade != NULL){
+            $avguts1 = $nilaiuts->grade * 30 / 100;
+        }
+        else{
+            $avguts1 = 0;
+        }
+        if ($nilaiuas->grade != NULL){
+            $avguas1 = $nilaiuas->grade * 35 / 100;
+        }
+        else{
+            $avguas1 = 0;
+        }
+
+        $nilaiakhir = $avgtugas1 + $avgquiz1 + $avguts1 + $avguas1;
+        
+        $variabel = Helper::variabel_nilai($nilaiakhir);
+
+        return response()->json([
+            "error" => false,
+            "message" => "success",
+            "nilai" => $nilaiakhir,
+            "grade" => $variabel
         ], 200);
     }
 }

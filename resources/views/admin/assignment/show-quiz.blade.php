@@ -48,12 +48,12 @@
                           </div>
                           <div class="d-flex flex-column justify-content-center">
                             <h6 class="mb-0 text-sm">{{ $item->user->name }}</h6>
-                            <p class="text-sm font-weight-bold text-secondary mb-0"><span class="text-success">Submitted</span> pre test</p>
+                            <p class="text-sm font-weight-bold text-secondary mb-0"><span class="text-success">Submitted</span> quiz</p>
                           </div>
                         </div>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <p class="text-sm font-weight-bold mb-0">{{ $item->nilai }}</p>
+                        <p class="text-sm font-weight-bold mb-0">{{ $item->grade }}</p>
                       </td>
                       <td class="align-middle text-end">
                         <div class="d-flex px-3 py-1 justify-content-center align-items-center">
