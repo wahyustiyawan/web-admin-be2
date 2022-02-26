@@ -65,6 +65,22 @@ class Pertemuan extends Model
     //     return $this->attributes['kontenVideo_id'] = json_decode($value);
     // }
 
+    public static function getJudulVideo($id){
+        return KontenVideo::where('id', $id)->pluck('judul')->first();
+    }
+
+    public static function getLinkVideo($id){
+        return KontenVideo::where('id', $id)->pluck('link')->first();
+    }
+
+    public static function getJudulDokumen($id){
+        return KontenDokumen::where('id', $id)->pluck('judul')->first();
+    }
+
+    public static function getFileDokumen($id){
+        return KontenDokumen::where('id', $id)->pluck('file')->first();
+    }
+
     // public function setDokumenAttribute($value)
     // {
     //     $this->attributes['kontenDokumen_id'] = json_encode($value);

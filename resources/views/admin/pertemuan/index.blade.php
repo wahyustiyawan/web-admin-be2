@@ -11,7 +11,10 @@
               Pertemuan Ke - {{ $pertemuan->pertemuan }}
             </h5>
             <p class="mb-0 font-weight-bold text-sm">
-              {{ $pertemuan->mataKuliah->judul }}
+              {{ $pertemuan->mataKuliah->judul }} <br>
+              @foreach ($pertemuan->kontenVideo_id as $item)
+                  {{$item['id']}}
+              @endforeach
             </p>
           </div>
         </div>
@@ -29,12 +32,15 @@
             </div>
             <div class="card-body p-3">
               <ul class="list-group">
-                @foreach ($kontenVideo as $item)
+                @foreach ($pertemuan->kontenVideo_id as $item)
                   <li class="list-group-item border-0 d-flex align-items-center px-0 mb-2">
                     <div class="d-flex align-items-start flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">{{$item->judul}}</h6>
+                      <h6 class="mb-0 text-sm">
+                        {{ App\Models\Pertemuan::getJudulVideo($item['id']) }}
+                      </h6>
+                      {{-- {{ App\Models\Pertemuan::getVideoAttribute($item['id']) }} --}}
                     </div>
-                    <a class="btn btn-link pe-3 ps-0 mb-0 ms-auto" href="{{$item->link}}" target="_BLANK">Lihat Video</a>
+                    <a class="btn btn-link pe-3 ps-0 mb-0 ms-auto" href="https://www.youtube.com/watch?v={{ App\Models\Pertemuan::getLinkVideo($item['id']) }}" target="_BLANK">Lihat Video</a>
                   </li>
                 @endforeach
               </ul>
@@ -58,12 +64,12 @@
             </div>
             <div class="card-body p-3">
               <ul class="list-group">
-                @foreach ($kontenDokumen as $item)
+                @foreach ($pertemuan->kontenDokumen_id as $item)
                   <li class="list-group-item border-0 d-flex align-items-center px-0 mb-2">
                     <div class="d-flex align-items-start flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">{{$item->judul}}</h6>
+                      <h6 class="mb-0 text-sm">{{ App\Models\Pertemuan::getJudulDokumen($item['id']) }}</h6>
                     </div>
-                    <a class="btn btn-link pe-3 ps-0 mb-0 ms-auto" href="{{$item->file}}" target="_BLANK">Lihat Dokumen</a>
+                    <a class="btn btn-link pe-3 ps-0 mb-0 ms-auto" href="{{ asset(App\Models\Pertemuan::getFileDokumen($item['id'])) }}" target="_BLANK">Lihat Dokumen</a>
                   </li>
                 @endforeach
               </ul>
@@ -81,209 +87,6 @@
           </div>
         </div>
       </div>
-
-      {{-- <div class="row my-4">
-        <div class="col-12">
-          <div class="card">
-            <div class="table-responsive">
-              <table class="table align-items-center mb-0">
-                <thead>
-                  <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Review</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="d-flex px-2 py-1">
-                        <div>
-                          <img src="../../../assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="avatar image">
-                        </div>
-                        <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">John Michael</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <p class="text-sm text-secondary mb-0">Manager</p>
-                    </td>
-                    <td>
-                      <span class="badge badge-dot me-4">
-                        <i class="bg-info"></i>
-                        <span class="text-dark text-xs">positive</span>
-                      </span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <p class="text-secondary mb-0 text-sm">john@user.com</p>
-                    </td>
-                    <td class="align-middle text-center">
-                      <span class="text-secondary text-sm">23/04/18</span>
-                    </td>
-                    <td class="align-middle text-center">
-                      <span class="text-secondary text-sm">43431</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="d-flex px-2 py-1">
-                        <div>
-                          <img src="../../../assets/img/team-3.jpg" class="avatar avatar-sm me-3" alt="avatar image">
-                        </div>
-                        <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">Alexa Liras</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <p class="text-sm text-secondary mb-0">Programator</p>
-                    </td>
-                    <td>
-                      <span class="badge badge-dot me-4">
-                        <i class="bg-info"></i>
-                        <span class="text-dark text-xs">positive</span>
-                      </span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <p class="text-secondary mb-0 text-sm">alexa@user.com</p>
-                    </td>
-                    <td class="align-middle text-center">
-                      <span class="text-secondary text-xs font-weight-bold">11/01/19</span>
-                    </td>
-                    <td class="align-middle text-center">
-                      <span class="text-secondary text-sm">93021</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="d-flex px-2 py-1">
-                        <div>
-                          <img src="../../../assets/img/team-4.jpg" class="avatar avatar-sm me-3" alt="avatar image">
-                        </div>
-                        <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">Laurent Perrier</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <p class="text-sm text-secondary mb-0">Executive</p>
-                    </td>
-                    <td>
-                      <span class="badge badge-dot me-4">
-                        <i class="bg-dark"></i>
-                        <span class="text-dark text-xs">neutral</span>
-                      </span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <p class="text-secondary mb-0 text-sm">laurent@user.com</p>
-                    </td>
-                    <td class="align-middle text-center">
-                      <span class="text-secondary text-xs font-weight-bold">19/09/17</span>
-                    </td>
-                    <td class="align-middle text-center">
-                      <span class="text-secondary text-sm">10392</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="d-flex px-2 py-1">
-                        <div>
-                          <img src="../../../assets/img/team-3.jpg" class="avatar avatar-sm me-3" alt="avatar image">
-                        </div>
-                        <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">Michael Levi</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <p class="text-sm text-secondary mb-0">Backend developer</p>
-                    </td>
-                    <td>
-                      <span class="badge badge-dot me-4">
-                        <i class="bg-info"></i>
-                        <span class="text-dark text-xs">positive</span>
-                      </span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <p class="text-secondary mb-0 text-sm">michael@user.com</p>
-                    </td>
-                    <td class="align-middle text-center">
-                      <span class="text-secondary text-xs font-weight-bold">24/12/08</span>
-                    </td>
-                    <td class="align-middle text-center">
-                      <span class="text-secondary text-sm">34002</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="d-flex px-2 py-1">
-                        <div>
-                          <img src="../../../assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="avatar image">
-                        </div>
-                        <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">Richard Gran</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <p class="text-sm text-secondary mb-0">Manager</p>
-                    </td>
-                    <td>
-                      <span class="badge badge-dot me-4">
-                        <i class="bg-danger"></i>
-                        <span class="text-dark text-xs">negative</span>
-                      </span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <p class="text-secondary mb-0 text-sm">richard@user.com</p>
-                    </td>
-                    <td class="align-middle text-center">
-                      <span class="text-secondary text-xs font-weight-bold">04/10/21</span>
-                    </td>
-                    <td class="align-middle text-center">
-                      <span class="text-secondary text-sm">91879</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="d-flex px-2 py-1">
-                        <div>
-                          <img src="../../../assets/img/team-4.jpg" class="avatar avatar-sm me-3" alt="avatar image">
-                        </div>
-                        <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">Miriam Eric</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <p class="text-sm text-secondary mb-0">Programtor</p>
-                    </td>
-                    <td>
-                      <span class="badge badge-dot me-4">
-                        <i class="bg-info"></i>
-                        <span class="text-dark text-xs">positive</span>
-                      </span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <p class="text-secondary mb-0 text-sm">miriam@user.com</p>
-                    </td>
-                    <td class="align-middle text-center">
-                      <span class="text-secondary text-xs font-weight-bold">14/09/20</span>
-                    </td>
-                    <td class="align-middle text-center">
-                      <span class="text-secondary text-sm">23042</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div> --}}
     </div>
   </main>
 </x-app-layout>

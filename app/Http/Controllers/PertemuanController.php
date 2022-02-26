@@ -41,8 +41,8 @@ class PertemuanController extends Controller
 
     public function detail($id)
     {
-        $pertemuan = Pertemuan::where('id', $id)->first();
-        dd($pertemuan);
+        $pertemuan = Pertemuan::find($id);
+        // dd($pertemuan);
         $kelas = Kelas::find($id);
         $kontenDokumen = KontenDokumen::get();
         $kontenVideo = KontenVideo::get();

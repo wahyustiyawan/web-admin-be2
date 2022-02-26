@@ -19,7 +19,6 @@
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">Judul</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Deskripsi</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Link</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mata Kuliah</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
               </tr>
@@ -37,9 +36,6 @@
                       <span class="text-secondary text-xs font-weight-bold">{!! $item->deskripsi !!}</span>
                     </td>
                     <td class="align-middle text-center">
-                      <span class="text-secondary text-xs font-weight-bold">{{ $item->link }}</span>
-                    </td>
-                    <td class="align-middle text-center">
                       <span class="text-secondary text-xs font-weight-bold">{{ $item->mata_kuliah->judul}}</span>
                     </td>
                     <td>
@@ -50,6 +46,7 @@
                           <button type="submit" class="btn btn-link text-danger text-gradient px-3 mb-0 show_confirm" data-toggle="tooltip" title='Delete'><i class="fas fa-trash text-secondary"></i></button>
                         </form>
                         <a class="btn btn-link text-dark px-3 mb-0" href="{{route('kontenVideo.edit', $item->id)}}"><i class="fas fa-user-edit text-secondary"></i></a>
+                        <a class="btn btn-link text-dark px-3 mb-0" href="https://www.youtube.com/watch?v={{ $item->link }}" target="_BLANK"><i class="fas fa-eye text-secondary"></i></a>
                       </div>
                     </td>
                   </tr>

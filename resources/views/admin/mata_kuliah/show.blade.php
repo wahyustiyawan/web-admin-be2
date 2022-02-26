@@ -203,7 +203,7 @@
                   </a>
                 </div>
                 <div class="d-flex align-items-center justify-content-between">
-                  <a class="btn bg-gradient-dark mb-0" href="{{route('detailPertemuan', $mataKuliah->id)}}">Lihat Pertemuan</a>
+                  <a class="btn bg-gradient-dark mb-0" href="{{route('detailPertemuan', $item->id)}}">Lihat Pertemuan</a>
                   <form action="{{route('hapusPertemuan', $item->id)}}" method="GET" style="display: inline">
                     @csrf
                     <button type="submit" class="btn btn-outline-danger btn-sm mb-0">Hapus</button>
