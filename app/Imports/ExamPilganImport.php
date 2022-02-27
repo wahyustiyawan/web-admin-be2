@@ -3,10 +3,11 @@
 namespace App\Imports;
 use App\Models\ExamQuestion;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithStartRow;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 
-class ExamPilganImport implements ToModel
+class ExamPilganImport implements ToModel, WithStartRow
 {
 
         /**
@@ -20,6 +21,11 @@ class ExamPilganImport implements ToModel
     public function __construct(string $exam_pilgan_id)
     {
     $this->exam_pilgan_id = $exam_pilgan_id;
+    }
+
+    public function startRow(): int
+    {
+        return 2;
     }
 
     public function model(array $row)

@@ -10,7 +10,7 @@ use App\Models\Quiz;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class QuizImport implements ToModel
+class QuizImport implements ToModel, WithStartRow
 {
     /**
     * @param array $row
@@ -22,6 +22,11 @@ class QuizImport implements ToModel
     public function __construct(string $quiz_id)
     {
     $this->quiz_id = $quiz_id;
+    }
+
+    public function startRow(): int
+    {
+        return 2;
     }
 
     public function model(array $row)
