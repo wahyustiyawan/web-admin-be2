@@ -92,7 +92,7 @@ class QuizController extends Controller
     {
         $answer = UserQuiz::where('user_id', $id)->where('quiz_id', $quiz)->get();
         $nilai = NilaiQuiz::where('user_id', $id)->where('quiz_id', $quiz)->first();
-        $quiz = Quiz::find($quiz); 
+        $quiz = Quiz::find($quiz);  
         // dd($nilai->grade);
 
         return view('admin.assignment.show-userQuiz', compact('quiz', 'answer', 'nilai'));

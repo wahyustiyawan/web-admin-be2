@@ -44,7 +44,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($nilai as $item)
+                  @foreach ($nilai->where('mata_kuliah_id', $quiz->mata_kuliah_id) as $item)
                     <tr>
                       <td>
                         <div class="d-flex px-3 py-1">
