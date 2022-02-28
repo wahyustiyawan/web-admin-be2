@@ -195,7 +195,7 @@
                   </a>
                 </div>
                 <div class="card-body px-1 pb-0">
-                  <p class="text-gradient text-dark mb-2 text-sm">Pertemuan ke {{ $item->pertemuan }}</p>
+                  <p class="text-gradient text-dark mb-2 text-sm">Pertemuan ke {{ $loop->iteration }}</p>
                   <a href="javascript:;">
                     <h5>
                       {{ $item->judul }}
@@ -247,15 +247,12 @@
                   </a>
                 </div>
                 <div class="card-body px-1 pb-0">
-                  <p class="text-gradient text-dark mb-2 text-sm">Pertemuan ke {{ $item->pertemuan->pertemuan }}</p>
+                  {{-- <p class="text-gradient text-dark mb-2 text-sm">Pertemuan {{ $item->pertemuan->judul }}</p> --}}
                   <a href="javascript:;">
                     <h5>
                       {{ $item->judul }}
                     </h5>
                   </a>
-                  {{-- <p class="mb-4 text-sm">
-                    {{ $item->deskripsi }}
-                  </p> --}}
                   <div class="d-flex align-items-center justify-content-between">
                     <a href="{{route('QuizShow',$item->id)}}" class="btn btn-outline-primary btn-sm mb-0">Lihat Quiz</a>
                     <form action="{{route('QuizDestroy', $item->id)}}" method="GET" style="display: inline">
@@ -518,10 +515,10 @@
               <form role="form text-left" action="{{route('storePertemuan')}}" method="POST">
                 @csrf
                 <input type="hidden" name="mata_kuliah_id" value="{{$mataKuliah->id}}">
-                <div class="mb-3">
-                  <label for="exampleFormControlSelect1">Pertemuan Ke</label>
-                  <input type="number" class="form-control" name="pertemuan" placeholder="Isi Angka" aria-label="Name" aria-describedby="email-addon" required>
-                </div>
+                {{-- <div class="mb-3"> --}}
+                  {{-- <label for="exampleFormControlSelect1">Pertemuan Ke</label> --}}
+                  <input type="hidden" value="1" class="form-control" name="pertemuan" placeholder="Isi Angka" aria-label="Name" aria-describedby="email-addon" required>
+                {{-- </div> --}}
                 <div class="mb-3">
                   <label for="exampleFormControlSelect1">Topik Pertemuan</label>
                   <input type="text" class="form-control" name="judul" placeholder="Isi topik pertemuan" aria-label="Name" aria-describedby="email-addon" required>
@@ -599,7 +596,7 @@
                   <div class="mb-3">
                     <label for="exampleFormControlSelect1">Pertemuan</label>
                     <select class="form-control" name="pertemuan_id" id="exampleFormControlSelect1">
-                      @foreach ($pertemuan as $item)
+                      @foreach ($pertemuan->where('mata_kuliah_id', $mataKuliah->id) as $item)
                       <option value="{{$item->id}}">{{$item->judul}}</option>
                       @endforeach
                     </select>

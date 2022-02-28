@@ -24,7 +24,11 @@
               <div class="mb-3">
                 <label for="exampleFormControlSelect1">Sks</label>
                 <input type="hidden" name="kelas_id" value="{{$matakuliah->kelas_id}}" >
-                <input type="text" class="form-control" name="sks" placeholder="sks"  value="{{$matakuliah->sks}}" aria-label="Name" aria-describedby="email-addon" required>
+                <input type="number" class="form-control" name="sks" placeholder="sks"  value="{{$matakuliah->sks}}" aria-label="Name" aria-describedby="email-addon" required>
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlSelect1">Semester</label>
+                <input type="number" class="form-control" name="semester" placeholder="semester"  value="{{$matakuliah->semester}}" aria-label="Name" aria-describedby="email-addon" required>
               </div>
               <div class="mb-3">
                 <label for="exampleFormControlSelect1">Kategori</label>
@@ -33,9 +37,9 @@
                   <option value="{{$item->id}}">{{$item->nama_kategori}}</option>
                   @endforeach
                 </select>
-              <div class="text-end">
-                      <a href="javascript:history.back()" class="btn bg-gradient-danger"><i class="ni ni-bold-left"></i>&nbsp;&nbsp;Batal</a> 
-                      <button type="submit" class="btn bg-gradient-dark"><i class="fas fa-plus"></i>&nbsp;&nbsp;Edit</button>                
+              <div class="text-end mt-4">
+                <a href="javascript:history.back()" class="btn bg-gradient-danger"><i class="ni ni-bold-left"></i>&nbsp;&nbsp;Batal</a> 
+                <button type="submit" class="btn bg-gradient-dark"><i class="fas fa-plus"></i>&nbsp;&nbsp;Edit</button>                
               </div>
             </form>
           </div>
