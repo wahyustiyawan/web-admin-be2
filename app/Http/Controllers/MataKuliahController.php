@@ -235,11 +235,17 @@ class MataKuliahController extends Controller
         else{
             $avguts1 = 0;
         }
+        
+        // dd($nilaiuas);
+        if ($nilaiuas== NULL){
+            $avguas1 = 0;
+        }
+
         if ($nilaiuas->grade != NULL){
-            $avguas1 = $nilaiuas->grade * 35 / 100;
+            $avguas1 = 0;
         }
         else{
-            $avguas1 = 0;
+            $avguas1 = $nilaiuas->grade * 35 / 100;
         }
 
         $nilaiakhir = $avgtugas1 + $avgquiz1 + $avguts1 + $avguas1;

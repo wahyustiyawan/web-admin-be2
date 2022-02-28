@@ -157,10 +157,6 @@ Route::get('/userAssignment', [UserAssignmentController::class, 'index']);
 Route::get('/userAssignment/show/{id}', [UserAssignmentController::class, 'show']);
 
 
-// Route User Exam
-Route::get('/userExam', [UserExamController::class, 'index']);
-Route::post('/userExam', [UserExamController::class, 'store']);
-Route::get('/userExam/{id}', [UserExamController::class, 'show']);
 
 //Leaderboard
 Route::get('/leaderboard', [LeaderboardController::class, 'index']);
@@ -290,6 +286,11 @@ Route::group(['middleware' => ['auth:api']], function () {
     
     // User Mandiri
     Route::post('/userMandiri', [UserMandiriController::class, 'store']); 
+
+    // Route User Exam
+    Route::get('/userExam', [UserExamController::class, 'index']);
+    Route::post('/userExam', [UserExamController::class, 'store']);
+    Route::get('/userExam/{id}', [UserExamController::class, 'show']);
 
     //Route Nilai
     // Route::post('/nilaiQuiz', [NilaiController::class, 'nilaiQuiz']);

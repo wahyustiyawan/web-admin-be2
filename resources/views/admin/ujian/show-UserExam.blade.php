@@ -7,7 +7,7 @@
                 <div class="card-header pb-0 px-3">
                     <div class="row">
                         <div class="col-md-6">
-                          <h6 class="mb-0">{{ $userExam->user->name }} Assignment's Details</h6>
+                          <h6 class="mb-0">{{ $userExam->user->name }} Exam's Details</h6>
                         </div>
                         <div class="col-md-6 d-flex justify-content-end align-items-center">
                           <i class="far fa-calendar-alt me-2"></i>
@@ -96,7 +96,7 @@
           </div>
         </div>
         
-        <div class="container-fluid my-3 py-3">
+        {{-- <div class="container-fluid my-3 py-3">
             <div class="row">
               <div class="col-md-12">
                 <div class="card">
@@ -124,6 +124,6 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --}}
       </main>
 </x-app-layout>
