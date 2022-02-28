@@ -36,4 +36,8 @@ class AksesKelas extends Model
     {
         return $this->belongsTo(user::class, 'user_id', 'id');
     }
+    public function mata_kuliah()
+    {
+        return $this->belongsTo(MataKuliah::class, 'mata_kuliah_id', 'id');
+    }
 }
