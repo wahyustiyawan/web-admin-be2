@@ -38,7 +38,7 @@ class UserQuizController extends Controller
             "message" => "success",
             "data" => $jawaban
         ]);
-    }
+    } 
 
     public function nilaiQuiz(Request $request)
     {

@@ -26,18 +26,19 @@
 
          {{-- {{ dd($Userselect->where('role','dosen'))}} --}}
           <tbody>
-            @foreach ($Userselect->where('role','dosen') as $item)
+            @foreach ($AksesKelas as $item)
             <tr>
               <td class="align-middle text-center">
                 <span class="text-secondary text-xs font-weight-bold">{{ $loop->iteration }}</span>
               </td>
               <td class="align-middle text-center">
-                <p class="text-xs font-weight-bold mb-0">{{ $item->name }}</p>
+                <p class="text-xs font-weight-bold mb-0">{{ $item->user->name }}</p>
               </td>
-              <td class="align-middle text-center">
-                {{-- {{dd($item->AksesKelas)}} --}}
+              {{-- {{ dd($item) }} --}}
+              {{-- <td class="align-middle text-center">
+                {{dd($item->AksesKelas)}}
                 <span class="text-secondary text-xs font-weight-bold">{{implode(', ',$item->AksesKelas->pluck('judul')->toArray())}}</span>
-              </td>
+              </td> --}}
               {{-- <td class="align-middle text-center">
                 <p class="text-xs font-weight-bold mb-0">{{ $item->kategori }}</p>
               </td> --}}

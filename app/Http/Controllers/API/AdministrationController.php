@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Administration;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -90,7 +91,7 @@ class AdministrationController extends Controller
     }
 
 
-    function update(Request $request ,$id)
+    function update(Request $request, $id)
     {
         $user = Auth::user();
         // dd($request);
@@ -199,10 +200,16 @@ class AdministrationController extends Controller
             'program' => $request->program,
         ]);
 
+        User::where('id', $id)->update([
+            'gambar' => $upload_pas_foto,
+            'name' => $request->nama_lengkap
+        ]);
+
         return response()->json([
             "error" => false,
             "message" => "success",
-            "data" => $request->nama_lengkap
+            "data" => $request->nama_lengkap,
+            "administrasi" => $administrasi
         ]);
     }
 

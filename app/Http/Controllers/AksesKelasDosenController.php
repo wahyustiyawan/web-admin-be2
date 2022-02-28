@@ -19,10 +19,11 @@ class AksesKelasDosenController extends Controller
     
     public function index()
     {
-        $AksesKelas = MataKuliah::all();
+        // $AksesKelas = MataKuliah::all();
         $AksesKelas = AksesKelas::all();
         $User = User::all();
         $Userselect = User::has('akseskelas')->get();
+        // dd($AksesKelas);
         return view('admin.aksesKelas.dosen.index', compact('AksesKelas','AksesKelas','User', 'Userselect'));
     }
 

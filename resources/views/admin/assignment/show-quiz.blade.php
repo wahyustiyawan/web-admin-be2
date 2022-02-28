@@ -44,7 +44,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($nilai->where('mata_kuliah_id', $quiz->mata_kuliah_id) as $item)
+                  @foreach ($nilai->where('quiz_id', $quiz->id) as $item)
                     <tr>
                       <td>
                         <div class="d-flex px-3 py-1">
@@ -63,7 +63,7 @@
                       <td class="align-middle text-end">
                         <div class="d-flex px-3 py-1 justify-content-center align-items-center">
                           {{-- <a class="btn btn-link text-dark px-3 mb-0" href="#"><i class="fas fa-user-edit text-secondary"></i></a> --}}
-                          <a href="{{ url('/user-quiz/'.$item->quiz_id, $item->user->id) }}" class="btn bg-gradient-info mb-0"> Lihat Jawaban</a>
+                          <a href="{{ url('/user-quiz/'.$item->user->id, $item->quiz_id) }}" class="btn bg-gradient-info mb-0"> Lihat Jawaban</a>
                         </div>
                       </td>
                     </tr>

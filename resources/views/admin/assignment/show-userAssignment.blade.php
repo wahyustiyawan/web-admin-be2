@@ -96,7 +96,7 @@
           </div>
         </div>
         
-        <div class="container-fluid my-3 py-3">
+        {{-- <div class="container-fluid my-3 py-3">
             <div class="row">
               <div class="col-md-12">
                 <div class="card">
@@ -107,7 +107,7 @@
                           </div>
                           <div class="col-md-6 d-flex justify-content-end align-items-center">
                             <i class="fas fa-file-pdf text-lg me-1"></i>
-                            <span class="badge badge-danger">Pdf Preview</span>
+                            <span class="badge badge-danger">Pdf</span>
                           </div>
                         </div>
                   </div>
@@ -116,7 +116,6 @@
                       <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
                         <div class="d-flex flex-column">
                           <h6 class="mb-3 text-sm">Preview PDF</h6>
-                          
                         </div>
                       </li>
                     </ul>
@@ -124,6 +123,6 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --}}
       </main>
 </x-app-layout>

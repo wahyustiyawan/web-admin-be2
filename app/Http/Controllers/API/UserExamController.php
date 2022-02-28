@@ -34,7 +34,7 @@ class UserExamController extends Controller
         UserExam::create([
             'exam' => $request->exam,
             'grade' => '0',
-            'user_id' => $user->id,
+            'user_id' => Auth::user()->id,
             'mata_kuliah_id' => $request->mata_kuliah_id,
             'exam_id' => $request->exam_id,
             'isComplete' => '0',

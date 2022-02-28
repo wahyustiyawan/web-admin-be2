@@ -60,7 +60,10 @@
                       </div>
                     </td>
                     <td class="">
-                      <a href="{{route('showUserAssignment',$item->id)}}" class="btn btn-link text-dark"><i class="fas fa-file-pdf text-lg me-1"></i>Cek assignment</a>
+                      <a href="{{route('showUserAssignment',$item->id)}}" class="btn btn-link text-dark"><i class="fas fa-file-pdf text-lg me-1"></i>Cek Nilai</a>
+                    </td>
+                    <td class="">
+                      <a href="{{ asset($item->assignment) }}" class="btn btn-link text-dark" target="_BLANK"><i class="fas fa-download text-lg me-1"></i>Download Assignment</a>
                     </td>
                     <td class="align-middle text-center text-sm">
                       <p class="text-sm font-weight-bold mb-0">{{ $item->grade }}</p>
