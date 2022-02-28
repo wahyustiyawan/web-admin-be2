@@ -76,8 +76,8 @@ class KategoriController extends Controller
 
     public function destroy($id)
     {
-        $kategori = Kategori::where('id', $id)->delete();
-        dd($kategori);
+        $kategori = Kategori::find($id)->delete();
+        // dd($kategori);
         //notify()->success('Kategori berhasil dihapus!');
         return redirect()->route('kategori.index')
             ->with('delete', 'Skill Level Berhasil Dihapus');

@@ -33,9 +33,14 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleFormControlSelect1">Sks</label>
-                                    <input type="text" class="form-control" name="sks" placeholder="sks"
+                                    <input type="number" class="form-control" name="sks" placeholder="sks"
                                         aria-label="Name" aria-describedby="email-addon" required>
                                     <input type="hidden" name="kelas_id" value="{{ $kelas->id }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlSelect1">Semester</label>
+                                    <input type="number" class="form-control" name="semester" placeholder="semester"
+                                        aria-label="Name" aria-describedby="email-addon" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleFormControlSelect1">Kategori</label>

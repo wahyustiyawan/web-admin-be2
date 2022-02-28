@@ -61,16 +61,17 @@ class MataKuliahController extends Controller
             'kode' => 'required',
             'semester' => 'required',
         ]);
-        MataKuliah::create([
+        $matkul = MataKuliah::create([
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
             'sks' => $request->sks,
             'semester' => $request->semester,
             'kategori_id' => $request->kategori_id,
-            'kategori_id' => $request->kategori_id,
             'kelas_id' => $request->kelas_id,
             'kode' => $request->kode,
         ]);
+
+        // dd($matkul);
         
         return back()
             ->with('success', 'Mata kuliah Berhasil Ditambahkan');
