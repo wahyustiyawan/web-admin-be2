@@ -331,10 +331,10 @@ class AdministrationController extends Controller
 
     public function getAdministrasi()
     {
-        $user = Auth::user();
+        $user = Auth::user()->id;
         // dd($request);
         
-        $data = Administration::where('user_id', $user->id)->get();
+        $data = Administration::where('user_id', $user)->get();
 
         return response()->json([
             "error" => false,
