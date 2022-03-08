@@ -41,7 +41,7 @@ class DiscussionForumController extends Controller
                             $ada1[] = [
                                 'id' => $replys2->id,
                                 'user_id' => $replys2->user_id,
-                                'username' => $replys2->user->name,
+                                'username' => $replys2->username,
                                 'isi' => $replys2->isi,
                                 'like' => $like3,
                                 'discussion_reply_id' => $replys2->discussion_reply_id,
@@ -59,7 +59,7 @@ class DiscussionForumController extends Controller
                         $ada[] = [
                             'id' => $replys->id,
                             'user_id' => $replys->user_id,
-                            'username' => $replys->user->name,
+                            'username' => $replys->username,
                             'isi' => $replys->isi,
                             'like' => $like2,
                             'discussion_id' => $replys->discussion_id,
@@ -77,7 +77,7 @@ class DiscussionForumController extends Controller
                 $arr1[] = [
                     'id' => $diskusis->id,
                     'user_id' => $diskusis->user_id,
-                    'username' => $diskusis->user->name,
+                    'username' => $diskusis->username,
                     'mata_kuliah_id' => $diskusis->mata_kuliah_id,
                     'judul' => $diskusis->judul,
                     'isi' => $diskusis->isi,
@@ -136,6 +136,7 @@ class DiscussionForumController extends Controller
         $input->judul = $request->judul;
         $input->isi = $request->isi;
         $input->user_id = $user->id;
+        $input->username = $request->username;
         $input->mata_kuliah_id = $request->mata_kuliah_id;
 
         $input->save();

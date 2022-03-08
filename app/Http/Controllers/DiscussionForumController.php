@@ -43,6 +43,7 @@ class DiscussionForumController extends Controller
             'judul' => 'required',
             'isi' => 'required',
             'user_id' => 'required',
+            'username' => 'required',
             'mata_kuliah_id' => 'required'
         ]);
         if (isset($request->gambar)) {
@@ -58,6 +59,7 @@ class DiscussionForumController extends Controller
             'judul' => $request->judul,
             'isi' => $request->isi,
             'user_id' => $request->user_id,
+            'username' => $request->username,
             'mata_kuliah_id' => $request->mata_kuliah_id,
             'gambar' => $txt,
         ]);
@@ -166,6 +168,7 @@ class DiscussionForumController extends Controller
             'discussion_id' => $request->discussion_id,
             'isi' => $request->isi,
             'user_id' => Auth::user()->id,
+            'username' => Auth::user()->name,
         ]);
 
         // $getuser_id = DiscussionForum::find($request->discussion_id);
@@ -207,6 +210,7 @@ class DiscussionForumController extends Controller
             'discussion_reply_id' => $request->reply_id,
             'isi' => $request->isi,
             'user_id' => Auth::user()->id,
+            'username' => Auth::user()->name,
         ]);
 
         $leaderboard = Leaderboard::find(Auth::user()->id);

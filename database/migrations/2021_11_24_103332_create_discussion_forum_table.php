@@ -17,6 +17,7 @@ class CreateDiscussionForumTable extends Migration
             $table->id();
             $table->foreignId("user_id")->constrained("users")->onDelete("cascade")->onUpdate("cascade");
             $table->foreignId("mata_kuliah_id")->constrained("mata_kuliah")->onDelete("cascade")->onUpdate("cascade");
+            $table->string('username');
             $table->string('judul');
             $table->longText('isi');
             $table->string('gambar')->nullable();
