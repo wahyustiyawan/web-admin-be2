@@ -40,7 +40,8 @@ class DiscussionForumController extends Controller
                             $like3 = DiscussionLike2::where('discussion_reply_id', $replys2->id)->count();
                             $ada1[] = [
                                 'id' => $replys2->id,
-                                'user_id' => $replys2->user->name,
+                                'user_id' => $replys2->user_id,
+                                'username' => $replys2->user->name,
                                 'isi' => $replys2->isi,
                                 'like' => $like3,
                                 'discussion_reply_id' => $replys2->discussion_reply_id,
@@ -57,7 +58,8 @@ class DiscussionForumController extends Controller
                         $like2 = DiscussionLike2::where('discussion_reply_id', $replys->id)->count();
                         $ada[] = [
                             'id' => $replys->id,
-                            'user_id' => $replys->user->name,
+                            'user_id' => $replys->user_id,
+                            'username' => $replys->user->name,
                             'isi' => $replys->isi,
                             'like' => $like2,
                             'discussion_id' => $replys->discussion_id,
@@ -74,7 +76,8 @@ class DiscussionForumController extends Controller
                 $like = DiscussionLike::where('discussion_id', $diskusis->id)->count();
                 $arr1[] = [
                     'id' => $diskusis->id,
-                    'user_id' => $diskusis->user->name,
+                    'user_id' => $diskusis->user_id,
+                    'username' => $diskusis->user->name,
                     'mata_kuliah_id' => $diskusis->mata_kuliah_id,
                     'judul' => $diskusis->judul,
                     'isi' => $diskusis->isi,
