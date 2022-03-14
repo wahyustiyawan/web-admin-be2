@@ -80,7 +80,7 @@ class AdministrationController extends Controller
             'pas_foto' => $upload_pas_foto,
             'transkip' => $upload_transkip,
             'surat_rekomendasi' => $upload_surat_rekomendasi,
-            'program' => $request->program,
+            'program_id' => $request->program,
         ]);
 
         return response()->json([
@@ -197,7 +197,7 @@ class AdministrationController extends Controller
             'pas_foto' => $upload_pas_foto,
             'transkip' => $upload_transkip,
             'surat_rekomendasi' => $upload_surat_rekomendasi,
-            'program' => $request->program,
+            'program_id' => $request->program,
         ]);
 
         User::where('id', $id)->update([
@@ -319,7 +319,7 @@ class AdministrationController extends Controller
             'pas_foto' => $upload_pas_foto,
             'transkip' => $upload_transkip,
             'surat_rekomendasi' => $upload_surat_rekomendasi,
-            'program' => $request->program,
+            'program_id' => $request->program,
         ]);
 
         return response()->json([

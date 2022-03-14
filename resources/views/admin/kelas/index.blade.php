@@ -20,6 +20,7 @@
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Deskripsi</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Program</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
             </tr>
           </thead>
@@ -35,6 +36,9 @@
               </td>
               <td class="align-middle text-center">
                 <span class="text-secondary text-xs font-weight-bold">{!! $item->deskripsi !!}</span>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary text-xs font-weight-bold">{!! $item->program->nama_program !!}</span>
               </td>
               {{-- {{dd($item->akseskelas->name)}}
               <td class="align-middle text-center">
