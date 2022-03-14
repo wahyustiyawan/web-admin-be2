@@ -30,6 +30,7 @@ use App\Http\Controllers\AdministrasiController;
 use App\Http\Controllers\GuideController;
 use App\Http\Controllers\ChatsController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ProgramController;
 use App\Models\Assignment;
 use App\Models\UserExam;
 
@@ -152,6 +153,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
+Route::resource('program', ProgramController::class);
 Route::resource('discussionForum', DiscussionForumController::class);
 Route::resource('kontenVideo', KontenVideoController::class);
 Route::resource('kontenDokumen', KontenDokumenController::class);
