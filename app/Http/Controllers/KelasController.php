@@ -12,6 +12,8 @@ use App\Models\Pertemuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Models\AksesKelas;
+use App\Models\Program;
+
 class KelasController extends Controller
 {
     public function __construct()
@@ -31,7 +33,8 @@ class KelasController extends Controller
     {
         $kategori = kategori::all();
         $kelas = Kelas::all();
-        return view('admin.kelas.tambah',compact('kategori', 'kelas'));
+        $program = Program::all();
+        return view('admin.kelas.tambah',compact('kategori', 'kelas','program'));
     }
 
     public function store(Request $request)
@@ -39,13 +42,13 @@ class KelasController extends Controller
         $request->validate([
             'nama' => 'required',
             'deskripsi' => 'required',
-            //'kategori_id' => 'required',
+            'program_id' => 'required',
             'sebelum' => 'required',
         ]);
         Kelas::create([
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
-            //'kategori_id' => $request->kategori_id,
+            'program_id' => $request->program_id,
             'sebelum' => $request->sebelum,
         ]);
         
@@ -70,8 +73,9 @@ class KelasController extends Controller
     public function edit($id)
     {
         $kelas = Kelas::find($id);
+        $program = Program::all();
         //$kategori = kategori::all();
-        return view('admin.kelas.edit', compact('kelas'));
+        return view('admin.kelas.edit', compact('kelas','program'));
     }
 
     public function update(Request $request, $id)
@@ -79,7 +83,7 @@ class KelasController extends Controller
         $kelas = Kelas::findOrFail($id);
         $kelas->nama = $request->nama;
         $kelas->deskripsi = $request->deskripsi;
-        //$kelas->kategori_id = $request->kategori_id;
+        $kelas->program_id = $request->program_id;
         $kelas->sebelum = $request->sebelum;
         $kelas->save();
         

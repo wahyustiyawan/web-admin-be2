@@ -18,14 +18,24 @@ class Kelas extends Model
     protected $fillable = [
         'nama',
         'deskripsi',
+        'sebelum',
+        'program_id'
     ];  
 
     protected $primaryKey = 'id';
+    protected $casts = [
+        'program_id' => 'integer',
+    ];
 
     protected $hidden = [
         'created_at',
         'updated_at',
     ];
+
+    public function program()
+    {
+        return $this->belongsTo(Program::class);
+    }
 
     public function mata_kuliah()
     {

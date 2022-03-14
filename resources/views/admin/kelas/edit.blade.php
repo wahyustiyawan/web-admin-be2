@@ -17,16 +17,16 @@
                 <label for="exampleFormControlSelect1">Deskripsi</label>
                 <input type="text" class="form-control" name="deskripsi" placeholder="Deskripsi Kelas" value="{{$kelas->deskripsi}}" aria-label="Name" aria-describedby="email-addon" required>
               </div>
-              {{-- <div class="mb-3">
-                <label for="exampleFormControlSelect1">Kelas</label>
-                <select class="form-control" name="kategori_id" id="exampleFormControlSelect1">
-                  @foreach ($kategori as $item)
-                  <option value="{{$item->id}}" @if ($item->id == $kelas->kategori_id)
+              <div class="mb-3">
+                <label for="exampleFormControlSelect1">Pilih Program</label>
+                <select class="form-control" name="program_id" id="exampleFormControlSelect1">
+                  @foreach ($program as $item)
+                  <option value="{{$item->id}}" @if ($item->id == $kelas->program_id)
                       selected
-                  @endif>{{$item->nama_kategori}}</option>
+                  @endif>{{$item->nama_program}}</option>
                   @endforeach
                 </select>
-              </div> --}}
+              </div>
               <div class="text-end">
                       <a href="javascript:history.back()" class="btn bg-gradient-danger"><i class="ni ni-bold-left"></i>&nbsp;&nbsp;Batal</a> 
                 <button type="submit" class="btn bg-gradient-dark"><i class="fas fa-plus"></i>&nbsp;&nbsp;Edit</button>

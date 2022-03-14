@@ -25,6 +25,15 @@
                   @endforeach
                 </select>
               </div>
+              <div class="mb-3">
+                <label for="exampleFormControlSelect1">Program</label>
+                <select class="form-control" name="program_id" id="exampleFormControlSelect1">
+                  <option value="0">Program</option>
+                  @foreach ($program as $item)
+                  <option value="{{ $item->id }}">{{ $item->nama_program }}</option>
+                  @endforeach
+                </select>
+              </div>
               <div class="text-end">
                       <a href="javascript:history.back()" class="btn bg-gradient-danger"><i class="ni ni-bold-left"></i>&nbsp;&nbsp;Batal</a> 
                 <button type="submit" class="btn bg-gradient-dark"><i class="fas fa-plus"></i>&nbsp;&nbsp;Tambah</button>                
