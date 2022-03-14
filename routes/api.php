@@ -44,6 +44,7 @@ use App\Http\Controllers\API\UserJobChannelController;
 use App\Http\Controllers\API\UserMandiriController;
 use App\Http\Controllers\API\SertifikatController;
 use App\Http\Controllers\API\GuideController;
+use App\Http\Controllers\API\ProgramController;
 use App\Models\DiscussionForum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -64,6 +65,12 @@ Route::put('/administrasi/{id}', [AdministrationController::class, 'update']);
 Route::post('/register', [PassportAuthController::class, 'register']);
 Route::post('/registration', [PassportAuthController::class, 'apiRegist']);
 Route::post('/login', [PassportAuthController::class, 'login']);
+
+// Program
+Route::get('/getProgram', [ProgramController::class, 'index']);
+Route::post('/program', [ProgramController::class, 'store']);
+Route::put('/program/{id}', [ProgramController::class, 'update']);
+Route::delete('/program/{id}', [ProgramController::class, 'destroy']);
 
 // Route progam studi
 Route::get('/kelas', [KelasController::class, 'index']);
