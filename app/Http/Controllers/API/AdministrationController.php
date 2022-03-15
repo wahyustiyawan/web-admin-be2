@@ -334,8 +334,8 @@ class AdministrationController extends Controller
         $user = Auth::user();
         // dd($request);
         
-        // $data = Administration::where('user_id', $user)->first();
-        $data = Administration::all();
+        $data = Administration::where('user_id', $user)->first();
+        // $data = Administration::all();
 
         return response()->json([
             "error" => false,
