@@ -40,7 +40,7 @@ class Administration extends Model
         'pas_foto',
         'transkip',
         'surat_rekomendasi',
-        'program',
+        'program_id',
         'isVerified',
         'isComplete',
         'user_id'
@@ -52,5 +52,10 @@ class Administration extends Model
     public function user()
     {
         return $this->belongsTo(user::class, 'user_id', 'id');
+    }
+
+    public function program()
+    {
+        return $this->belongsTo(user::class, 'program_id', 'id');
     }
 }

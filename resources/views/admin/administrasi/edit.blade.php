@@ -534,19 +534,19 @@
 					<div class="col-lg-8">
                         <div class="d-flex">
                             <div class="form-check radio-bg-light me-4">
-                                <input class="form-check-input" type="radio" name="program" value="D1" checked>
+                                <input class="form-check-input" type="radio" name="program_id" value="D1" checked>
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     D1
                                 </label>
                             </div>
                             <div class="form-check radio-bg-light me-4">
-                                <input class="form-check-input" type="radio" name="program" value="S1">
+                                <input class="form-check-input" type="radio" name="program_id" value="S1">
                                 <label class="form-check-label" for="flexRadioDefault2">
                                     S1
                                 </label>
                             </div>
                             <div class="form-check radio-bg-light">
-                                <input class="form-check-input" type="radio" name="program" value="Kursus">
+                                <input class="form-check-input" type="radio" name="program_id" value="Kursus">
                                 <label class="form-check-label" for="flexRadioDefault2">
                                     Kursus
                                 </label>
