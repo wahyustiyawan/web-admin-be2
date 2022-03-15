@@ -250,6 +250,12 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     })->name('user.dashboard');
 });
 
+Route::get('/tested', function(){
+    return response()->json([
+        'msg'=> "Hello World, by Yuda"
+    ]);
+});
+
 
 
 
