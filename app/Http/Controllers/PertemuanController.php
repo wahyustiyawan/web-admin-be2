@@ -41,13 +41,16 @@ class PertemuanController extends Controller
 
     public function detail($id)
     {
-        $pertemuan = Pertemuan::where('id', $id)->first();
+        $pertemuan = Pertemuan::find($id);
+        // dd($pertemuan);
         $kelas = Kelas::find($id);
         $kontenDokumen = KontenDokumen::get();
         $kontenVideo = KontenVideo::get();
         $pertemuanselect = Pertemuan::all();
-
-        return view('admin.pertemuan.index', compact('pertemuan', 'kontenDokumen', 'kontenVideo', 'kelas', 'pertemuanselect'));
+        $totalVideo = KontenVideo::count();
+        $totalDokumen = KontenDokumen::count();
+        // dd($kontenVideo);
+        return view('admin.pertemuan.index', compact('totalVideo', 'totalDokumen', 'pertemuan', 'kontenDokumen', 'kontenVideo', 'kelas', 'pertemuanselect'));
     }
 
     public function store(Request $request)
@@ -60,8 +63,6 @@ class PertemuanController extends Controller
         // dd($request);
         $kontenVideo_id = $request->kontenVideo_id;
         $kontenDokumen_id = $request->kontenDokumen_id;
-
-
 
         $i = 0;
         foreach ($kontenVideo_id as $item) {
@@ -92,6 +93,8 @@ class PertemuanController extends Controller
         else{
             $mandiri = false;
         }
+        $ar = 1;
+
 
         Pertemuan::create([
             'pertemuan' => $request->pertemuan,

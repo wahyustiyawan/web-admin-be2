@@ -33,7 +33,8 @@
                   <p class="text-xs font-weight-bold mb-0">{{ $item->name }}</p>
                 </td>
                 <td class="align-middle text-center text-sm">
-                  <img src="../assets/foto/profil/{{ $item->gambar }}" class="avatar avatar-sm me-3">
+                  {{-- <img src="../assets/foto/profil/{{ $item->gambar }}" class="avatar avatar-sm me-3"> --}}
+                  <img src="{{asset($item->gambar)}}" class="avatar avatar-sm me-3">
                 </td>
                 <td class="align-middle text-center">
                   <span class="text-secondary text-xs font-weight-bold">{{ $item->no_hp }}</span>

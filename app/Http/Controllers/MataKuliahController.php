@@ -61,16 +61,17 @@ class MataKuliahController extends Controller
             'kode' => 'required',
             'semester' => 'required',
         ]);
-        MataKuliah::create([
+        $matkul = MataKuliah::create([
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
             'sks' => $request->sks,
             'semester' => $request->semester,
             'kategori_id' => $request->kategori_id,
-            'kategori_id' => $request->kategori_id,
             'kelas_id' => $request->kelas_id,
             'kode' => $request->kode,
         ]);
+
+        // dd($matkul);
         
         return back()
             ->with('success', 'Mata kuliah Berhasil Ditambahkan');
@@ -146,7 +147,7 @@ class MataKuliahController extends Controller
         $nilaimahasiswa = [];
         foreach ($enrolls as $item) {
 
-            $user = User::find($item->id);
+            $user = User::find($item->user_id);
             $uts = $dataujian->where('tipe', 'uts')->where('user_id', $item->user_id)->first();
             $uas = $dataujian->where('tipe', 'uas')->where('user_id', $item->user_id)->first();
 
@@ -228,8 +229,24 @@ class MataKuliahController extends Controller
 
         $avgtugas1 = $avgassignment * 25 / 100;
         $avgquiz1 = $avgquiz * 10 / 100;
-        $avguts1 = $nilaiuts->grade * 30 / 100;
-        $avguas1 = $nilaiuas->grade * 35 / 100;
+        if ($nilaiuts->grade != NULL){
+            $avguts1 = $nilaiuts->grade * 30 / 100;
+        }
+        else{
+            $avguts1 = 0;
+        }
+        
+        // dd($nilaiuas);
+        if ($nilaiuas== NULL){
+            $avguas1 = 0;
+        }
+
+        if ($nilaiuas->grade != NULL){
+            $avguas1 = 0;
+        }
+        else{
+            $avguas1 = $nilaiuas->grade * 35 / 100;
+        }
 
         $nilaiakhir = $avgtugas1 + $avgquiz1 + $avguts1 + $avguas1;
         

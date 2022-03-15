@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Administration;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -79,7 +80,7 @@ class AdministrationController extends Controller
             'pas_foto' => $upload_pas_foto,
             'transkip' => $upload_transkip,
             'surat_rekomendasi' => $upload_surat_rekomendasi,
-            'program' => $request->program,
+            'program_id' => $request->program,
         ]);
 
         return response()->json([
@@ -90,7 +91,7 @@ class AdministrationController extends Controller
     }
 
 
-    function update(Request $request ,$id)
+    function update(Request $request, $id)
     {
         $user = Auth::user();
         // dd($request);
@@ -196,13 +197,19 @@ class AdministrationController extends Controller
             'pas_foto' => $upload_pas_foto,
             'transkip' => $upload_transkip,
             'surat_rekomendasi' => $upload_surat_rekomendasi,
-            'program' => $request->program,
+            'program_id' => $request->program,
+        ]);
+
+        User::where('id', $id)->update([
+            'gambar' => $upload_pas_foto,
+            'name' => $request->nama_lengkap
         ]);
 
         return response()->json([
             "error" => false,
             "message" => "success",
-            "data" => $request->nama_lengkap
+            "data" => $request->nama_lengkap,
+            "administrasi" => $administrasi
         ]);
     }
 
@@ -312,7 +319,7 @@ class AdministrationController extends Controller
             'pas_foto' => $upload_pas_foto,
             'transkip' => $upload_transkip,
             'surat_rekomendasi' => $upload_surat_rekomendasi,
-            'program' => $request->program,
+            'program_id' => $request->program,
         ]);
 
         return response()->json([
@@ -327,7 +334,7 @@ class AdministrationController extends Controller
         $user = Auth::user();
         // dd($request);
         
-        $data = Administration::where('user_id', $user->id)->get();
+        $data = Administration::where('user_id', $user)->first();
 
         return response()->json([
             "error" => false,

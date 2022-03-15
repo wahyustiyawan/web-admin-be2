@@ -12,7 +12,8 @@ class DiscussionReply2 extends Model
     protected $fillable = [
         'discussion_reply_id',
         'isi',
-        'user_id'
+        'user_id',
+        'username'
     ];
 
     protected $casts = [ 

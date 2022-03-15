@@ -30,13 +30,13 @@
                       
                     </span> --}}
                     <hr class="horizontal dark my-3">
-                    <h5 class="mb-0">
+                    <h6 class="mb-0">
                       <ol>
                         @foreach ($kontenVideo as $item)
                         <li>{{$item->judul}}</li>
                         @endforeach
                       </ol>
-                    </h5>
+                    </h6>
                   </div>
                 </div>
               </div>
@@ -50,13 +50,13 @@
                   <div class="card-body pt-0 p-3 ">
                     <h6 class="text-center mb-0">Konten Dokumen</h6>
                     <hr class="horizontal dark my-3">
-                    <h5 class="mb-0">
+                    <h6 class="mb-0">
                       <ol>
                         @foreach ($kontenDokumen as $item)
                         <li>{{$item->judul}}</li>
                         @endforeach
                       </ol>
-                    </h5>
+                    </h6>
                   </div>
                 </div>
               </div>
@@ -195,28 +195,23 @@
                   </a>
                 </div>
                 <div class="card-body px-1 pb-0">
-                  <p class="text-gradient text-dark mb-2 text-sm">Pertemuan ke {{ $item->pertemuan }}</p>
+                  <p class="text-gradient text-dark mb-2 text-sm">Pertemuan ke {{ $loop->iteration }}</p>
                   <a href="javascript:;">
                     <h5>
                       {{ $item->judul }}
                     </h5>
                   </a>
-                  {{-- <p class="mb-4 text-sm">
-                    {{ $item->deskripsi }}
-                  </p> --}}
                 </div>
                 <div class="d-flex align-items-center justify-content-between">
-                  <a class="btn bg-gradient-dark mb-0" href="{{route('detailPertemuan', $mataKuliah->id)}}">Lihat Pertemuan</a>
+                  <a class="btn bg-gradient-dark mb-0" href="{{route('detailPertemuan', $item->id)}}">Lihat Pertemuan</a>
                   <form action="{{route('hapusPertemuan', $item->id)}}" method="GET" style="display: inline">
                     @csrf
                     <button type="submit" class="btn btn-outline-danger btn-sm mb-0">Hapus</button>
                   </form>
-                  {{-- <button type="button" class="btn btn-outline-primary btn-sm mb-0">Lihat Tugas</button> --}}
                 </div>
               </div>
             </div>
             @endforeach
-
             <div class="col-xl-3 col-md-6 mb-xl-0 mb-4 mt-4">
               <div class="card h-100 card-plain border">
                 <div class="card-body d-flex flex-column justify-content-center text-center">
@@ -245,34 +240,25 @@
           <div class="row">
             @foreach ($quiz->where('mata_kuliah_id',$mataKuliah->id) as $item)
             <div class="col-xl-3 col-md-6 mb-xl-0 mb-4 mt-4">
-              <div class="card h-100 card-plain border">
+              <div class="card h-100 card-plain">
                 <div class="position-relative">
                   <a class="d-block shadow-xl border-radius-xl">
                     <img src="../../../assets/img/home-decor-1.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl">
                   </a>
                 </div>
                 <div class="card-body px-1 pb-0">
-                  <p class="text-gradient text-dark mb-2 text-sm">Pertemuan ke {{ $item->pertemuan->pertemuan }}</p>
+                  {{-- <p class="text-gradient text-dark mb-2 text-sm">Pertemuan {{ $item->pertemuan->judul }}</p> --}}
                   <a href="javascript:;">
                     <h5>
                       {{ $item->judul }}
                     </h5>
                   </a>
-                  {{-- <p class="mb-4 text-sm">
-                    {{ $item->deskripsi }}
-                  </p> --}}
                   <div class="d-flex align-items-center justify-content-between">
                     <a href="{{route('QuizShow',$item->id)}}" class="btn btn-outline-primary btn-sm mb-0">Lihat Quiz</a>
                     <form action="{{route('QuizDestroy', $item->id)}}" method="GET" style="display: inline">
                       @csrf
                       <button type="submit" class="btn btn-outline-danger btn-sm mb-0">Hapus</button>
                     </form>
-                    {{-- <a class="btn bg-gradient-dark mb-0" href="{{route('detailPertemuan', $mataKuliah->id)}}">Lihat Pertemuan</a> --}}
-                    {{-- <form action="{{route('hapusQuiz', $item->id)}}" method="GET" style="display: inline">
-                      @csrf
-                      <button type="submit" class="btn btn-outline-danger btn-sm mb-0">Hapus</button>
-                    </form> --}}
-                    {{-- <button type="button" class="btn btn-outline-primary btn-sm mb-0">Lihat Tugas</button> --}}
                     <div class="avatar-group mt-2">
                     </div>
                   </div>
@@ -339,7 +325,7 @@
             </div>
             @endforeach
 
-            <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
+            <div class="col-xl-3 col-md-6 mb-xl-0 mb-4 mt-4">
               <div class="card h-100 card-plain border">
                 <div class="card-body d-flex flex-column justify-content-center text-center">
                   {{-- <a href="javascript:;"> --}}
@@ -428,7 +414,7 @@
             </div>
             @endforeach
 
-            <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
+            <div class="col-xl-3 col-md-6 mb-xl-0 mb-4 mt-4">
               <div class="card h-100 card-plain border">
                 <div class="card-body d-flex flex-column justify-content-center text-center">
                   {{-- <a href="javascript:;"> --}}
@@ -529,10 +515,10 @@
               <form role="form text-left" action="{{route('storePertemuan')}}" method="POST">
                 @csrf
                 <input type="hidden" name="mata_kuliah_id" value="{{$mataKuliah->id}}">
-                <div class="mb-3">
-                  <label for="exampleFormControlSelect1">Pertemuan Ke</label>
-                  <input type="number" class="form-control" name="pertemuan" placeholder="Isi Angka" aria-label="Name" aria-describedby="email-addon" required>
-                </div>
+                {{-- <div class="mb-3"> --}}
+                  {{-- <label for="exampleFormControlSelect1">Pertemuan Ke</label> --}}
+                  <input type="hidden" value="1" class="form-control" name="pertemuan" placeholder="Isi Angka" aria-label="Name" aria-describedby="email-addon" required>
+                {{-- </div> --}}
                 <div class="mb-3">
                   <label for="exampleFormControlSelect1">Topik Pertemuan</label>
                   <input type="text" class="form-control" name="judul" placeholder="Isi topik pertemuan" aria-label="Name" aria-describedby="email-addon" required>
@@ -610,7 +596,7 @@
                   <div class="mb-3">
                     <label for="exampleFormControlSelect1">Pertemuan</label>
                     <select class="form-control" name="pertemuan_id" id="exampleFormControlSelect1">
-                      @foreach ($pertemuan as $item)
+                      @foreach ($pertemuan->where('mata_kuliah_id', $mataKuliah->id) as $item)
                       <option value="{{$item->id}}">{{$item->judul}}</option>
                       @endforeach
                     </select>

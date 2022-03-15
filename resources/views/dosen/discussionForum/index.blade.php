@@ -532,6 +532,7 @@
                   @endforeach
                 </select> 
               </div>
+              <input type="hidden" name="username" value="{{Auth::user()->name}}">
               <div class="form-group">
                 <label for="exampleFormControlSelect1">Gambar</label>
                 <input type="file" class="form-control" name="gambar">

@@ -44,6 +44,7 @@ use App\Http\Controllers\API\UserJobChannelController;
 use App\Http\Controllers\API\UserMandiriController;
 use App\Http\Controllers\API\SertifikatController;
 use App\Http\Controllers\API\GuideController;
+use App\Http\Controllers\API\ProgramController;
 use App\Models\DiscussionForum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -58,12 +59,18 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+*/ 
 Route::put('/administrasi/{id}', [AdministrationController::class, 'update']);
 // Public routes
 Route::post('/register', [PassportAuthController::class, 'register']);
 Route::post('/registration', [PassportAuthController::class, 'apiRegist']);
 Route::post('/login', [PassportAuthController::class, 'login']);
+
+// Program
+Route::get('/getProgram', [ProgramController::class, 'index']);
+Route::post('/program', [ProgramController::class, 'store']);
+Route::put('/program/{id}', [ProgramController::class, 'update']);
+Route::delete('/program/{id}', [ProgramController::class, 'destroy']);
 
 // Route progam studi
 Route::get('/kelas', [KelasController::class, 'index']);
@@ -157,10 +164,6 @@ Route::get('/userAssignment', [UserAssignmentController::class, 'index']);
 Route::get('/userAssignment/show/{id}', [UserAssignmentController::class, 'show']);
 
 
-// Route User Exam
-Route::get('/userExam', [UserExamController::class, 'index']);
-Route::post('/userExam', [UserExamController::class, 'store']);
-Route::get('/userExam/{id}', [UserExamController::class, 'show']);
 
 //Leaderboard
 Route::get('/leaderboard', [LeaderboardController::class, 'index']);
@@ -216,6 +219,7 @@ Route::get('/buku_panduan', [GuideController::class, 'buku_panduan']);
 Route::get('/video_panduan', [GuideController::class, 'video_panduan']);
 Route::get('/kamus_kg', [GuideController::class, 'kamus_kg']);
 Route::get('/view3/{file_name}', [ViewController::class, 'view_buku_panduan']);
+Route::get('/getAdministrasi', [AdministrationController::class, 'getAdministrasi'])->name('getAdministrasi');
 
 // Protected routes
 Route::group(['middleware' => ['auth:api']], function () {
@@ -224,7 +228,6 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/userjobchannel', [UserJobChannelController::class, 'store']);
     
     Route::put('/updateAdministrasi', [AdministrationController::class, 'updateAdministrasi'])->name('updateAdministrasi');
-    Route::get('/getAdministrasi', [AdministrationController::class, 'getAdministrasi'])->name('getAdministrasi');
     
     //Transkip
     Route::get('/transkip', [TranskipController::class, 'index']);
@@ -291,6 +294,11 @@ Route::group(['middleware' => ['auth:api']], function () {
     // User Mandiri
     Route::post('/userMandiri', [UserMandiriController::class, 'store']); 
 
+    // Route User Exam
+    Route::get('/userExam', [UserExamController::class, 'index']);
+    Route::post('/userExam', [UserExamController::class, 'store']);
+    Route::get('/userExam/{id}', [UserExamController::class, 'show']);
+
     //Route Nilai
     // Route::post('/nilaiQuiz', [NilaiController::class, 'nilaiQuiz']);
     Route::get('/gradeAssignment/{id}', [NilaiController::class, 'gradeAssignment']);
@@ -301,6 +309,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     //Route Quiz
     Route::post('/user-quiz', [UserQuizController::class, 'store']);
     Route::post('/nilai-quiz', [UserQuizController::class, 'nilaiQuiz']);
+
+    Route::get('nilai-akhir/{matkul}', [NilaiController::class, 'nilaiAkhir']);
 
 });
 

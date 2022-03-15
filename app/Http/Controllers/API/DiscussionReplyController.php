@@ -37,6 +37,7 @@ class DiscussionReplyController extends Controller
         $input->discussion_id = $request->discussion_id;
         $input->isi = $request->isi;
         $input->user_id = $user->id;
+        $input->username = $user->name;
 
         $input->save();
 

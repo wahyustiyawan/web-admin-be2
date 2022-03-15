@@ -34,7 +34,7 @@ class ExamController extends Controller
     }
 
     public function view($id)
-    {
+    { 
         $exam = Exam::find($id);
         $lst = explode('/', $exam->exam);
         $txt = 'api/view/'.$lst[1].'/'.$lst[2];

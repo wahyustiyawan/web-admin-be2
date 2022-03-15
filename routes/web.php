@@ -29,6 +29,8 @@ use App\Http\Controllers\ExamPilganController;
 use App\Http\Controllers\AdministrasiController;
 use App\Http\Controllers\GuideController;
 use App\Http\Controllers\ChatsController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ProgramController;
 use App\Models\Assignment;
 use App\Models\UserExam;
 
@@ -45,9 +47,13 @@ use App\Models\UserExam;
 
 
 Route::get('cobaRegister', [AuthController::class, 'cobaRegister'])->name('cobaRegister');
-Route::get('chat', [ChatsController::class, 'index']);
-Route::get('messages', [ChatsController::class, 'fetchMessages']);
-Route::post('messages', [ChatsController::class, 'sendMessage']);
+Route::get('chat', [MessageController::class, 'index']);
+Route::group(['prefix' => 'message'], function () {
+    Route::get('user/{query}', [MessageController::class, 'user']);
+    Route::get('user-message/{id}', [MessageController::class, 'message']);
+    Route::get('user-message/{id}/read', [MessageController::class, 'read']);
+    Route::post('user-message', [MessageController::class, 'send']);
+});
 // Route::get('/test', function () {
 //     return view('admin.ujian.tambah');
 // });
@@ -112,6 +118,8 @@ Route::put('/discussion/{id}', [DiscussionForumController::class, 'dosenUpdate']
 Route::post('/QuizImport', [ControllersQuizController::class,'QuizImport'])->name('QuizImport');
 Route::get('/quiz/destroy/{id}', [ControllersQuizController::class, 'destroy'])->name('QuizDestroy');
 Route::get('/quiz/{id}', [ControllersQuizController::class, 'show'])->name('QuizShow');
+Route::get('/question/{id}', [ControllersQuizController::class, 'question'])->name('question');
+Route::get('/user-quiz/{quiz}/{id}', [ControllersQuizController::class, 'userQuiz'])->name('userQuiz');
 
 Route::post('/ExamPilganImport', [ExamPilganController::class,'ExamPilganImport'])->name('ExamPilganImport');
 Route::get('/ExamPilgan/destroy/{id}', [ExamPilganController::class, 'destroy'])->name('ExamPilganDestroy');
@@ -145,6 +153,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
+Route::resource('program', ProgramController::class);
 Route::resource('discussionForum', DiscussionForumController::class);
 Route::resource('kontenVideo', KontenVideoController::class);
 Route::resource('kontenDokumen', KontenDokumenController::class);

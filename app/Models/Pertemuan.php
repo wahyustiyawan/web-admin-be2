@@ -35,6 +35,11 @@ class Pertemuan extends Model
         return $this->belongsTo(kelas::class, 'kelas_id', 'id');
     }
 
+    public function mataKuliah()
+    {
+        return $this->belongsTo(MataKuliah::class, 'mata_kuliah_id', 'id');
+    }
+
     public function video()
     {
         return $this->belongsTo(KontenVideo::class, 'kontenVideo_id', 'id');
@@ -59,6 +64,22 @@ class Pertemuan extends Model
     // {
     //     return $this->attributes['kontenVideo_id'] = json_decode($value);
     // }
+
+    public static function getJudulVideo($id){
+        return KontenVideo::where('id', $id)->pluck('judul')->first();
+    }
+
+    public static function getLinkVideo($id){
+        return KontenVideo::where('id', $id)->pluck('link')->first();
+    }
+
+    public static function getJudulDokumen($id){
+        return KontenDokumen::where('id', $id)->pluck('judul')->first();
+    }
+
+    public static function getFileDokumen($id){
+        return KontenDokumen::where('id', $id)->pluck('file')->first();
+    }
 
     // public function setDokumenAttribute($value)
     // {

@@ -45,10 +45,10 @@ class CreateAdministrationTable extends Migration
             $table->string('pas_foto')->nullable();
             $table->string('transkip')->nullable();
             $table->string('surat_rekomendasi')->nullable();
-            $table->enum('program', ['D1', ['S1'], ['Kursus']])->nullable();
             $table->boolean('isVerified')->nullable();
             $table->boolean('isComplete')->nullable();
             $table->foreignId("user_id")->constrained("users")->onDelete("cascade")->onUpdate("cascade")->nullable();
+            $table->foreignId("program_id")->nullable()->constrained("program")->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });
     }

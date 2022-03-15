@@ -30,9 +30,19 @@ class UserExamController extends Controller
         // $input->user_id = $user->id;
 
         // $input->save();
+        if (isset($request->exam)) {
+            $extention = $request->exam->extension();
+            $file_exam = time() . '.' . $extention;
+            $upload_exam = 'storage/exam/' . $file_exam;
+            $request->exam->storeAs('public/exam', $file_exam);
+            // $input_exam = $upload_exam;
+        }
+        else{
+            $upload_exam = null;
+        }
 
         UserExam::create([
-            'exam' => $request->exam,
+            'exam' => $upload_exam,
             'grade' => '0',
             'user_id' => $user->id,
             'mata_kuliah_id' => $request->mata_kuliah_id,

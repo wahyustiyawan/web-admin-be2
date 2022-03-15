@@ -12,7 +12,7 @@
                                 </div>
                                 <div class="card-body pt-4 text-center">
                                     <h2 class="text-white mb-0 mt-2 up">Nilai Akhir</h2>
-                                    <h1 class="text-white mb-0 up">{{ $nilaiakhir }}</h1>
+                                    <h1 class="text-white mb-0 up">{{ (int) $nilaiakhir }}</h1>
                                     <h3 class="badge-success">
                                         {{$variabel}}
                                     </h3>
@@ -95,7 +95,7 @@
                                             <div class="numbers">
                                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">Quiz</p>
                                                 <h5 class="font-weight-bolder mb-0">
-                                                    {{ $avgquiz }}
+                                                    {{ (int) $avgquiz }}
                                                     <span class="text-success text-sm font-weight-bolder"></span>
                                                 </h5>
                                             </div>
@@ -155,7 +155,7 @@
                                     <h6 class="mb-0">Data Ujian Akhir Semester</h6>
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-end align-items-center">
-                                    <small>23 - 30 March 2020</small>
+                                    {{-- <small>23 - 30 March 2020</small> --}}
                                 </div>
                             </div>
                             <hr class="horizontal dark mb-0">
@@ -198,7 +198,7 @@
                                                 </div>
                                                 <div class="mx-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Status</p>
-                                                    <span class="badge badge-success">{{Helper::variabel_nilai($item->grade)}}</span>
+                                                    <span class="badge badge-success">{{Helper::lulus($item->grade)}}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -216,7 +216,7 @@
                                     <h6 class="mb-0">Data Ujian Tengah Semester</h6>
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-end align-items-center">
-                                    <small>23 - 30 March 2020</small>
+                                    {{-- <small>23 - 30 March 2020</small> --}}
                                 </div>
                             </div>
                             <hr class="horizontal dark mb-0">
@@ -259,7 +259,7 @@
                                                 </div>
                                                 <div class="mx-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Status</p>
-                                                    <span class="badge badge-success">Lulus</span>
+                                                    <span class="badge badge-success">{{Helper::lulus($item->grade)}}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -277,7 +277,7 @@
                                     <h6 class="mb-0">Data Assignment</h6>
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-end align-items-center">
-                                    <small>23 - 30 March 2020</small>
+                                    {{-- <small>23 - 30 March 2020</small> --}}
                                 </div>
                             </div>
                             <hr class="horizontal dark mb-0">
@@ -321,7 +321,7 @@
                                                 </div>
                                                 <div class="mx-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Status</p>
-                                                    <span class="badge badge-success">Lulus</span>
+                                                    <span class="badge badge-success">{{Helper::lulus($item->grade)}}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -339,7 +339,7 @@
                                     <h6 class="mb-0">Data Quiz</h6>
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-end align-items-center">
-                                    <small>23 - 30 March 2020</small>
+                                    {{-- <small>23 - 30 March 2020</small> --}}
                                 </div>
                             </div>
                             <hr class="horizontal dark mb-0">
@@ -382,7 +382,7 @@
                                                 </div>
                                                 <div class="mx-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Status</p>
-                                                    <span class="badge badge-success">Lulus</span>
+                                                    <span class="badge badge-success">{{Helper::lulus($item->grade)}}</span>
                                                 </div>
                                             </div>
                                         </div>

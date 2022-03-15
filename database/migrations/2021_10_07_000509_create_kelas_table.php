@@ -18,6 +18,7 @@ class CreateKelasTable extends Migration
             $table->string('nama');
             $table->text('deskripsi');
             $table->text('sebelum')->nullable();
+            $table->foreignId("program_id")->constrained("program")->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });
     }

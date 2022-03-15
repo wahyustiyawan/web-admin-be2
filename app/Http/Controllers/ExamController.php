@@ -116,7 +116,7 @@ class ExamController extends Controller
         }
 
         public function showUserExam($id)
-        {
+        { 
             $userExam = UserExam::find($id);
             // dd($userExam);
             return view('admin.ujian.show-UserExam', compact('userExam'));
